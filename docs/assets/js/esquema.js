@@ -15,52 +15,10 @@
    Rutas relativas y un nivel por debajo: la página vive en docs/esquema/.
    ========================================================================== */
 
-'use strict';
-
-const VERSION = '0.8';
-window.legislacionFP = { version: VERSION };
-
-const TIPO = {
-  'ley-organica': 'Ley Orgánica',
-  'real-decreto': 'Real Decreto',
-  'decreto': 'Decreto',
-  'orden': 'Orden',
-  'resolucion': 'Resolución',
-  'instrucciones': 'Instrucciones',
-  'guia': 'Guía',
-  'anexo': 'Anexo',
-  'calendario': 'Calendario',
-};
-
-const AMBITO_NOMBRE = { estatal: 'Estatal', autonomico: 'Autonómico' };
-const ESTADO_NOMBRE = { vigente: 'Vigente', modificada: 'Modificada', derogada: 'Derogada' };
-const DIARIO = { 'www.boe.es': 'BOE', 'dogv.gva.es': 'DOGV', 'ceice.gva.es': 'CEICE' };
-
-const $ = (selector, raiz = document) => raiz.querySelector(selector);
-
-const escapar = (texto) => String(texto).replace(/[&<>"']/g,
-  (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-
-const fechaLarga = (iso) => {
-  const [anno, mes, dia] = iso.split('-').map(Number);
-  return new Date(anno, mes - 1, dia)
-    .toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
-};
-
-const identificador = (norma) => {
-  const tipo = TIPO[norma.tipo] ?? norma.tipo;
-  if (norma.numero) return `${tipo} ${norma.numero}`;
-  return `${tipo} de ${fechaLarga(norma.fecha)}`;
-};
-
-const enlaceExterno = (url, texto) => `
-  <a href="${escapar(url)}" target="_blank" rel="noopener noreferrer">${escapar(texto)}<span class="externo" aria-hidden="true"></span><span class="oculto"> (se abre en una ventana nueva)</span></a>`;
-
-const cargar = async (ruta) => {
-  const respuesta = await fetch(ruta);
-  if (!respuesta.ok) throw new Error(`No se ha podido leer ${ruta} (HTTP ${respuesta.status}).`);
-  return respuesta.json();
-};
+import {
+  ESTADO_NOMBRE,
+  $, escapar, fechaLarga, identificador, enlaceExterno, procedencia, cargar,
+} from './comun.js';
 
 /* --------------------------------------------------------------- piezas --- */
 
@@ -311,13 +269,8 @@ const PINTORES = {
 
   document.title = `${identificador(norma)} · Esquema · Legislación FP`;
 
-  const anfitrion = new URL(norma.enlaces[0].url).hostname;
-  const procedencia = DIARIO[anfitrion]
-    ? `${AMBITO_NOMBRE[norma.ambito]} · ${DIARIO[anfitrion]}`
-    : AMBITO_NOMBRE[norma.ambito];
-
   $('#cabecera').innerHTML = `
-    <p class="ficha__procedencia">${escapar(procedencia)}</p>
+    <p class="ficha__procedencia">${escapar(procedencia(norma))}</p>
     <h1 class="ficha__id" id="titulo" tabindex="-1">${escapar(identificador(norma))}</h1>
     <p class="ficha__meta">
       <span class="trazo" data-estado="${escapar(norma.estado)}" aria-hidden="true"></span>

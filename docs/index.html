@@ -7,6 +7,13 @@
 <meta name="description" content="Consulta con buscador y filtros de la normativa de ordenación y organización académica de los ciclos formativos de FP de la Comunitat Valenciana, con el estado de vigencia y las relaciones entre normas.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/base.css">
+<!-- Los módulos que app.js importa, pedidos ya desde la cabecera: si el
+     navegador tuviera que descubrirlos al analizar app.js, la carga ganaría un
+     escalón de más. -->
+<link rel="modulepreload" href="assets/js/comun.js">
+<link rel="modulepreload" href="assets/js/rutas.js">
+<link rel="modulepreload" href="assets/js/datos.js">
+<link rel="modulepreload" href="assets/js/vistas.js">
 </head>
 <body>
 
@@ -101,6 +108,6 @@
 
 </div>
 
-<script src="assets/js/app.js"></script>
+<script type="module" src="assets/js/app.js"></script>
 </body>
 </html>

@@ -264,40 +264,103 @@ La página tiene cinco bloques:
 
 **La siguiente cuesta poco.** Los cinco tipos de bloque —`escalera`, `cadena`, `comparacion`, `mapa`, `corpus`— son un vocabulario reutilizable, no un formato hecho para esta ley: el esquema siguiente se escribe combinando los que le sirvan, se copia el HTML con otro nombre y se pone `esquema: true` en la norma.
 
-## Fase 5 · Refactorización y optimización — pendiente
+## Fase 5 · Refactorización y optimización — hecha
 
-El sitio está en producción y funciona. Esta fase no añade nada visible: paga la deuda que han dejado cuatro fases de crecer por acumulación, para que la quinta norma transcrita cueste lo mismo que la segunda.
+No añade nada visible: paga la deuda que dejaron cuatro fases de crecer por acumulación, para que la quinta norma transcrita cueste lo mismo que la segunda. **Ningún cambio de esta fase debería verse**, y eso es exactamente lo que se ha comprobado.
 
-**Nada de esto es urgente,** y por eso está en su propia fase: se toca cuando estorbe, no antes. Publicar una norma nueva no depende de ninguno de estos puntos.
+### Lo que estaba escrito tres veces
 
-### La duplicación entre los dos scripts
+`app.js`, `norma.js` y `esquema.js` compartían quince declaraciones —`escapar`, `fechaLarga`, `aplanar`, `resaltar`, `identificador`, el diccionario `TIPO`, las dos funciones del ancla— con **124 líneas repetidas**. Al contarlas apareció lo que se temía: **cinco ya habían divergido**.
 
-`app.js` y `norma.js` tienen escritas dos veces `escapar`, `fechaLarga`, `aplanar`, `terminosDe`, `resaltar`, `identificador`, el diccionario `TIPO` y las funciones que componen el ancla y el rótulo de una pieza. La de las anclas es la que preocupa: **tiene que coincidir carácter a carácter** entre los dos ficheros o los enlaces del buscador caen en el vacío.
+| Declaración | Qué se había separado |
+|---|---|
+| `identificador` | La portada devuelve el título de un anexo sin número; las otras dos páginas habrían devuelto «Anexo de 16 de julio de 2026». Solo no se veía porque las dos páginas propias que hay son de normas con número |
+| `enlaceExterno` | La portada admite una nota al lado del enlace; las otras dos, no |
+| `cargar` | Tres mensajes de error distintos para el mismo fallo |
+| `AMBITO_NOMBRE`, `ESTADO_NOMBRE` | Escritos a mano en dos páginas y derivados en la tercera |
 
-La causa es D1: sin build ni módulos, no hay dónde poner lo común. Salidas posibles, por orden de coste:
+Las dos que componen el ancla —de las que depende que un resultado del buscador caiga en su artículo y no en el vacío— seguían coincidiendo carácter a carácter por suerte, no por construcción. Ahora es la misma función.
 
-1. Un `assets/js/comun.js` cargado antes que los otros dos, que exponga lo compartido. No es un build ni rompe D1; obliga a un `<script>` más en cada página.
-2. Módulos ES (`type="module"`), que además dan importaciones explícitas. Habría que revisar que el diagnóstico siga pudiendo leer `VERSION` de cada fichero (D19) y que la carga diferida no cambie el arranque.
-3. Dejarlo así y confiar en el comentario que lo advierte, que es lo que hay hoy.
+**La salida elegida fueron los módulos ES** (D30), que no contradicen D1: los resuelve el navegador, no hay build ni dependencias. Con ellos, partir `app.js` deja de depender del orden de las etiquetas `<script>`.
 
-### El tamaño de `app.js`
+| | Antes | Después |
+|---|---|---|
+| `app.js` | 1.111 líneas haciendo ocho cosas | 248, solo enrutado, arranque y eventos |
+| Lo compartido | escrito tres veces | `comun.js`, 170 líneas |
+| El resto | — | `rutas.js` 49, `datos.js` 299, `vistas.js` 519 |
+| `norma.js` / `esquema.js` | 280 / 399 | 164 / 352 |
 
-Novecientas líneas largas en un fichero: vocabulario, utilidades, datos, filtro, pintado de listado, pintado de ficha, enrutado y arranque. Está ordenado por secciones y se navega, pero es el techo. Si la fase 4 sigue añadiendo vistas, hay que partirlo antes de que duela, y eso empuja hacia la salida 1 o 2 del punto anterior.
+`rutas.js` salió de romper el ciclo entre el pintado, que compone enlaces, y el enrutado, que decide cuándo se pinta. **`diagnostico.js` se queda fuera a propósito**, sin importar nada: la página que informa de que el sitio está roto no puede depender de lo que puede estar roto.
 
-### La búsqueda, cuando haya muchas transcripciones
+### La versión, en un solo sitio
 
-Hoy se cargan **todos** los ficheros de `data/texto/` después del primer pintado y se indexan en memoria. Con una norma transcrita son 42 KB y no se nota. Con veinte serían cerca de un mega que se descarga aunque nadie busque nada.
+Estaba en tres ficheros y había que subirla en los tres. Ahora está en `comun.js` y las cuatro páginas la exponen al importarlo. Eso abría un hueco —un `vistas.js` viejo en la caché junto a un `comun.js` nuevo da versiones que coinciden—, así que el diagnóstico pide además cada módulo y la hoja de estilos dos veces, una como lo haría la página y otra saltándose la caché, y compara. Ver D31.
 
-Lo que habría que decidir entonces: un índice de búsqueda pregenerado —que reabre D1, porque alguien tiene que generarlo—, o cargar cada articulado solo cuando la búsqueda lo pida y aceptar que los resultados aparezcan en dos tiempos. **El umbral no es un número de normas, es cuándo se note**, y se sabrá midiéndolo.
+**Comprobado que salta**, que es lo que hace que la comprobación valga algo: sirviendo el sitio con `cache-control: max-age=600` como GitHub Pages, se cargó la portada, se cambiaron después `base.css` y `vistas.js`, y al volver al diagnóstico la línea de versión seguía en verde —el hueco— mientras la de copias en caché decía «dos copias en juego: base.css, vistas.js». De paso cubre la hoja de estilos, que hasta ahora no tenía ninguna comprobación.
 
-### Detalles que ya se saben
+Las comprobaciones del diagnóstico pasan de once a doce.
 
-- **El bloque de respuestas da por hecho que solo hay una norma con preguntas:** rotula «De las preguntas frecuentes de X» con la primera que encuentra. En cuanto haya una segunda FAQ, hay que agrupar por norma como ya hace el bloque de articulado.
-- **Los resultados no se ordenan por relevancia.** Salen por sección y por rango normativo, que es lo correcto para un sumario y discutible para una búsqueda. Antes de tocarlo hay que pensarlo: el orden por rango es información, no un residuo.
-- **`VERSION` se sube a mano** en dos ficheros (D19). El diagnóstico avisa si no coinciden, que es lo que lo hace tolerable.
-- **`meta.json` tiene la fecha de revisión a mano.** Es a propósito: decir «revisado en agosto» cuando se revisó en enero es peor que no decirlo, y automatizarlo con la fecha del último commit mentiría igual.
-- **La hoja de estilos pasa de 1.400 líneas** con el orden en que se fueron añadiendo las vistas. Merece una lectura seguida buscando reglas muertas y duplicadas, no una reescritura.
+### Rendimiento
 
-### Lo que no se toca
+**El listado ya no espera a las preguntas frecuentes.** Había dos viajes encadenados antes de pintar nada: `normas.json` y, detrás, los ficheros de consulta, 40 KB que el listado no necesita. Medido con un servidor que retrasa tres segundos ese fichero:
 
-El modelo de datos, la escala de grises (D5), el rigor de las citas (D18) y la ausencia de build (D1). Si algo de esto tiene que caer, se discute y se escribe una decisión nueva; no se cambia por el camino durante una refactorización.
+| | Antes | Después |
+|---|---|---|
+| Hasta ver el listado | 3.292 ms | el listado está pintado con `normas.json`, a los 17-26 ms, con el fichero de preguntas **todavía en vuelo** |
+
+La excepción es precisa: si la URL pide la ficha de una norma que tiene preguntas, se espera a las suyas y solo a las suyas, porque pintar una ficha coja y repintarla sería un salto en mitad de la lectura. Comprobado también con el retraso de tres segundos: la ficha aparece entera, con sus 50 preguntas y la pedida abierta.
+
+**`aplanar` normaliza solo lo que no es ASCII.** Recorría carácter a carácter; en un texto legal en castellano, uno de cada treinta lo necesita.
+
+| | Corpus de hoy | Simulando veinte normas transcritas |
+|---|---|---|
+| Antes | 10 ms | 65 ms |
+| Después | 0,8 ms | 5 ms |
+
+La salida es **idéntica**, comparada línea a línea sobre las 3.039 de `docs/data/`. Se conserva lo que importa: la cadena aplanada mantiene la longitud de la original, que es de lo que vive el resaltado por posición.
+
+**El índice de búsqueda pregenerado no se ha hecho.** El umbral no es un número de normas, es cuándo se note, y hoy son 26 piezas y 5 ms. Queda la cifra anotada para saber desde dónde se mide.
+
+### El bloque de respuestas, con la segunda FAQ en la cabeza
+
+Rotulaba «De las preguntas frecuentes de X» con la primera norma que encontrara y mandaba el enlace del resto a esa misma ficha, aunque las coincidencias vinieran de dos normas distintas. Ahora se deriva de las que de verdad han aparecido, como ya hacía el bloque de articulado: **con una sola FAQ sale exactamente lo mismo que antes** y con dos, cada respuesta dice de dónde sale y el enlace del resto lleva a las dos fichas.
+
+Comprobado simulando una segunda FAQ en la copia de pruebas: buscar «promoción» rotula las dos normas, etiqueta cada respuesta con la suya y enlaza a las dos fichas. Sin ella, la salida es idéntica a la anterior.
+
+### El repaso del CSS
+
+2.142 líneas y **una sola clase muerta**: el problema no era grasa. Lo que se hizo, sin tocar un valor:
+
+- Los tres destinos de salto —`.tema`, `.articulo`, `.pregunta`— compartían la misma declaración en tres reglas seguidas: ahora es una.
+- Fuera `.columna__nombre`, que murió cuando la comparación de regímenes se rehízo por criterio en la fase 4.1 y seguía en la hoja de impresión.
+- `.relaciones__nota` estaba bajo el rótulo de «Respuestas encontradas» y es de la ficha: se ha movido a su sección.
+- Regla nueva para la norma de cada respuesta, junto a la que ya existía para el articulado.
+
+**Y dos cosas que se iban a hacer y no se han hecho, después de mirarlas:** los dos bloques de impresión que parecían estar partidos son uno solo con un rótulo interior, y los dos `@media (min-width: 46rem)` están separados porque cada uno vive junto a la regla que modifica, que es donde se entiende. Juntarlos habría sido peor.
+
+Quedan cinco clases en el marcado sin ninguna regla —`chip__texto`, `ficha__cabecera`, `ficha__principal`, `indice__titulo`, `mapa__grupo`—. Nombran partes de la estructura y no estorban; se dejan a la vista aquí por si alguna vez hace falta estilarlas o quitarlas.
+
+### Cómo se comprobó que no se ve nada
+
+La comprobación no fue mirar capturas: para cada una de nueve vistas se recogió, **elemento a elemento, el valor calculado de 49 propiedades** —color, filete, tipografía, márgenes, rejilla, desbordamiento— y se comparó con el mismo recuento tomado antes de tocar nada.
+
+| Comprobación | Resultado |
+|---|---|
+| Estilos calculados, 1.200 px, tema claro | idéntico en las nueve vistas |
+| Estilos calculados, 1.200 px, tema oscuro | idéntico |
+| Estilos calculados, 375 px | idéntico |
+| Texto renderizado de trece URL | idéntico en las trece |
+| Recuentos, resaltados, marcas | idénticos |
+| Bloque de `@media print` | solo los dos cambios buscados |
+
+Las únicas diferencias que aparecieron fueron las esperadas: las etiquetas `modulepreload` de cada página y las cinco líneas nuevas del diagnóstico.
+
+**Y a mano, sobre el sitio servido bajo su subpath real:** ficha y vuelta con la posición recuperada y el realce; ocho saltos del índice de temas sin una sola entrada nueva en el historial (D20); el filtro por materia; los chips; el botón de copiar la cita con su alternativa cuando el portapapeles no está; un resultado de **disposición** —que es donde la fórmula del ancla se complica— abierto desde el buscador, con su resaltado y el aviso de qué se está resaltando; el índice del esquema y sus 34 apoyos con su artículo. Sin un solo error en consola.
+
+### Lo que no se ha tocado
+
+El modelo de datos, la escala de grises (D5), el rigor de las citas (D18) y la ausencia de build (D1). El orden por sección y rango tampoco: se pensó y se cerró como decisión (D32) en vez de dejarlo como duda abierta. `meta.json` sigue con la fecha de revisión a mano, a propósito.
+
+### Decisiones
+
+D30, D31 y D32. D19 queda revisada por D31.

@@ -175,7 +175,7 @@ El articulado de una norma, transcrito. La norma declara `texto: true`.
 
 **Cuando la consolidación es propia hay que decirlo.** `consolidacion.propia` con su `aviso` sale destacado en la cabecera de la página. Ver D22.
 
-**El buscador de la portada entra aquí.** Cada pieza se indexa por separado —rótulo, título y párrafos— porque **el artículo es la unidad que se cita y por tanto la que se encuentra**: los términos tienen que caer todos dentro de la misma pieza. El identificador de la norma se queda fuera del índice a propósito; si entrara, buscar «orden» devolvería los veintiséis artículos de la Orden 8/2025. El ancla (`#articulo-14`) la componen `app.js` y `norma.js` con la misma función escrita dos veces: si se cambia una hay que cambiar la otra o los enlaces del buscador caen en el vacío. Ver la fase 5 de [HOJA-DE-RUTA.md](HOJA-DE-RUTA.md).
+**El buscador de la portada entra aquí.** Cada pieza se indexa por separado —rótulo, título y párrafos— porque **el artículo es la unidad que se cita y por tanto la que se encuentra**: los términos tienen que caer todos dentro de la misma pieza. El identificador de la norma se queda fuera del índice a propósito; si entrara, buscar «orden» devolvería los veintiséis artículos de la Orden 8/2025. El ancla (`#articulo-14`) la compone `anclaDePieza`, que vive en `assets/js/comun.js` y usan por igual el buscador de la portada, que la escribe en el enlace, y la página del texto, que la pinta en el destino: tienen que coincidir carácter a carácter, y coinciden porque son la misma función (D30).
 
 ### `docs/data/esquema/<id>.json`
 

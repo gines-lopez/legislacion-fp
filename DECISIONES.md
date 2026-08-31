@@ -160,6 +160,8 @@ La consulta de una norma vive en `docs/data/consulta/<id>.json` y la ficha la pi
 
 **Por qué no se versionan las URL de los assets** (`app.js?v=4`), que evitaría el problema en vez de detectarlo: obliga a tocar dos ficheros en cada cambio y a acordarse siempre; olvidarlo da falsa seguridad, mientras que el diagnóstico dice la verdad aunque nadie se acuerde de nada. Se reabre si el sitio pasa a publicarse a menudo.
 
+**Revisada por D31:** la versión pasó a estar en un solo fichero y el diagnóstico comprueba además, uno a uno, si el navegador guarda copias anteriores de cualquier asset. Lo de aquí sigue en pie; lo que cambia es dónde se escribe la versión y cuánto alcanza la comprobación.
+
 ## D20 · Los saltos dentro de la página los resuelve el script, no el ancla
 
 El índice de temas de las preguntas frecuentes y el enlace de saltar al contenido se atienden con un manejador propio, antes que el enrutador: se desplaza al destino, se le lleva el foco y el fragmento se escribe con `replaceState`.
@@ -271,3 +273,39 @@ Al cambiar de vista, el `h1` de la ficha recibe el foco; al saltar a un artícul
 **Y el bloque `corpus` no se escribe.** Las normas de este listado que desarrollan la ley salen de la etiqueta, no de una lista a mano: al añadir una norma nueva con esa etiqueta aparece sola. Es D3 otra vez, y evita la lista de enlaces que se queda vieja en silencio.
 
 **Se reabre si:** un esquema no cabe en el vocabulario de bloques sin retorcerlo, o si aparecen tantos esquemas que convenga poder buscar dentro de ellos, como ya se hace con el articulado (D27).
+
+## D30 · Los scripts son módulos ES y lo común vive en `comun.js`
+
+Cada página carga un módulo con `<script type="module">`, y lo que comparten dos o más páginas está en `assets/js/comun.js`, que ellas importan. La portada se reparte además en cuatro: `comun.js`, `rutas.js`, `datos.js`, `vistas.js` y `app.js`.
+
+**Qué se estaba pagando.** `app.js`, `norma.js` y `esquema.js` tenían escritas tres veces `escapar`, `fechaLarga`, `aplanar`, `resaltar`, `identificador`, el diccionario `TIPO` y las funciones que componen el ancla y el rótulo de una pieza de articulado. Ciento veinticuatro líneas repetidas, y no en teoría: al contarlas, **cinco de las quince declaraciones compartidas ya habían divergido**. La de `identificador` era real —la portada devuelve el título de un anexo sin número y las otras dos páginas habrían devuelto «Anexo de 16 de julio de 2026»—, y solo no se veía porque las dos páginas propias que hay son de normas con número. Las dos que componen el ancla seguían coincidiendo carácter a carácter por suerte, y de ellas depende que los enlaces del buscador caigan en su artículo y no en el vacío.
+
+**Por qué módulos y no un fichero común cargado antes.** Un `comun.js` en el ámbito global habría bastado para dejar de repetir, pero deja el orden de las etiquetas `<script>` como contrato invisible: partir un fichero más obliga a acordarse de en qué orden van. Con `import` la dependencia está escrita en la primera línea de cada módulo, se ve quién usa qué, y partir el siguiente no depende de acordarse de nada.
+
+**Y no contradice D1.** Los módulos ES los resuelve el navegador: no hay build, ni `npm install`, ni nada que se pudra por no tocarlo en seis meses. Sigue siendo HTML, CSS y JS servidos tal cual. Lo único que cambia es que ahora son cinco ficheros en vez de uno, y que cada página declara con `<link rel="modulepreload">` los que va a importar, para que la carga no gane un escalón.
+
+**`diagnostico.js` se queda fuera, y a propósito.** No importa nada y conserva su propia copia de `cargar`. La página que informa de que el sitio está roto no puede depender de aquello que puede estar roto: si `comun.js` no se sirve, el diagnóstico tiene que seguir cargando para poder decirlo. Es la única duplicación que sobrevive a esta fase y es una decisión, no un descuido.
+
+**Se reabre si:** aparece un tercer tipo de página que necesite la mitad de `vistas.js`, o si el número de módulos crece hasta que la cabecera de `modulepreload` se vuelva incómoda de mantener.
+
+## D31 · La versión está en un solo sitio y el diagnóstico comprueba fichero a fichero si el navegador guarda copias viejas
+
+`VERSION` vive en `comun.js` y se expone en `window.legislacionFP.version` desde las cuatro páginas, no solo desde la portada. El diagnóstico sigue comparando la versión en ejecución con la servida, y **además** pide cada módulo y la hoja de estilos dos veces —una como lo haría la página, otra con `cache: 'no-store'`— y compara lo que llega.
+
+**Qué corrige de D19.** Estaba en tres ficheros y había que subirla en los tres; el diagnóstico los cotejaba entre sí para detectar el descuido. Con una sola declaración ese descuido deja de ser posible, pero se abre otro: el navegador puede tener guardado un `vistas.js` anterior junto a un `comun.js` recién traído, y entonces la versión coincide y no avisa nadie. La comparación de cada fichero consigo mismo cubre eso sin nada que recordar, y cubre de paso **la hoja de estilos, que hasta ahora no tenía ninguna comprobación**: un `base.css` viejo sobre un HTML nuevo se parece tanto a un sitio roto como un script viejo.
+
+**Comprobado que salta.** Sirviendo el sitio con `cache-control: max-age=600`, como hace GitHub Pages, se cargó la portada, se cambiaron después `base.css` y `vistas.js` y se volvió al diagnóstico: la línea de versión seguía en verde —que es justo el hueco— y la de copias en caché dijo «dos copias en juego: base.css, vistas.js».
+
+**Lo que no puede hacer.** Comparar dos peticiones no distingue entre «el navegador tiene una copia vieja» y «la publicación todavía se está propagando por el CDN». Por eso la línea no dice que algo esté roto, dice que hay dos copias en juego; el remedio es el mismo en los dos casos y el aviso no miente en ninguno.
+
+**Sigue en pie de D19:** subir `VERSION` a mano en cada publicación, ahora en un solo sitio, y no versionar las URL de los assets.
+
+## D32 · Los resultados salen por sección y por rango, no por relevancia
+
+Una búsqueda devuelve las normas en el mismo orden en que las presenta el sumario: por sección, y dentro de cada sección por rango normativo y fecha. No se reordenan por número de coincidencias.
+
+**Por qué, si para una búsqueda suena raro.** Porque el rango *es* información, y de la que este sitio existe para dar: primero lo que ampara, después lo que lo desarrolla. Ordenar por coincidencias pondría un anexo por encima del decreto del que cuelga porque el anexo repite más veces la palabra buscada, y quien consulta normativa necesita ver antes de qué depende cada cosa. Un buscador de documentos sueltos ordena por relevancia; un sumario de normativa, por jerarquía.
+
+**Qué se hace en su lugar.** Lo que la búsqueda encuentra fuera del listado —respuestas y artículos— va en bloques aparte y encima, con su propio rótulo y su recuento. Ahí la relevancia sí manda, porque son piezas sueltas sin jerarquía entre sí.
+
+**Se reabre si:** el corpus crece hasta que una búsqueda corriente devuelva más normas de las que caben en una pantalla, que es cuando el orden deja de ser un sumario y pasa a ser un montón.

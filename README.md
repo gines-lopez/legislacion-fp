@@ -29,7 +29,7 @@ La **Ley Orgánica 3/2022** tiene su esquema: la escalera de los cinco grados, l
 
 **Lo que queda es ir incorporando normas, poco a poco.** Transcribir un articulado o escribir una FAQ es trabajo de datos y de lectura, no de programación: el mecanismo ya está montado y añadir la siguiente norma no toca ni una línea de la interfaz. Ver [HOJA-DE-RUTA.md](HOJA-DE-RUTA.md).
 
-Pendiente aparte, sin prisa, la **fase 5 de refactorización**: pagar la deuda que dejan cuatro fases de crecer por acumulación —código duplicado entre los dos scripts, `app.js` demasiado largo y la carga del articulado cuando haya muchas transcripciones—. Nada de eso bloquea publicar una norma nueva.
+La **fase 5 de refactorización** está hecha: el código que estaba escrito tres veces vive ahora en un módulo común, `app.js` se ha repartido en cuatro piezas y el listado ya no espera a ficheros que no necesita para pintarse. No cambia nada de lo que se ve; cambia lo que cuesta añadir la norma siguiente.
 
 ## Cómo está hecho
 
@@ -43,7 +43,13 @@ docs/                       lo que se publica (GitHub Pages: main + /docs)
 ├── esquema/                esquema de una ley, una página por norma
 ├── assets/
 │   ├── css/base.css
-│   ├── js/app.js           buscador, filtros, enrutado y ficha
+│   ├── js/comun.js         lo que comparten las páginas: vocabulario y utilidades
+│   ├── js/rutas.js         leer y componer las URL de la portada
+│   ├── js/datos.js         el almacén, la carga y la búsqueda
+│   ├── js/vistas.js        el pintado del listado y de la ficha
+│   ├── js/app.js           enrutado, arranque y eventos
+│   ├── js/norma.js         la página de articulado
+│   ├── js/esquema.js       la página de esquema
 │   ├── js/diagnostico.js
 │   └── favicon.svg
 └── data/
@@ -84,7 +90,7 @@ cd /tmp/fp-local && python3 -m http.server 8000
 
 Y abrir **http://localhost:8000/legislacion-fp/**. El enlace simbólico apunta a `docs/`, así que no hay copias que se queden viejas: al editar basta con recargar. Si el servidor devuelve 404 a través del enlace, copia `docs/` en su lugar y vuelve a copiarla tras cada cambio.
 
-**Al publicar, sube `VERSION` en `docs/assets/js/app.js`.** GitHub Pages cachea los assets diez minutos, así que hay una ventana en la que un navegador ejecuta el script anterior contra el HTML nuevo y el sitio parece roto sin estarlo; el diagnóstico compara ambas versiones y lo dice. Ver D19 en [DECISIONES.md](DECISIONES.md).
+**Al publicar, sube `VERSION` en `docs/assets/js/comun.js`,** que es el único sitio donde está. GitHub Pages cachea los assets diez minutos, así que hay una ventana en la que un navegador ejecuta el código anterior contra el HTML nuevo y el sitio parece roto sin estarlo; el diagnóstico compara ambas versiones y, fichero a fichero, si el navegador guarda copias anteriores de algún módulo o de la hoja de estilos. Ver D19 y D31 en [DECISIONES.md](DECISIONES.md).
 
 Tras editar `docs/data/normas.json`, abre **http://localhost:8000/legislacion-fp/diagnostico.html**: comprueba sola que los tres ficheros de datos cargan y que las relaciones entre normas son coherentes por los dos lados, que es el error más fácil de cometer.
 
@@ -97,7 +103,7 @@ Es lo único que queda por hacer de forma recurrente, y no hace falta tocar cód
 3. Si además se transcribe su articulado: escribir `docs/data/texto/<id>.json`, copiar `docs/norma/orden-8-2025.html` con el nombre `<id>.html` y poner `"texto": true` en la norma. El script deduce de cuál se trata por el nombre del fichero (D23). **Cada párrafo tiene que aparecer literalmente en el PDF de origen** (invariante 10).
 4. Si lleva preguntas frecuentes: `docs/data/consulta/<id>.json` y `"consulta": true`. Ninguna respuesta va sin epígrafe y sin la frase literal en que se apoya (D18).
 5. Si lleva esquema: `docs/data/esquema/<id>.json`, copiar `docs/esquema/lo-3-2022.html` con el nombre `<id>.html` y poner `"esquema": true`. Los tipos de bloque están en [MODELO-DATOS.md](MODELO-DATOS.md), y **toda cita necesita el artículo del que sale** (D29).
-6. Abrir el diagnóstico, que valida los invariantes solo, y subir `VERSION` si se ha tocado algún script.
+6. Abrir el diagnóstico, que valida los invariantes solo, y subir `VERSION` en `docs/assets/js/comun.js` si se ha tocado algún script.
 
 ## Documentación
 

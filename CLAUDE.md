@@ -17,6 +17,22 @@ GitHub Pages sirve `main` + carpeta `/docs`. Solo se versionan `docs/` y los `.m
 
 Todo se sirve bajo el subpath `/legislacion-fp/`, así que **las rutas internas deben ser relativas**. Una ruta absoluta (`/assets/…`) funciona en local y rompe en producción, por lo que probar en local no detecta el fallo.
 
+El JavaScript son módulos ES que carga el navegador, sin empaquetar (D30). Dónde va cada cosa:
+
+| Módulo | Qué le toca |
+|---|---|
+| `comun.js` | Lo que usan dos o más páginas: `VERSION`, el vocabulario con el que se cita una norma, las utilidades de texto y el ancla y el rótulo de una pieza de articulado. Lo que solo usa una página no entra aquí. |
+| `rutas.js` | Leer y componer las URL de la portada. |
+| `datos.js` | El almacén, la carga en tres tiempos y las preguntas sobre el corpus. No toca el DOM. |
+| `vistas.js` | Componer el HTML del listado y de la ficha. No lee ni escribe la URL. |
+| `app.js` | Decidir: enrutado, arranque y eventos. |
+| `norma.js`, `esquema.js` | Una página cada uno, sobre `comun.js`. |
+| `diagnostico.js` | Script clásico y sin importaciones, a propósito: tiene que poder cargar cuando lo demás no carga. |
+
+**El ancla de un artículo se compone en un solo sitio** (`anclaDePieza`). El buscador la escribe en el enlace y la página del texto la pinta en el destino: si dejaran de coincidir, los resultados caerían en el vacío.
+
+**Al publicar, sube `VERSION` en `docs/assets/js/comun.js`** (D19, D31).
+
 ## Documentación
 
 | Fichero | Contenido |

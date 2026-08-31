@@ -11,119 +11,16 @@
    Rutas relativas y un nivel por debajo: la página vive en docs/norma/.
    ========================================================================== */
 
-'use strict';
-
-const VERSION = '0.8';
-window.legislacionFP = { version: VERSION };
-
-const TIPO = {
-  'ley-organica': 'Ley Orgánica',
-  'real-decreto': 'Real Decreto',
-  'decreto': 'Decreto',
-  'orden': 'Orden',
-  'resolucion': 'Resolución',
-  'instrucciones': 'Instrucciones',
-  'guia': 'Guía',
-  'anexo': 'Anexo',
-  'calendario': 'Calendario',
-};
-
-const AMBITO_NOMBRE = { estatal: 'Estatal', autonomico: 'Autonómico' };
-const ESTADO_NOMBRE = { vigente: 'Vigente', modificada: 'Modificada', derogada: 'Derogada' };
-const DIARIO = { 'www.boe.es': 'BOE', 'dogv.gva.es': 'DOGV', 'ceice.gva.es': 'CEICE' };
-
-const $ = (selector, raiz = document) => raiz.querySelector(selector);
-
-const escapar = (texto) => String(texto).replace(/[&<>"']/g,
-  (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-
-const fechaLarga = (iso) => {
-  const [anno, mes, dia] = iso.split('-').map(Number);
-  return new Date(anno, mes - 1, dia)
-    .toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
-};
-
-/* Las tres funciones del buscador de la portada, escritas otra vez porque no
-   hay módulos ni build (D1). Se llega aquí desde el listado con «q» en la URL,
-   y un artículo de veintidós párrafos sin la coincidencia marcada obliga a
-   buscarla a ojo. Aplanar conserva la longitud a propósito: las coincidencias
-   se localizan sobre la cadena aplanada y se marcan por posición sobre el
-   texto original, con sus tildes intactas. */
-const aplanar = (texto) => {
-  let salida = '';
-  for (const caracter of String(texto).normalize('NFC')) {
-    const base = caracter.normalize('NFD').replace(/[\u0300-\u036f]/g, '') || caracter;
-    salida += base.toLowerCase();
-  }
-  return salida;
-};
-
-const terminosDe = (consulta) => aplanar(consulta).split(/\s+/).filter(Boolean);
-
-/* Marcar «a» o «la» no señala nada: en un texto legal están en todas las
-   líneas, y buscar «atención a la diversidad» dejaba el articulado entero
-   subrayado —3.623 marcas en la Orden 8/2025—. Se marca lo que distingue; las
-   palabras de una o dos letras solo si la búsqueda entera es así, que entonces
-   sí es lo que se ha ido a buscar. */
-const terminosVisibles = (terminos) => {
-  const largos = terminos.filter((termino) => termino.length > 2);
-  return largos.length ? largos : terminos;
-};
-
-const resaltar = (texto, terminosPedidos) => {
-  const terminos = terminosVisibles(terminosPedidos);
-  const original = String(texto).normalize('NFC');
-  const plano = aplanar(original);
-  if (!terminos.length || plano.length !== original.length) return escapar(original);
-
-  const tramos = [];
-  for (const termino of terminos) {
-    let desde = 0;
-    let encontrado;
-    while ((encontrado = plano.indexOf(termino, desde)) !== -1) {
-      tramos.push([encontrado, encontrado + termino.length]);
-      desde = encontrado + termino.length;
-    }
-  }
-  if (!tramos.length) return escapar(original);
-
-  tramos.sort((a, b) => a[0] - b[0]);
-  const unidos = [tramos[0]];
-  for (const [inicio, fin] of tramos.slice(1)) {
-    const ultimo = unidos[unidos.length - 1];
-    if (inicio <= ultimo[1]) ultimo[1] = Math.max(ultimo[1], fin);
-    else unidos.push([inicio, fin]);
-  }
-
-  let salida = '';
-  let cursor = 0;
-  for (const [inicio, fin] of unidos) {
-    salida += escapar(original.slice(cursor, inicio));
-    salida += `<mark>${escapar(original.slice(inicio, fin))}</mark>`;
-    cursor = fin;
-  }
-  return salida + escapar(original.slice(cursor));
-};
+import {
+  ESTADO_NOMBRE,
+  $, escapar, fechaLarga, identificador, enlaceExterno, procedencia,
+  resaltar, terminosDe, cargar, anclaDePieza, rotuloDePieza,
+} from './comun.js';
 
 /* Lo que se buscó en la portada. Vive solo en la URL: no hay buscador en esta
    página, así que no hay estado que mantener. */
 const BUSCADO = new URLSearchParams(location.search).get('q') ?? '';
 const TERMINOS = terminosDe(BUSCADO);
-
-const identificador = (norma) => {
-  const tipo = TIPO[norma.tipo] ?? norma.tipo;
-  if (norma.numero) return `${tipo} ${norma.numero}`;
-  return `${tipo} de ${fechaLarga(norma.fecha)}`;
-};
-
-const enlaceExterno = (url, texto) => `
-  <a href="${escapar(url)}" target="_blank" rel="noopener noreferrer">${escapar(texto)}<span class="externo" aria-hidden="true"></span><span class="oculto"> (se abre en una ventana nueva)</span></a>`;
-
-const cargar = async (ruta) => {
-  const respuesta = await fetch(ruta);
-  if (!respuesta.ok) throw new Error(`No se ha podido leer ${ruta} (HTTP ${respuesta.status}).`);
-  return respuesta.json();
-};
 
 /* --------------------------------------------------------------- pintado --- */
 
@@ -137,18 +34,10 @@ const claseParrafo = (parrafo) => {
   return 'articulo__parrafo';
 };
 
-const anclaDe = (pieza) => pieza.tipo === 'articulo'
-  ? `articulo-${pieza.numero}`
-  : `disposicion-${(pieza.grupo ?? '').toLowerCase().replace(/[^a-z]+/g, '-')}-${pieza.numero.toLowerCase()}`;
-
-const rotuloDe = (pieza) => pieza.tipo === 'articulo'
-  ? `Artículo ${pieza.numero}`
-  : `${pieza.grupo}${pieza.numero ? ` · ${pieza.numero}` : ''}`;
-
 const pintarPieza = (pieza) => `
-  <article class="articulo" id="${escapar(anclaDe(pieza))}"${pieza.modificadoPor ? ' data-modificado="si"' : ''}>
+  <article class="articulo" id="${escapar(anclaDePieza(pieza))}"${pieza.modificadoPor ? ' data-modificado="si"' : ''}>
     <h2 class="articulo__rotulo">
-      <span class="articulo__numero">${resaltar(rotuloDe(pieza), TERMINOS)}</span>
+      <span class="articulo__numero">${resaltar(rotuloDePieza(pieza), TERMINOS)}</span>
       ${pieza.titulo ? `<span class="articulo__titulo">${resaltar(pieza.titulo, TERMINOS)}</span>` : ''}
     </h2>
     ${pieza.modificadoPor ? `
@@ -162,7 +51,7 @@ const pintarIndice = (articulado) => {
   const articulos = articulado.filter((p) => p.tipo === 'articulo');
   const disposiciones = articulado.filter((p) => p.tipo === 'disposicion');
   const fila = (pieza) => `
-    <li><a href="#${escapar(anclaDe(pieza))}">
+    <li><a href="#${escapar(anclaDePieza(pieza))}">
       <span class="indice__numero">${escapar(pieza.tipo === 'articulo' ? pieza.numero : pieza.numero || '—')}</span>
       <span class="indice__titulo">${resaltar(pieza.titulo || pieza.grupo, TERMINOS)}</span>
     </a></li>`;
@@ -202,13 +91,8 @@ const pintarIndice = (articulado) => {
 
   document.title = `${identificador(norma)} · Texto · Legislación FP`;
 
-  const anfitrion = new URL(norma.enlaces[0].url).hostname;
-  const procedencia = DIARIO[anfitrion]
-    ? `${AMBITO_NOMBRE[norma.ambito]} · ${DIARIO[anfitrion]}`
-    : AMBITO_NOMBRE[norma.ambito];
-
   $('#cabecera').innerHTML = `
-    <p class="ficha__procedencia">${escapar(procedencia)}</p>
+    <p class="ficha__procedencia">${escapar(procedencia(norma))}</p>
     <h1 class="ficha__id" id="titulo" tabindex="-1">${escapar(identificador(norma))}</h1>
     <p class="ficha__meta">
       <span class="trazo" data-estado="${escapar(norma.estado)}" aria-hidden="true"></span>

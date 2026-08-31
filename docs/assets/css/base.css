@@ -849,6 +849,16 @@ a.materia:hover, a.materia:focus-visible { border-color: var(--tinta); color: va
 .parte__nombre { margin: calc(var(--paso) * 1) 0 0; font-size: 0.9375rem; line-height: 1.45; }
 .parte__resumen { margin: calc(var(--paso) * 2) 0 0; font-size: 0.875rem; line-height: 1.55; color: var(--tinta-media); }
 
+/* «Remite a» no es «modifica»: sin esta línea, ver una norma debajo de otra se
+   lee como una reforma. */
+.relaciones__nota {
+  margin: 0 0 calc(var(--paso) * 4);
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--tinta-media);
+}
+
 /* --- Articulado de una norma ----------------------------------------------- */
 
 .cabecera--norma { display: block; }
@@ -987,10 +997,10 @@ a.materia:hover, a.materia:focus-visible { border-color: var(--tinta); color: va
 .consulta__indice .chip { text-decoration: none; }
 
 .tema + .tema { margin-top: calc(var(--paso) * 9); }
-/* El índice lleva aquí desde arriba: hay que dejar aire al saltar. */
-.tema { scroll-margin-top: calc(var(--paso) * 6); }
-.articulo { scroll-margin-top: calc(var(--paso) * 6); }
-.pregunta { scroll-margin-top: calc(var(--paso) * 6); }
+
+/* Los tres destinos de salto: al índice se llega desde arriba y hay que dejar
+   aire, o el rótulo queda pegado al borde de la ventana. */
+.tema, .articulo, .pregunta { scroll-margin-top: calc(var(--paso) * 6); }
 
 .tema__rotulo {
   display: flex;
@@ -1070,16 +1080,6 @@ a.materia:hover, a.materia:focus-visible { border-color: var(--tinta); color: va
 
 /* --- Respuestas encontradas por el buscador -------------------------------- */
 
-/* «Remite a» no es «modifica»: sin esta línea, ver una norma debajo de otra se
-   lee como una reforma. */
-.relaciones__nota {
-  margin: 0 0 calc(var(--paso) * 4);
-  font-family: var(--fuente-ui);
-  font-size: 0.8125rem;
-  line-height: 1.55;
-  color: var(--tinta-media);
-}
-
 .respuestas { margin-top: calc(var(--paso) * 10); max-width: var(--medida); }
 
 .respuestas__nota {
@@ -1136,6 +1136,9 @@ a.materia:hover, a.materia:focus-visible { border-color: var(--tinta); color: va
 
 .pieza + .pieza { margin-top: calc(var(--paso) * 6); }
 
+/* De qué norma sale cada resultado. Solo aparece cuando hay más de una en
+   juego: con una sola, decirlo en cada línea es ruido. */
+.respuesta__norma,
 .pieza__norma {
   margin: 0 0 calc(var(--paso) * 1);
   font-family: var(--fuente-dato);
@@ -2076,7 +2079,7 @@ mark {
      En papel se lee igual, y además el estado y el ámbito están escritos. */
   .norma__procedencia, .norma__estado, .relacion__estado, .articulo__numero,
   .ficha__procedencia, .ficha__estado, .pregunta__epigrafe, .recurso__fuente,
-  .pieza__norma, .pieza__numero { color: #000; }
+  .respuesta__norma, .pieza__norma, .pieza__numero { color: #000; }
 
   .norma__titulo, .norma__resumen, .relacion__resumen, .articulo__parrafo,
   .pregunta__respuesta, .cabecera__nota, .aviso,
@@ -2118,7 +2121,7 @@ mark {
   /* Que no se parta un peldaño, un eslabón, un criterio ni un título del mapa. */
   .peldano, .eslabon, .criterio, .derivacion, .mapa__titulo-caja,
   .comun__punto, .cifra, .bloque-esquema__rotulo { break-inside: avoid; }
-  .bloque-esquema__rotulo, .columna__nombre, .criterio__clave { break-after: avoid; }
+  .bloque-esquema__rotulo, .criterio__clave { break-after: avoid; }
 
   .cifra__rotulo, .apoyo, .apoyo__fuente, .dato__clave, .criterio__regimen,
   .pieza-articulos__rotulo, .mapa__romano, .mapa__numero, .mapa__disp,

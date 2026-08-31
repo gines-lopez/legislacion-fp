@@ -44,47 +44,63 @@ const cargar = async (ruta) => {
   /* 2. El navegador puede estar ejecutando un script viejo servido desde su
         propia caché: GitHub Pages manda cache-control de diez minutos, así que
         tras publicar hay una ventana en la que el HTML es nuevo y el script no.
-        Se compara la versión que se está ejecutando con la del fichero que el
-        servidor entrega ahora mismo, pedido sin caché. */
+        La versión vive en un solo sitio, comun.js, y las cuatro páginas la
+        exponen al importarlo (D31). Se compara la que se está ejecutando en la
+        portada con la del fichero que el servidor entrega ahora mismo. */
   try {
-    const respuesta = await fetch('assets/js/app.js', { cache: 'no-store' });
+    const respuesta = await fetch('assets/js/comun.js', { cache: 'no-store' });
     const servido = (await respuesta.text()).match(/const VERSION = '([^']+)'/)?.[1] ?? null;
-    /* Los otros scripts llevan su propia VERSION y tienen que ir a la par: si
-       una página se publica con el script viejo, el fallo se parece a un fallo
-       del sitio y no a lo que es. */
-    const otros = ['norma', 'esquema'];
-    const versiones = await Promise.all(otros.map((nombre) =>
-      fetch(`assets/js/${nombre}.js`, { cache: 'no-store' })
-        .then((r) => (r.ok ? r.text() : '')).catch(() => '')
-        .then((texto) => texto.match(/const VERSION = '([^']+)'/)?.[1] ?? null)));
-
-    const desparejado = otros.find((nombre, i) => versiones[i] && versiones[i] !== servido);
-    if (desparejado) {
-      const suya = versiones[otros.indexOf(desparejado)];
-      marcar('version', false, `app.js ${servido} y ${desparejado}.js ${suya}`);
-      throw new Error('saltar');
-    }
     const cacheado = await versionEnUso();
     if (!servido) marcar('version', false, 'sin marca de versión');
     else if (!cacheado) marcar('version', true, `${servido} servida`);
     else if (cacheado === servido) marcar('version', true, `${servido} en uso`);
     else marcar('version', false, `usando ${cacheado}, publicada ${servido}`);
   } catch (error) {
-    if (error.message !== 'saltar') marcar('version', false, error.message);
+    marcar('version', false, error.message);
   }
 
-  // 3. La hoja de estilos ha cargado: leemos una variable que solo ella define.
+  /* 3. Una sola versión no basta para saber si el navegador tiene copias
+        viejas: puede guardar un vistas.js anterior junto a un comun.js recién
+        traído, y entonces la versión coincide y no avisa nadie. Aquí se pide
+        cada fichero dos veces —una como lo haría la página, otra sin caché— y
+        se comparan. Si difieren, hay dos copias en juego: o el navegador
+        guarda la anterior, o la publicación todavía se está propagando. Vale
+        también para la hoja de estilos, que hasta ahora no tenía ninguna
+        comprobación. */
+  const ASSETS = ['assets/css/base.css', 'assets/js/comun.js', 'assets/js/rutas.js',
+    'assets/js/datos.js', 'assets/js/vistas.js', 'assets/js/app.js',
+    'assets/js/norma.js', 'assets/js/esquema.js', 'assets/js/diagnostico.js'];
+  try {
+    const desparejados = [];
+    for (const ruta of ASSETS) {
+      const [guardado, servido] = await Promise.all([
+        fetch(ruta).then((r) => (r.ok ? r.text() : null)),
+        fetch(ruta, { cache: 'no-store' }).then((r) => (r.ok ? r.text() : null)),
+      ]);
+      if (guardado === null || servido === null) { desparejados.push(`${ruta.split('/').pop()} no se sirve`); continue; }
+      if (guardado !== servido) desparejados.push(ruta.split('/').pop());
+    }
+    if (desparejados.length) {
+      marcar('frescura', false, `dos copias en juego: ${desparejados.join(', ')}`);
+    } else {
+      marcar('frescura', true, `${ASSETS.length} ficheros al día`);
+    }
+  } catch (error) {
+    marcar('frescura', false, error.message);
+  }
+
+  // 4. La hoja de estilos ha cargado: leemos una variable que solo ella define.
   const cargada = getComputedStyle(document.documentElement)
     .getPropertyValue('--hoja-cargada').trim() === '1';
   marcar('css', cargada, cargada ? 'cargada' : 'no encontrada');
 
-  // 3. Las rutas relativas resuelven bajo el subpath del proyecto. Si alguna
+  // 5. Las rutas relativas resuelven bajo el subpath del proyecto. Si alguna
   //    fuera absoluta, el destino colgaría de la raíz del dominio y no de aquí.
   const destino = new URL('data/normas.json', location.href);
   const base = location.pathname.replace(/[^/]*$/, '');
   marcar('rutas', destino.pathname.startsWith(base), destino.pathname);
 
-  // 4, 5 y 6. Los tres ficheros de datos se sirven y son JSON válido.
+  // 6, 7 y 8. Los tres ficheros de datos se sirven y son JSON válido.
   const ficheros = [
     ['normas', 'data/normas.json', (d) => `${d.length} ${d.length === 1 ? 'norma' : 'normas'}`],
     ['recursos', 'data/recursos.json', (d) => `${d.length} ${d.length === 1 ? 'recurso' : 'recursos'}`],
@@ -101,7 +117,7 @@ const cargar = async (ruta) => {
     }
   }
 
-  // 7. Los invariantes de relación entre normas: toda relación declarada por
+  // 9. Los invariantes de relación entre normas: toda relación declarada por
   //    un lado tiene que estarlo por el otro. Ver MODELO-DATOS.md.
   if (!datos.normas) {
     marcar('invariantes', false, 'sin datos');
@@ -152,7 +168,7 @@ const cargar = async (ruta) => {
   marcar('invariantes', fallos.length === 0,
     fallos.length === 0 ? 'sin incoherencias' : `${fallos.length} incoherencias`);
 
-  /* 8. Las preguntas frecuentes: que el fichero de cada norma que dice tenerlas
+  /* 10. Las preguntas frecuentes: que el fichero de cada norma que dice tenerlas
         exista, y que ninguna respuesta se quede sin epígrafe ni sin la cita en
         que se apoya. Una respuesta sin respaldo es justo lo que este sitio no
         puede permitirse. */
@@ -180,7 +196,7 @@ const cargar = async (ruta) => {
     }
   }
 
-  /* 9. El articulado transcrito: que exista el fichero de cada norma que dice
+  /* 11. El articulado transcrito: que exista el fichero de cada norma que dice
         tenerlo, que ninguna pieza se quede sin párrafos y que toda modificación
         señalada apunte a una norma que está en el listado. */
   const conTexto = datos.normas.filter((n) => n.texto);
@@ -211,7 +227,7 @@ const cargar = async (ruta) => {
 
   fallos.push(...problemasTexto);
 
-  /* 10. Los esquemas: que exista el fichero de cada norma que dice tener uno,
+  /* 12. Los esquemas: que exista el fichero de cada norma que dice tener uno,
          que ningún bloque se quede sin rótulo y que ninguna cita se quede sin
          el artículo del que sale. Un esquema es interpretación, así que la
          cita es lo que lo hace comprobable, igual que en las preguntas. */
