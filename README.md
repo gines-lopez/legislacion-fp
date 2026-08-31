@@ -15,15 +15,21 @@ Este proyecto parte de esa misma información y le añade lo que le falta:
 
 - **Estado de vigencia visible** en cada norma: vigente, modificada o derogada.
 - **Ámbito visible**: si la norma es estatal o autonómica, y en qué diario se publica.
-- **Relaciones entre normas**: qué modifica a qué, y qué quedó derogado por qué.
+- **Relaciones entre normas**: qué modifica a qué, qué quedó derogado por qué y qué remite a qué.
 - **Búsqueda y filtros** por sección, ámbito estatal o autonómico y estado.
+- **Búsqueda dentro del articulado** de las normas transcritas: se busca «promoción» y sale el artículo que lo dice, no solo la norma que lo contiene.
 - **Preguntas frecuentes** de las instrucciones de curso, con el epígrafe y la cita literal de cada respuesta.
+- **Esquemas de norma**, que dibujan cómo está construida una ley en vez de reproducirla.
 
 ## Estado
 
-En uso. El sitio contiene las 40 normas de las seis secciones, con su ámbito, su estado de vigencia y sus relaciones, y la portada ya es la herramienta de consulta: buscador instantáneo, filtros con recuento y ficha por norma.
+**En producción y en uso.** Están las 40 normas de las seis secciones con su ámbito, su estado de vigencia y sus relaciones; la portada es la herramienta de consulta —buscador instantáneo, filtros con recuento y ficha por norma—, y cualquier consulta es un enlace que se puede pegar en un correo.
 
-La **Orden 8/2025 de evaluación** tiene su articulado transcrito y consolidado con la Orden 5/2026, que el DOGV todavía no ha incorporado a su versión vigente. Las **instrucciones de inicio de curso** tienen además 50 preguntas frecuentes dentro de su ficha: cada respuesta indica el epígrafe del que sale y reproduce la frase literal de la norma en que se apoya, y todas se verificaron una a una contra el PDF del DOGV. Ver [HOJA-DE-RUTA.md](HOJA-DE-RUTA.md).
+La **Ley Orgánica 3/2022** tiene su esquema: la escalera de los cinco grados, la cadena de catálogos, los dos regímenes de dual y el mapa de sus 117 artículos, con la frase literal de la ley debajo de cada cifra. La **Orden 8/2025 de evaluación** tiene su articulado transcrito y consolidado con la Orden 5/2026, que el DOGV todavía no ha incorporado a su versión vigente: quien consulte hoy el texto «vigente» del diario oficial leerá un criterio de promoción derogado. Las **instrucciones de inicio de curso** tienen además 50 preguntas frecuentes dentro de su ficha: cada respuesta indica el epígrafe del que sale y reproduce la frase literal de la norma en que se apoya, y todas se verificaron una a una contra el PDF del DOGV.
+
+**Lo que queda es ir incorporando normas, poco a poco.** Transcribir un articulado o escribir una FAQ es trabajo de datos y de lectura, no de programación: el mecanismo ya está montado y añadir la siguiente norma no toca ni una línea de la interfaz. Ver [HOJA-DE-RUTA.md](HOJA-DE-RUTA.md).
+
+Pendiente aparte, sin prisa, la **fase 5 de refactorización**: pagar la deuda que dejan cuatro fases de crecer por acumulación —código duplicado entre los dos scripts, `app.js` demasiado largo y la carga del articulado cuando haya muchas transcripciones—. Nada de eso bloquea publicar una norma nueva.
 
 ## Cómo está hecho
 
@@ -34,6 +40,7 @@ docs/                       lo que se publica (GitHub Pages: main + /docs)
 ├── index.html              portada y ficha de norma
 ├── diagnostico.html        comprueba el despliegue y valida los datos
 ├── norma/                  articulado transcrito, una página por norma
+├── esquema/                esquema de una ley, una página por norma
 ├── assets/
 │   ├── css/base.css
 │   ├── js/app.js           buscador, filtros, enrutado y ficha
@@ -44,6 +51,7 @@ docs/                       lo que se publica (GitHub Pages: main + /docs)
     ├── meta.json           fecha de última revisión
     ├── recursos.json       lo que la fuente enlaza y no es norma
     ├── consulta/           preguntas frecuentes, una norma por fichero
+    ├── esquema/            esquema de una ley, una norma por fichero
     └── texto/              articulado transcrito, una norma por fichero
 ```
 
@@ -59,6 +67,8 @@ Toda la vista vive en la dirección, así que cualquier consulta se puede pegar 
 | `?n=resolucion-2026-07-16` | Las instrucciones del curso, con sus 50 preguntas |
 | `?n=resolucion-2026-07-16&p=exencion-experiencia` | Directamente esa respuesta, abierta |
 | `norma/orden-8-2025.html#articulo-14` | El artículo 14 de la Orden de evaluación |
+| `norma/orden-8-2025.html?q=promoción#articulo-14` | Ese artículo con lo buscado resaltado |
+| `esquema/lo-3-2022.html#grados` | Los cinco grados de la Ley Orgánica de FP |
 
 En producción el sitio cuelga de `/legislacion-fp/`, así que **todas las rutas internas son relativas**. Una ruta absoluta funciona si sirves `docs/` en la raíz y revienta al publicar, que es la forma más fácil de perder una tarde. Por eso el servidor local imita el subpath en vez de servir `docs/` a pelo. Abrirlo como `file://` tampoco vale: el navegador bloquea la carga del JSON.
 
@@ -72,11 +82,22 @@ mkdir -p /tmp/fp-local && ln -sfn "$PWD/docs" /tmp/fp-local/legislacion-fp
 cd /tmp/fp-local && python3 -m http.server 8000
 ```
 
-Y abrir **http://localhost:8000/legislacion-fp/**. El enlace simbólico apunta a `docs/`, así que no hay copias que se queden viejas: al editar basta con recargar.
+Y abrir **http://localhost:8000/legislacion-fp/**. El enlace simbólico apunta a `docs/`, así que no hay copias que se queden viejas: al editar basta con recargar. Si el servidor devuelve 404 a través del enlace, copia `docs/` en su lugar y vuelve a copiarla tras cada cambio.
 
 **Al publicar, sube `VERSION` en `docs/assets/js/app.js`.** GitHub Pages cachea los assets diez minutos, así que hay una ventana en la que un navegador ejecuta el script anterior contra el HTML nuevo y el sitio parece roto sin estarlo; el diagnóstico compara ambas versiones y lo dice. Ver D19 en [DECISIONES.md](DECISIONES.md).
 
 Tras editar `docs/data/normas.json`, abre **http://localhost:8000/legislacion-fp/diagnostico.html**: comprueba sola que los tres ficheros de datos cargan y que las relaciones entre normas son coherentes por los dos lados, que es el error más fácil de cometer.
+
+## Añadir una norma
+
+Es lo único que queda por hacer de forma recurrente, y no hace falta tocar código.
+
+1. Añadir el objeto a [`docs/data/normas.json`](docs/data/normas.json) siguiendo [MODELO-DATOS.md](MODELO-DATOS.md). **Las relaciones se declaran por las dos puntas** (`modifica` ↔ `modificadaPor`), y hay que revisar si la norma nueva cambia el `estado` de alguna existente: es el error más fácil de cometer y el que más daño hace.
+2. Antes de declarar que deroga o modifica a otra, consultar el análisis jurídico del DOGV en lugar de deducirlo del preámbulo (D21), y comprobar que el PDF que se enlaza es el que dice ser (D9). Que la API responda no basta: ni el DOGV ni el BOE devuelven 404 cuando el documento no existe.
+3. Si además se transcribe su articulado: escribir `docs/data/texto/<id>.json`, copiar `docs/norma/orden-8-2025.html` con el nombre `<id>.html` y poner `"texto": true` en la norma. El script deduce de cuál se trata por el nombre del fichero (D23). **Cada párrafo tiene que aparecer literalmente en el PDF de origen** (invariante 10).
+4. Si lleva preguntas frecuentes: `docs/data/consulta/<id>.json` y `"consulta": true`. Ninguna respuesta va sin epígrafe y sin la frase literal en que se apoya (D18).
+5. Si lleva esquema: `docs/data/esquema/<id>.json`, copiar `docs/esquema/lo-3-2022.html` con el nombre `<id>.html` y poner `"esquema": true`. Los tipos de bloque están en [MODELO-DATOS.md](MODELO-DATOS.md), y **toda cita necesita el artículo del que sale** (D29).
+6. Abrir el diagnóstico, que valida los invariantes solo, y subir `VERSION` si se ha tocado algún script.
 
 ## Documentación
 

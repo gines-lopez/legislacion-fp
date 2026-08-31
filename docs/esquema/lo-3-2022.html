@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Orden 8/2025 · Texto · Legislación FP</title>
-<meta name="description" content="Texto de la Orden 8/2025, de 22 de abril, de evaluación en Formación Profesional, consolidado con la Orden 5/2026 y con los artículos modificados señalados.">
+<title>Ley Orgánica 3/2022 · Esquema · Legislación FP</title>
+<meta name="description" content="Esquema de la Ley Orgánica 3/2022 de ordenación e integración de la Formación Profesional: los cinco grados de oferta, la cadena de catálogos, el carácter dual y sus dos regímenes, y el mapa de sus 117 artículos.">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/css/base.css">
 </head>
@@ -18,43 +18,40 @@
     <p class="marca"><a href="../">Legislación FP</a></p>
     <p class="volver" id="volver"></p>
     <div id="cabecera"></div>
-    <p class="aviso" id="consolidacion" hidden></p>
+    <p class="aviso" id="aviso" hidden></p>
   </header>
 
   <main class="contenido" id="contenido">
 
     <p class="cargando" id="cargando">
-      Cargando el texto de la norma. Si no aparece, está el
+      Cargando el esquema de la ley. Si no aparece, está el
       <a href="../diagnostico.html">diagnóstico de despliegue</a>, y el texto auténtico
-      siempre está en el <a href="https://dogv.gva.es/" target="_blank" rel="noopener noreferrer">DOGV</a>.
+      siempre está en el <a href="https://www.boe.es/eli/es/lo/2022/03/31/3/con" target="_blank" rel="noopener noreferrer">BOE</a>.
     </p>
 
     <noscript>
       <section class="apartado">
         <h2 class="apartado__rotulo">Hace falta JavaScript</h2>
-        <p class="cabecera__nota">El texto se compone en el navegador a partir de un solo fichero de datos, que se puede leer directamente: <a href="../data/texto/orden-8-2025.json">orden-8-2025.json</a>. El texto auténtico es el del <a href="https://dogv.gva.es/es/resultat-dogv?signatura=2025/13083" target="_blank" rel="noopener noreferrer">DOGV</a>.</p>
+        <p class="cabecera__nota">El esquema se compone en el navegador a partir de un solo fichero de datos, que se puede leer directamente: <a href="../data/esquema/lo-3-2022.json">lo-3-2022.json</a>. El texto auténtico es el consolidado del <a href="https://www.boe.es/eli/es/lo/2022/03/31/3/con" target="_blank" rel="noopener noreferrer">BOE</a>.</p>
       </section>
     </noscript>
 
-    <!-- El índice va antes en el orden del documento para que en móvil quede
-         arriba, donde sirve; en pantallas anchas la rejilla lo lleva al lateral. -->
+    <!-- La tesis y las cifras van antes del índice: primero qué hace esta ley,
+         después por dónde entrar. -->
+    <div id="portada"></div>
+
     <div class="norma__cuerpo">
       <aside class="norma__lateral">
-        <nav id="indice" aria-label="Índice del articulado"></nav>
+        <nav id="indice" aria-label="Índice del esquema"></nav>
         <section class="apartado" id="oficial"></section>
       </aside>
-      <div class="norma__texto">
-        <!-- Se llega aquí desde el buscador de la portada, que manda en «q» lo
-             que se buscó para poder resaltarlo dentro del artículo. -->
-        <p class="buscado" id="buscado" hidden></p>
-        <div id="articulado"></div>
-      </div>
+      <div class="norma__texto" id="bloques"></div>
     </div>
 
   </main>
 
   <footer class="pie">
-    <p class="pie__aviso">Transcripción para consulta, no texto auténtico. Ante cualquier discrepancia manda lo publicado en el <a href="https://dogv.gva.es/" target="_blank" rel="noopener noreferrer">DOGV</a>.</p>
+    <p class="pie__aviso">Esquema de elaboración propia, no texto auténtico. Ante cualquier discrepancia manda lo publicado en el <a href="https://www.boe.es/eli/es/lo/2022/03/31/3/con" target="_blank" rel="noopener noreferrer">BOE</a>.</p>
     <p><a href="../">Volver al listado de normativa</a> · <a href="https://github.com/gines-lopez/legislacion-fp/issues" target="_blank" rel="noopener noreferrer">Avisar de un error<span class="externo" aria-hidden="true"></span><span class="oculto"> (se abre en una ventana nueva)</span></a></p>
     <p class="pie__firma">Lo mantiene Ginés López ·
       <a href="https://gines.me" target="_blank" rel="noopener noreferrer">gines.me<span class="externo" aria-hidden="true"></span><span class="oculto"> (se abre en una ventana nueva)</span></a> ·
@@ -65,6 +62,6 @@
 
 </div>
 
-<script src="../assets/js/norma.js"></script>
+<script src="../assets/js/esquema.js"></script>
 </body>
 </html>

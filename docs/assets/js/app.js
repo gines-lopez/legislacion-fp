@@ -16,7 +16,7 @@
    ejecutando el script anterior contra el HTML nuevo, y eso se parece mucho a
    un fallo del sitio. El diagnóstico compara esta versión con la del fichero
    servido y avisa. */
-const VERSION = '0.7';
+const VERSION = '0.8';
 window.legislacionFP = { version: VERSION };
 
 /* ----------------------------------------------------------- vocabulario --- */
@@ -129,7 +129,18 @@ const terminosDe = (consulta) => aplanar(consulta).split(/\s+/).filter(Boolean);
 /* Marca las coincidencias sobre el texto original. Si aplanar no ha podido
    conservar la alineación, se renuncia al resaltado antes que a la fidelidad
    del texto: aquí el texto es lo que importa. */
-const resaltar = (texto, terminos) => {
+/* Marcar «a» o «la» no señala nada: en un texto legal están en todas las
+   líneas, y buscar «atención a la diversidad» dejaba el articulado entero
+   subrayado —3.623 marcas en la Orden 8/2025—. Se marca lo que distingue; las
+   palabras de una o dos letras solo si la búsqueda entera es así, que entonces
+   sí es lo que se ha ido a buscar. */
+const terminosVisibles = (terminos) => {
+  const largos = terminos.filter((termino) => termino.length > 2);
+  return largos.length ? largos : terminos;
+};
+
+const resaltar = (texto, terminosPedidos) => {
+  const terminos = terminosVisibles(terminosPedidos);
   const original = String(texto).normalize('NFC');
   const plano = aplanar(original);
   if (!terminos.length || plano.length !== original.length) return escapar(original);
@@ -220,8 +231,11 @@ const datos = {
   porId: new Map(),
   indices: new Map(),
   derogadaPor: new Map(),
+  citadaPor: new Map(),
   partes: new Map(),
   consultas: new Map(),
+  textos: new Map(),
+  articuladoListo: false,
   recursos: [],
   meta: null,
 };
@@ -248,6 +262,71 @@ const cargar = async (ruta) => {
   return respuesta.json();
 };
 
+/* ------------------------------------------------------- articulado ------- */
+
+/* Las mismas dos funciones que compone norma.js para sus anclas y sus rótulos.
+   Están escritas dos veces porque no hay módulos ni build (D1) y el ancla tiene
+   que coincidir carácter a carácter con la que pinta la otra página: si se
+   cambia una, hay que cambiar la otra. */
+const anclaDePieza = (pieza) => (pieza.tipo === 'articulo'
+  ? `articulo-${pieza.numero}`
+  : `disposicion-${(pieza.grupo ?? '').toLowerCase().replace(/[^a-z]+/g, '-')}-${pieza.numero.toLowerCase()}`);
+
+const rotuloDePieza = (pieza) => (pieza.tipo === 'articulo'
+  ? `Artículo ${pieza.numero}`
+  : `${pieza.grupo}${pieza.numero ? ` · ${pieza.numero}` : ''}`);
+
+/* Un artículo es la unidad que se cita, así que es la unidad que se encuentra:
+   se indexa pieza a pieza y no la norma entera. El identificador de la norma se
+   queda fuera del índice a propósito —si entrara, buscar «orden» devolvería los
+   veintiséis artículos de la Orden 8/2025 y ninguno por su contenido—. */
+const indiceDePieza = (pieza) => aplanar([
+  rotuloDePieza(pieza),
+  pieza.titulo ?? '',
+  pieza.parrafos.join(' · '),
+].join(' · '));
+
+/* Un artículo puede tener veintidós párrafos y en el resultado caben dos
+   líneas: se muestra el párrafo donde caen más términos, recortado alrededor de
+   la primera coincidencia y cortando por espacios, que no se parten palabras.
+   El recorte conserva la alineación que «resaltar» necesita. */
+const VENTANA = 200;
+
+const fragmento = (parrafos, terminos) => {
+  /* Se puntúa por letras encontradas y no por términos: en «atención a la
+     diversidad», «a» y «la» están en casi todos los párrafos y «diversidad»
+     solo en uno. Contar términos empataría; sumar longitudes no. Y la ventana
+     se centra en el término más largo, que es el que se ha ido a buscar: si se
+     centrara en el primero, el recorte empezaría en la primera «a». */
+  const porLongitud = [...terminos].sort((a, b) => b.length - a.length);
+  let mejor = null;
+  for (const parrafo of parrafos) {
+    const plano = aplanar(parrafo);
+    if (plano.length !== parrafo.length) continue;
+    const encontrados = porLongitud
+      .map((termino) => [termino, plano.indexOf(termino)])
+      .filter(([, donde]) => donde !== -1);
+    if (!encontrados.length) continue;
+    const peso = encontrados.reduce((suma, [termino]) => suma + termino.length, 0);
+    if (!mejor || peso > mejor.peso) mejor = { parrafo, peso, desde: encontrados[0][1] };
+  }
+
+  const parrafo = mejor ? mejor.parrafo : parrafos[0];
+  if (parrafo.length <= VENTANA) return parrafo;
+
+  let inicio = Math.max(0, (mejor ? mejor.desde : 0) - Math.floor(VENTANA / 3));
+  if (inicio > 0) {
+    const espacio = parrafo.indexOf(' ', inicio);
+    inicio = espacio === -1 ? inicio : espacio + 1;
+  }
+  let fin = Math.min(parrafo.length, inicio + VENTANA);
+  if (fin < parrafo.length) {
+    const espacio = parrafo.lastIndexOf(' ', fin);
+    if (espacio > inicio) fin = espacio;
+  }
+  return `${inicio > 0 ? '…' : ''}${parrafo.slice(inicio, fin).trim()}${fin < parrafo.length ? '…' : ''}`;
+};
+
 /* ------------------------------------------------------------------ filtro --- */
 
 const leerURL = () => {
@@ -269,6 +348,15 @@ const urlListado = (filtros) => {
 const urlFicha = (id, pregunta) => `${location.pathname}?n=${encodeURIComponent(id)}`
   + (pregunta ? `&p=${encodeURIComponent(pregunta)}` : '');
 
+/* La pieza se abre en la página del articulado, en su ancla, y se lleva consigo
+   lo que se buscó: al caer en un artículo de veintidós párrafos hace falta ver
+   dónde está la coincidencia, y allí se resalta con lo que viaja en «q». */
+const urlTexto = (norma, consulta) => `norma/${encodeURIComponent(norma.id)}.html`
+  + (consulta ? `?q=${encodeURIComponent(consulta)}` : '');
+
+const urlPieza = (norma, pieza, consulta) =>
+  `${urlTexto(norma, consulta)}#${anclaDePieza(pieza)}`;
+
 const coincide = (norma, filtros, terminos) => {
   if (filtros.seccion && norma.seccion !== filtros.seccion) return false;
   if (filtros.ambito && norma.ambito !== filtros.ambito) return false;
@@ -276,6 +364,24 @@ const coincide = (norma, filtros, terminos) => {
   if (filtros.etiqueta && !(norma.etiquetas ?? []).includes(filtros.etiqueta)) return false;
   const indice = datos.indices.get(norma.id);
   return terminos.every((termino) => indice.includes(termino));
+};
+
+/* Las piezas de articulado en que caen todos los términos. La conjunción es
+   dentro de una misma pieza, igual que en una norma o en una pregunta: dos
+   palabras repartidas entre el artículo 3 y el 14 no son una coincidencia. Los
+   filtros de sección, ámbito y estado no se aplican aquí: filtran normas, y lo
+   que se está buscando es un artículo. */
+const piezasCoincidentes = (terminos) => {
+  if (!terminos.length) return [];
+  const encontradas = [];
+  for (const [id, texto] of datos.textos) {
+    const norma = datos.porId.get(id);
+    if (!norma) continue;
+    for (const pieza of texto.articulado) {
+      if (terminos.every((termino) => pieza.indice.includes(termino))) encontradas.push({ norma, pieza });
+    }
+  }
+  return encontradas;
 };
 
 /* Cuántas normas quedarían al pulsar cada opción de un eje, contando con lo
@@ -346,6 +452,7 @@ const relacionesBreves = (norma, terminos) => {
     ['Modificada por', traer(norma.modificadaPor)],
     ['Deroga', traer(norma.deroga)],
     ['Modifica', traer(norma.modifica)],
+    ['Remite a', traer(norma.remiteA ?? [])],
   ];
 
   const filas = grupos
@@ -394,6 +501,10 @@ const pintarNorma = (norma, terminos) => `
       <p class="norma__transcrito">
         <a href="norma/${encodeURIComponent(norma.id)}.html">Leer el texto completo aquí</a>
       </p>` : ''}
+    ${norma.esquema ? `
+      <p class="norma__transcrito">
+        <a href="esquema/${encodeURIComponent(norma.id)}.html">Ver cómo está construida esta ley</a>
+      </p>` : ''}
     ${materiasCoincidentes(norma, terminos)}
     ${relacionesBreves(norma, terminos)}
   </li>`;
@@ -411,6 +522,13 @@ const pintarListado = (filtros) => {
         .filter((p) => terminos.every((t) => p.indice.includes(t)))
         .map((p) => ({ norma: datos.porId.get(id), pregunta: p })))
     : [];
+
+  /* Y alcanza el articulado transcrito, que es la letra de la norma: buscar
+     «promoción» encuentra la norma que la regula, la pregunta que la explica y
+     el artículo que la dice. El articulado se carga después del primer pintado,
+     así que hasta que llega esta lista está vacía y no se afirma nada de ella:
+     no se dice «no hay artículos», se dice solo lo que ya se sabe. */
+  const piezas = piezasCoincidentes(terminos);
 
   pintarFiltros(filtros, terminos);
 
@@ -437,10 +555,16 @@ const pintarListado = (filtros) => {
     const sugerencias = [['114/2025', 'un número'], ['resolución', 'un tipo'], ['fct', 'una materia']]
       .map(([texto, que]) => `<a href="${escapar(location.pathname)}?q=${encodeURIComponent(texto)}">${escapar(texto)}</a> <span class="vacio__que">(${que})</span>`)
       .join(' · ');
-    const hayRespuestas = encontradas.length > 0;
+    /* Que no haya normas no significa que no se haya encontrado nada: si la
+       palabra está en una respuesta o en un artículo, el aviso lo dice en vez
+       de fingir que la búsqueda ha sido en balde. */
+    const otros = [
+      encontradas.length && `${encontradas.length === 1 ? 'una pregunta' : `${encontradas.length} preguntas`} de las instrucciones del curso`,
+      piezas.length && `${piezas.length === 1 ? 'un artículo' : `${piezas.length} piezas`} del articulado transcrito`,
+    ].filter(Boolean);
     vacio.innerHTML = `
-      <p class="vacio__titulo">Ninguna norma coincide${filtros.q ? ` con «${escapar(filtros.q)}»` : ''}${hayRespuestas ? `, pero sí ${encontradas.length === 1 ? 'una pregunta' : `${encontradas.length} preguntas`} de las instrucciones del curso` : ''}.</p>
-      <p class="vacio__pista">Se busca en el identificador, el título, el resumen y las materias. Prueba con ${sugerencias}${filtros.seccion || filtros.ambito || filtros.estado || filtros.etiqueta ? `, o <a href="${escapar(location.pathname)}${filtros.q ? `?q=${encodeURIComponent(filtros.q)}` : ''}">quita los filtros</a>` : ''}.</p>`;
+      <p class="vacio__titulo">Ninguna norma coincide${filtros.q ? ` con «${escapar(filtros.q)}»` : ''}${otros.length ? `, pero sí ${otros.join(' y ')}` : ''}.</p>
+      <p class="vacio__pista">Se busca en el identificador, el título, el resumen y las materias${datos.articuladoListo ? ', y dentro del articulado que está transcrito' : ''}. Prueba con ${sugerencias}${filtros.seccion || filtros.ambito || filtros.estado || filtros.etiqueta ? `, o <a href="${escapar(location.pathname)}${filtros.q ? `?q=${encodeURIComponent(filtros.q)}` : ''}">quita los filtros</a>` : ''}.</p>`;
   }
 
   const respuestas = $('#respuestas');
@@ -459,6 +583,38 @@ const pintarListado = (filtros) => {
         </li>`).join('')}
       </ol>
       ${encontradas.length > MUESTRA ? `<p class="respuestas__resto"><a href="${escapar(urlFicha(norma.id))}">Ver las ${encontradas.length} respuestas en la ficha de la norma</a></p>` : ''}`;
+  }
+
+  /* El articulado va después de las respuestas y no antes: se lee de lo llano a
+     lo literal, que es el mismo orden en que cada respuesta lleva debajo la
+     frase de la norma en que se apoya. */
+  const MUESTRA_PIEZAS = 4;
+  const bloquePiezas = $('#piezas');
+  bloquePiezas.hidden = piezas.length === 0;
+  if (piezas.length) {
+    const restantes = piezas.slice(MUESTRA_PIEZAS);
+    const normasRestantes = [...new Set(restantes.map(({ norma }) => norma.id))]
+      .map((id) => datos.porId.get(id));
+    bloquePiezas.innerHTML = `
+      <h2 class="apartado__rotulo">Articulado<span class="apartado__n">${piezas.length}</span></h2>
+      <p class="piezas__nota">Del texto transcrito. Es la letra de la norma, no un resumen de ella.</p>
+      <ol class="piezas__lista">${piezas.slice(0, MUESTRA_PIEZAS).map(({ norma, pieza }) => `
+        <li class="pieza"${pieza.modificadoPor ? ' data-modificado="si"' : ''}>
+          <p class="pieza__norma">${resaltar(identificador(norma), terminos)}</p>
+          <p class="pieza__rotulo">
+            <a href="${escapar(urlPieza(norma, pieza, filtros.q))}">
+              <span class="pieza__numero">${resaltar(rotuloDePieza(pieza), terminos)}</span>
+              ${pieza.titulo ? `<span class="pieza__titulo">${resaltar(pieza.titulo, terminos)}</span>` : ''}
+            </a>
+          </p>
+          <p class="pieza__fragmento">${resaltar(fragmento(pieza.parrafos, terminos), terminos)}</p>
+          ${pieza.modificadoPor ? `
+            <p class="pieza__nota">Esta es la redacción vigente: la cambió la ${escapar(pieza.modificadoPor.identificador)}, desde el ${escapar(fechaLarga(pieza.modificadoPor.desde))}.</p>` : ''}
+        </li>`).join('')}
+      </ol>
+      ${restantes.length ? `<p class="piezas__resto">Y ${restantes.length === 1 ? 'una pieza más' : `${restantes.length} piezas más`}, en el texto de ${normasRestantes
+        .map((n) => `<a href="${escapar(urlTexto(n, filtros.q))}">${escapar(identificador(n))}</a>`)
+        .join(' y ')}.</p>` : ''}`;
   }
 
   const recursos = $('#recursos');
@@ -535,16 +691,26 @@ const pintarConsulta = (consulta, abierta) => {
 
 const pintarFicha = (norma, volverA, abierta) => {
   const traer = (ids) => ids.map((id) => datos.porId.get(id)).filter(Boolean);
+
+  /* «Remite a» es una relación más floja que las otras cuatro y por eso lleva
+     nota: quien vea una norma debajo de otra da por hecho que la reformó, y
+     aquí no es eso. Las instrucciones de curso no tocan la orden de
+     evaluación: se apoyan en ella y mandan aplicarla. */
   const grupos = [
-    ['Derogada por', datos.derogadaPor.get(norma.id) ?? []],
-    ['Modificada por', traer(norma.modificadaPor)],
-    ['Deroga', traer(norma.deroga)],
-    ['Modifica', traer(norma.modifica)],
+    ['Derogada por', datos.derogadaPor.get(norma.id) ?? [], ''],
+    ['Modificada por', traer(norma.modificadaPor), ''],
+    ['Deroga', traer(norma.deroga), ''],
+    ['Modifica', traer(norma.modifica), ''],
+    ['Remite a', traer(norma.remiteA ?? []),
+      'Ni la modifica ni la deroga: se apoya en ella y manda aplicarla, así que hay que leerlas juntas. Hasta dónde llega cada remisión está en el articulado y en las preguntas frecuentes.'],
+    ['Remiten a esta norma', datos.citadaPor.get(norma.id) ?? [],
+      'La citan y la aplican, sin cambiarla. Lo que aquí se regula se ejecuta a través de ellas.'],
   ].filter(([, otras]) => otras.length);
 
-  const relaciones = grupos.map(([verbo, otras]) => `
+  const relaciones = grupos.map(([verbo, otras, nota]) => `
     <section class="apartado">
       <h2 class="apartado__rotulo">${verbo}</h2>
+      ${nota ? `<p class="relaciones__nota">${escapar(nota)}</p>` : ''}
       <ol class="relaciones">${otras.map(pintarRelacion).join('')}</ol>
     </section>`).join('');
 
@@ -595,6 +761,12 @@ const pintarFicha = (norma, volverA, abierta) => {
           <p class="ficha__transcripcion">
             <a href="norma/${encodeURIComponent(norma.id)}.html">Leer el articulado completo aquí</a>
             <span class="ficha__transcripcion-nota">Transcripción para consultarla, no texto auténtico</span>
+          </p>` : ''}
+
+        ${norma.esquema ? `
+          <p class="ficha__transcripcion">
+            <a href="esquema/${encodeURIComponent(norma.id)}.html">Ver cómo está construida esta ley</a>
+            <span class="ficha__transcripcion-nota">Esquema con sus grados, sus catálogos y el mapa de su articulado</span>
           </p>` : ''}
 
         ${partes}
@@ -757,6 +929,13 @@ const ir = (destino, { reemplazar = false } = {}) => {
         if (!datos.derogadaPor.has(id)) datos.derogadaPor.set(id, []);
         datos.derogadaPor.get(id).push(norma);
       }
+      /* «Remite a» tampoco tiene reverso escrito: se declara en un solo sitio,
+         el de la norma que remite, y el otro lado se deriva. Declararlo dos
+         veces sería una ocasión más de que las dos puntas dejen de coincidir. */
+      for (const id of (norma.remiteA ?? [])) {
+        if (!datos.citadaPor.has(id)) datos.citadaPor.set(id, []);
+        datos.citadaPor.get(id).push(norma);
+      }
       /* Los anexos son parte del documento que los publica, no normas sueltas:
          se declaran con «parteDe» y aquí se agrupan bajo su norma madre. */
       if (norma.parteDe) {
@@ -825,6 +1004,27 @@ const ir = (destino, { reemplazar = false } = {}) => {
 
   pintar();
   primerPintado = false;
+
+  /* El articulado se carga después de pintar, y no antes como las preguntas.
+     Es el único conjunto de datos que crece sin techo —cada norma transcrita
+     son decenas de miles de palabras— y la portada no puede quedarse esperando
+     a un texto que solo hace falta si se busca algo. Cuando llega, si hay una
+     búsqueda en marcha, se repinta el listado para incorporarlo. */
+  const conTexto = datos.normas.filter((n) => n.texto);
+  if (conTexto.length) {
+    Promise.all(conTexto.map((n) => cargar(`data/texto/${n.id}.json`).catch(() => null)))
+      .then((textos) => {
+        conTexto.forEach((n, i) => {
+          if (textos[i]?.articulado?.length) datos.textos.set(n.id, textos[i]);
+        });
+        for (const texto of datos.textos.values()) {
+          for (const pieza of texto.articulado) pieza.indice = indiceDePieza(pieza);
+        }
+        datos.articuladoListo = true;
+        const filtros = leerURL();
+        if (!filtros.n && terminosDe(filtros.q).length) pintarListado(filtros);
+      });
+  }
 
   /* Saltos dentro de la página —el índice de temas, el enlace de saltar al
      contenido—. Se resuelven aquí y no por el comportamiento nativo del ancla:

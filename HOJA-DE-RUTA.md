@@ -200,3 +200,104 @@ Quien consulte el texto consolidado oficial aplicará hoy un criterio de promoci
 **Lo que todavía no llega:** el buscador de la portada no mira dentro del articulado. Buscar «promoción» encuentra la norma y las preguntas, pero no el artículo 14. Si se transcriben más normas, esto pasará a ser el hueco principal.
 
 **La siguiente transcripción cuesta poco:** escribir su JSON, copiar el HTML con otro nombre y poner `texto: true` en la norma. El script deduce de cuál se trata por el nombre del fichero (D23).
+
+### El buscador ya entra en el articulado
+
+Era el hueco que la propia fase se había anotado: buscar «promoción» encontraba la norma y las preguntas, pero no el artículo 14, que es donde lo pone. Ya no.
+
+**La unidad de búsqueda es el artículo,** no la norma: es lo que se cita, así que es lo que se encuentra. Los términos tienen que caer todos dentro de la misma pieza —dos palabras repartidas entre el artículo 3 y el 14 no son una coincidencia—, igual que en una norma o en una pregunta. El identificador de la norma se queda fuera de ese índice a propósito: si entrara, buscar «orden» devolvería los veintiséis artículos de la Orden 8/2025 sin que ninguno tenga que ver.
+
+**El resultado se parece a lo que va a abrir.** Cada pieza encontrada llega con el mismo canal y el mismo trazo que tiene en la página del texto: sólido si está como se publicó, doble si una norma posterior la cambió. Así el aviso llega antes de citar de memoria un artículo reformado, que es justo el error que este sitio existe para evitar. Debajo va el párrafo donde cae la búsqueda, recortado alrededor de la coincidencia.
+
+**Y el resaltado viaja con el enlace.** Se abre el artículo con `?q=` y las coincidencias marcadas, porque caer en un artículo de veintidós párrafos sin saber dónde está lo que buscabas no resuelve nada. La cabecera dice qué se está resaltando y ofrece quitarlo.
+
+Dos cosas que se descubrieron al probarlo, y que son la razón de haberlo probado:
+
+1. **Marcar «a» y «la» dejaba el articulado entero subrayado:** 3.623 marcas al buscar «atención a la diversidad». Se marca solo lo que distingue —las palabras de una o dos letras, únicamente si la búsqueda entera es así—, y quedan 6.
+2. **El recorte empezaba en la primera «a».** Elegía el párrafo por número de términos encontrados, y en un texto legal «a» y «la» están en todos. Ahora puntúa por letras y centra la ventana en el término más largo, que es el que se ha ido a buscar.
+
+**El articulado se carga después del primer pintado,** no antes como las preguntas. Es el único conjunto de datos que crece sin techo, y la portada no puede quedarse esperando a un texto que solo hace falta si se busca algo. Mientras no ha llegado, la interfaz no afirma nada sobre él: no dice «no hay artículos», dice solo lo que ya sabe.
+
+### «Remite a», una relación que faltaba
+
+Las instrucciones de curso no modifican la Orden 8/2025 ni la derogan: se apoyan en ella y mandan aplicarla, y hasta ahora eso solo se veía abriendo una de las dieciocho preguntas que enlazan a su articulado. Ahora es un campo, `remiteA`, y sale en el listado y en la ficha.
+
+Va con nota, porque el verbo no basta: ver una norma debajo de otra se lee como una reforma, y esto no lo es. **Se declara por un solo lado** —el de la norma que remite— y el reverso, «Remiten a esta norma», lo deriva la interfaz, igual que `derogadaPor` y que los anexos. Declararlo dos veces sería una ocasión más de que las dos puntas dejen de coincidir.
+
+### Atención a la diversidad: no salía nada, y sí lo había
+
+Buscar «atención a la diversidad» no devolvía ni una norma. No era que el corpus no lo regulara: la expresión está **literalmente** en el artículo 3 de la Orden 8/2025, las adaptaciones para el alumnado con necesidades específicas están en su artículo 2.4, las seis convocatorias del alumnado con NEE en el 9.7, y las instrucciones de curso le dedican el epígrafe 16 entero. Lo que fallaba era que nada de eso asomaba a la superficie: los resúmenes no lo mencionaban y no había etiqueta.
+
+Corregido por los dos lados. El buscador dentro del articulado devuelve ahora el artículo 3; y las dos normas que de verdad lo regulan llevan la etiqueta `atencion-diversidad` y lo dicen en su resumen, así que también aparecen como normas. **La lección es de datos, no de código:** el vocabulario con el que el profesorado busca —«atención a la diversidad»— no siempre es el de la norma —«necesidades específicas de apoyo educativo»—, y donde no coinciden hay que tender el puente a mano.
+
+### Dos arreglos de interfaz
+
+- **El título del sitio vuelve al listado sin filtros.** Es la salida de cualquier consulta, se esté en una ficha o con media docena de chips puestos. No se pinta como enlace: subrayarlo pondría un botón enorme en mitad de la cabecera.
+- **Fuera el recuadro del encabezado.** El título de la ficha recibe el foco al cambiar de vista, para que quien navegue con teclado o con lector de pantalla aterrice en el asunto de la página. Pero un encabezado no es un control, y un recuadro alrededor dice que hay algo que pulsar donde no lo hay. El foco sigue viajando; el recuadro se queda para lo que de verdad se acciona. Lo mismo al saltar a un artículo desde el índice.
+
+### La Ley Orgánica 3/2022, en esquema
+
+Es una página de un tipo nuevo, y la primera que no reproduce una norma sino que la **dibuja**: `docs/esquema/lo-3-2022.html` desde `docs/data/esquema/lo-3-2022.json`. Ver D29 en [DECISIONES.md](DECISIONES.md).
+
+**Por qué no se ha transcrito y ya.** La ley tiene 117 artículos y 25 disposiciones. Transcribirla habría dado una página fiel en la que sigue sin verse lo único que importa entender: que los cinco grados son una escalera acumulable, que el sistema entero cuelga de una sola definición y que los dos regímenes de dual se distinguen por tres cifras. Eso está en la ley, repartido entre artículos que no se leen seguidos.
+
+La página tiene cinco bloques:
+
+| Bloque | Qué muestra |
+|---|---|
+| **Los cinco grados** | La escalera A→E, cada peldaño con qué acredita, acceso, duración y si lleva fase en empresa, y entre dos peldaños la regla que dice cómo se sube: reunir las acreditaciones parciales de un estándar *es* tener el Grado B |
+| **De la competencia al título** | La cadena de catálogos —estándares, modular, ofertas, currículo— y, aparte, los tres registros y la acreditación por experiencia, que entra por el mismo sitio que la formación |
+| **El carácter dual** | Lo que vale para los dos regímenes y, criterio a criterio, en qué se diferencian el general y el intensivo |
+| **Mapa del articulado** | Los 117 artículos y las 25 disposiciones, con una línea por título que dice qué resuelve. Cada número enlaza a su artículo en el BOE |
+| **Cómo aterriza aquí** | Las normas de este listado que la desarrollan, con su estado de vigencia. No se escriben: se deducen de la etiqueta `lfp` |
+
+**Verificado.** La estructura y los textos salen del XML del BOE, no de memoria. Las **28 citas literales** se comprobaron una a una contra el articulado antes de guardar el fichero, comparando sin espacios: ninguna afirmación de cifra o de regla se apoya en una frase que no esté publicada. El diagnóstico comprueba además que ninguna cita se quede sin artículo, que es el invariante 12.
+
+**El aparato visual.** Mismos grises y mismas tres tipografías. El grado D —donde trabaja el profesorado que consulta esto— se destaca sin color: filete de 3 px, nombre en negrita y el distintivo de la letra invertido. La regla de acumulación vive *entre* dos peldaños, con una flecha, porque es lo que convierte cinco fichas sueltas en una escalera.
+
+**Dos cosas que salieron de probarlo:**
+
+1. **La comparación de regímenes no comparaba.** Enfrentada en dos columnas dentro de la columna de lectura, cada una se quedaba en doscientos píxeles y las filas no llegaban a alinearse entre sí. Se rehízo por criterio: los dos valores de cada uno, pegados y etiquetados. Se lee igual en una pantalla ancha y en un móvil, sin dos estructuras distintas.
+2. **La trampa de D25, otra vez.** El distintivo del grado D es tinta plena con la letra en papel, así que en la impresión —donde los fondos no se fuerzan— habría salido en blanco sobre blanco. Comprobado extrayendo las reglas de `@media print` y midiéndolas: ahora pasa a filete negro, y los doce títulos del mapa se imprimen abiertos.
+
+**Comprobado además:** sin desbordamiento horizontal a 375, 600, 900, 1280 y 1440 px; contraste mínimo de 5,07:1 en claro y 5,77:1 en oscuro sobre 29 combinaciones; y las once comprobaciones del diagnóstico en verde.
+
+**La siguiente cuesta poco.** Los cinco tipos de bloque —`escalera`, `cadena`, `comparacion`, `mapa`, `corpus`— son un vocabulario reutilizable, no un formato hecho para esta ley: el esquema siguiente se escribe combinando los que le sirvan, se copia el HTML con otro nombre y se pone `esquema: true` en la norma.
+
+## Fase 5 · Refactorización y optimización — pendiente
+
+El sitio está en producción y funciona. Esta fase no añade nada visible: paga la deuda que han dejado cuatro fases de crecer por acumulación, para que la quinta norma transcrita cueste lo mismo que la segunda.
+
+**Nada de esto es urgente,** y por eso está en su propia fase: se toca cuando estorbe, no antes. Publicar una norma nueva no depende de ninguno de estos puntos.
+
+### La duplicación entre los dos scripts
+
+`app.js` y `norma.js` tienen escritas dos veces `escapar`, `fechaLarga`, `aplanar`, `terminosDe`, `resaltar`, `identificador`, el diccionario `TIPO` y las funciones que componen el ancla y el rótulo de una pieza. La de las anclas es la que preocupa: **tiene que coincidir carácter a carácter** entre los dos ficheros o los enlaces del buscador caen en el vacío.
+
+La causa es D1: sin build ni módulos, no hay dónde poner lo común. Salidas posibles, por orden de coste:
+
+1. Un `assets/js/comun.js` cargado antes que los otros dos, que exponga lo compartido. No es un build ni rompe D1; obliga a un `<script>` más en cada página.
+2. Módulos ES (`type="module"`), que además dan importaciones explícitas. Habría que revisar que el diagnóstico siga pudiendo leer `VERSION` de cada fichero (D19) y que la carga diferida no cambie el arranque.
+3. Dejarlo así y confiar en el comentario que lo advierte, que es lo que hay hoy.
+
+### El tamaño de `app.js`
+
+Novecientas líneas largas en un fichero: vocabulario, utilidades, datos, filtro, pintado de listado, pintado de ficha, enrutado y arranque. Está ordenado por secciones y se navega, pero es el techo. Si la fase 4 sigue añadiendo vistas, hay que partirlo antes de que duela, y eso empuja hacia la salida 1 o 2 del punto anterior.
+
+### La búsqueda, cuando haya muchas transcripciones
+
+Hoy se cargan **todos** los ficheros de `data/texto/` después del primer pintado y se indexan en memoria. Con una norma transcrita son 42 KB y no se nota. Con veinte serían cerca de un mega que se descarga aunque nadie busque nada.
+
+Lo que habría que decidir entonces: un índice de búsqueda pregenerado —que reabre D1, porque alguien tiene que generarlo—, o cargar cada articulado solo cuando la búsqueda lo pida y aceptar que los resultados aparezcan en dos tiempos. **El umbral no es un número de normas, es cuándo se note**, y se sabrá midiéndolo.
+
+### Detalles que ya se saben
+
+- **El bloque de respuestas da por hecho que solo hay una norma con preguntas:** rotula «De las preguntas frecuentes de X» con la primera que encuentra. En cuanto haya una segunda FAQ, hay que agrupar por norma como ya hace el bloque de articulado.
+- **Los resultados no se ordenan por relevancia.** Salen por sección y por rango normativo, que es lo correcto para un sumario y discutible para una búsqueda. Antes de tocarlo hay que pensarlo: el orden por rango es información, no un residuo.
+- **`VERSION` se sube a mano** en dos ficheros (D19). El diagnóstico avisa si no coinciden, que es lo que lo hace tolerable.
+- **`meta.json` tiene la fecha de revisión a mano.** Es a propósito: decir «revisado en agosto» cuando se revisó en enero es peor que no decirlo, y automatizarlo con la fecha del último commit mentiría igual.
+- **La hoja de estilos pasa de 1.400 líneas** con el orden en que se fueron añadiendo las vistas. Merece una lectura seguida buscando reglas muertas y duplicadas, no una reescritura.
+
+### Lo que no se toca
+
+El modelo de datos, la escala de grises (D5), el rigor de las citas (D18) y la ausencia de build (D1). Si algo de esto tiene que caer, se discute y se escribe una decisión nueva; no se cambia por el camino durante una refactorización.

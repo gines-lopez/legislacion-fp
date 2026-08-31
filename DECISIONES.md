@@ -219,3 +219,55 @@ En papel no se fuerza la impresión de fondos. Todo lo que en pantalla se distin
 **Qué más cambia en papel:** los plegables se abren —una pregunta cerrada imprime su respuesta y su cita, que si no la hoja no sirve de nada—, el listado pasa a una columna, los laterales fijos dejan de serlo, los títulos recortados se imprimen enteros y ni una norma, artículo o respuesta se parte entre páginas. El trazo del margen sigue codificando la vigencia, y el estado y el ámbito están escritos además con palabras (D5).
 
 **Se comprueba, no se supone:** las reglas de `@media print` se extraen de la hoja y se aplican como si fueran de pantalla para poder medirlas. Así se detectó el blanco sobre blanco.
+
+## D26 · «Remite a» es una relación, y se declara por un solo lado
+
+Las instrucciones de curso no modifican la Orden 8/2025 ni la derogan: se apoyan en ella y mandan aplicarla. Eso es un dato, y ahora es el campo `remiteA`.
+
+**Por qué merecía un campo.** Hasta ahora esa dependencia solo se veía abriendo una de las dieciocho preguntas frecuentes que enlazan a su articulado. Quien mira la ficha de las instrucciones no puede adivinar que la mitad de lo que dicen sobre evaluar remite a otra norma, y citarlas sin ella es citarlas a medias. Es la misma razón de D4: si una relación no es dato, no se puede mostrar, ni filtrar, ni validar.
+
+**Por qué va con nota y las otras cuatro no.** Ver una norma debajo de otra se lee como una reforma. «Remite a» es más floja que «modifica» y que «deroga», así que el rótulo no basta: la ficha dice con todas las letras que ni la modifica ni la deroga, que hay que leerlas juntas y que el alcance de cada remisión está en el articulado y en las preguntas. Coherente con «Lo que el modelo no captura» de [MODELO-DATOS.md](MODELO-DATOS.md).
+
+**Por qué no exige simetría.** El invariante 3 obliga a declarar `modifica` ↔ `modificadaPor` por las dos puntas, porque las dos son afirmaciones jurídicas fuertes y conviene que alguien las escriba dos veces. Aquí no: el reverso —«Remiten a esta norma»— lo deriva la interfaz recorriendo el `remiteA` de las demás, igual que `derogadaPor` y que los anexos. Una norma muy citada acumularía media docena de líneas escritas a mano solo para no desincronizarse.
+
+**Se reabre si:** hace falta distinguir *para qué* remite una norma a otra —evaluación, convalidaciones, formación en empresa—. Entonces el campo pasa de array de `id` a array de objetos con su motivo.
+
+## D27 · El buscador entra en el articulado, y la unidad es el artículo
+
+Buscar «promoción» encontraba la norma y las preguntas frecuentes, pero no el artículo 14, que es donde lo pone. Ahora el buscador de la portada indexa cada pieza de `data/texto/` por separado.
+
+**Por qué la pieza y no la norma.** El artículo es lo que se cita: «el artículo 14 de la Orden 8/2025», no «la Orden 8/2025, por algún sitio». Indexar la norma entera devolvería siempre el mismo resultado —la norma— sin decir dónde mirar, que es exactamente lo que ya hacía y lo que había que arreglar. Los términos tienen que caer todos dentro de una misma pieza: dos palabras repartidas entre el artículo 3 y el 14 no son una coincidencia.
+
+**El resultado se parece a lo que va a abrir.** Cada pieza encontrada llega con el mismo canal y el mismo trazo que tiene en la página del texto —sólido si está como se publicó, doble si una norma posterior la cambió—, y las modificadas dicen qué norma las cambió y desde cuándo. Es el aviso llegando antes de citar de memoria un artículo reformado, que es el daño que este sitio existe para evitar. Va después del bloque de respuestas y no antes: se lee de lo llano a lo literal, igual que cada respuesta lleva debajo la frase de la norma en que se apoya.
+
+**Se resalta lo que distingue, no todo lo tecleado.** Marcar «a» y «la» dejaba el articulado entero subrayado: 3.623 marcas al buscar «atención a la diversidad». Se marcan solo los términos de más de dos letras, y si la búsqueda entera es de palabras cortas, entonces sí se marcan todas, porque entonces son lo que se ha ido a buscar.
+
+**El articulado se carga después del primer pintado.** Es el único conjunto de datos que crece sin techo, y la portada no puede esperar a un texto que solo hace falta si se busca algo. Mientras no ha llegado, la interfaz no afirma nada sobre él: no dice «no hay artículos», dice solo lo que ya sabe. Si algún día hay veinte normas transcritas esto deja de bastar; está anotado en la fase 5 de [HOJA-DE-RUTA.md](HOJA-DE-RUTA.md).
+
+**Se reabre si:** el número de transcripciones hace que cargarlas todas se note. La salida es un índice pregenerado, que reabre D1 porque alguien tiene que generarlo, o cargar cada articulado solo cuando la búsqueda lo pida.
+
+## D28 · El foco viaja a los encabezados, pero sin recuadro
+
+Al cambiar de vista, el `h1` de la ficha recibe el foco; al saltar a un artículo desde el índice, lo recibe el artículo. Ninguno de los dos se dibuja con recuadro.
+
+**Por qué el foco sí.** La ficha y el listado son la misma página y se cambia entre ellas sin recargar. Sin mover el foco, quien navega con teclado o con lector de pantalla se queda donde estaba mientras la página entera cambia debajo. Ver D20, que es el mismo problema con los saltos internos.
+
+**Por qué el recuadro no.** Un recuadro de foco significa «esto se acciona»: es la señal de que lo que hay ahí responde al Intro. Un encabezado no responde a nada. Ponérselo promete una interacción que no existe y ensucia la cabecera con un rectángulo enorme cada vez que se abre una ficha. La regla de accesibilidad que exige indicador visible es para los controles operables con teclado; estos destinos no lo son, solo reciben el foco de paso.
+
+**Dónde sí se mantiene:** en todo lo que se pulsa —enlaces, botones, chips, el resumen del índice—, sin tocar.
+
+## D29 · Hay un tercer tipo de página: el esquema, que dibuja la norma en vez de reproducirla
+
+`docs/esquema/<id>.html` desde `docs/data/esquema/<id>.json`. La primera es la de la Ley Orgánica 3/2022.
+
+**Por qué no basta con transcribir el articulado.** La LO 3/2022 tiene 117 artículos y 25 disposiciones. Transcribirla daría una página perfectamente fiel en la que sigue siendo imposible ver lo único que hay que ver: que los cinco grados son **una escalera acumulable**, que todo el sistema cuelga de una sola definición —el estándar de competencia— y que los dos regímenes de dual se diferencian en tres cifras concretas. Eso está en la ley, repartido entre artículos que no se leen seguidos, y ninguna transcripción lo hace aparecer. El articulado sirve para comprobar; el esquema, para entender. Son dos trabajos distintos y ahora son dos páginas distintas.
+
+**Por qué es más peligroso y qué se hace al respecto.** Un esquema interpreta, y lo que interpreta es lo que puede hacer daño: es el mismo riesgo que D18 identificó en las preguntas frecuentes, con la misma solución. Cada pieza dice de qué artículo sale y, en cuanto afirma una cifra o una regla —el 25 %, las 300 a 900 horas, los 2 o 3 cursos—, reproduce debajo la frase literal de la ley. Las citas del esquema de la LO 3/2022 se comprobaron una a una contra el XML del BOE antes de guardar el fichero, y el diagnóstico verifica que ninguna se quede sin artículo (invariante 12).
+
+**Los tipos de bloque son un vocabulario, no un formato a medida.** `escalera`, `cadena`, `comparacion`, `mapa` y `corpus`. Están elegidos porque describen formas que se repiten en cualquier norma de ordenación —una secuencia acumulativa, un flujo, dos variantes contrastadas, una estructura, lo que la desarrolla—, no porque los pidiera esta ley. El esquema siguiente se escribe combinando los que le sirvan; si hace falta uno nuevo, se añade al vocabulario y queda disponible para los demás. Es D23 aplicado otra vez: el coste de la segunda página es el de escribir los datos.
+
+**Se enlaza al BOE, no a una transcripción propia.** De esta ley no hay articulado transcrito, así que cada número de artículo lleva al texto consolidado oficial. Si algún día se transcribe, el esquema debería enlazar a la transcripción y la transcripción al esquema; hoy no hay nada que decidir porque no existe.
+
+**Y el bloque `corpus` no se escribe.** Las normas de este listado que desarrollan la ley salen de la etiqueta, no de una lista a mano: al añadir una norma nueva con esa etiqueta aparece sola. Es D3 otra vez, y evita la lista de enlaces que se queda vieja en silencio.
+
+**Se reabre si:** un esquema no cabe en el vocabulario de bloques sin retorcerlo, o si aparecen tantos esquemas que convenga poder buscar dentro de ellos, como ya se hace con el articulado (D27).

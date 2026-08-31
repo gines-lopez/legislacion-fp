@@ -13,7 +13,7 @@
 
 'use strict';
 
-const VERSION = '0.7';
+const VERSION = '0.8';
 window.legislacionFP = { version: VERSION };
 
 const TIPO = {
@@ -42,6 +42,73 @@ const fechaLarga = (iso) => {
   return new Date(anno, mes - 1, dia)
     .toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 };
+
+/* Las tres funciones del buscador de la portada, escritas otra vez porque no
+   hay módulos ni build (D1). Se llega aquí desde el listado con «q» en la URL,
+   y un artículo de veintidós párrafos sin la coincidencia marcada obliga a
+   buscarla a ojo. Aplanar conserva la longitud a propósito: las coincidencias
+   se localizan sobre la cadena aplanada y se marcan por posición sobre el
+   texto original, con sus tildes intactas. */
+const aplanar = (texto) => {
+  let salida = '';
+  for (const caracter of String(texto).normalize('NFC')) {
+    const base = caracter.normalize('NFD').replace(/[\u0300-\u036f]/g, '') || caracter;
+    salida += base.toLowerCase();
+  }
+  return salida;
+};
+
+const terminosDe = (consulta) => aplanar(consulta).split(/\s+/).filter(Boolean);
+
+/* Marcar «a» o «la» no señala nada: en un texto legal están en todas las
+   líneas, y buscar «atención a la diversidad» dejaba el articulado entero
+   subrayado —3.623 marcas en la Orden 8/2025—. Se marca lo que distingue; las
+   palabras de una o dos letras solo si la búsqueda entera es así, que entonces
+   sí es lo que se ha ido a buscar. */
+const terminosVisibles = (terminos) => {
+  const largos = terminos.filter((termino) => termino.length > 2);
+  return largos.length ? largos : terminos;
+};
+
+const resaltar = (texto, terminosPedidos) => {
+  const terminos = terminosVisibles(terminosPedidos);
+  const original = String(texto).normalize('NFC');
+  const plano = aplanar(original);
+  if (!terminos.length || plano.length !== original.length) return escapar(original);
+
+  const tramos = [];
+  for (const termino of terminos) {
+    let desde = 0;
+    let encontrado;
+    while ((encontrado = plano.indexOf(termino, desde)) !== -1) {
+      tramos.push([encontrado, encontrado + termino.length]);
+      desde = encontrado + termino.length;
+    }
+  }
+  if (!tramos.length) return escapar(original);
+
+  tramos.sort((a, b) => a[0] - b[0]);
+  const unidos = [tramos[0]];
+  for (const [inicio, fin] of tramos.slice(1)) {
+    const ultimo = unidos[unidos.length - 1];
+    if (inicio <= ultimo[1]) ultimo[1] = Math.max(ultimo[1], fin);
+    else unidos.push([inicio, fin]);
+  }
+
+  let salida = '';
+  let cursor = 0;
+  for (const [inicio, fin] of unidos) {
+    salida += escapar(original.slice(cursor, inicio));
+    salida += `<mark>${escapar(original.slice(inicio, fin))}</mark>`;
+    cursor = fin;
+  }
+  return salida + escapar(original.slice(cursor));
+};
+
+/* Lo que se buscó en la portada. Vive solo en la URL: no hay buscador en esta
+   página, así que no hay estado que mantener. */
+const BUSCADO = new URLSearchParams(location.search).get('q') ?? '';
+const TERMINOS = terminosDe(BUSCADO);
 
 const identificador = (norma) => {
   const tipo = TIPO[norma.tipo] ?? norma.tipo;
@@ -81,14 +148,14 @@ const rotuloDe = (pieza) => pieza.tipo === 'articulo'
 const pintarPieza = (pieza) => `
   <article class="articulo" id="${escapar(anclaDe(pieza))}"${pieza.modificadoPor ? ' data-modificado="si"' : ''}>
     <h2 class="articulo__rotulo">
-      <span class="articulo__numero">${escapar(rotuloDe(pieza))}</span>
-      ${pieza.titulo ? `<span class="articulo__titulo">${escapar(pieza.titulo)}</span>` : ''}
+      <span class="articulo__numero">${resaltar(rotuloDe(pieza), TERMINOS)}</span>
+      ${pieza.titulo ? `<span class="articulo__titulo">${resaltar(pieza.titulo, TERMINOS)}</span>` : ''}
     </h2>
     ${pieza.modificadoPor ? `
       <p class="articulo__nota">${escapar(pieza.modificadoPor.detalle)}
         Lo modificó la ${escapar(pieza.modificadoPor.identificador)}, en vigor desde el
         ${escapar(fechaLarga(pieza.modificadoPor.desde))}.</p>` : ''}
-    ${pieza.parrafos.map((p) => `<p class="${claseParrafo(p)}">${escapar(p)}</p>`).join('')}
+    ${pieza.parrafos.map((p) => `<p class="${claseParrafo(p)}">${resaltar(p, TERMINOS)}</p>`).join('')}
   </article>`;
 
 const pintarIndice = (articulado) => {
@@ -97,7 +164,7 @@ const pintarIndice = (articulado) => {
   const fila = (pieza) => `
     <li><a href="#${escapar(anclaDe(pieza))}">
       <span class="indice__numero">${escapar(pieza.tipo === 'articulo' ? pieza.numero : pieza.numero || '—')}</span>
-      <span class="indice__titulo">${escapar(pieza.titulo || pieza.grupo)}</span>
+      <span class="indice__titulo">${resaltar(pieza.titulo || pieza.grupo, TERMINOS)}</span>
     </a></li>`;
 
   /* Plegable: en una pantalla estrecha, veintiséis líneas de índice antes del
@@ -164,6 +231,17 @@ const pintarIndice = (articulado) => {
 
   $('#indice').innerHTML = pintarIndice(texto.articulado);
   $('#articulado').innerHTML = texto.articulado.map(pintarPieza).join('');
+
+  /* Marcar palabras sin decir por qué desconcierta: se dice qué se está
+     resaltando y se ofrece quitarlo, conservando el artículo en el que se está. */
+  if (TERMINOS.length) {
+    const marcas = document.querySelectorAll('#articulado mark').length;
+    $('#buscado').hidden = false;
+    $('#buscado').innerHTML = `
+      Se resalta <strong>«${escapar(BUSCADO)}»</strong>, que es lo que se buscó en el listado:
+      ${marcas === 0 ? 'no aparece en el articulado' : `${marcas} ${marcas === 1 ? 'coincidencia' : 'coincidencias'}`}.
+      <a href="${escapar(location.pathname + location.hash)}">Quitar el resaltado</a>`;
+  }
 
   $('#oficial').innerHTML = `
     <h2 class="apartado__rotulo">Texto oficial</h2>

@@ -49,11 +49,19 @@ const cargar = async (ruta) => {
   try {
     const respuesta = await fetch('assets/js/app.js', { cache: 'no-store' });
     const servido = (await respuesta.text()).match(/const VERSION = '([^']+)'/)?.[1] ?? null;
-    const otroScript = await fetch('assets/js/norma.js', { cache: 'no-store' })
-      .then((r) => (r.ok ? r.text() : '')).catch(() => '');
-    const servidoNorma = otroScript.match(/const VERSION = '([^']+)'/)?.[1] ?? null;
-    if (servidoNorma && servidoNorma !== servido) {
-      marcar('version', false, `app.js ${servido} y norma.js ${servidoNorma}`);
+    /* Los otros scripts llevan su propia VERSION y tienen que ir a la par: si
+       una página se publica con el script viejo, el fallo se parece a un fallo
+       del sitio y no a lo que es. */
+    const otros = ['norma', 'esquema'];
+    const versiones = await Promise.all(otros.map((nombre) =>
+      fetch(`assets/js/${nombre}.js`, { cache: 'no-store' })
+        .then((r) => (r.ok ? r.text() : '')).catch(() => '')
+        .then((texto) => texto.match(/const VERSION = '([^']+)'/)?.[1] ?? null)));
+
+    const desparejado = otros.find((nombre, i) => versiones[i] && versiones[i] !== servido);
+    if (desparejado) {
+      const suya = versiones[otros.indexOf(desparejado)];
+      marcar('version', false, `app.js ${servido} y ${desparejado}.js ${suya}`);
       throw new Error('saltar');
     }
     const cacheado = await versionEnUso();
@@ -108,12 +116,19 @@ const cargar = async (ruta) => {
       ...norma.modificadaPor.map((id) => ['modificadaPor', id]),
       ...norma.modifica.map((id) => ['modifica', id]),
       ...norma.deroga.map((id) => ['deroga', id]),
+      /* «remiteA» se declara por un solo lado a propósito: el reverso lo deriva
+         la interfaz. Aquí solo se comprueba que la norma citada exista y que
+         ninguna se remita a sí misma. */
+      ...(norma.remiteA ?? []).map((id) => ['remiteA', id]),
     ];
 
     for (const [campo, id] of citados) {
       const otra = porId.get(id);
       if (!otra) { fallos.push(`${norma.id}: ${campo} → ${id} no existe`); continue; }
-      const reciproco = { modificadaPor: 'modifica', modifica: 'modificadaPor', deroga: null }[campo];
+      if (campo === 'remiteA' && id === norma.id) {
+        fallos.push(`${norma.id}: remiteA a sí misma`);
+      }
+      const reciproco = { modificadaPor: 'modifica', modifica: 'modificadaPor' }[campo];
       if (reciproco && !otra[reciproco].includes(norma.id)) {
         fallos.push(`${norma.id} ↔ ${id}: falta ${reciproco}`);
       }
@@ -195,6 +210,45 @@ const cargar = async (ruta) => {
       : `${problemasTexto.length} problemas`);
 
   fallos.push(...problemasTexto);
+
+  /* 10. Los esquemas: que exista el fichero de cada norma que dice tener uno,
+         que ningún bloque se quede sin rótulo y que ninguna cita se quede sin
+         el artículo del que sale. Un esquema es interpretación, así que la
+         cita es lo que lo hace comprobable, igual que en las preguntas. */
+  const conEsquema = datos.normas.filter((n) => n.esquema);
+  const problemasEsquema = [];
+  let totalBloques = 0;
+
+  const revisarCitas = (nodo, ruta) => {
+    if (Array.isArray(nodo)) { nodo.forEach((n, i) => revisarCitas(n, `${ruta}[${i}]`)); return; }
+    if (!nodo || typeof nodo !== 'object') return;
+    if (nodo.cita && !nodo.citaArticulo) problemasEsquema.push(`${ruta}: cita sin artículo`);
+    for (const [clave, valor] of Object.entries(nodo)) revisarCitas(valor, `${ruta}/${clave}`);
+  };
+
+  for (const norma of conEsquema) {
+    let esquema;
+    try {
+      esquema = await cargar(`data/esquema/${norma.id}.json`);
+    } catch (error) {
+      problemasEsquema.push(`${norma.id}: no se puede leer su esquema`);
+      continue;
+    }
+    const bloques = esquema.bloques ?? [];
+    totalBloques += bloques.length;
+    if (!esquema.aviso) problemasEsquema.push(`${norma.id}: esquema sin aviso`);
+    for (const bloque of bloques) {
+      if (!bloque.id || !bloque.rotulo) problemasEsquema.push(`${norma.id}: bloque sin id o sin rótulo`);
+      revisarCitas(bloque, `${norma.id}/${bloque.id ?? '?'}`);
+    }
+  }
+
+  marcar('esquema', problemasEsquema.length === 0,
+    problemasEsquema.length === 0
+      ? `${totalBloques} ${totalBloques === 1 ? 'bloque' : 'bloques'}`
+      : `${problemasEsquema.length} problemas`);
+
+  fallos.push(...problemasEsquema);
 
   marcar('consulta', problemas.length === 0,
     problemas.length === 0

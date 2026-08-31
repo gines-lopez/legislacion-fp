@@ -39,9 +39,11 @@
 | `seccion` | enum | sí | Ver más abajo. |
 | `estado` | enum | sí | `vigente`, `modificada`, `derogada`. `modificada` significa vigente pero con reformas: sigue siendo aplicable. |
 | `modificadaPor` / `modifica` / `deroga` | array de `id` | sí (pueden ir vacíos) | Relaciones entre normas. |
+| `remiteA` | array de `id` | no | Normas en las que esta se apoya sin cambiarlas: las cita y manda aplicarlas. **Se declara por un solo lado**, el de la norma que remite; el reverso lo deriva la interfaz. No exige simetría y no altera el `estado` de nadie. Ver D26 en [DECISIONES.md](DECISIONES.md). |
 | `enlaces` | array | sí, mínimo uno | `etiqueta` (`DOGV`, `PDF del DOGV`, `BOE`, `CEICE`, `Corrección de errores`), `url` y `formato` (`pdf` o `html`). Ver D9 en [DECISIONES.md](DECISIONES.md). |
 | `texto` | booleano | no | `true` si la norma tiene el articulado transcrito. El fichero es `docs/data/texto/<id>.json` y la página, `docs/norma/<id>.html`: ambas rutas se derivan del `id`. Ver D22 en [DECISIONES.md](DECISIONES.md). |
 | `consulta` | booleano | no | `true` si la norma tiene preguntas frecuentes. El fichero es `docs/data/consulta/<id>.json`: la ruta se deriva del `id`, no se escribe. Ver D18 en [DECISIONES.md](DECISIONES.md). |
+| `esquema` | booleano | no | `true` si la norma tiene un esquema de su estructura. El fichero es `docs/data/esquema/<id>.json` y la página, `docs/esquema/<id>.html`. Ver D29 en [DECISIONES.md](DECISIONES.md). |
 | `parteDe` | `id` | no | Solo en documentos que **no son norma independiente**, sino parte del texto que los publica: los anexos de una resolución. La ficha de la madre los lista, y la del hijo declara de quién es parte. Ver D16 en [DECISIONES.md](DECISIONES.md). |
 | `etiquetas` | array de string | no | Kebab-case, transversales a las secciones: `dual`, `grado-basico`, `fct`, `curriculo`, `optatividad`. |
 
@@ -65,10 +67,12 @@ Deben cumplirse siempre; conviene comprobarlos tras cada tanda de cambios.
 6. `enlaces` con al menos una entrada, y ninguna URL a un dominio distinto de `dogv.gva.es`, `boe.es` o `ceice.gva.es` sin justificarlo.
 7. Dos normas del mismo `tipo` sin `numero` y sin `fecha` distinta se mostrarían con el mismo identificador. Si ocurre, hay que darles `numero`.
 8. Todo `parteDe` apunta a una norma que existe, y ninguna norma es parte de sí misma.
-10. Toda norma con `texto: true` tiene su fichero en `docs/data/texto/`, ninguna pieza sin párrafos, y todo `modificadoPor` apunta a una norma que existe.
 9. Toda norma con `consulta: true` tiene su fichero en `docs/data/consulta/`, sin identificadores repetidos, y ninguna pregunta sin `epigrafe` ni sin `cita`.
+10. Toda norma con `texto: true` tiene su fichero en `docs/data/texto/`, ninguna pieza sin párrafos, y todo `modificadoPor` apunta a una norma que existe.
+11. Todo `id` citado en `remiteA` existe como norma, y ninguna norma se remite a sí misma. A diferencia del invariante 3, **no se exige reverso**: es deliberado.
+12. Toda norma con `esquema: true` tiene su fichero en `docs/data/esquema/`, con `aviso`, ningún bloque sin `id` ni sin `rotulo`, y **ninguna `cita` sin su `citaArticulo`**. Es la misma exigencia del invariante 9 y por la misma razón: un esquema interpreta, y la cita es lo que lo hace comprobable.
 
-Los invariantes 1 a 5 y del 8 al 10 los comprueba sola la página [`diagnostico.html`](docs/diagnostico.html) cada vez que se abre: basta cargarla tras editar el JSON.
+Los invariantes 1 a 5 y del 8 al 12 los comprueba sola la página [`diagnostico.html`](docs/diagnostico.html) cada vez que se abre: basta cargarla tras editar el JSON.
 
 ## Lo que el modelo no captura
 
@@ -171,6 +175,44 @@ El articulado de una norma, transcrito. La norma declara `texto: true`.
 
 **Cuando la consolidación es propia hay que decirlo.** `consolidacion.propia` con su `aviso` sale destacado en la cabecera de la página. Ver D22.
 
+**El buscador de la portada entra aquí.** Cada pieza se indexa por separado —rótulo, título y párrafos— porque **el artículo es la unidad que se cita y por tanto la que se encuentra**: los términos tienen que caer todos dentro de la misma pieza. El identificador de la norma se queda fuera del índice a propósito; si entrara, buscar «orden» devolvería los veintiséis artículos de la Orden 8/2025. El ancla (`#articulo-14`) la componen `app.js` y `norma.js` con la misma función escrita dos veces: si se cambia una hay que cambiar la otra o los enlaces del buscador caen en el vacío. Ver la fase 5 de [HOJA-DE-RUTA.md](HOJA-DE-RUTA.md).
+
+### `docs/data/esquema/<id>.json`
+
+El esquema de una norma: cómo está construida, para poder entenderla sin leerla entera. La norma declara `esquema: true`. Ver D29 en [DECISIONES.md](DECISIONES.md).
+
+```json
+{
+  "norma": "lo-3-2022",
+  "revisado": "2026-08-31",
+  "aviso": "Este esquema es una lectura de la ley, no su texto…",
+  "tesis": "Hasta 2022 había dos formaciones profesionales…",
+  "cifras": [{ "dato": "117", "rotulo": "artículos", "nota": "…", "mono": false }],
+  "bloques": [ { "tipo": "escalera", "id": "grados", "rotulo": "Los cinco grados", "…": "…" } ]
+}
+```
+
+| Campo | Obligatorio | Notas |
+|---|---|---|
+| `aviso` | sí | Sale destacado en la cabecera. Dice que esto interpreta y que el auténtico es el diario oficial. |
+| `tesis` | sí | Qué hace la norma, en un párrafo. Va antes que el índice: un esquema que empieza por el índice obliga a leerlo entero para saber de qué va. |
+| `cifras` | no | El tamaño de lo que se va a leer, antes de empezar. `mono: true` para lo que no es un número redondo, como una fecha. |
+| `bloques` | sí | Cada uno con `tipo`, `id` —que es su ancla— y `rotulo`. |
+
+**Los tipos de bloque** son un vocabulario corto y reutilizable, no un formato por norma:
+
+| `tipo` | Para qué | Piezas |
+|---|---|---|
+| `escalera` | Una secuencia acumulativa, donde cada peldaño se construye con los anteriores | `pasos`, cada uno con `letra`, `nombre`, `que`, `filas`, `articulos` y la regla `acumula` que lleva al siguiente |
+| `cadena` | Un flujo de A a B a C | `eslabones` numerados y `derivaciones`, que es lo que entra o sale por los lados |
+| `comparacion` | Dos o más variantes contrastadas criterio a criterio | `comun` con lo que vale para todas, y `columnas` con las mismas `filas` en el mismo orden |
+| `mapa` | La estructura completa del articulado | `titulos` con sus capítulos, secciones y artículos, y `disposiciones` por grupos |
+| `corpus` | Qué normas de este listado la desarrollan | Solo `etiqueta`: las normas **no se escriben**, se deducen (D3) |
+
+**La cita es obligatoria donde se afirma una cifra o una regla.** Cualquier objeto que lleve `cita` tiene que llevar `citaArticulo`, y la frase debe estar **literalmente** en ese artículo. Se comprueba igual que las citas de la consulta: se extrae el texto del diario, se compara ignorando los espacios y se descarta lo que no aparezca. Las citas del esquema de la LO 3/2022 se verificaron así, una a una, contra el XML del BOE.
+
+**En `comparacion`, todas las columnas llevan las mismas `filas` en el mismo orden.** La interfaz las pivota para enfrentar los dos valores de cada criterio, así que una fila de más en una columna descuadra la comparación entera.
+
 ### `docs/data/recursos.json`
 
 Array de objetos con `id`, `titulo`, `resumen`, `fuente`, `url` y `formato`. Son documentos que la conselleria publica junto a la normativa pero que no son normas: no tienen fecha de disposición, no se citan y no llevan estado de vigencia. Se muestran en un bloque aparte, rotulado «Recursos, no normativa», y solo cuando no hay ningún filtro activo.
@@ -181,6 +223,7 @@ Array de objetos con `id`, `titulo`, `resumen`, `fuente`, `url` y `formato`. Son
 - **El diario** (`DOGV`, `BOE`, `CEICE`) sale del dominio del primer enlace, no de la etiqueta. Ver D10.
 - **El identificador que se muestra y se enlaza** se compone de `tipo` + `numero`; si no hay `numero`, de `tipo` + `fecha`; y en `anexo` y `guia` sin número, del propio `titulo`.
 - **Los hijos de una norma.** No hay campo «partes»: se derivan agrupando por el `parteDe` de las demás, igual que `derogadaPor`.
+- **«Remiten a esta norma».** Tampoco existe como campo: se calcula recorriendo el `remiteA` de las demás. Es el mismo criterio que con `derogadaPor` y por la misma razón: dos puntas escritas a mano son dos ocasiones de que dejen de coincidir.
 - **El nombre corto de un anexo.** Dentro de la ficha de su madre, del título se muestra solo lo que sigue a los dos puntos: «Anexo I de la Resolución de 16 de julio de 2026: solicitud de anulación de matrícula» se pinta como «solicitud de anulación de matrícula», porque de quién es parte ya lo dice el encabezado.
 - **El rango normativo** que ordena cada sección sale de `tipo`: ley orgánica → real decreto → decreto → orden → resolución → instrucciones → calendario → anexo → guía. A igual rango, la más reciente primero.
 

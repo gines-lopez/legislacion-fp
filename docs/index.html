@@ -16,7 +16,10 @@
 
   <header class="cabecera">
     <p class="marca">Legislación FP</p>
-    <h1 class="cabecera__titulo">Normativa de ciclos formativos</h1>
+    <!-- El título vuelve al listado sin filtros: es la salida de cualquier
+         consulta, se esté en una ficha o con media docena de chips puestos.
+         «./» resuelve a la carpeta del sitio, que en producción es el subpath. -->
+    <h1 class="cabecera__titulo"><a href="./">Normativa de ciclos formativos</a></h1>
     <p class="cabecera__nota">Ordenación y organización académica en la Comunitat Valenciana<span id="cabecera-datos"></span></p>
     <!-- Atajo a las instrucciones del curso en vigor: es lo que más se
          consulta, y se deriva de los datos, no se escribe aquí. -->
@@ -64,6 +67,9 @@
 
       <!-- El buscador alcanza también las preguntas frecuentes de una norma. -->
       <section class="apartado respuestas" id="respuestas" hidden></section>
+
+      <!-- Y el articulado de las normas transcritas, artículo a artículo. -->
+      <section class="apartado piezas" id="piezas" hidden></section>
 
       <div id="listado"></div>
 

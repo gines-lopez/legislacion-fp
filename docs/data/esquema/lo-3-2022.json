@@ -1,0 +1,1333 @@
+{
+  "norma": "lo-3-2022",
+  "revisado": "2026-08-31",
+  "titulo": "Cómo está construida la ley",
+  "aviso": "Este esquema es una lectura de la ley, no su texto. Cada pieza dice de qué artículo sale y reproduce la frase en la que se apoya cuando afirma una cifra o una regla. El texto auténtico es el consolidado del BOE, que es donde hay que comprobar cualquier cosa antes de citarla.",
+  "tesis": "Hasta 2022 había dos formaciones profesionales: la del sistema educativo, con sus ciclos y sus títulos, y la formación para el empleo, con sus certificados de profesionalidad. Cada una tenía su catálogo, su administración y sus reglas, y lo cursado en una no valía en la otra. Esta ley las funde en un solo sistema, medido con una sola vara —los estándares de competencia profesional— y acumulable en un solo expediente a lo largo de la vida.",
+  "cifras": [
+    {
+      "dato": "XI",
+      "rotulo": "títulos",
+      "nota": "más el preliminar"
+    },
+    {
+      "dato": "117",
+      "rotulo": "artículos"
+    },
+    {
+      "dato": "9",
+      "rotulo": "disposiciones adicionales"
+    },
+    {
+      "dato": "6",
+      "rotulo": "transitorias"
+    },
+    {
+      "dato": "9",
+      "rotulo": "finales"
+    },
+    {
+      "dato": "21-04-2022",
+      "rotulo": "en vigor desde",
+      "mono": true
+    }
+  ],
+  "bloques": [
+    {
+      "tipo": "escalera",
+      "id": "grados",
+      "rotulo": "Los cinco grados",
+      "entradilla": "Es la pieza que reorganiza todo lo demás. En vez de dos mundos separados —ciclos por un lado, certificados de profesionalidad por otro— hay una sola escalera de cinco grados, y cada peldaño se construye acumulando los anteriores: quien reúne todas las acreditaciones parciales de un estándar tiene el Grado B sin volver a examinarse, y quien reúne los certificados de competencia de una oferta tiene el Grado C. Nada de lo aprobado se pierde por el camino.",
+      "cita": "La tipología de las ofertas del Sistema de Formación Profesional está organizada, de manera secuencial, en los siguientes grados",
+      "citaArticulo": "28",
+      "pasos": [
+        {
+          "letra": "A",
+          "nombre": "Acreditación parcial de competencia",
+          "articulos": [
+            "29",
+            "30",
+            "31"
+          ],
+          "que": "La oferta de base del sistema. Uno o varios elementos de competencia de un módulo profesional: la pieza más pequeña que se puede cursar y acreditar por separado.",
+          "filas": [
+            {
+              "clave": "Se obtiene",
+              "valor": "Acreditación parcial de competencia, con validez en todo el territorio nacional."
+            },
+            {
+              "clave": "Acceso",
+              "valor": "Sin requisitos académicos ni profesionales.",
+              "cita": "no se exigen requisitos académicos ni profesionales",
+              "citaArticulo": "30"
+            },
+            {
+              "clave": "Duración",
+              "valor": "La carga horaria que el currículo asigne a los resultados de aprendizaje de los que se trate."
+            },
+            {
+              "clave": "Dual",
+              "valor": "No lleva fase en empresa."
+            }
+          ],
+          "acumula": "Reunir todas las acreditaciones parciales de un estándar de competencia es tener el Grado B, sin cursarlo aparte.",
+          "acumulaCita": "La consecución de todas las acreditaciones parciales de competencia correspondientes a un estándar de competencia profesional implicará la superación del Grado B de formación",
+          "acumulaArticulo": "31"
+        },
+        {
+          "letra": "B",
+          "nombre": "Certificado de competencia",
+          "articulos": [
+            "32",
+            "33",
+            "34"
+          ],
+          "que": "Un módulo profesional completo del Catálogo Modular. Sigue siendo oferta parcial y acumulable.",
+          "filas": [
+            {
+              "clave": "Se obtiene",
+              "valor": "Certificado de Competencia, que detalla el módulo superado y el estándar al que está asociado."
+            },
+            {
+              "clave": "Acceso",
+              "valor": "Sin requisitos académicos ni profesionales.",
+              "cita": "no se exigen requisitos académicos ni profesionales",
+              "citaArticulo": "33"
+            },
+            {
+              "clave": "Duración",
+              "valor": "La carga horaria del módulo profesional según el currículo aprobado."
+            },
+            {
+              "clave": "Dual",
+              "valor": "No lleva fase en empresa."
+            }
+          ],
+          "acumula": "Reunir los certificados de competencia que completen todos los módulos de una oferta es tener el Grado C.",
+          "acumulaCita": "bien por acumulación de Certificados de Competencia de Grado B que completen la totalidad de los módulos profesionales incluidos en aquélla",
+          "acumulaArticulo": "35"
+        },
+        {
+          "letra": "C",
+          "nombre": "Certificado profesional",
+          "articulos": [
+            "35",
+            "36",
+            "37",
+            "38"
+          ],
+          "que": "Varios módulos profesionales agrupados por su significación en el mercado laboral. Es donde aterrizan los antiguos certificados de profesionalidad.",
+          "filas": [
+            {
+              "clave": "Se obtiene",
+              "valor": "Certificado Profesional, de carácter oficial y validez en todo el territorio nacional."
+            },
+            {
+              "clave": "Acceso",
+              "valor": "Por niveles: el 1 no exige requisitos; el 2 pide el título de Graduado en ESO o equivalente; el 3, el de Técnico o Bachiller o equivalente. Quien no los reúna, prueba de acceso.",
+              "cita": "Para el Grado C de nivel 3 se requiere el título de Técnico, de Bachiller o equivalente a efectos de acceso",
+              "citaArticulo": "37"
+            },
+            {
+              "clave": "Duración",
+              "valor": "La que resulte del currículo, según los módulos que integre y la carga horaria del Catálogo Modular."
+            },
+            {
+              "clave": "Dual",
+              "valor": "Sí. Incluye periodo de formación en empresa, del que exime acreditar experiencia laboral correspondiente.",
+              "cita": "El diseño de un curso de Grado C deberá incluir la realización de un periodo de formación en empresa u organismo equiparado",
+              "citaArticulo": "37"
+            }
+          ],
+          "acumula": "Del Grado C hacia arriba ya no hay acumulación automática: al Grado D se accede, no se llega sumando.",
+          "acumulaCita": null,
+          "acumulaArticulo": null
+        },
+        {
+          "letra": "D",
+          "nombre": "Ciclo formativo",
+          "articulos": [
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50"
+          ],
+          "que": "Los ciclos formativos del sistema educativo: grado básico, grado medio y grado superior. Es el grado en el que trabaja la mayor parte del profesorado de FP, y el que desarrollan los decretos de currículo de la Comunitat Valenciana.",
+          "destacado": true,
+          "filas": [
+            {
+              "clave": "Se obtiene",
+              "valor": "Título de Técnico Básico, Técnico o Técnico Superior, según el ciclo."
+            },
+            {
+              "clave": "Estructura",
+              "valor": "Módulos asociados a estándares de competencia, módulos transversales y de orientación y emprendimiento, módulos optativos y proyecto intermodular.",
+              "cita": "Módulos profesionales asociados, cada uno de ellos, a un estándar de competencia profesional",
+              "citaArticulo": "40"
+            },
+            {
+              "clave": "Duración",
+              "valor": "Grado básico, 2 cursos. Grado medio y superior, 2 o 3 cursos según el currículo básico de cada ciclo.",
+              "cita": "la de los ciclos de grado básico será de 2 cursos académicos, y la de los de grado medio y superior podrá variar, en su caso, entre 2 o 3 cursos académicos",
+              "citaArticulo": "40"
+            },
+            {
+              "clave": "Dual",
+              "valor": "Todos, sin excepción. Es la novedad que más cambió el trabajo diario: la antigua FCT deja de ser un bloque al final y pasa a ser una fase de un ciclo que es dual entero.",
+              "cita": "Todos los ciclos formativos se desarrollarán, con carácter dual, entre el centro de formación y la empresa, incluyendo una fase de formación en empresa",
+              "citaArticulo": "40"
+            },
+            {
+              "clave": "Proyecto intermodular",
+              "valor": "Obligatorio. En grado medio y superior, anual o bienal, con un mínimo de 25 horas por curso, y se defiende ante el equipo docente.",
+              "cita": "el proyecto intermodular podrá tener carácter anual o bienal, con una duración mínima de 25 horas en cada curso y deberá defenderse ante el equipo docente",
+              "citaArticulo": "41"
+            },
+            {
+              "clave": "Nivel educativo",
+              "valor": "El grado básico es educación básica; el medio, secundaria postobligatoria; el superior, educación superior.",
+              "cita": "Educación superior, los de grado superior y cursos de especialización grado superior",
+              "citaArticulo": "43"
+            }
+          ],
+          "acumula": null,
+          "acumulaCita": null,
+          "acumulaArticulo": null
+        },
+        {
+          "letra": "E",
+          "nombre": "Curso de especialización",
+          "articulos": [
+            "51",
+            "52",
+            "53",
+            "54"
+          ],
+          "que": "Complementa y profundiza las competencias de quien ya tiene un título de FP. No es un peldaño más de la escalera de acumulación: es una rama que sale del Grado D.",
+          "filas": [
+            {
+              "clave": "Se obtiene",
+              "valor": "Título de Especialista si el curso es de grado medio; título de Máster de Formación Profesional si es de grado superior.",
+              "cita": "Quienes superen un curso de especialización de Formación Profesional de grado superior obtendrán el título de Máster de Formación Profesional",
+              "citaArticulo": "54"
+            },
+            {
+              "clave": "Acceso",
+              "valor": "Las condiciones que fije el currículo básico de cada curso. Las ofertas parciales que no llevan al título completo no las exigen."
+            },
+            {
+              "clave": "Duración",
+              "valor": "Entre 300 y 900 horas.",
+              "cita": "Los cursos de especialización tendrán una duración básica de entre 300 y 900 horas",
+              "citaArticulo": "52"
+            },
+            {
+              "clave": "Dual",
+              "valor": "Solo cuando así se determine: en el Grado E el carácter dual es potestativo, no obligatorio.",
+              "cita": "podrán desarrollarse con carácter dual",
+              "citaArticulo": "52"
+            }
+          ],
+          "acumula": null,
+          "acumulaCita": null,
+          "acumulaArticulo": null
+        }
+      ]
+    },
+    {
+      "tipo": "cadena",
+      "id": "catalogos",
+      "rotulo": "De la competencia al título",
+      "entradilla": "El sistema entero cuelga de una sola definición: qué sabe hacer alguien. Los estándares de competencia se identifican en el sistema productivo, se traducen en módulos, los módulos se agrupan en ofertas y las ofertas se concretan en un currículo. Entender esta cadena es entender por qué un módulo de un ciclo puede valer para un certificado profesional: son la misma pieza mirada desde dos alturas.",
+      "eslabones": [
+        {
+          "numero": "1",
+          "nombre": "Catálogo Nacional de Estándares de Competencias Profesionales",
+          "articulos": [
+            "8",
+            "9"
+          ],
+          "que": "Ordena las competencias identificadas en el sistema productivo, por niveles 1 a 3 y por familias profesionales. Cada estándar se compone de elementos de competencia. Es la referencia obligada de todo lo demás, incluida la acreditación por experiencia.",
+          "cita": "Los estándares de competencia constituyen la unidad básica para el diseño de la formación y para la acreditación de competencias profesionales adquiridas por experiencia laboral u otras vías no formales o informales.",
+          "citaArticulo": "9"
+        },
+        {
+          "numero": "2",
+          "nombre": "Catálogo Modular de Formación Profesional",
+          "articulos": [
+            "10"
+          ],
+          "que": "Traduce cada estándar en módulos profesionales, con sus resultados de aprendizaje y su carga horaria. Es la referencia obligada para diseñar las ofertas.",
+          "cita": "Operará como referencia obligada para el diseño de las ofertas del Catálogo Nacional de Ofertas de Formación Profesional.",
+          "citaArticulo": "10"
+        },
+        {
+          "numero": "3",
+          "nombre": "Catálogo Nacional de Ofertas de Formación Profesional",
+          "articulos": [
+            "11",
+            "12"
+          ],
+          "que": "Reúne todas las ofertas reconocidas y acreditables del sistema: los cinco grados, con sus módulos.",
+          "cita": "es el instrumento del Sistema Nacional de Formación Profesional que incorpora todas las ofertas de formación profesional reconocidas y acreditables en el marco del sistema",
+          "citaArticulo": "11"
+        },
+        {
+          "numero": "4",
+          "nombre": "Currículo",
+          "articulos": [
+            "13"
+          ],
+          "que": "Concreta la oferta. El contenido básico define las enseñanzas mínimas y garantiza la validez estatal; el de los Grados D y E se rige además por la Ley Orgánica de Educación. Es el punto en el que entra la Comunitat Valenciana con sus decretos de currículo.",
+          "cita": "el currículo de las ofertas de Grado D y E se regirá por lo dispuesto en la Ley Orgánica 2/2006, de 3 de mayo, de Educación",
+          "citaArticulo": "13"
+        }
+      ],
+      "derivaciones": [
+        {
+          "nombre": "Los tres registros",
+          "articulos": [
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ],
+          "que": "Lo acreditado no surte efecto hasta que se inscribe. El Registro Estatal de Formación Profesional guarda títulos, certificados y acreditaciones de cada persona; el Registro Estatal de Acreditaciones recoge lo obtenido por experiencia laboral; el Registro General de Centros, quién puede impartir qué. Ningún centro puede ofertar sin estar inscrito.",
+          "cita": "Todo centro deberá estar inscrito en el Registro General de Centros de Formación Profesional para realizar ofertas conducentes a la obtención de las acreditaciones, certificados o titulaciones del Sistema de Formación Profesional.",
+          "citaArticulo": "19"
+        },
+        {
+          "nombre": "La acreditación por experiencia laboral",
+          "articulos": [
+            "90",
+            "91",
+            "92",
+            "93"
+          ],
+          "que": "Entra en la cadena por el mismo sitio que la formación: por el estándar de competencia. Es un procedimiento abierto de forma permanente, se resuelve en seis meses y lo que reconoce es acreditación parcial acumulable, que suma con lo aprobado por vía formal.",
+          "cita": "La acreditación de un estándar de competencia adquirido por experiencia laboral u otras vías no formales o informales tendrá la condición de acreditación parcial acumulable",
+          "citaArticulo": "93"
+        }
+      ]
+    },
+    {
+      "tipo": "comparacion",
+      "id": "dual",
+      "rotulo": "El carácter dual y los dos regímenes",
+      "entradilla": "Toda la formación profesional de los Grados C y D es dual: no hay una «FP dual» aparte de la ordinaria, hay una sola FP que se cursa entre el centro y la empresa. Lo que sí hay son dos regímenes, y la diferencia entre ellos no es de nombre: cambia cuánto tiempo se pasa en la empresa, cuánto currículo se desarrolla allí y si la persona es estudiante o trabajadora con contrato.",
+      "cita": "Toda la oferta de formación profesional de los Grados C y D vinculada al Catálogo Nacional de Estándares de Competencias Profesionales tendrá carácter dual, incorporando una fase de formación en empresa u organismo equiparado.",
+      "citaArticulo": "55",
+      "comun": {
+        "rotulo": "Lo que vale para los dos",
+        "puntos": [
+          {
+            "texto": "La fase en empresa dura como mínimo el 25 % del total de la formación.",
+            "cita": "La fase de formación en la empresa tendrá una duración mínima del 25 % de la duración total prevista de la formación",
+            "citaArticulo": "55"
+          },
+          {
+            "texto": "Quien decide si se obtiene el título es el centro, no la empresa.",
+            "cita": "La competencia de determinar la obtención de acreditaciones, certificados o titulaciones corresponderá a los centros de formación profesional.",
+            "citaArticulo": "55"
+          },
+          {
+            "texto": "Cada persona tiene un plan de formación que reparte qué resultados de aprendizaje se trabajan en el centro, cuáles en la empresa y cuáles en ambos.",
+            "cita": "Cada persona en formación dispondrá de un Plan de Formación",
+            "citaArticulo": "58"
+          },
+          {
+            "texto": "Hay que tener 16 años cumplidos y haber superado la formación en prevención de riesgos laborales, que imparte el centro.",
+            "cita": "requerirá tener cumplidos los 16 años y haber superado la formación en prevención de riesgos laborales, que será impartida por los centros de formación profesional",
+            "citaArticulo": "57"
+          },
+          {
+            "texto": "Hay dos tutorías: una del centro y otra de la empresa.",
+            "cita": null,
+            "citaArticulo": "60"
+          }
+        ]
+      },
+      "columnas": [
+        {
+          "nombre": "Régimen general",
+          "articulos": [
+            "66"
+          ],
+          "filas": [
+            {
+              "clave": "Formación en empresa",
+              "valor": "Entre el 25 % y el 35 % del total. En ofertas de nivel 1, excepcionalmente desde el 20 %.",
+              "cita": "Duración de la formación en empresa u organismo equiparado entre el 25 % y el 35 % de la duración total de la formación ofertada",
+              "citaArticulo": "66"
+            },
+            {
+              "clave": "La empresa desarrolla",
+              "valor": "Hasta un 20 % de los resultados de aprendizaje del currículo.",
+              "cita": "Participación de la empresa u organismo equiparado en hasta un 20 % de los resultados de aprendizaje del currículo.",
+              "citaArticulo": "66"
+            },
+            {
+              "clave": "Contrato",
+              "valor": "No hay.",
+              "cita": "Inexistencia de contrato de formación en la empresa.",
+              "citaArticulo": "66"
+            },
+            {
+              "clave": "La persona es",
+              "valor": "Estudiante, y conserva ese estatus durante la estancia. La fase no tiene carácter laboral.",
+              "cita": "carece de carácter laboral y tiene naturaleza de formación práctica tutorizada no generadora de vinculación contractual con el centro de trabajo",
+              "citaArticulo": "66"
+            }
+          ]
+        },
+        {
+          "nombre": "Régimen intensivo",
+          "articulos": [
+            "67"
+          ],
+          "filas": [
+            {
+              "clave": "Formación en empresa",
+              "valor": "Más del 35 % del total.",
+              "cita": "Duración de la formación en la empresa u organismo equiparado superior al 35 % de la duración total de la formación.",
+              "citaArticulo": "67"
+            },
+            {
+              "clave": "La empresa desarrolla",
+              "valor": "Más del 30 % de los resultados de aprendizaje o módulos del currículo.",
+              "cita": "Participación de la empresa u organismo equiparado en más de un 30 % de los resultados de aprendizaje o módulos profesionales del currículo.",
+              "citaArticulo": "67"
+            },
+            {
+              "clave": "Contrato",
+              "valor": "Contrato de formación con la empresa.",
+              "cita": "Existencia de un contrato de formación con la empresa.",
+              "citaArticulo": "67"
+            },
+            {
+              "clave": "La persona es",
+              "valor": "Trabajadora retribuida en el marco de un contrato de formación, alternando formación y actividad productiva.",
+              "cita": "retribuida en el marco de un contrato de formación",
+              "citaArticulo": "67"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "mapa",
+      "id": "mapa",
+      "rotulo": "Mapa del articulado",
+      "entradilla": "Los 117 artículos y las 25 disposiciones, con lo que resuelve cada título. Sirve para situarse antes de abrir el BOE: se busca el asunto aquí y se salta al artículo allí.",
+      "titulos": [
+        {
+          "num": "PRELIMINAR",
+          "titulo": "Disposiciones generales",
+          "capitulos": [],
+          "articulos": [
+            {
+              "numero": "1",
+              "titulo": "Objeto y finalidad"
+            },
+            {
+              "numero": "2",
+              "titulo": "Definiciones"
+            },
+            {
+              "numero": "3",
+              "titulo": "Principios generales"
+            },
+            {
+              "numero": "4",
+              "titulo": "Derechos individuales y sociales"
+            }
+          ],
+          "clave": "Qué es esto y para qué: objeto, definiciones, principios y los derechos que la ley reconoce a las personas."
+        },
+        {
+          "num": "I",
+          "titulo": "Sistema de Formación Profesional",
+          "capitulos": [
+            {
+              "num": "I",
+              "titulo": "Función, objetivos e instrumentos",
+              "secciones": [],
+              "articulos": [
+                {
+                  "numero": "5",
+                  "titulo": "Composición y función"
+                },
+                {
+                  "numero": "6",
+                  "titulo": "Objetivos"
+                },
+                {
+                  "numero": "7",
+                  "titulo": "Elementos integrantes e instrumentos de gestión del Sistema"
+                }
+              ]
+            },
+            {
+              "num": "II",
+              "titulo": "Elementos integrantes del Sistema de Formación Profesional",
+              "secciones": [
+                {
+                  "titulo": "Catálogo Nacional de Estándares de Competencias Profesionales",
+                  "num": "1",
+                  "articulos": [
+                    {
+                      "numero": "8",
+                      "titulo": "Definición y funciones"
+                    },
+                    {
+                      "numero": "9",
+                      "titulo": "Contenido y organización"
+                    }
+                  ]
+                },
+                {
+                  "titulo": "Catálogo Modular de Formación Profesional",
+                  "num": "2",
+                  "articulos": [
+                    {
+                      "numero": "10",
+                      "titulo": "Contenido y alcance"
+                    }
+                  ]
+                },
+                {
+                  "titulo": "Catálogo Nacional de Ofertas de Formación Profesional",
+                  "num": "3",
+                  "articulos": [
+                    {
+                      "numero": "11",
+                      "titulo": "Naturaleza y alcance"
+                    },
+                    {
+                      "numero": "12",
+                      "titulo": "Organización y contenido"
+                    }
+                  ]
+                },
+                {
+                  "titulo": "Elementos básicos del currículo",
+                  "num": "4",
+                  "articulos": [
+                    {
+                      "numero": "13",
+                      "titulo": "Currículo y elementos básicos"
+                    }
+                  ]
+                }
+              ],
+              "articulos": []
+            },
+            {
+              "num": "III",
+              "titulo": "Instrumentos de gestión del Sistema de Formación Profesional",
+              "secciones": [
+                {
+                  "titulo": "Registro Estatal de Formación Profesional",
+                  "num": "1",
+                  "articulos": [
+                    {
+                      "numero": "14",
+                      "titulo": "Naturaleza"
+                    },
+                    {
+                      "numero": "15",
+                      "titulo": "Obligación de inscripción y derecho de acceso"
+                    }
+                  ]
+                },
+                {
+                  "titulo": "Registro Estatal de Acreditaciones de Competencias Profesionales Adquiridas por Experiencia Laboral o Vías No Formales e Informales",
+                  "num": "2",
+                  "articulos": [
+                    {
+                      "numero": "16",
+                      "titulo": "Naturaleza"
+                    },
+                    {
+                      "numero": "17",
+                      "titulo": "Obligación de inscripción y derecho de acceso"
+                    },
+                    {
+                      "numero": "18",
+                      "titulo": "Efecto de las acreditaciones obtenidas"
+                    }
+                  ]
+                },
+                {
+                  "titulo": "Registro General de Centros de Formación Profesional",
+                  "num": "3",
+                  "articulos": [
+                    {
+                      "numero": "19",
+                      "titulo": "Naturaleza"
+                    },
+                    {
+                      "numero": "20",
+                      "titulo": "Inscripción en el Registro General de Centros de Formación Profesional"
+                    },
+                    {
+                      "numero": "21",
+                      "titulo": "Funciones del Registro General de centros de formación profesional"
+                    }
+                  ]
+                }
+              ],
+              "articulos": []
+            }
+          ],
+          "articulos": [],
+          "clave": "La maquinaria. Los tres catálogos que definen qué se aprende y los tres registros donde queda inscrito."
+        },
+        {
+          "num": "II",
+          "titulo": "Ofertas de formación profesional",
+          "capitulos": [
+            {
+              "num": "I",
+              "titulo": "Aspectos generales, programación y ejecución de la oferta",
+              "secciones": [],
+              "articulos": [
+                {
+                  "numero": "22",
+                  "titulo": "Ofertas de formación profesional"
+                },
+                {
+                  "numero": "23",
+                  "titulo": "Requisitos de las ofertas"
+                },
+                {
+                  "numero": "24",
+                  "titulo": "Planificación, programación y coordinación de la oferta"
+                },
+                {
+                  "numero": "25",
+                  "titulo": "Destinatarios de ofertas de formación"
+                },
+                {
+                  "numero": "26",
+                  "titulo": "Evaluación"
+                },
+                {
+                  "numero": "27",
+                  "titulo": "Títulos, certificados y acreditaciones"
+                }
+              ]
+            },
+            {
+              "num": "II",
+              "titulo": "Tipología de ofertas y grados de formación",
+              "secciones": [
+                {
+                  "titulo": "Grado A. Acreditación parcial de competencia",
+                  "num": "1",
+                  "articulos": [
+                    {
+                      "numero": "29",
+                      "titulo": "Oferta de Grado A"
+                    },
+                    {
+                      "numero": "30",
+                      "titulo": "Estructura, duración y acceso"
+                    },
+                    {
+                      "numero": "31",
+                      "titulo": "Acreditación"
+                    }
+                  ]
+                },
+                {
+                  "titulo": "Grado B. Certificado de Competencia",
+                  "num": "2",
+                  "articulos": [
+                    {
+                      "numero": "32",
+                      "titulo": "Oferta de Grado B"
+                    },
+                    {
+                      "numero": "33",
+                      "titulo": "Estructura, duración y acceso"
+                    },
+                    {
+                      "numero": "34",
+                      "titulo": "Certificación y validez"
+                    }
+                  ]
+                },
+                {
+                  "titulo": "Grado C. Certificado Profesional",
+                  "num": "3",
+                  "articulos": [
+                    {
+                      "numero": "35",
+                      "titulo": "Oferta de Grado C"
+                    },
+                    {
+                      "numero": "36",
+                      "titulo": "Formaciones de certificación profesional"
+                    },
+                    {
+                      "numero": "37",
+                      "titulo": "Estructura, duración y acceso"
+                    },
+                    {
+                      "numero": "38",
+                      "titulo": "Titulación y validez"
+                    }
+                  ]
+                },
+                {
+                  "titulo": "Grado D. Ciclos formativos de formación profesional",
+                  "num": "4",
+                  "articulos": [
+                    {
+                      "numero": "39",
+                      "titulo": "Reglas generales"
+                    },
+                    {
+                      "numero": "40",
+                      "titulo": "Organización y estructura"
+                    },
+                    {
+                      "numero": "41",
+                      "titulo": "Proyecto intermodular"
+                    },
+                    {
+                      "numero": "42",
+                      "titulo": "Organización de la oferta"
+                    },
+                    {
+                      "numero": "43",
+                      "titulo": "Relación con los niveles del sistema educativo"
+                    },
+                    {
+                      "numero": "44",
+                      "titulo": "Ciclos formativos de grado básico"
+                    },
+                    {
+                      "numero": "45",
+                      "titulo": "Ciclos formativos de grado medio y grado superior"
+                    },
+                    {
+                      "numero": "46",
+                      "titulo": "Acceso a los ciclos de grado medio y superior"
+                    },
+                    {
+                      "numero": "47",
+                      "titulo": "Itinerarios formativos de los ciclos de grado medio y superior"
+                    },
+                    {
+                      "numero": "48",
+                      "titulo": "Relación con otras etapas y enseñanzas"
+                    },
+                    {
+                      "numero": "49",
+                      "titulo": "Relación entre las enseñanzas de formación profesional y enseñanzas universitarias"
+                    },
+                    {
+                      "numero": "50",
+                      "titulo": "Acciones formativas desarrolladas en las empresas"
+                    }
+                  ]
+                },
+                {
+                  "titulo": "Grado E. Cursos de especialización",
+                  "num": "5",
+                  "articulos": [
+                    {
+                      "numero": "51",
+                      "titulo": "Objeto y carácter"
+                    },
+                    {
+                      "numero": "52",
+                      "titulo": "Organización y duración"
+                    },
+                    {
+                      "numero": "53",
+                      "titulo": "Acceso"
+                    },
+                    {
+                      "numero": "54",
+                      "titulo": "Titulación y convalidaciones"
+                    }
+                  ]
+                }
+              ],
+              "articulos": [
+                {
+                  "numero": "28",
+                  "titulo": "Tipología de ofertas"
+                }
+              ]
+            }
+          ],
+          "articulos": [],
+          "clave": "Los cinco grados de oferta, de la acreditación parcial al curso de especialización. Es el título más largo y el que más se consulta."
+        },
+        {
+          "num": "III",
+          "titulo": "Carácter dual de la Formación Profesional y modalidades",
+          "capitulos": [
+            {
+              "num": "I",
+              "titulo": "Determinaciones generales",
+              "secciones": [],
+              "articulos": [
+                {
+                  "numero": "55",
+                  "titulo": "Carácter dual de la Formación Profesional"
+                },
+                {
+                  "numero": "56",
+                  "titulo": "Finalidades de la fase de formación en la empresa u organismo equiparado"
+                },
+                {
+                  "numero": "57",
+                  "titulo": "Organización de la formación"
+                },
+                {
+                  "numero": "58",
+                  "titulo": "Plan de formación"
+                },
+                {
+                  "numero": "59",
+                  "titulo": "Participación de los agentes sociales"
+                },
+                {
+                  "numero": "60",
+                  "titulo": "Tutor o tutora dual del centro de formación profesional"
+                },
+                {
+                  "numero": "61",
+                  "titulo": "Tutor o tutora dual de empresa u organismo equiparado"
+                },
+                {
+                  "numero": "62",
+                  "titulo": "Equipo docente"
+                },
+                {
+                  "numero": "63",
+                  "titulo": "Evaluación"
+                },
+                {
+                  "numero": "64",
+                  "titulo": "Titulación"
+                }
+              ]
+            },
+            {
+              "num": "II",
+              "titulo": "Doble régimen de la oferta de formación profesional",
+              "secciones": [
+                {
+                  "titulo": "Formación profesional general",
+                  "num": "1",
+                  "articulos": [
+                    {
+                      "numero": "66",
+                      "titulo": "Régimen general"
+                    }
+                  ]
+                },
+                {
+                  "titulo": "Formación profesional intensiva",
+                  "num": "2",
+                  "articulos": [
+                    {
+                      "numero": "67",
+                      "titulo": "Régimen intensivo"
+                    }
+                  ]
+                }
+              ],
+              "articulos": [
+                {
+                  "numero": "65",
+                  "titulo": "Tipos de régimen de oferta"
+                }
+              ]
+            },
+            {
+              "num": "III",
+              "titulo": "Modalidades de la oferta de la formación profesional",
+              "secciones": [
+                {
+                  "titulo": "Formación presencial, semipresencial y virtual",
+                  "num": "1",
+                  "articulos": [
+                    {
+                      "numero": "68",
+                      "titulo": "Ofertas y modalidades de impartición de la formación"
+                    }
+                  ]
+                },
+                {
+                  "titulo": "Formación modular",
+                  "num": "2",
+                  "articulos": [
+                    {
+                      "numero": "69",
+                      "titulo": "Oferta de formación de Grado C, D y E"
+                    }
+                  ]
+                },
+                {
+                  "titulo": "Modalidades dirigidas a colectivos específicos",
+                  "num": "3",
+                  "articulos": [
+                    {
+                      "numero": "70",
+                      "titulo": "Personas con necesidades educativas especiales"
+                    },
+                    {
+                      "numero": "71",
+                      "titulo": "Personas con especiales dificultades formativas o de inserción laboral"
+                    },
+                    {
+                      "numero": "72",
+                      "titulo": "Colectivos en situaciones de relación de sujeción especial"
+                    }
+                  ]
+                },
+                {
+                  "titulo": "Otros programas formativos",
+                  "num": "4",
+                  "articulos": [
+                    {
+                      "numero": "73",
+                      "titulo": "Objetivo"
+                    }
+                  ]
+                },
+                {
+                  "titulo": "Programas formativos en empresa u organismo equiparado",
+                  "num": "5",
+                  "articulos": [
+                    {
+                      "numero": "74",
+                      "titulo": "Características de los programas formativos"
+                    },
+                    {
+                      "numero": "75",
+                      "titulo": "Organización y desarrollo de los programas"
+                    }
+                  ]
+                }
+              ],
+              "articulos": []
+            }
+          ],
+          "articulos": [],
+          "clave": "La formación en empresa: que toda la FP es dual, cuánto tiempo se pasa allí y bajo cuál de los dos regímenes."
+        },
+        {
+          "num": "IV",
+          "titulo": "Impartición de la formación profesional",
+          "capitulos": [
+            {
+              "num": "I",
+              "titulo": "Centros",
+              "secciones": [],
+              "articulos": [
+                {
+                  "numero": "77",
+                  "titulo": "Centros del Sistema de Formación Profesional"
+                },
+                {
+                  "numero": "78",
+                  "titulo": "Centros que pueden impartir ofertas de Formación Profesional"
+                },
+                {
+                  "numero": "79",
+                  "titulo": "Régimen de funcionamiento"
+                },
+                {
+                  "numero": "80",
+                  "titulo": "Centros extranjeros de formación profesional"
+                },
+                {
+                  "numero": "81",
+                  "titulo": "Entidades no pertenecientes al Sistema de Formación Profesional"
+                }
+              ]
+            },
+            {
+              "num": "II",
+              "titulo": "Empresas y organismos equiparados",
+              "secciones": [],
+              "articulos": [
+                {
+                  "numero": "82",
+                  "titulo": "Colaboración en la formación profesional"
+                },
+                {
+                  "numero": "83",
+                  "titulo": "Derechos y deberes de las empresas u organismos equiparados colaboradores del Sistema de Formación Profesional"
+                },
+                {
+                  "numero": "84",
+                  "titulo": "Colaboración en la acción formativa"
+                }
+              ]
+            }
+          ],
+          "articulos": [
+            {
+              "numero": "76",
+              "titulo": "Ejecución de las ofertas formativas de formación profesional"
+            }
+          ],
+          "clave": "Quién puede impartir FP —centros— y quién puede colaborar formando —empresas y organismos equiparados—."
+        },
+        {
+          "num": "V",
+          "titulo": "Profesorado y formadores o formadoras de distinto perfil",
+          "capitulos": [
+            {
+              "num": "I",
+              "titulo": "Profesorado y personal formador",
+              "secciones": [],
+              "articulos": [
+                {
+                  "numero": "85",
+                  "titulo": "Profesorado de formación profesional perteneciente a los cuerpos docentes del sistema educativo"
+                },
+                {
+                  "numero": "86",
+                  "titulo": "Profesorado y personal formador de centros de formación profesional no incorporados al sistema educativo"
+                },
+                {
+                  "numero": "87",
+                  "titulo": "Formación permanente"
+                }
+              ]
+            },
+            {
+              "num": "II",
+              "titulo": "Otros perfiles colaboradores",
+              "secciones": [],
+              "articulos": [
+                {
+                  "numero": "88",
+                  "titulo": "Personas expertas de sector productivo"
+                },
+                {
+                  "numero": "89",
+                  "titulo": "Otros perfiles colaboradores"
+                }
+              ]
+            }
+          ],
+          "articulos": [],
+          "clave": "El profesorado de los cuerpos docentes, el personal formador de los centros no educativos y los perfiles que colaboran desde el sector productivo."
+        },
+        {
+          "num": "VI",
+          "titulo": "Acreditación de competencias profesionales adquiridas por experiencia laboral u otras vías no formales o informales",
+          "capitulos": [],
+          "articulos": [
+            {
+              "numero": "90",
+              "titulo": "Objeto y finalidad"
+            },
+            {
+              "numero": "91",
+              "titulo": "Interesados en el procedimiento, otros sujetos y deberes de las administraciones"
+            },
+            {
+              "numero": "92",
+              "titulo": "Características del procedimiento"
+            },
+            {
+              "numero": "93",
+              "titulo": "Efectos"
+            }
+          ],
+          "clave": "El procedimiento para acreditar oficialmente lo aprendido trabajando, sin haberlo cursado nunca."
+        },
+        {
+          "num": "VII",
+          "titulo": "Orientación profesional",
+          "capitulos": [],
+          "articulos": [
+            {
+              "numero": "94",
+              "titulo": "Contenido y alcance"
+            },
+            {
+              "numero": "95",
+              "titulo": "Cometido y fines"
+            },
+            {
+              "numero": "96",
+              "titulo": "Condiciones de prestación"
+            },
+            {
+              "numero": "97",
+              "titulo": "Estrategia general de orientación profesional"
+            },
+            {
+              "numero": "98",
+              "titulo": "Cooperación y coordinación del servicio de orientación profesional"
+            },
+            {
+              "numero": "99",
+              "titulo": "Protocolos de actuación y modalidades de prestación del servicio"
+            },
+            {
+              "numero": "100",
+              "titulo": "Organización"
+            },
+            {
+              "numero": "101",
+              "titulo": "Profesionales de los servicios de orientación profesional"
+            }
+          ],
+          "clave": "La orientación profesional como servicio del sistema, no como función suelta de un centro."
+        },
+        {
+          "num": "VIII",
+          "titulo": "Innovación, investigación aplicada y emprendimiento",
+          "capitulos": [],
+          "articulos": [
+            {
+              "numero": "102",
+              "titulo": "Deberes de promoción y organización"
+            },
+            {
+              "numero": "103",
+              "titulo": "Proyectos de innovación e investigación aplicada"
+            },
+            {
+              "numero": "104",
+              "titulo": "Emprendimiento"
+            },
+            {
+              "numero": "105",
+              "titulo": "Aprendizaje de la innovación y el emprendimiento"
+            }
+          ],
+          "clave": "Innovación, investigación aplicada y emprendimiento como contenido y como deber de las administraciones."
+        },
+        {
+          "num": "IX",
+          "titulo": "Conocimiento de Lenguas Extranjeras e Internacionalización del Sistema de Formación Profesional",
+          "capitulos": [],
+          "articulos": [
+            {
+              "numero": "106",
+              "titulo": "Objetivos de la internacionalización"
+            },
+            {
+              "numero": "107",
+              "titulo": "Participación en proyectos y organismos internacionales"
+            },
+            {
+              "numero": "108",
+              "titulo": "Conocimiento de lenguas extranjeras"
+            },
+            {
+              "numero": "109",
+              "titulo": "Proyectos de formación en el extranjero"
+            }
+          ],
+          "clave": "Lenguas extranjeras, movilidad y proyectos de formación en el extranjero."
+        },
+        {
+          "num": "X",
+          "titulo": "Evaluación y calidad del Sistema de Formación Profesional",
+          "capitulos": [],
+          "articulos": [
+            {
+              "numero": "110",
+              "titulo": "Criterios y responsabilidad de la evaluación"
+            },
+            {
+              "numero": "111",
+              "titulo": "Objeto y características"
+            },
+            {
+              "numero": "112",
+              "titulo": "Informe de estado del sistema"
+            }
+          ],
+          "clave": "Cómo se evalúa el propio sistema y quién responde de esa evaluación."
+        },
+        {
+          "num": "XI",
+          "titulo": "Organización, competencias y gobernanza",
+          "capitulos": [],
+          "articulos": [
+            {
+              "numero": "113",
+              "titulo": "Gobierno"
+            },
+            {
+              "numero": "114",
+              "titulo": "Ministerio de Educación y Formación Profesional"
+            },
+            {
+              "numero": "115",
+              "titulo": "Consejo General de la Formación Profesional"
+            },
+            {
+              "numero": "116",
+              "titulo": "Instituto Nacional de Cualificaciones"
+            },
+            {
+              "numero": "117",
+              "titulo": "Organizaciones empresariales y sindicales más representativas"
+            }
+          ],
+          "clave": "Quién gobierna: ministerio, Consejo General de la Formación Profesional, INCUAL y agentes sociales."
+        }
+      ],
+      "disposiciones": [
+        {
+          "grupo": "Disposiciones adicionales",
+          "piezas": [
+            {
+              "rotulo": "Disposición adicional primera",
+              "titulo": "Participación del Consejo General de la Formación Profesional en el Sistema de Formación Profesional"
+            },
+            {
+              "rotulo": "Disposición adicional segunda",
+              "titulo": "Participación del Consejo General del Sistema Nacional de Empleo en el Sistema de Formación Profesional"
+            },
+            {
+              "rotulo": "Disposición adicional tercera",
+              "titulo": "Participación del Consejo Escolar del Estado en el Sistema de Formación Profesional"
+            },
+            {
+              "rotulo": "Disposición adicional cuarta",
+              "titulo": "Competencias de otros departamentos"
+            },
+            {
+              "rotulo": "Disposición adicional quinta",
+              "titulo": "Especialidades docentes del Cuerpo de Profesores de Enseñanza Secundaria y del Cuerpo de Profesores Especialistas en Sectores Singulares de Formación Profesional"
+            },
+            {
+              "rotulo": "Disposición adicional sexta",
+              "titulo": "Certificados de profesionalidad"
+            },
+            {
+              "rotulo": "Disposición adicional séptima",
+              "titulo": ""
+            },
+            {
+              "rotulo": "Disposición adicional octava",
+              "titulo": ""
+            },
+            {
+              "rotulo": "Disposición adicional novena",
+              "titulo": "Plan de competencias en digitalización e inteligencia artificial en la Formación Profesional"
+            }
+          ]
+        },
+        {
+          "grupo": "Disposiciones transitorias",
+          "piezas": [
+            {
+              "rotulo": "Disposición transitoria primera",
+              "titulo": "Centros y entidades acreditadas para impartir acciones de Formación Profesional para el Empleo"
+            },
+            {
+              "rotulo": "Disposición transitoria segunda",
+              "titulo": "Ordenación de las enseñanzas y acciones formativas existentes hasta la entrada en vigor de esta ley"
+            },
+            {
+              "rotulo": "Disposición transitoria tercera",
+              "titulo": "Catálogo Nacional de Cualificaciones Profesionales"
+            },
+            {
+              "rotulo": "Disposición transitoria cuarta",
+              "titulo": "Profesorado de formación profesional del sistema educativo"
+            },
+            {
+              "rotulo": "Disposición transitoria quinta",
+              "titulo": "Transición del sistema de beca a contrato de formación en el régimen de formación profesional intensiva"
+            },
+            {
+              "rotulo": "Disposición transitoria sexta",
+              "titulo": "Adaptación del periodo de formación en empresa"
+            }
+          ]
+        },
+        {
+          "grupo": "Disposición derogatoria",
+          "piezas": [
+            {
+              "rotulo": "Disposición derogatoria única",
+              "titulo": "Derogación normativa"
+            }
+          ]
+        },
+        {
+          "grupo": "Disposiciones finales",
+          "piezas": [
+            {
+              "rotulo": "Disposición final primera",
+              "titulo": "Modificación de la Ley Orgánica 2/2006, de 3 de mayo, de Educación"
+            },
+            {
+              "rotulo": "Disposición final segunda",
+              "titulo": "Modificación de la Ley Orgánica 3/2020, de 29 de diciembre, por la que se modifica la Ley Orgánica 2/2006, de 3 de mayo, de Educación"
+            },
+            {
+              "rotulo": "Disposición final tercera",
+              "titulo": "Ordenación de las enseñanzas de formación profesional de la Ley Orgánica 2/2006, de 3 de mayo, de Educación"
+            },
+            {
+              "rotulo": "Disposición final cuarta",
+              "titulo": "Salvaguardia del rango reglamentario de la disposición adicional quinta"
+            },
+            {
+              "rotulo": "Disposición final quinta",
+              "titulo": "Calendario de implantación"
+            },
+            {
+              "rotulo": "Disposición final sexta",
+              "titulo": "Título competencial"
+            },
+            {
+              "rotulo": "Disposición final séptima",
+              "titulo": "Carácter de ley orgánica de la presente ley"
+            },
+            {
+              "rotulo": "Disposición final octava",
+              "titulo": "Desarrollo de la presente ley"
+            },
+            {
+              "rotulo": "Disposición final novena",
+              "titulo": "Entrada en vigor"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "corpus",
+      "id": "desarrollo",
+      "rotulo": "Cómo aterriza en la Comunitat Valenciana",
+      "entradilla": "Una ley orgánica no se aplica sola: la desarrollan un reglamento estatal y, aquí, los decretos de ordenación y currículo y las órdenes de evaluación. Estas son las normas de este listado que la desarrollan o que la citan como fundamento. Cada una con su estado de vigencia, que es lo que hay que mirar antes de citarla.",
+      "etiqueta": "lfp",
+      "nota": "Se deducen de los datos: son las normas etiquetadas «lfp». Al añadir una norma nueva con esa etiqueta aparece aquí sola."
+    }
+  ]
+}

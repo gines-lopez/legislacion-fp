@@ -144,6 +144,21 @@ body {
   text-wrap: balance;
 }
 
+/* El título es la vuelta al listado sin filtros, pero no se pinta como enlace:
+   subrayarlo lo convertiría en un botón enorme en mitad de la cabecera. Se
+   descubre al pasar por encima y al tabular. */
+.cabecera__titulo a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cabecera__titulo a:hover,
+.cabecera__titulo a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+  text-decoration-thickness: 1px;
+}
+
 .cabecera__nota {
   margin: calc(var(--paso) * 3) 0 0;
   max-width: var(--medida);
@@ -525,7 +540,8 @@ body {
 
 /* La ficha se centra y ocupa más de la mitad de la pantalla, pero nunca menos
    que la medida de lectura: por debajo de eso el texto legal no se lee. */
-#vista-ficha, .norma__cuerpo, .cabecera--norma, .contenido:has(.norma__cuerpo) > .cargando {
+#vista-ficha, .norma__cuerpo, .cabecera--norma, #portada,
+.contenido:has(.norma__cuerpo) > .cargando {
   width: min(100%, max(56vw, var(--medida)));
   margin-inline: auto;
   /* .hoja reserva el canal a su izquierda, así que centrar dentro de ella deja
@@ -566,8 +582,12 @@ body {
 }
 
 .ficha__id--nombre { text-transform: none; font-size: clamp(1rem, 3.2vw, 1.1875rem); }
-.ficha__id:focus { outline: none; }
-.ficha__id:focus-visible { outline: 2px solid var(--tinta); outline-offset: 4px; }
+/* El título recibe el foco al cambiar de vista para que quien navegue con
+   teclado o con lector de pantalla aterrice en el asunto de la página. Pero un
+   encabezado no es un control: no hay nada que pulsar ahí, y un recuadro
+   alrededor del título dice que sí lo hay. El foco viaja y se anuncia; el
+   recuadro se queda para lo que de verdad se acciona. */
+.ficha__id:focus, .ficha__id:focus-visible { outline: none; }
 
 .ficha__meta {
   display: flex;
@@ -888,8 +908,7 @@ a.materia:hover, a.materia:focus-visible { border-color: var(--tinta); color: va
 .articulo__parrafo--letra { padding-left: calc(var(--paso) * 4); }
 .articulo__parrafo--apartado { margin-top: calc(var(--paso) * 4); }
 
-.articulo:focus { outline: none; }
-.articulo:focus-visible { outline: 2px solid var(--tinta); outline-offset: 4px; }
+.articulo:focus, .articulo:focus-visible { outline: none; }
 
 /* --- Índice del articulado -------------------------------------------------- */
 
@@ -1051,6 +1070,16 @@ a.materia:hover, a.materia:focus-visible { border-color: var(--tinta); color: va
 
 /* --- Respuestas encontradas por el buscador -------------------------------- */
 
+/* «Remite a» no es «modifica»: sin esta línea, ver una norma debajo de otra se
+   lee como una reforma. */
+.relaciones__nota {
+  margin: 0 0 calc(var(--paso) * 4);
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--tinta-media);
+}
+
 .respuestas { margin-top: calc(var(--paso) * 10); max-width: var(--medida); }
 
 .respuestas__nota {
@@ -1075,6 +1104,97 @@ a.materia:hover, a.materia:focus-visible { border-color: var(--tinta); color: va
 }
 
 .respuestas__resto { margin: calc(var(--paso) * 5) 0 0; font-family: var(--fuente-ui); font-size: 0.8125rem; }
+
+/* --- Piezas de articulado encontradas por el buscador ---------------------- */
+
+/* Una respuesta es lenguaje llano y no lleva filete; una pieza de articulado es
+   la letra de la norma, así que llega con el mismo canal y el mismo trazo que
+   tiene en la página del texto: sólido si está como se publicó, doble si una
+   norma posterior la cambió. El resultado se parece a lo que se va a abrir, y
+   el trazo doble avisa antes de citar de memoria un artículo reformado. */
+
+.piezas { margin-top: calc(var(--paso) * 10); max-width: var(--medida); }
+
+.piezas__nota {
+  margin: 0 0 calc(var(--paso) * 5);
+  font-family: var(--fuente-ui);
+  font-size: 0.75rem;
+  color: var(--tinta-tenue);
+}
+
+.piezas__lista { margin: 0; padding: 0; list-style: none; }
+
+.pieza {
+  padding-left: calc(var(--canal) - 1px);
+  border-left: 1px solid var(--filete);
+}
+
+.pieza[data-modificado="si"] {
+  border-left: var(--trazo) double var(--tinta);
+  padding-left: calc(var(--canal) - var(--trazo));
+}
+
+.pieza + .pieza { margin-top: calc(var(--paso) * 6); }
+
+.pieza__norma {
+  margin: 0 0 calc(var(--paso) * 1);
+  font-family: var(--fuente-dato);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.pieza__rotulo { margin: 0; }
+.pieza__rotulo a { text-decoration: none; }
+.pieza__rotulo a:hover .pieza__titulo,
+.pieza__rotulo a:focus-visible .pieza__titulo { text-decoration: underline; text-underline-offset: 0.2em; }
+
+.pieza__numero {
+  font-family: var(--fuente-dato);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-media);
+}
+
+.pieza__titulo { font-size: 1rem; line-height: 1.35; }
+
+.pieza__fragmento {
+  margin: calc(var(--paso) * 2) 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--tinta-media);
+}
+
+.pieza__nota {
+  margin: calc(var(--paso) * 2) 0 0;
+  font-family: var(--fuente-ui);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--tinta-tenue);
+}
+
+.piezas__resto { margin: calc(var(--paso) * 6) 0 0; font-family: var(--fuente-ui); font-size: 0.8125rem; }
+
+/* --- Lo que se buscó, resaltado dentro del articulado ---------------------- */
+
+/* Se llega desde el listado con «q» en la URL y las coincidencias marcadas. Sin
+   esta línea, las marcas aparecerían sin explicación en un texto que no tiene
+   buscador propio. */
+.buscado {
+  margin: 0 0 calc(var(--paso) * 8);
+  padding: calc(var(--paso) * 3) 0;
+  border-top: 1px solid var(--filete);
+  border-bottom: 1px solid var(--filete);
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--tinta-media);
+}
+
+.buscado strong { color: var(--tinta); font-weight: 600; }
 
 /* --- Diagnóstico ---------------------------------------------------------- */
 
@@ -1297,6 +1417,598 @@ mark {
   .norma--vuelta { background: var(--realce); }
 }
 
+/* --- Esquema de una norma -------------------------------------------------- */
+
+/* Una página distinta de las otras dos y a propósito: el listado se escanea, el
+   articulado se lee y esto se estudia. Sigue siendo la misma escala de grises y
+   las mismas tres tipografías (D5); lo que cambia es que aquí la estructura de
+   la ley es el contenido, así que se dibuja en vez de describirse. */
+
+.tesis {
+  margin: 0;
+  max-width: 44rem;
+  font-size: clamp(1.0625rem, 2.4vw, 1.25rem);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+/* Las cifras de la ley. No son adorno: dicen de qué tamaño es lo que se va a
+   leer antes de empezar a leerlo. */
+.cifras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--paso) * 5) calc(var(--paso) * 9);
+  margin: calc(var(--paso) * 9) 0 0;
+  padding: calc(var(--paso) * 5) 0;
+  border-top: 1px solid var(--filete);
+  border-bottom: 1px solid var(--filete);
+}
+
+.cifra { margin: 0; }
+
+.cifra__dato {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.cifra__dato[data-mono="si"] {
+  font-family: var(--fuente-dato);
+  font-size: 1.0625rem;
+  letter-spacing: 0;
+}
+
+.cifra__rotulo {
+  margin: calc(var(--paso) * 2) 0 0;
+  font-family: var(--fuente-ui);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.cifra__nota { display: block; letter-spacing: 0.04em; text-transform: none; }
+
+/* --- Bloques del esquema --------------------------------------------------- */
+
+.bloque-esquema { margin-top: calc(var(--paso) * 20); scroll-margin-top: calc(var(--paso) * 6); }
+.bloque-esquema:first-child { margin-top: calc(var(--paso) * 12); }
+.bloque-esquema:focus { outline: none; }
+
+.bloque-esquema__rotulo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: calc(var(--paso) * 3);
+  margin: 0 0 calc(var(--paso) * 4);
+  padding-bottom: calc(var(--paso) * 3);
+  border-bottom: 2px solid var(--tinta);
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.bloque-esquema__entradilla {
+  margin: 0 0 calc(var(--paso) * 8);
+  max-width: var(--medida);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--tinta-media);
+}
+
+.bloque-esquema__nota {
+  margin: calc(var(--paso) * 6) 0 0;
+  font-family: var(--fuente-ui);
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: var(--tinta-tenue);
+}
+
+/* --- La frase de la ley en que se apoya cada afirmación --------------------- */
+
+/* Es la pieza que separa un esquema de una opinión sobre la ley: debajo de cada
+   cifra y de cada regla va la frase original y el artículo del que sale. Se
+   distingue por filete y por la monoespaciada, nunca por fondo, porque en papel
+   los fondos no se imprimen (D25). */
+.apoyo {
+  margin: calc(var(--paso) * 2) 0 0;
+  padding-left: calc(var(--paso) * 3);
+  border-left: 2px solid var(--filete);
+  font-family: var(--fuente-dato);
+  font-size: 0.6875rem;
+  line-height: 1.7;
+  color: var(--tinta-media);
+}
+
+.apoyo__texto::before { content: "«"; }
+.apoyo__texto::after { content: "»"; }
+
+.apoyo__fuente {
+  display: block;
+  margin-top: calc(var(--paso) * 1);
+  font-family: var(--fuente-ui);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+/* Los números de artículo, que llevan al BOE. Cuadrados y monoespaciados: son
+   coordenadas, no prosa. */
+.pieza-articulos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: calc(var(--paso) * 1.5);
+  margin: calc(var(--paso) * 5) 0 0;
+}
+
+.pieza-articulos__rotulo {
+  margin-right: calc(var(--paso) * 1);
+  font-family: var(--fuente-ui);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.art {
+  display: inline-block;
+  min-width: 2.1em;
+  padding: calc(var(--paso) * 0.5) calc(var(--paso) * 1.5);
+  border: 1px solid var(--filete);
+  font-family: var(--fuente-dato);
+  font-size: 0.75rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--tinta-media);
+}
+
+.art:hover, .art:focus-visible { border-color: var(--tinta); color: var(--tinta); }
+
+/* --- La escalera de grados ------------------------------------------------- */
+
+/* Los cinco grados no son una lista: son una secuencia acumulable, y eso es lo
+   que hay que ver. Cada peldaño se sangra sobre el anterior y entre dos va la
+   regla que dice cómo se sube del uno al otro. El sangrado se para en tres
+   pasos para que en pantallas estrechas siga cabiendo el texto. */
+.escalera { margin: 0; padding: 0; list-style: none; }
+
+.peldano {
+  position: relative;
+  margin-left: calc(min(var(--nivel), 3) * var(--paso) * 4);
+  padding: calc(var(--paso) * 6) 0 calc(var(--paso) * 6) calc(var(--canal) - 1px);
+  border-left: 1px solid var(--filete);
+}
+
+/* El grado que le toca a quien consulta este sitio. Sin color: filete más
+   grueso y el nombre en negrita, que es toda la jerarquía que hace falta. */
+.peldano[data-destacado="si"] {
+  border-left: 3px solid var(--tinta);
+  padding-left: calc(var(--canal) - 3px);
+}
+
+.peldano[data-destacado="si"] .peldano__nombre { font-weight: 600; }
+
+.peldano__cabeza {
+  display: flex;
+  align-items: baseline;
+  gap: calc(var(--paso) * 3);
+  margin-bottom: calc(var(--paso) * 3);
+}
+
+.peldano__letra {
+  flex: none;
+  width: 1.9em;
+  padding: calc(var(--paso) * 1) 0;
+  border: 1px solid var(--tinta);
+  font-family: var(--fuente-dato);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.peldano[data-destacado="si"] .peldano__letra {
+  background: var(--tinta);
+  color: var(--papel);
+}
+
+.peldano__nombre {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.peldano__que {
+  margin: 0 0 calc(var(--paso) * 5);
+  max-width: var(--medida);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* La regla de acumulación vive ENTRE dos peldaños, no dentro de uno: es lo que
+   convierte cinco fichas sueltas en una escalera. */
+.acumula {
+  margin: calc(var(--paso) * 6) 0 0;
+  padding-left: calc(var(--paso) * 6);
+  position: relative;
+  max-width: var(--medida);
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.acumula::before {
+  content: "↓";
+  position: absolute;
+  left: 0;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: var(--tinta-tenue);
+}
+
+/* --- Listas clave/valor ---------------------------------------------------- */
+
+.datos { margin: 0; }
+
+.dato {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: calc(var(--paso) * 1);
+  padding: calc(var(--paso) * 3) 0;
+  border-top: 1px solid var(--filete);
+}
+
+.dato__clave {
+  font-family: var(--fuente-ui);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.dato__valor {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* La clave va siempre encima del valor y no al lado. Enfrentadas, la columna de
+   valor se queda en siete palabras por línea: el texto de la ficha vive dentro
+   de la columna de lectura, que ya es estrecha, y partirla otra vez no cabe. */
+
+/* --- La cadena de catálogos ------------------------------------------------ */
+
+.cadena { margin: 0; padding: 0; list-style: none; }
+
+.eslabon {
+  display: flex;
+  gap: calc(var(--paso) * 4);
+  padding-bottom: calc(var(--paso) * 7);
+  position: relative;
+}
+
+/* El hilo que une un eslabón con el siguiente. Baja desde el número, no desde
+   el borde de la caja: se lee como un flujo y no como un margen. */
+.eslabon:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 0.95rem;
+  top: 2.2rem;
+  bottom: calc(var(--paso) * 2);
+  border-left: 1px solid var(--filete);
+}
+
+.eslabon__numero {
+  flex: none;
+  width: 1.9rem;
+  height: 1.9rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--tinta);
+  border-radius: 50%;
+  background: var(--papel);
+  font-family: var(--fuente-dato);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+.eslabon__cuerpo { min-width: 0; }
+
+.eslabon__nombre {
+  margin: 0.15rem 0 calc(var(--paso) * 2);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.eslabon__que {
+  margin: 0;
+  max-width: var(--medida);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* Lo que entra y sale de la cadena por los lados: los registros y la
+   acreditación por experiencia. Van aparte porque no son un paso más. */
+.derivaciones {
+  display: grid;
+  gap: calc(var(--paso) * 8);
+  margin-top: calc(var(--paso) * 4);
+  padding-top: calc(var(--paso) * 7);
+  border-top: 1px solid var(--filete);
+}
+
+@media (min-width: 46rem) {
+  .derivaciones { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.derivacion__nombre {
+  margin: 0 0 calc(var(--paso) * 2);
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.derivacion__que { margin: 0; font-size: 0.875rem; line-height: 1.6; }
+
+/* --- La comparación de regímenes ------------------------------------------- */
+
+.comun {
+  margin-bottom: calc(var(--paso) * 9);
+  padding: calc(var(--paso) * 5) 0;
+  border-top: 1px solid var(--filete);
+  border-bottom: 1px solid var(--filete);
+}
+
+.comun__rotulo {
+  margin: 0 0 calc(var(--paso) * 4);
+  font-family: var(--fuente-ui);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.comun__puntos { margin: 0; padding: 0; list-style: none; }
+
+.comun__punto {
+  margin: 0 0 calc(var(--paso) * 4);
+  padding-left: calc(var(--paso) * 5);
+  position: relative;
+  max-width: var(--medida);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.comun__punto:last-child { margin-bottom: 0; }
+.comun__punto::before { content: "—"; position: absolute; left: 0; color: var(--tinta-tenue); }
+
+.comun__fuente {
+  display: block;
+  margin-top: calc(var(--paso) * 1);
+  font-family: var(--fuente-ui);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+/* Un criterio, y debajo lo que dice cada régimen de él. Los dos valores pegados
+   es lo que permite compararlos; en dos columnas quedaban a doscientos píxeles
+   cada una y sin alinear entre sí, que es no comparar nada. */
+.comparativa { margin: 0; }
+
+.criterio { padding: calc(var(--paso) * 5) 0; border-top: 1px solid var(--filete); }
+.criterio:last-child { border-bottom: 1px solid var(--filete); }
+
+.criterio__clave {
+  margin: 0 0 calc(var(--paso) * 3);
+  font-family: var(--fuente-ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.criterio__valor {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: calc(var(--paso) * 3);
+  margin: 0 0 calc(var(--paso) * 3);
+}
+
+.criterio__valor:last-child { margin-bottom: 0; }
+
+.criterio__regimen {
+  font-family: var(--fuente-dato);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+  padding-top: 0.25em;
+}
+
+.criterio__texto { font-size: 0.9375rem; line-height: 1.6; }
+
+.columnas-articulos {
+  display: grid;
+  gap: calc(var(--paso) * 4);
+  margin-top: calc(var(--paso) * 6);
+}
+
+.columna-articulos { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: calc(var(--paso) * 3); align-items: baseline; }
+.columna-articulos .pieza-articulos { margin-top: 0; }
+
+/* --- El mapa del articulado ------------------------------------------------ */
+
+.mapa__titulo-caja { border-bottom: 1px solid var(--filete); }
+.mapa__titulo-caja:first-of-type { border-top: 1px solid var(--filete); }
+
+.mapa__cabeza {
+  display: flex;
+  align-items: baseline;
+  gap: calc(var(--paso) * 4);
+  padding: calc(var(--paso) * 3) 0 calc(var(--paso) * 3) calc(var(--paso) * 6);
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+}
+
+.mapa__cabeza::-webkit-details-marker { display: none; }
+
+.mapa__cabeza::before {
+  content: "+";
+  position: absolute;
+  left: 0;
+  font-family: var(--fuente-dato);
+  color: var(--tinta-tenue);
+}
+
+.mapa__titulo-caja[open] > .mapa__cabeza::before { content: "–"; }
+.mapa__cabeza:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
+
+.mapa__romano {
+  flex: none;
+  min-width: 3.6rem;
+  font-family: var(--fuente-dato);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.mapa__nombre { font-size: 1rem; line-height: 1.35; }
+
+.mapa__clave {
+  margin: 0 0 calc(var(--paso) * 4);
+  padding-left: calc(var(--paso) * 6);
+  max-width: var(--medida);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--tinta-media);
+}
+
+.mapa__capitulo { margin-top: calc(var(--paso) * 5); padding-left: calc(var(--paso) * 6); }
+
+.mapa__capitulo-rotulo {
+  margin: 0 0 calc(var(--paso) * 2);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.mapa__capitulo-num {
+  display: block;
+  font-family: var(--fuente-ui);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.mapa__seccion { margin-top: calc(var(--paso) * 4); }
+
+.mapa__seccion-rotulo {
+  margin: 0 0 calc(var(--paso) * 1);
+  font-family: var(--fuente-ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--tinta-media);
+}
+
+.mapa__articulos {
+  margin: 0 0 calc(var(--paso) * 4);
+  padding: 0 0 0 calc(var(--paso) * 6);
+  list-style: none;
+}
+
+.mapa__capitulo .mapa__articulos, .mapa__seccion .mapa__articulos { padding-left: 0; }
+
+.mapa__articulos a {
+  display: flex;
+  gap: calc(var(--paso) * 3);
+  padding: calc(var(--paso) * 1) 0;
+  text-decoration: none;
+  color: var(--tinta-media);
+}
+
+.mapa__articulos a:hover, .mapa__articulos a:focus-visible {
+  color: var(--tinta);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.mapa__numero {
+  flex: none;
+  width: 2.2rem;
+  font-family: var(--fuente-dato);
+  font-size: 0.75rem;
+  text-align: right;
+  color: var(--tinta-tenue);
+}
+
+.mapa__titulo { font-size: 0.875rem; line-height: 1.5; }
+.mapa__titulo--vacio { font-style: italic; color: var(--tinta-tenue); }
+
+.mapa__disposiciones {
+  display: grid;
+  gap: calc(var(--paso) * 8);
+  margin-top: calc(var(--paso) * 9);
+}
+
+@media (min-width: 46rem) {
+  .mapa__disposiciones { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.mapa__grupo-rotulo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: calc(var(--paso) * 3);
+  margin: 0 0 calc(var(--paso) * 3);
+  padding-bottom: calc(var(--paso) * 2);
+  border-bottom: 1px solid var(--filete);
+  font-family: var(--fuente-ui);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tinta-media);
+}
+
+.mapa__lista { margin: 0; padding: 0; list-style: none; }
+
+.mapa__lista li {
+  display: flex;
+  gap: calc(var(--paso) * 3);
+  padding: calc(var(--paso) * 1.5) 0;
+}
+
+.mapa__disp {
+  flex: none;
+  width: 5.2rem;
+  font-family: var(--fuente-dato);
+  font-size: 0.6875rem;
+  color: var(--tinta-tenue);
+}
+
 /* --- Impresión ------------------------------------------------------------ */
 
 @media print {
@@ -1332,7 +2044,7 @@ mark {
   .chip[aria-pressed="true"] .chip__n { color: #000; }
 
   /* Una sola columna: el texto a varias columnas se parte fatal entre páginas. */
-  .hoja, .hoja--estrecha, #vista-ficha, .norma__cuerpo, .cabecera--norma {
+  .hoja, .hoja--estrecha, #vista-ficha, .norma__cuerpo, .cabecera--norma, #portada {
     max-width: none;
     width: auto;
     padding-left: 0;
@@ -1357,16 +2069,18 @@ mark {
   .pregunta__enunciado { font-weight: 600; }
 
   /* Que no se parta una norma, un artículo ni una respuesta a mitad. */
-  .norma, .relacion, .parte, .articulo, .pregunta, .recurso { break-inside: avoid; }
+  .norma, .relacion, .parte, .articulo, .pregunta, .recurso, .pieza { break-inside: avoid; }
   .bloque__rotulo, .apartado__rotulo, .articulo__rotulo { break-after: avoid; }
 
   /* El trazo del margen sigue codificando la vigencia: sólido, doble, punteado.
      En papel se lee igual, y además el estado y el ámbito están escritos. */
   .norma__procedencia, .norma__estado, .relacion__estado, .articulo__numero,
-  .ficha__procedencia, .ficha__estado, .pregunta__epigrafe, .recurso__fuente { color: #000; }
+  .ficha__procedencia, .ficha__estado, .pregunta__epigrafe, .recurso__fuente,
+  .pieza__norma, .pieza__numero { color: #000; }
 
   .norma__titulo, .norma__resumen, .relacion__resumen, .articulo__parrafo,
-  .pregunta__respuesta, .cabecera__nota, .aviso { color: #000; }
+  .pregunta__respuesta, .cabecera__nota, .aviso,
+  .pieza__fragmento, .pieza__nota, .buscado { color: #000; }
 
   /* El título de una norma se recorta en pantalla; en papel se imprime entero. */
   .norma__titulo { -webkit-line-clamp: none; line-clamp: none; overflow: visible; display: block; }
@@ -1382,6 +2096,45 @@ mark {
   a { color: #000; text-decoration: none; }
   .enlaces a::after { content: " (" attr(href) ")"; font-family: monospace; font-size: 8.5pt; }
   mark { background: none; box-shadow: none; font-weight: 700; }
+
+  /* --- El esquema en papel ------------------------------------------------ */
+
+  /* La trampa de D25, otra vez: el distintivo del grado destacado es tinta
+     plena con la letra en papel, así que sin fondo saldría en blanco sobre
+     blanco. Pasa a filete negro y la letra a negra. */
+  .peldano[data-destacado="si"] .peldano__letra {
+    background: none;
+    color: #000;
+    border: 2px solid #000;
+  }
+
+  .peldano__letra, .eslabon__numero, .art { border-color: #000; color: #000; background: none; }
+
+  /* Un mapa plegado no es un mapa: en papel se abren los doce títulos. */
+  .mapa__titulo-caja > *, .mapa__titulo-caja[open] > * { display: block !important; }
+  .mapa__cabeza::before { content: ""; }
+  .mapa__cabeza { padding-left: 0; }
+
+  /* Que no se parta un peldaño, un eslabón, un criterio ni un título del mapa. */
+  .peldano, .eslabon, .criterio, .derivacion, .mapa__titulo-caja,
+  .comun__punto, .cifra, .bloque-esquema__rotulo { break-inside: avoid; }
+  .bloque-esquema__rotulo, .columna__nombre, .criterio__clave { break-after: avoid; }
+
+  .cifra__rotulo, .apoyo, .apoyo__fuente, .dato__clave, .criterio__regimen,
+  .pieza-articulos__rotulo, .mapa__romano, .mapa__numero, .mapa__disp,
+  .comun__rotulo, .bloque-esquema__nota, .mapa__capitulo-num { color: #000; }
+
+  .tesis, .bloque-esquema__entradilla, .peldano__que, .eslabon__que,
+  .derivacion__que, .criterio__texto, .dato__valor, .mapa__clave,
+  .mapa__titulo, .acumula { color: #000; }
+
+  /* El apoyo ya se distingue por filete, no por fondo: solo se le sube el
+     contraste. */
+  .apoyo { border-left-color: #000; }
+
+  /* Los números de artículo enlazan al BOE; en papel, la URL de cada uno
+     llenaría la hoja. Basta el número. */
+  .art::after, .mapa__articulos a::after { content: ""; }
 
   /* Que quede constancia en el papel de qué es esto y de cuándo se imprimió. */
   .pie { margin-top: calc(var(--paso) * 8); }
