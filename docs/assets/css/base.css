@@ -813,8 +813,8 @@ a.materia:hover, a.materia:focus-visible { border-color: var(--tinta); color: va
 
 .tema + .tema { margin-top: calc(var(--paso) * 9); }
 /* El índice lleva aquí desde arriba: hay que dejar aire al saltar. */
-.tema { scroll-margin-top: calc(var(--paso) * 4); }
-.pregunta { scroll-margin-top: calc(var(--paso) * 4); }
+.tema { scroll-margin-top: calc(var(--paso) * 6); }
+.pregunta { scroll-margin-top: calc(var(--paso) * 6); }
 
 .tema__rotulo {
   display: flex;

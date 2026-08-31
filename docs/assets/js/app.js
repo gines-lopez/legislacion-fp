@@ -648,9 +648,17 @@ const pintar = () => {
     /* Si la URL trae una pregunta, se abre y se lleva a la vista; si no, la
        ficha empieza por arriba. */
     const abierta = filtros.p && $(`#p-${CSS.escape(filtros.p)}`);
+
+    /* Si se llega con un ancla —«…#tema-convocatorias»— hay que saltar a mano:
+       cuando el navegador lo intentó, la ficha todavía no estaba pintada. */
+    const anclada = !abierta && location.hash.length > 1
+      && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+
     if (abierta) {
       abierta.scrollIntoView({ block: 'center' });
       if (!primerPintado) abierta.querySelector('summary').focus({ preventScroll: true });
+    } else if (anclada) {
+      anclada.scrollIntoView();
     } else {
       window.scrollTo(0, 0);
       if (!primerPintado) $('#ficha-titulo').focus({ preventScroll: true });
@@ -788,6 +796,12 @@ const ir = (destino, { reemplazar = false } = {}) => {
     if (!enlace || enlace.target === '_blank') return;
     const url = new URL(enlace.href, location.href);
     if (url.origin !== location.origin || url.pathname !== location.pathname) return;
+
+    /* Un ancla dentro de la vista que ya se está viendo no es navegación: la
+       resuelve el navegador saltando al elemento. Interceptarla repintaría la
+       ficha entera y el salto no llegaría a ocurrir. */
+    if (url.hash && url.search === location.search) return;
+
     evento.preventDefault();
     ir(url.href);
   });
