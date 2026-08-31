@@ -61,3 +61,15 @@ La sección `anexos` recoge, en su lugar, los anexos I a IV de la Resolución de
 La ficha por signatura (`resultat-dogv?signatura=…`) es estable y ofrece el documento en ambas lenguas; el PDF de `dogv.gva.es/datos/…` abre directamente. Se ponen los dos. Del BOE se enlaza la versión consolidada (`/con`), que es la que refleja las modificaciones.
 
 **Cuidado al verificar:** ninguno de los dos diarios devuelve 404 cuando el documento no existe. La ficha del DOGV es una aplicación de JavaScript que sirve siempre su armazón con estado 200, y el BOE sirve su página de error con estado 200. Comprobar el código de respuesta no vale: hay que descargar el PDF y comprobar que su cabecera CVE coincide con la signatura, o leer el `<title>` de la página del BOE.
+
+## D10 · El ámbito se muestra como procedencia, junto al diario que lo publica
+
+Cada norma abre con una línea de procedencia sobre su identificador: `ESTATAL · BOE`, `AUTONÓMICO · DOGV` o `AUTONÓMICO · CEICE`.
+
+**Por qué así y no una etiqueta suelta.** «Estatal» y «autonómico» a secas obligan a fiarse del sitio. Acompañarlo del diario lo vuelve comprobable de un vistazo, y es además el vocabulario del profesorado, que dice «salió en el DOGV», no «es autonómica». Los cuatro documentos que la conselleria difunde sin publicar en diario dicen `CEICE`, que es exactamente lo que son.
+
+**Por qué no toca el filete.** El filete izquierdo ya codifica la vigencia, y meterle un segundo eje lo haría ilegible. El ámbito va en la monoespaciada tenue, a 11 px, por debajo del identificador: se lee al escanear, no compite. Coherente con D5, la distinción la hace la palabra, no el color ni el peso; ninguno de los dos ámbitos se presenta como superior al otro.
+
+**El diario se deriva del dominio del primer enlace**, no de la etiqueta, porque las etiquetas varían (`DOGV`, `PDF del DOGV`, `DOGV · versión consolidada`) y el dominio no.
+
+**Se reabre si:** aparece una norma autonómica publicada en un diario distinto del DOGV, o el sitio incorpora normativa de otra comunidad.

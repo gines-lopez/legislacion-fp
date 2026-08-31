@@ -14,13 +14,14 @@ La [página de aspectos normativos de la Conselleria](https://ceice.gva.es/es/we
 Este proyecto parte de esa misma información y le añade lo que le falta:
 
 - **Estado de vigencia visible** en cada norma: vigente, modificada o derogada.
+- **Ámbito visible**: si la norma es estatal o autonómica, y en qué diario se publica.
 - **Relaciones entre normas**: qué modifica a qué, y qué quedó derogado por qué.
 - **Búsqueda y filtros** por sección, ámbito estatal o autonómico y estado.
 - Más adelante, **páginas de consulta** con el articulado en HTML, para no tener que abrir el PDF.
 
 ## Estado
 
-En construcción. Publicado el esqueleto del sitio y validado el despliegue; el volcado de normas es el siguiente paso. Ver [HOJA-DE-RUTA.md](HOJA-DE-RUTA.md).
+En construcción. El sitio está publicado y contiene las 36 normas de las seis secciones, con su ámbito, su estado de vigencia y sus relaciones. La portada sigue siendo provisional: muestra el diagnóstico de despliegue, y el buscador con filtros es lo siguiente. Ver [HOJA-DE-RUTA.md](HOJA-DE-RUTA.md).
 
 ## Cómo está hecho
 

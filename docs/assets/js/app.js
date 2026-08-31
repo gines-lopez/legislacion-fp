@@ -15,22 +15,59 @@ const fechaLarga = (iso) => {
     { day: 'numeric', month: 'long', year: 'numeric' });
 };
 
+/* El identificador es una cita: se escribe como se cita, con sus tildes. */
+const TIPO = {
+  'ley-organica': 'Ley Orgánica',
+  'real-decreto': 'Real Decreto',
+  'decreto': 'Decreto',
+  'orden': 'Orden',
+  'resolucion': 'Resolución',
+  'instrucciones': 'Instrucciones',
+  'guia': 'Guía',
+  'anexo': 'Anexo',
+  'calendario': 'Calendario',
+};
+
+const AMBITO = { estatal: 'Estatal', autonomico: 'Autonómico' };
+
+/* El ámbito se acompaña de dónde se publica, que es lo que lo hace
+   comprobable: lo estatal en el BOE, lo autonómico en el DOGV. Los cuatro
+   documentos que la conselleria difunde sin publicar en diario dicen CEICE. */
+const DIARIO = {
+  'www.boe.es': 'BOE',
+  'dogv.gva.es': 'DOGV',
+  'ceice.gva.es': 'CEICE',
+};
+
+const procedencia = (norma) => {
+  const host = new URL(norma.enlaces[0].url).hostname;
+  const diario = DIARIO[host];
+  return diario
+    ? `${AMBITO[norma.ambito]} · ${diario}`
+    : AMBITO[norma.ambito];
+};
+
 const pintarNorma = (norma, porId) => {
   const el = document.createElement('article');
   el.className = 'norma';
   el.dataset.estado = norma.estado;
+  el.dataset.ambito = norma.ambito;
 
-  const etiqueta = norma.numero
-    ? `${norma.tipo.replace('-', ' ')} ${norma.numero}`.toUpperCase()
-    : `${norma.tipo} de ${fechaLarga(norma.fecha)}`.toUpperCase();
+  const tipo = TIPO[norma.tipo] ?? norma.tipo;
+  const etiqueta = (norma.numero
+    ? `${tipo} ${norma.numero}`
+    : ['guia', 'anexo'].includes(norma.tipo)
+      ? tipo
+      : `${tipo} de ${fechaLarga(norma.fecha)}`).toUpperCase();
 
   const relaciones = norma.modificadaPor
     .map((id) => porId.get(id))
     .filter(Boolean)
-    .map((otra) => `<p class="norma__relacion">Modificada por ${otra.tipo.toUpperCase()} ${otra.numero}</p>`)
+    .map((otra) => `<p class="norma__relacion">Modificada por ${(TIPO[otra.tipo] ?? otra.tipo).toUpperCase()} ${otra.numero}</p>`)
     .join('');
 
   el.innerHTML = `
+    <p class="norma__procedencia">${procedencia(norma)}</p>
     <p class="norma__id">${etiqueta}<span class="norma__estado">${norma.estado}</span></p>
     <p class="norma__fecha">${fechaLarga(norma.fecha)}</p>
     <h3 class="norma__titulo">${norma.titulo}</h3>

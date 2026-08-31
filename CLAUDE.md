@@ -33,4 +33,6 @@ Todo se sirve bajo el subpath `/legislacion-fp/`, así que **las rutas internas 
 
 **Rigor jurídico.** Citar mal un artículo, una versión ya modificada o una norma derogada perjudica activamente a quien consulta. Cita siempre identificador completo y fecha, y enlaza al DOGV o al BOE. El sitio no es fuente oficial y debe decirlo.
 
+**Alcance de las relaciones.** `estado` dice *que* una norma fue modificada o derogada; nunca *hasta dónde*, y aquí el alcance casi nunca es total. Ese matiz vive en el `resumen`, así que donde se muestre un estado o una relación, el `resumen` va a la vista. Ver «Lo que el modelo no captura» en [MODELO-DATOS.md](MODELO-DATOS.md).
+
 **Vocabulario.** En castellano y sin traducir: `ciclo formativo`, `módulo profesional`, `resultados de aprendizaje`.

@@ -146,6 +146,19 @@ body {
 .norma[data-estado="modificada"] { border-left-width: 5px; border-left-style: double; }
 .norma[data-estado="derogada"]   { border-left-style: dotted; color: var(--tinta-tenue); }
 
+/* Procedencia: ámbito y diario donde se publica. Es un dato de cita, así que
+   va en la monoespaciada y en el tono tenue, sin competir con el título. La
+   distinción estatal/autonómico la hace la palabra, no el color ni el peso:
+   ninguno de los dos ámbitos manda sobre el otro en la lectura. */
+.norma__procedencia {
+  margin: 0 0 calc(var(--paso) * 1);
+  font-family: var(--fuente-dato);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
 .norma__id {
   font-family: var(--fuente-dato);
   font-size: 1rem;
@@ -221,4 +234,6 @@ a:focus-visible {
 @media print {
   body { background: #fff; color: #000; padding: 0; }
   .diagnostico { display: none; }
+  /* En papel el filete pierde matiz, así que estado y ámbito se leen del texto. */
+  .norma__procedencia, .norma__estado { color: #000; }
 }

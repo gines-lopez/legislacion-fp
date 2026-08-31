@@ -35,7 +35,7 @@
 | `fecha` | string | sí | ISO `AAAA-MM-DD`. La de la norma, no la de publicación en diario. |
 | `titulo` | string | sí | Título oficial completo, sin abreviar. Es lo que se cita. |
 | `resumen` | string | sí | Una o dos frases en lenguaje llano: qué resuelve y a quién afecta. Redacción propia, no copiar el preámbulo. |
-| `ambito` | enum | sí | `estatal` o `autonomico`. |
+| `ambito` | enum | sí | `estatal` o `autonomico`. Se muestra en la línea de procedencia de cada norma, junto al diario que la publica. Ver D10 en [DECISIONES.md](DECISIONES.md). |
 | `seccion` | enum | sí | Ver más abajo. |
 | `estado` | enum | sí | `vigente`, `modificada`, `derogada`. `modificada` significa vigente pero con reformas: sigue siendo aplicable. |
 | `modificadaPor` / `modifica` / `deroga` | array de `id` | sí (pueden ir vacíos) | Relaciones entre normas. |
@@ -60,6 +60,19 @@ Deben cumplirse siempre; conviene comprobarlos tras cada tanda de cambios.
 4. `estado: "modificada"` exige `modificadaPor` no vacío. `estado: "derogada"` exige que alguna norma la liste en su `deroga`.
 5. Ninguna norma `derogada` en `curso-actual`: si ha sido sustituida, va a `cursos-anteriores`.
 6. `enlaces` con al menos una entrada, y ninguna URL a un dominio distinto de `dogv.gva.es`, `boe.es` o `ceice.gva.es` sin justificarlo.
+
+## Lo que el modelo no captura
+
+`estado` y las relaciones dicen **que** una norma fue modificada o derogada, pero no **hasta dónde**. Y en este cuerpo normativo el alcance casi nunca es total:
+
+- La Resolución de 19 de junio de 2023 deja sin efecto *el anexo* de la de 2 de diciembre de 2022, no su articulado: el procedimiento de actualización de desdobles sigue siendo el de 2022. En el dato son `modifica` y `modificada`, sin más.
+- La Resolución de 8 de agosto de 2024 no sustituyó a la del curso anterior: la prorrogó *solo para los segundos cursos*. El modelo no tiene «prorroga».
+- El RD 1147/2011 está derogado, pero los títulos expedidos a su amparo conservan su equivalencia. `derogada` no significa irrelevante.
+- El Decreto 95/2026 modifica el 114/2025 y el 117/2025, pero solo artículos y anexos concretos.
+
+**Dónde vive ese matiz:** en el `resumen`, redactado a propósito para decirlo. Es la razón de que `resumen` sea obligatorio y de que no se copie del preámbulo.
+
+**Consecuencia para quien construya vistas:** un distintivo de estado a solas es información incompleta, y presentarlo así induce justo el error que el sitio quiere evitar. Siempre que se muestre `estado` o una relación, el `resumen` correspondiente tiene que estar a la vista.
 
 ## Al añadir una norma
 

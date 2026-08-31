@@ -6,7 +6,7 @@ Estado a 31 de agosto de 2026.
 
 CLAUDE.md, [DECISIONES.md](DECISIONES.md), [MODELO-DATOS.md](MODELO-DATOS.md) y este fichero. `.gitignore` protegiendo `docs/`.
 
-## Fase 1 · Esqueleto y despliegue — hecha en local, falta publicar
+## Fase 1 · Esqueleto y despliegue — hecha
 
 `docs/` con `index.html`, `.nojekyll`, `assets/css/base.css`, `assets/js/app.js` y dos normas semilla en `data/normas.json`.
 
@@ -14,7 +14,7 @@ La portada provisional es un **diagnóstico de despliegue**: comprueba en el pro
 
 Verificado en local sirviendo bajo un subpath, que es la única forma de detectar el fallo de rutas absolutas: las cuatro comprobaciones en verde, contraste AA en claro (mínimo 5,07:1) y oscuro (mínimo 5,6:1), y sin desbordamiento horizontal a 375 px.
 
-Pendiente, y es acción manual del mantenedor: Settings → Pages → Source «Deploy from a branch» → `main` / carpeta `/docs`.
+Publicado en https://gines-lopez.github.io/legislacion-fp y comprobado en producción: las cuatro comprobaciones en verde, 36 normas cargadas y la ruta resuelta como `/legislacion-fp/data/normas.json`, que es lo que confirma que ninguna ruta interna es absoluta.
 
 ## Fase 2 · Datos — hecha
 
@@ -59,9 +59,17 @@ Los cuatro «Anexos más frecuentes» del CEICE (anexos VII, IX, X y XIII) respo
 - La **Orden 78/2010** figura como `vigente` porque nada consultado la deroga expresamente, pero conviene revisarla cuando se incorpore la Orden 8/2025 de evaluación, que sí tocó la Orden 79/2010.
 - La **Resolución de 26 de abril de 2023** de cursos de especialización queda `vigente`: el Decreto 95/2026 solo lleva cláusula derogatoria genérica, que no basta para marcarla derogada.
 
-## Fase 3 · Interfaz — pendiente
+## Fase 3 · Interfaz — pendiente, es lo siguiente
 
 Portada con buscador instantáneo y filtros por sección, ámbito y estado. Ficha de norma mostrando sus relaciones. Aviso legal en el pie con fecha de última revisión.
+
+**Ya resuelto sobre la portada provisional:** el ámbito estatal o autonómico se muestra en cada norma como línea de procedencia junto al diario que la publica (D10 en [DECISIONES.md](DECISIONES.md)), y cada tarjeta lleva `data-ambito`, así que el filtro de la fase 3 solo tiene que engancharse. De paso se corrigieron los identificadores, que se pintaban sin tildes: se citaba «LEY ORGANICA» y «REAL-DECRETO».
+
+**Requisito que sale del volcado:** una relación entre normas casi nunca es total, y el alcance está en el `resumen`, no en el dato. Ver «Lo que el modelo no captura» en [MODELO-DATOS.md](MODELO-DATOS.md). En la práctica, para la interfaz:
+
+- Donde se muestre `estado` o una relación, el `resumen` de la norma tiene que estar a la vista, no escondido tras un despliegue. Un distintivo de «modificada» a solas informa de menos de lo que aparenta.
+- En la ficha, cada norma relacionada se acompaña de su propio `resumen`, que es donde se dice qué se modificó exactamente.
+- El filtro por estado ordena, pero no decide: nada en la interfaz debe dar a entender que una norma `derogada` es papel mojado, ni que una `vigente` lo es sin matices.
 
 ## Fase 4 · Páginas de consulta — pendiente, a demanda
 
