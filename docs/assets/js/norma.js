@@ -13,7 +13,7 @@
 
 'use strict';
 
-const VERSION = '0.5';
+const VERSION = '0.6';
 window.legislacionFP = { version: VERSION };
 
 const TIPO = {

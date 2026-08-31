@@ -458,6 +458,16 @@ body {
   color: var(--tinta-tenue);
 }
 
+/* Que una norma tenga el texto aquí es lo más útil que puede decir su tarjeta,
+   así que va antes que las relaciones y sin el «→» de estas: no lleva a otra
+   norma, lleva al texto de esta. */
+.norma__transcrito {
+  margin: calc(var(--paso) * 3) 0 0;
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
 .norma__relacion {
   margin: calc(var(--paso) * 3) 0 0;
   font-family: var(--fuente-ui);
@@ -616,11 +626,13 @@ body {
   color: var(--tinta-media);
 }
 
-/* El articulado transcrito va antes que los enlaces al diario, pero avisando
-   de lo que es: ayuda a la lectura, no texto auténtico (D7). */
+/* El articulado transcrito va justo debajo del resumen, que es donde se decide
+   si hace falta leer la norma entera, y avisando de lo que es: ayuda a la
+   lectura, no texto auténtico (D7). */
 .ficha__transcripcion {
-  margin: 0 0 calc(var(--paso) * 4);
-  padding-bottom: calc(var(--paso) * 3);
+  margin: calc(var(--paso) * 6) 0 0;
+  padding: calc(var(--paso) * 3) 0;
+  border-top: 1px solid var(--filete);
   border-bottom: 1px solid var(--filete);
   font-family: var(--fuente-ui);
   font-size: 0.9375rem;

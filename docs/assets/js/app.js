@@ -16,7 +16,7 @@
    ejecutando el script anterior contra el HTML nuevo, y eso se parece mucho a
    un fallo del sitio. El diagnóstico compara esta versión con la del fichero
    servido y avisa. */
-const VERSION = '0.5';
+const VERSION = '0.6';
 window.legislacionFP = { version: VERSION };
 
 /* ----------------------------------------------------------- vocabulario --- */
@@ -390,6 +390,10 @@ const pintarNorma = (norma, terminos) => `
     </p>
     ${idEsTitulo(norma) ? '' : `<p class="norma__titulo">${resaltar(norma.titulo, terminos)}</p>`}
     <p class="norma__resumen">${resaltar(norma.resumen, terminos)}</p>
+    ${norma.texto ? `
+      <p class="norma__transcrito">
+        <a href="norma/${encodeURIComponent(norma.id)}.html">Leer el texto completo aquí</a>
+      </p>` : ''}
     ${materiasCoincidentes(norma, terminos)}
     ${relacionesBreves(norma, terminos)}
   </li>`;
@@ -587,6 +591,12 @@ const pintarFicha = (norma, volverA, abierta) => {
         ${idEsTitulo(norma) ? '' : `<p class="ficha__titulo">${escapar(norma.titulo)}</p>`}
         <p class="ficha__resumen">${escapar(norma.resumen)}</p>
 
+        ${norma.texto ? `
+          <p class="ficha__transcripcion">
+            <a href="norma/${encodeURIComponent(norma.id)}.html">Leer el articulado completo aquí</a>
+            <span class="ficha__transcripcion-nota">Transcripción para consultarla, no texto auténtico</span>
+          </p>` : ''}
+
         ${partes}
         ${relaciones}
 
@@ -605,11 +615,6 @@ const pintarFicha = (norma, volverA, abierta) => {
 
         <section class="apartado">
           <h2 class="apartado__rotulo">Texto oficial</h2>
-          ${norma.texto ? `
-            <p class="ficha__transcripcion">
-              <a href="norma/${encodeURIComponent(norma.id)}.html">Leer el articulado aquí</a>
-              <span class="ficha__transcripcion-nota">Transcripción, no texto auténtico</span>
-            </p>` : ''}
           <ul class="enlaces">${norma.enlaces.map((enlace) => `
             <li>${enlaceExterno(enlace.url, enlace.etiqueta, enlace.formato === 'pdf' ? 'PDF' : '')}</li>`).join('')}
           </ul>

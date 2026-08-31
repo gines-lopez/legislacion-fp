@@ -189,4 +189,8 @@ Quien consulte el texto consolidado oficial aplicará hoy un criterio de promoci
 
 **Circuito cerrado con la FAQ:** 18 de las 50 preguntas se apoyan en la Orden 8/2025 y ahora enlazan a su artículo concreto. La pregunta sobre promoción lleva al artículo 14, que está señalado como modificado.
 
+**Cómo se llega.** Estaba mal resuelto: el articulado solo era alcanzable entrando en la ficha y mirando en la columna lateral, así que desde el listado no había forma de saber que existía. Ahora hay tres entradas: la tarjeta del listado lo anuncia («Leer el texto completo aquí»), la ficha lo ofrece en el cuerpo principal justo debajo del resumen —que es donde se decide si hace falta el texto— y las 18 preguntas de la FAQ que se apoyan en esta orden llevan a su artículo.
+
+**Lo que todavía no llega:** el buscador de la portada no mira dentro del articulado. Buscar «promoción» encuentra la norma y las preguntas, pero no el artículo 14. Si se transcriben más normas, esto pasará a ser el hueco principal.
+
 **La siguiente transcripción cuesta poco:** escribir su JSON, copiar el HTML con otro nombre y poner `texto: true` en la norma. El script deduce de cuál se trata por el nombre del fichero (D23).
