@@ -46,6 +46,9 @@
         <li class="comprobacion" data-resultado="pendiente" data-prueba="invariantes">
           <span>Relaciones entre normas</span><span class="comprobacion__resultado">comprobando</span>
         </li>
+        <li class="comprobacion" data-resultado="pendiente" data-prueba="texto">
+          <span>Articulado transcrito</span><span class="comprobacion__resultado">comprobando</span>
+        </li>
         <li class="comprobacion" data-resultado="pendiente" data-prueba="consulta">
           <span>Preguntas frecuentes</span><span class="comprobacion__resultado">comprobando</span>
         </li>
@@ -70,6 +73,8 @@
         <dd>Compara la versión que el navegador está ejecutando con la que el servidor entrega ahora mismo. GitHub Pages cachea los assets diez minutos, así que tras publicar hay una ventana en la que el HTML es nuevo y el script todavía es el anterior: el sitio parece roto sin estarlo. Si esta línea sale en rojo, recarga forzando (<code>Cmd</code>+<code>Mayús</code>+<code>R</code>).</dd>
         <dt>Relaciones entre normas</dt>
         <dd>Los invariantes 2, 3 y 4 de <a href="https://github.com/gines-lopez/legislacion-fp/blob/main/MODELO-DATOS.md">MODELO-DATOS.md</a>: que toda norma citada exista, que las relaciones estén declaradas por los dos lados, que el estado concuerde con ellas y que todo <code>parteDe</code> apunte a una norma que existe.</dd>
+        <dt>Articulado transcrito</dt>
+        <dd>Que cada norma que declara <code>texto</code> tenga su fichero en <code>data/texto/</code>, que ninguna pieza se quede sin párrafos y que toda modificación señalada apunte a una norma del listado.</dd>
         <dt>Preguntas frecuentes</dt>
         <dd>Que cada norma que declara <code>consulta</code> tenga su fichero en <code>data/consulta/</code>, sin preguntas repetidas y sin ninguna respuesta que se quede sin epígrafe o sin la cita de la norma en que se apoya.</dd>
       </dl>

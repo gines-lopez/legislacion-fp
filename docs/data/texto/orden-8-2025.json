@@ -1,0 +1,391 @@
+{
+  "norma": "orden-8-2025",
+  "revisado": "2026-08-31",
+  "consolidacion": {
+    "propia": true,
+    "aplicadas": [
+      {
+        "norma": "orden-5-2026",
+        "identificador": "Orden 5/2026, de 1 de abril",
+        "desde": "2026-04-08"
+      }
+    ],
+    "aviso": "Texto consolidado por este sitio, no por el diario oficial. El DOGV mantiene todavía la redacción inicial de abril de 2025 y marca la disposición como pendiente de consolidar, así que su «versión vigente» no recoge los cambios de la Orden 5/2026. Aquí sí están aplicados y señalados. Ante cualquier duda, manda lo publicado en el DOGV."
+  },
+  "articulado": [
+    {
+      "tipo": "articulo",
+      "numero": "1",
+      "titulo": "Objeto y ámbito de aplicación",
+      "parrafos": [
+        "1. La presente orden tiene por objeto establecer el procedimiento de evaluación del alumnado que curse Formación Profesional en centros docentes con autorización administrativa para impartir esta enseñanza en la Comunitat Valenciana.",
+        "2. Esta orden es de aplicación a los títulos profesionales de grado D y e derivados de la Ley orgánica 3/2022, de 31 de marzo, de ordenación e integración de la Formación Profesional.",
+        "3. El procedimiento de evaluación de los resultados de aprendizaje permitirá conocer el grado de competencias adquiridas por el alumnado tanto en el centro como durante la formación en empresa u organismo equiparado, consolidado con el Proyecto Intermodular, y de acuerdo con los criterios de evaluación de cada uno de los módulos profesionales.",
+        "4. Así mismo, se regula la certificación del alumnado cuando no obtenga la titulación correspondiente."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "2",
+      "titulo": "Aspectos comunes de la evaluación",
+      "parrafos": [
+        "1. El alumnado tiene derecho a una evaluación objetiva; esto conlleva la necesaria información a toda la comunidad educativa de los criterios de evaluación integrados en la guía docente, en la programación didáctica y en la programación de aula. Esta evaluación tiene carácter continuo e integrador según los módulos profesionales o sus resultados de aprendizaje (en adelante «RA»), mediante métodos e instrumentos que garanticen la objetividad y validez de esta.",
+        "2. El equipo educativo está constituido por el grupo de docentes, expertos del sector productivo, expertos sénior de empresa, especialistas que se requieran y tutor de empresa, que intervienen en el proceso de enseñanza-aprendizaje del alumnado.",
+        "3. El equipo educativo realizará el proceso de evaluación por competencias teniendo como referentes los RA, los criterios de evaluación y las competencias profesionales y para la empleabilidad establecidas en cada currículo.",
+        "4. Se tendrá en cuenta las adaptaciones necesarias para las personas con necesidades específicas de apoyo educativo o formativo en los procesos de aprendizaje y evaluación, en cuanto a metodología, ampliación de tiempos y de recursos, sin que los mismos puedan minorar las calificaciones. En estos casos y cuando se detecte un progreso no adecuado de la persona en formación, desde la tutoría se efectuará seguimiento y acompañamiento para asegurar los apoyos individualizados necesarios. En el caso de organizaciones curriculares adaptadas, los referentes deberán ser los mismos, es decir los objetivos expresados en RA, los criterios de evaluación y las competencias generales del ciclo formativo.",
+        "5. La valoración de la adquisición de los RA durante la formación en empresa u organismo equiparado corresponderá al tutor/a de la empresa u organismo equiparado, en términos de «superado» y «no superado». La calificación de dichos RA corresponderá al docente.",
+        "6. Para la superación de un ciclo formativo se requiere la evaluación positiva de todos los módulos profesionales.",
+        "7. En modalidad semipresencial y virtual, la evaluación final de los módulos profesionales requerirá la superación de pruebas presenciales.",
+        "8. Cuando hayan agotado el máximo de convocatorias, el alumnado o sus representantes legales en el caso de menores de edad, podrán solicitar una convocatoria extraordinaria por módulo profesional."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "3",
+      "titulo": "Finalidades de la evaluación",
+      "parrafos": [
+        "Las finalidades de la evaluación son:",
+        "1. Regular el proceso de aprendizaje competencial del alumnado mediante la evaluación objetiva y enfocada a la obtención de las competencias asociadas a los distintos módulos profesionales, tomando como referencia los RA, de acuerdo con los criterios de evaluación asociados para cada uno de ellos. Asimismo, se regula la competencia profesional final como consecución de la titulación del ciclo.",
+        "2. Informar de los logros del alumnado al final de un proceso de aprendizaje competencial para su certificación.",
+        "3. Implementar una evaluación continua, formativa e integradora que ayude al alumnado a adquirir autonomía y saber autorregularse.",
+        "4. Promover el uso generalizado de instrumentos, técnicas y herramientas o asistentes de la evaluación variados, diversos y adaptados a las distintas situaciones de aprendizaje y metodologías, permitiendo la valoración objetiva del proceso de evaluación por competencias y la calificación, siendo sensibles al alumnado con necesidades específicas y de atención a la diversidad.",
+        "5. Determinar de forma colegiada en la evaluación final si el alumnado está en condiciones de incorporarse al mercado laboral con la competencia profesional adquirida.",
+        "6. Redefinir propuestas de mejora como evaluación del proceso de enseñanza, a partir de los resultados de las evaluaciones del proceso de aprendizaje."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "4",
+      "titulo": "Características de la evaluación",
+      "parrafos": [
+        "1. La evaluación tendrá un carácter continuo, formativo e integrador durante todo el proceso de enseñanza del alumnado. Además, será flexible en tiempo y recursos adaptándose a los diferentes ritmos de aprendizaje y características del alumnado.",
+        "2. Los instrumentos de evaluación utilizados se adaptarán a las metodologías aplicadas en el transcurso del aprendizaje, que serán variados y servirán de soporte para la consecución y calificación del alumnado de manera objetiva. El alumnado, en todo momento, tendrá conocimiento y comprensión del funcionamiento de dichos instrumentos.",
+        "3. En las modalidades no presenciales, la evaluación será realizada mediante el seguimiento del proceso de aprendizaje y una prueba de evaluación final de carácter presencial.",
+        "4. La evaluación se caracterizará por dar una visión completa de la calificación centrada en el proceso de aprendizaje, en generar un plan formativo de recuperación, un plan formativo para la formación en empresa y la singularización del Proyecto Intermodular para cada estudiante, y su consecuente incorporación al mercado laboral."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "5",
+      "titulo": "Calificaciones de los módulos profesionales y nota final de ciclo",
+      "parrafos": [
+        "1. La calificación de los módulos profesionales estará en función de la consecución de los RA y será numérica, entre 1 y 10, sin decimales. No obstante, los ámbitos de Comunicación y Ciencias Sociales y de Ciencias Aplicadas de los ciclos de grado básico se calificarán de manera no numérica, conforme a la disposición adicional séptima del Real decreto 498/2024, de 21 de mayo:",
+        "– Insuficiente (IN)",
+        "– Suficiente (SU)",
+        "– Bien (BI)",
+        "– Notable (NT)",
+        "– Sobresaliente (SB)",
+        "2. La superación de cualquier oferta formativa requerirá la evaluación positiva de todos los módulos profesionales que la componen. Se consideran positivas las calificaciones iguales o superiores a 5 puntos, y las calificaciones «suficiente», «bien»,",
+        "«notable» y «sobresaliente».",
+        "3. La nota final de los ciclos de grado medio, grado superior y cursos de especialización será la media aritmética con dos decimales de todos los módulos que componen el ciclo. En dicho cálculo no se tendrán en cuenta las calificaciones de «Convalidado sin nota». Si todos los módulos profesionales estuvieran calificados como «convalidado sin nota» la nota final del ciclo formativo será de 5.",
+        "4. Siendo que los ámbitos de los ciclos de grado básico se califican con expresión no numérica, estos ciclos no tendrán una nota final de ciclo. En los procedimientos de concurrencia competitiva en los que se precise de una nota, se aplicará la traslación numérica que cada procedimiento establezca.",
+        "5. El tutor/a de la empresa u organismo equiparado informará y valorará la adquisición de los RA desarrollados calificándolos como superado o no superado. Asimismo, realizará una evaluación cualitativa de la estancia del alumno/a y sus competencias profesionales y para la empleabilidad, informando de las actitudes y aptitudes relacionadas con su entorno social y externo.",
+        "6. La calificación del módulo en acta será responsabilidad del docente que imparta el módulo profesional. En el caso de centros de titularidad privada, será responsabilidad del coordinador pedagógico del centro.",
+        "7. Un módulo cursado y superado se considerará como «aprobado» con la calificación que hubiera obtenido en su momento en cualquier otro ciclo formativo que lo hubiera cursado.",
+        "8. El equipo educativo actuará de manera colegiada en la adopción de las decisiones de propuesta de titulación teniendo en cuenta la globalidad de las competencias profesionales y para la empleabilidad del título, siendo especialmente sensibles en este aspecto. De la misma manera, de forma colegiada, se definirán los procesos formativos detallados en las correspondientes sesiones de evaluación."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "6",
+      "titulo": "Mención Honorífica y Matrícula de Honor",
+      "parrafos": [
+        "1. Al alumnado que obtenga en un determinado módulo profesional la calificación de 10 podrá otorgarse una",
+        "«Mención Honorífica». Las menciones honoríficas serán otorgadas por el equipo educativo que imparta el módulo profesional correspondiente. El número de menciones honoríficas que se podrá conceder será como máximo igual al 10% del alumnado matriculado en el módulo profesional en cada grupo. La atribución de mención honorífica se consignará en los documentos de evaluación del alumnado con la expresión «MH» a continuación de la calificación de 10.",
+        "2. Al alumnado de ciclos de grado medio y de grado superior que obtenga una nota final del ciclo igual o superior a 9, se le podrá conceder «Matrícula de Honor».",
+        "a) Las matrículas de honor serán concedidas por acuerdo de manera conjunta de los equipos docentes que impartan formación en un mismo ciclo formativo.",
+        "b) El número máximo de matrículas de honor que se podrá conceder en un curso académico será 2 por ciclo de grado medio y 3 por ciclo de grado superior. Si el número de estudiantes matriculados es inferior a 20, sólo se podrá conceder 1 Matrícula de Honor.",
+        "c) Se valorará especialmente las valoraciones cualitativas de los informes de los tutores de empresa."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "7",
+      "titulo": "Pérdida de la evaluación continua",
+      "parrafos": [
+        "1. El aprendizaje del alumnado será evaluado de forma continua.",
+        "2. Para garantizar la evaluación continua, es condición necesaria la asistencia a las actividades de formación en régimen presencial y, en régimen semipresencial, la asistencia a las tutorías colectivas, la realización de las actividades de autoaprendizaje, el acceso regular al aula virtual y la participación en los foros.",
+        "3. Se perderá el derecho a la evaluación continua en un módulo profesional al superar el 15% de inasistencia a las actividades de formación.",
+        "4. Cada miembro del equipo educativo pondrá en conocimiento del tutor/a del grupo la posibilidad de pérdida de la evaluación continua de su módulo profesional de quien alcance el 10% de inasistencia.",
+        "5. Superado el porcentaje de inasistencia establecido, el centro educativo notificará al alumno/a y/o tutor/a legal de manera fehaciente la pérdida motivada de la evaluación continua, así como las medidas y consecuencias que conlleve. Esta comunicación se entenderá realizada si se comunica a través de Itaca - Web Familia o por cualquiera de los medios establecidos por la Ley 39/2015, de 1 de octubre, del procedimiento administrativo común de las administraciones públicas."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "8",
+      "titulo": "Anulación y pérdida de matrícula",
+      "parrafos": [
+        "1. La condición necesaria que mantiene vigente la matrícula y la ocupación de una plaza educativa es la asistencia a las actividades de formación en régimen presencial y, en régimen semipresencial, la asistencia a las tutorías colectivas, la realización de las actividades de autoaprendizaje, el acceso regular al aula virtual y la participación en los foros.",
+        "2. La anulación y la pérdida de matrícula implican la pérdida de plaza escolar del curso y de todos los módulos en que se esté matriculado. Para continuar los estudios posteriormente, hay que concurrir de nuevo al proceso de admisión.",
+        "3. La anulación de matrícula a instancias de la persona interesada computará en el cálculo de matrículas consumidas, salvo que solicite:",
+        "– Antes del mes de enero del año académico en curso.",
+        "– Antes de iniciar el tercer trimestre del curso académico por cualquiera de los motivos justificados de renuncia a convocatoria",
+        "4. La pérdida de matrícula tendrá lugar siempre que se alcance el 15% de horas de inasistencia por faltas injustificadas en el curso matriculado o por no asistir durante 10 días lectivos consecutivos. Ello implica el correspondiente cómputo de número de matrículas consumidas. Este criterio se aplicará sobre la totalidad de horas del curso matriculado en régimen presencial, o del módulo profesional en caso de oferta modular o régimen no presencial. Como base para calcular el número total de horas de formación, se excluyen los módulos profesionales pendientes de cursos anteriores y los módulos que hayan sido objeto de convalidación o renuncia a convocatoria.",
+        "5. En el cómputo de faltas de asistencia que dan lugar a la pérdida de matrícula, no se tendrán en cuenta las faltas justificadas por:",
+        "– Ausencias derivadas de enfermedad o accidente del alumnado.",
+        "– Atención a familiares de primer grado de consanguinidad.",
+        "– Otras circunstancias individualizadas de fuerza mayor de centros que valore la Dirección del centro, debidamente justificadas y acordadas que formen parte de las normas de organización y funcionamiento. El equipo educativo, asesorado por el equipo de orientación, propondrá flexibilizaciones de estos criterios con el objetivo de que el alumnado pueda lograr total o parcialmente los objetivos y estándares de competencia del ciclo formativo, para su inserción laboral.",
+        "6. El centro educativo advertirá y notificará de manera fehaciente:",
+        "– La posibilidad de pérdida de matrícula a quien llegue al 5% de inasistencia u 8 días lectivos consecutivos sin justificar.",
+        "– La pérdida motivada de la matrícula superado el porcentaje de inasistencia por faltas injustificadas o días lectivos consecutivos. Esta comunicación se entenderá realizada si se comunica a través de Itaca, Web Familia, o por cualquiera de los medios establecidos por la Ley 39/2015, de 1 de octubre, del procedimiento administrativo común de las administraciones públicas."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "9",
+      "titulo": "Convocatorias y procedimiento de renuncia",
+      "parrafos": [
+        "1. Para la superación de un módulo profesional se dispondrá de un máximo de 4 convocatorias. En los cursos de especialización, se dispondrá de un máximo de 2 convocatorias.",
+        "2. Se podrá renunciar a la convocatoria ordinaria siempre que se justifique alguno de estos motivos:",
+        "– Enfermedad documentalmente acreditada",
+        "– Motivos de conciliación laboral.",
+        "– Otras circunstancias individualizadas que valore la Dirección del centro, debidamente justificadas y acordadas que formen parte de las normas de organización y funcionamiento.",
+        "3. La persona tutora del grupo informará al alumnado sobre la posibilidad de renunciar y sus efectos.",
+        "4. Siempre que se de alguno de los motivos justificados, se podrá renunciar a la convocatoria ordinaria antes de 10 días hábiles a la evaluación correspondiente. Transcurrido el plazo, no se podrá hacer la renuncia.",
+        "5. En el caso de alumnado que no haya superado la convocatoria ordinaria, el profesor/a del módulo informará si la persona está en condiciones de realizar las actividades de recuperación y afrontar con posibilidades de éxito la convocatoria extraordinaria. De no ser así, la persona interesada podrá decidir su presentación a la prueba extraordinaria o renunciar a la misma, a fin de no agotar el número máximo de convocatorias establecidas.",
+        "6. El director o directora del centro público donde conste el expediente académico del alumno o alumna resolverá la solicitud de renuncia en el plazo máximo de 10 días hábiles; incorporará una copia a dicho expediente y lo comunicará a la persona interesada. Contra la resolución desestimatoria cabrá interponer recurso de alzada ante la Dirección Territorial de Educación correspondiente, en el plazo de un mes a contar desde el día siguiente al de la notificación, cuya resolución pondrá fin a la vía administrativa.",
+        "7. El alumnado con necesidades educativas especiales se podrá presentar a la evaluación y calificación de un mismo módulo profesional hasta un máximo de 6 veces en los grados D y 4 veces en los grados E. En el caso de agotar las convocatorias se le podrá ampliar el número de convocatorias de los módulos pendientes, atendiendo a sus características propias y siempre que ello favorezca la finalización del ciclo formativo."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "10",
+      "titulo": "Convocatoria extraordinaria de gracia",
+      "parrafos": [
+        "1. Se podrá autorizar una convocatoria extraordinaria de gracia a quienes hayan agotado el número máximo de convocatorias por uno de estos motivos, de acuerdo con el art. 125 del Real decreto 659/2023, de 18 de julio:",
+        "– Enfermedad o discapacidad documentalmente acreditada.",
+        "– Situaciones sobrevenidas que hayan condicionado o impedido el desarrollo ordinario del curso por parte de la persona en formación, debidamente motivadas y acreditadas.",
+        "2. La persona interesada solicitará la convocatoria extraordinaria de gracia a la Dirección Territorial de su provincia, junto con la documentación acreditativa que permita comprobar que se han agotado las convocatorias establecidas sin haber superado el módulo.",
+        "3. El centro en que se encuentre matriculada la persona llevará a cabo las siguientes actuaciones:",
+        "– Tutoría con el alumno/a por parte de la persona tutora del grupo, de la jefatura de departamento y de la jefatura de estudios para valorar consensuadamente con el alumno una planificación de las actividades de recuperación que permita afrontar con posibilidades de éxito la convocatoria de gracia.",
+        "– La jefatura de estudios elevará informe con sentido de favorable o desfavorable a la Inspección Territorial de Educación sobre si la persona solicitante está en condiciones de afrontar con posibilidades de éxito la convocatoria basándose en el plan definido en el punto anterior.",
+        "4. La Dirección Territorial de Educación resolverá la petición en un plazo no superior a dos meses, previo informe de la Inspección Educativa e informe del centro docente en que la persona se encuentre matriculada. En la resolución favorable se indicará el centro docente y módulos en que la persona interesada se matriculará del módulo profesional.",
+        "5. Una vez autorizada la convocatoria, no se podrá renunciar a la misma ni anular matrícula.",
+        "6. La matrícula tendrá lugar desde el momento de la resolución favorable a la convocatoria.",
+        "7. El equipo educativo del módulo profesional articulará las actividades de recuperación, participación o asistencia en actividades formativas específicas del perfil profesional, conforme al plan establecido de actividades de recuperación.",
+        "8. Contra las resoluciones denegatorias se podrá interponer un recurso de alzada ante la dirección general competente en materia de Formación Profesional en el plazo de un mes a contar desde el día siguiente al de su notificación.",
+        "9. La convocatoria extraordinaria de gracia se concede una sola vez por módulo profesional."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "11",
+      "titulo": "Proyectos de ciclo, programaciones didácticas y guías docentes",
+      "parrafos": [
+        "1. Los proyectos de ciclo, las programaciones didácticas de los módulos profesionales y las guías docentes han de adaptarse a la evaluación continua y lo preceptuado en esta orden, a saber, evolucionar a lo largo del curso para atender a la diversidad en el proceso de enseñanza-aprendizaje o en los ritmos de aprendizaje del alumnado.",
+        "2. Esta documentación ha de adaptar la distribución de los RA entre la enseñanza en el centro, la formación en empresa u organismo equiparado -programa formativo- y apoyarse, si se considera conveniente, en el Proyecto Intermodular, con la finalidad de que cada alumno/a pueda lograr las competencias profesionales y para la empleabilidad que garanticen su integración socio-laboral."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "12",
+      "titulo": "Sesión de evaluación",
+      "parrafos": [
+        "1. El tutor del grupo presidirá las sesiones de evaluación, en las que estará presente el equipo educativo del grupo y un miembro del equipo directivo y, en aquellos casos que sea necesario en atención a sus competencias, el tutor o tutora de la empresa u organismo equiparado y un miembro del departamento de orientación profesional.",
+        "2. Cada miembro del equipo educativo es responsable de evaluar sus módulos profesionales atendiendo a las programaciones didácticas y criterios de evaluación, y teniendo siempre en cuenta la valoración realizada por el tutor de empresa u organismo equiparado.",
+        "3. El objetivo de estas sesiones es la de contrastar las informaciones proporcionadas por el equipo educativo y valorar el progreso del alumnado en la obtención las competencias profesionales y para la empleabilidad expresados en RA y criterios de evaluación.",
+        "4. En estas sesiones de carácter colegiado, se tomarán decisiones que afectan tanto al proceso de evaluación individual como de carácter grupal.",
+        "5. El alumno/a representante del grupo podrá solicitar al tutor/a del grupo trasladar temas de interés colectivo a la sesión de evaluación. Para ello, lo tratará con anterioridad a la sesión de evaluación con el tutor/a del grupo.",
+        "6. El tutor o tutora del grupo redactará un acta en la que se hará constar los acuerdos tomados y las decisiones que se hayan adoptado.",
+        "7. Evaluación inicial Se realizará antes de finalizar el segundo mes lectivo del curso académico para:",
+        "– Conocer las características, competencias y la formación del alumnado.",
+        "– Analizar el proceso de aprendizaje del alumnado y del grupo",
+        "– Adaptar las programaciones didácticas.",
+        "– Presentar la información sobre posibles particularidades del alumnado que el departamento de orientación haya recopilado hasta el momento. En ningún caso esta evaluación comportará calificación de módulos profesionales o RA.",
+        "8. Evaluaciones parciales Se celebrarán como mínimo dos evaluaciones parciales, una al término del primer trimestre y otra al término del segundo trimestre, para:",
+        "– Evaluar el progreso del alumnado en la consecución de los RA y las competencias profesionales y para la empleabilidad.",
+        "– Emitir calificaciones parciales numéricas informativas, de los módulos profesionales o de los RA, que serán tenidas en cuenta en la calificación final del módulo respectivo, conforme a los criterios que establezca la programación docente.",
+        "– Analizar la progresión de cada estudiante y del grupo.",
+        "– Atender los posibles informes e indicaciones del departamento de orientación.",
+        "9. Evaluación ordinaria Se realizará al finalizar las actividades lectivas del curso académico, para:",
+        "– Asignar la calificación final a cada uno de los módulos cursados o RA en caso de trabajar por metodologías activas de aprendizaje.",
+        "– Adoptar de manera colegiada las decisiones de promoción a que haya lugar.",
+        "– Realizar las propuestas de titulación del alumnado, o certificación en su caso.",
+        "– Proponer la presentación a la convocatoria extraordinaria del alumnado que no haya superado algún módulo profesional o resultado de aprendizaje, y que sea susceptible de superarlo en dicha convocatoria; y en todo caso, al alumnado que no haya podido realizar la formación en empresa por edad u otras circunstancias justificadas. En dicha propuesta, han de reflejarse exclusivamente los RA que no se han superado.",
+        "10. Evaluación extraordinaria Se realiza con posterioridad a una evaluación ordinaria del mismo carácter. Se puede realizar en el curso académico posterior."
+      ],
+      "modificadoPor": {
+        "norma": "orden-5-2026",
+        "identificador": "Orden 5/2026, de 1 de abril",
+        "desde": "2026-04-08",
+        "detalle": "Nueva redacción del apartado 8, sobre evaluaciones parciales."
+      }
+    },
+    {
+      "tipo": "articulo",
+      "numero": "13",
+      "titulo": "Garantías. Derecho a la evaluación objetiva",
+      "parrafos": [
+        "Se estará procedimentalmente a lo establecido en el título IV del Decreto 107/2022, de 5 de agosto, del Consell, por el que se establece la ordenación y el currículo de Educación Secundaria Obligatoria (DOGV 9403, 11.08.2022), la Orden 32/2011, de 20 de diciembre, de la Conselleria de Educación, Formación y Empleo, por la que se regula el derecho del alumnado a la objetividad en la evaluación, y se establece el procedimiento de reclamación de calificaciones obtenidas y de las decisiones de promoción, de certificación o de obtención del título académico que corresponda (DOGV 6680, 28.12.2011), la Ley 39/2015, de 1 de octubre, del procedimiento administrativo común de las administraciones públicas, así como cualquier otra norma de desarrollo o sustitución."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "14",
+      "titulo": "Promoción de curso en régimen presencial",
+      "parrafos": [
+        "1. Se podrá promocionar a segundo curso:",
+        "a) En ciclos de grado básico, cuando los módulos profesionales pendientes asociados a estándares de competencia no superen el 20% del horario semanal. Además, se deberá tener superado al menos uno de los ámbitos distintos del profesional, siempre que el equipo docente considere que el alumnado tiene suficientes garantías de continuar con éxito el segundo curso.",
+        "b) En ciclos de grado medio y superior, para matricularse y cursar los módulos profesionales que se imparten en el segundo curso el alumnado deberá superar todos los módulos de primer curso. No obstante, si el equipo docente así lo aconseja, podrá matricularse y cursar todos los módulos que se imparten en el segundo curso cuando los módulos pendientes de superación del primer curso tengan una carga horaria en su conjunto no superior a 240 horas.",
+        "2. Quien haya superado el 50% del total de las horas lectivas de primer curso podrá matricularse en módulos de segundo curso hasta completar un máximo de 1000 horas, siempre que exista disponibilidad después de finalizar el procedimiento de admisión en los centros y previa autorización de la Inspección de Educación.",
+        "3. Cuando un estudiante de primer curso no se incorpore al periodo de formación en empresa por causas debidamente justificadas y acreditadas, desarrollará el curso completo en el centro educativo y realizará, durante dicho periodo, actividades complementarias, extraescolares y/o de refuerzo, que le permitan acercarse al ámbito socio-laboral. En segundo curso, se estará a lo establecido en el artículo 9 del Real decreto 659/2023, de 18 de julio.",
+        "4. Para el alumnado que no haya superado algún módulo profesional o RA se establecerá un programa de recuperación individual en los siguientes términos:",
+        "a) El miembro del equipo educativo responsable de cada módulo profesional organizará un programa de recuperación que contendrá las actividades, el momento de su realización y criterios de evaluación dirigidas a la superación de los resultados no adquiridos. Todo ello estará recogido en la Programación General Anual del centro (PGA) y en las respectivas programaciones docentes.",
+        "b) El programa de recuperación se diseñará de forma diferenciada según los periodos o momentos de aplicación, que podrán ser los siguientes:",
+        "– Programa de recuperación de módulos y/o RA no superados en la evaluación ordinaria de primer o segundo curso.",
+        "– Programa de recuperación para alumnado de segundo curso con módulos no superados de primer curso. Se diseñará para que el alumnado lo pueda realizar simultáneamente con los módulos de segundo curso, teniendo en cuenta que no se garantizará su asistencia a las clases de los módulos pendientes."
+      ],
+      "modificadoPor": {
+        "norma": "orden-5-2026",
+        "identificador": "Orden 5/2026, de 1 de abril",
+        "desde": "2026-04-08",
+        "detalle": "Nueva redacción del apartado 1.b, sobre promoción a segundo en grado medio y superior."
+      }
+    },
+    {
+      "tipo": "articulo",
+      "numero": "15",
+      "titulo": "Titulación",
+      "parrafos": [
+        "1. La superación de cualquier oferta formativa requerirá la calificación positiva en todos los módulos profesionales que componen el ciclo formativo o curso de especialización.",
+        "2. El equipo educativo actuará de manera colegiada en la adopción de la decisión de obtención de la titulación, teniendo siempre en cuenta la competencia general del título y las competencias profesionales y para la empleabilidad e inserción en el ámbito socio-laboral.",
+        "3. Para la obtención del título correspondiente, será indispensable acreditar previamente los requisitos académicos necesarios para el acceso al ciclo formativo o curso de especialización."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "16",
+      "titulo": "Documentación de evaluación y calificación",
+      "parrafos": [
+        "1. Los documentos oficiales del proceso de evaluación y calificación están regulados por el art. 19 del Real decreto 659/2023, de 18 de julio y son los siguientes:",
+        "a) Expediente académico de la persona en formación.",
+        "b) Actas de evaluación.",
+        "c) Certificado académico de estudios.",
+        "2. La custodia y archivo del expediente académico y las actas de evaluación corresponde a los centros donde el alumnado esté matriculado.",
+        "3. Los centros de titularidad distinta de la Generalitat donde esté matriculado el alumno/a garantizarán la veracidad de los documentos oficiales de evaluación mediante la firma de la titularidad y acompañará una declaración responsable en la que declare que:",
+        "– El equipo educativo ha realizado la evaluación del alumnado conforme a la normativa establecida.",
+        "– El equipo educativo ha participado de manera colegiada en la adopción de la decisión de obtención de la titulación, teniendo siempre en cuenta la competencia general del título y las competencias profesionales y para la empleabilidad e inserción en el ámbito socio-laboral.",
+        "– El alumnado propuesto para la obtención del título tiene los requisitos académicos necesarios para el acceso al ciclo formativo o curso de especialización.",
+        "4. En los documentos oficiales constará la referencia a los reales decretos de título y las normas que regulan las enseñanzas correspondientes.",
+        "5. A efectos de supervisión y visado de los documentos de evaluación, en particular de las actas de evaluación y propuestas de expedición de títulos o máster, y sin perjuicio de sus plenas facultades académicas, los centros de titularidad distinta a la Generalitat estarán adscritos, en los términos que determinen las administraciones competentes en la gestión de cada grado, a centros públicos de Formación Profesional."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "17",
+      "titulo": "Expediente académico",
+      "parrafos": [
+        "1. El expediente académico es el documento oficial que incluye la información relativa al proceso de evaluación de cada persona en formación.",
+        "2. Se abrirá en el momento de iniciar los estudios.",
+        "3. Deberá incluir al menos:",
+        "– Datos de identificación del centro de estudios",
+        "– Datos personales de la persona en formación.",
+        "– Datos de la acción formativa actual.",
+        "– Los antecedentes académicos",
+        "– Calificaciones de los módulos cursados, de los RA en su caso, y convocatorias.",
+        "– Fecha de propuesta de título.",
+        "– Constará el requisito académico con el que se accedió a la Formación Profesional.",
+        "– El informe del periodo de formación en empresa u organismo equiparado."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "18",
+      "titulo": "Actas de evaluación",
+      "parrafos": [
+        "1. Las actas de evaluación ordinaria y extraordinaria son los documentos oficiales en los que se deja constancia de las calificaciones obtenidas por el alumnado y propuestas de promoción y titulación.",
+        "2. En cada sesión evaluación se levantará la correspondiente acta de evaluación:",
+        "– Acta de evaluación inicial sin calificaciones.",
+        "– Acta de evaluación parcial.",
+        "– Actas de evaluación ordinaria y extraordinaria.",
+        "3. El modelo oficial del acta se determinará mediante la resolución por la persona titular de la dirección general con competencias en materia de Formación Profesional.",
+        "4. En su cumplimentación, se tendrá en cuenta lo que dispone la normativa vigente sobre el registro de las calificaciones y anotaciones literales.",
+        "5. Se sellarán por el centro y requerirán el nombre, apellido y firma del equipo educativo que haya intervenido en la evaluación.",
+        "6. Los centros privados cumplimentarán la información necesaria para la realización del proceso de evaluación, de titulación y de certificación del alumnado, con las calificaciones del alumnado, tanto de las evaluaciones ordinarias como de las extraordinarias, de conformidad con lo dispuesto por el Decreto 51/2011, de 13 de mayo, del Consell, sobre el sistema de comunicación de datos a la conselleria competente en materia de educación, a través del sistema de información ITACA, de los centros docentes que imparten enseñanzas regladas no universitarias. Dicha información estará disponible, en el ámbito de sus competencias, para el centro público de adscripción, a los efectos de supervisión y visado de los documentos de evaluación, conforme a lo regulado por el art. 19.4 del Real decreto 659/2023, de 18 de julio."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "19",
+      "titulo": "Certificado académico oficial",
+      "parrafos": [
+        "1. El certificado académico es el documento oficial en el que se reflejan las calificaciones obtenidas por el alumnado hasta la fecha de emisión.",
+        "2. Será expedido por el titular de la secretaría del centro público en que se encuentre la persona matriculada o del centro público al que se encuentre adscrito el correspondiente centro privado, y siempre a petición de la persona interesada.",
+        "3. Deberá incluir al menos:",
+        "– Los datos de identificación del centro de estudios y del alumno/a.",
+        "– Identificación del ciclo formativo o curso de especialización.",
+        "– Calificaciones de los módulos cursados, o de los RA en su caso, convocatorias consumidas y año académico.",
+        "– Nota media en el caso de haber superado la enseñanza.",
+        "– Requisito académico con el que se accedió a los estudios."
+      ]
+    },
+    {
+      "tipo": "articulo",
+      "numero": "20",
+      "titulo": "Convalidaciones y exenciones",
+      "parrafos": [
+        "1. La tramitación de convalidaciones es competencia de los centros de titularidad de la Generalitat en los términos establecidos en el Real decreto 1085/2022, en el Real decreto 659/2023 y resto de normativa vigente, sin perjuicio de las competencias que correspondan al Ministerio competente en materia de Educación.",
+        "2. Es requisito estar matriculado en el módulo que se pretende convalidar.",
+        "3. En tanto no se resuelva la convalidación, el alumnado deberá asistir a clase y presentarse a las evaluaciones correspondientes.",
+        "4. Un módulo cursado y superado se considerará como «aprobado» con la calificación que hubiera obtenido en su momento en cualquier otro ciclo formativo que lo hubiera cursado. Se podrá utilizar para futuras convalidaciones.",
+        "5. Un módulo profesional convalidado no se puede utilizar para a su vez convalidar otros módulos profesionales.",
+        "6. La experiencia profesional y la formación no formal podrán ser aportadas para la convalidación de módulos profesionales sólo si han sido objeto de reconocimiento a través de un procedimiento de acreditación de competencias profesionales."
+      ]
+    },
+    {
+      "tipo": "disposicion",
+      "numero": "Primera",
+      "titulo": "Inspección de Educación",
+      "parrafos": [
+        "Corresponde a la Inspección de Educación el asesoramiento y la supervisión del desarrollo del proceso de evaluación y proponer la adopción de las medidas que contribuyan a mejorarlo. A tal fin, en sus visitas a los centros, los inspectores y las inspectoras se reunirán con el equipo directivo y el equipo educativo, dedicando especial atención a la valoración y análisis de los resultados de la evaluación del aprendizaje del alumnado y al cumplimiento de lo dispuesto en la presente orden en cuanto al proceso de enseñanza."
+      ],
+      "grupo": "Disposiciones adicionales"
+    },
+    {
+      "tipo": "disposicion",
+      "numero": "Segona",
+      "titulo": "Incidencia presupuestaria",
+      "parrafos": [
+        "La aplicación y el desarrollo de esta orden no tendrá ninguna incidencia en la dotación de los diferentes capítulos de gasto de los presupuestos de la Generalitat."
+      ],
+      "grupo": "Disposiciones adicionales"
+    },
+    {
+      "tipo": "disposicion",
+      "numero": "Única",
+      "titulo": "Evaluación de ciclos LOGSE y LOE",
+      "parrafos": [
+        "A las titulaciones extintas derivadas de la Ley orgánica 2/2006, de 3 de mayo, de educación, así como a las derivadas de la Ley orgánica 1/1990, de 3 de octubre, de ordenación general del sistema educativo, les seguirá siendo de aplicación la anterior normativa reguladora de evaluación, en tanto sigan impartiéndose."
+      ],
+      "grupo": "Disposiciones transitorias"
+    },
+    {
+      "tipo": "disposicion",
+      "numero": "Única",
+      "titulo": "Derogación normativa",
+      "parrafos": [
+        "1. Se deroga la Orden 79/2010, de 27 de agosto, de la Conselleria de Educación, por la que se regula la evaluación del alumnado de los ciclos formativos de Formación Profesional del sistema educativo en el ámbito territorial de la Comunitat Valenciana (DOGV 6348, 06.09.2010), con la excepción de lo estipulado en la disposición transitoria única de esta orden.",
+        "2. Quedan derogadas las disposiciones de igual o inferior rango que se opongan a lo dispuesto en esta orden."
+      ],
+      "grupo": "Disposición derogatoria"
+    },
+    {
+      "tipo": "disposicion",
+      "numero": "Primera",
+      "titulo": "Ejecución",
+      "parrafos": [
+        "Se faculta a la dirección general competente en materia de formación profesional y a las direcciones territoriales con competencias en materia de Educación para que dicten las instrucciones y resoluciones necesarias para la ejecución y aplicación de lo previsto en esta orden, dentro de sus respectivos ámbitos competenciales."
+      ],
+      "grupo": "Disposiciones finales"
+    },
+    {
+      "tipo": "disposicion",
+      "numero": "Segunda",
+      "titulo": "Entrada en vigor",
+      "parrafos": [
+        "La presente orden entrará en vigor al día siguiente al de su publicación en el Diari Oficial de la Generalitat Valenciana, con efectos académicos desde el curso 2024-2025. No obstante, tendrá efectos académicos retroactivos desde el 1 de septiembre de 2024 en todos los ciclos formativos y cursos de especialización ofertados al amparo de la nueva Ley orgánica 3/2022, de 31 de marzo. València, 22 de abril de 2025 José Antonio Rovira Jover Conseller de Educación, Cultura, Universidades y Ocupación"
+      ],
+      "grupo": "Disposiciones finales"
+    }
+  ]
+}

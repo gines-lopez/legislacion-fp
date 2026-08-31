@@ -499,6 +499,10 @@ const pintarPregunta = (pregunta, abierta) => `
       <p class="pregunta__respuesta">${escapar(pregunta.respuesta)}</p>
       <p class="pregunta__epigrafe">Epígrafe ${escapar(pregunta.epigrafe)} · ${escapar(pregunta.epigrafeTitulo)}</p>
       <blockquote class="pregunta__cita">${escapar(pregunta.cita)}</blockquote>
+      ${pregunta.veTambien ? `
+        <p class="pregunta__vertambien">
+          <a href="norma/${encodeURIComponent(pregunta.veTambien.norma)}.html${pregunta.veTambien.articulo ? `#articulo-${encodeURIComponent(pregunta.veTambien.articulo)}` : ''}">${escapar(pregunta.veTambien.etiqueta)}</a>
+        </p>` : ''}
     </div>
   </details>`;
 
@@ -601,6 +605,11 @@ const pintarFicha = (norma, volverA, abierta) => {
 
         <section class="apartado">
           <h2 class="apartado__rotulo">Texto oficial</h2>
+          ${norma.texto ? `
+            <p class="ficha__transcripcion">
+              <a href="norma/${encodeURIComponent(norma.id)}.html">Leer el articulado aquí</a>
+              <span class="ficha__transcripcion-nota">Transcripción, no texto auténtico</span>
+            </p>` : ''}
           <ul class="enlaces">${norma.enlaces.map((enlace) => `
             <li>${enlaceExterno(enlace.url, enlace.etiqueta, enlace.formato === 'pdf' ? 'PDF' : '')}</li>`).join('')}
           </ul>

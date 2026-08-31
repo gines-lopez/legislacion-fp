@@ -183,3 +183,21 @@ Antes de declarar que una norma deroga o modifica a otra se consulta la API del 
 **No sustituye a D9.** La API confirma que la disposición existe y qué relaciones tiene, pero el documento se descarga igual y se comprueba que su cabecera CVE coincide con la signatura. Son dos cosas distintas: que el dato exista en el portal y que el enlace que se publica aquí lleve al documento correcto.
 
 **Lo que la API no da:** el *alcance*. Dice «Deroga», nunca «deroga salvo para los ciclos LOGSE, que siguen rigiéndose por ella». Ese matiz sigue saliendo de leer la norma y sigue viviendo en el `resumen`. Ver «Lo que el modelo no captura» en [MODELO-DATOS.md](MODELO-DATOS.md).
+
+## D22 · El articulado se publica consolidado, y se dice que la consolidación es propia
+
+La página de la Orden 8/2025 reproduce sus 20 artículos con los apartados 12.8 y 14.1.b en la redacción que les dio la Orden 5/2026, señalados con trazo doble y una nota que dice qué norma los cambió y desde cuándo.
+
+**Por qué consolidar y no reproducir el original.** Porque el DOGV todavía no lo ha hecho. Su «versión vigente» de la Orden 8/2025 es la inicial de abril de 2025 —la propia API marca la disposición como pendiente de consolidar—, así que quien la consulte hoy leerá que a segundo se promociona «cuando se haya superado al menos el 80 % del total de las horas lectivas del primer curso», criterio que la Orden 5/2026 sustituyó por «todos los módulos de primero, salvo que lo pendiente no supere las 240 horas». Son dos reglas distintas, y la que el diario oficial ofrece como vigente es la que ya no se aplica.
+
+**Y por qué decirlo con todas las letras.** Adelantarse al diario oficial es útil y es exactamente lo que este sitio puede aportar, pero deja de serlo en el momento en que se presenta como si fuera oficial. El aviso de la cabecera dice que la consolidación es propia, que el DOGV mantiene la redacción anterior y que ante cualquier duda manda lo publicado.
+
+**Se reabre si:** el DOGV consolida. Entonces esta página deja de ser una aportación y pasa a ser una copia: habría que revisarla contra la consolidación oficial y decidir si sigue teniendo sentido mantenerla.
+
+## D23 · Una sola página de articulado sirve para todas
+
+`docs/norma/<id>.html` es un armazón sin contenido y `assets/js/norma.js` deduce de qué norma se trata a partir del nombre del fichero. Transcribir otra norma es escribir su JSON, copiar el HTML cambiándole el nombre y poner `texto: true` en `normas.json`.
+
+**Por qué.** La fase 4 va a repetirse norma a norma durante años. Si cada página llevara su propio script o su contenido en el HTML, la vigésima sería inmantenible y ninguna se parecería a las demás. Así el coste de la siguiente es el de escribir los datos, que es donde está el trabajo de verdad.
+
+**Coherente con D3:** el articulado es contenido y vive en `data/texto/`, no en el HTML.

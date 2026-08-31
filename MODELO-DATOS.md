@@ -40,6 +40,7 @@
 | `estado` | enum | sí | `vigente`, `modificada`, `derogada`. `modificada` significa vigente pero con reformas: sigue siendo aplicable. |
 | `modificadaPor` / `modifica` / `deroga` | array de `id` | sí (pueden ir vacíos) | Relaciones entre normas. |
 | `enlaces` | array | sí, mínimo uno | `etiqueta` (`DOGV`, `PDF del DOGV`, `BOE`, `CEICE`, `Corrección de errores`), `url` y `formato` (`pdf` o `html`). Ver D9 en [DECISIONES.md](DECISIONES.md). |
+| `texto` | booleano | no | `true` si la norma tiene el articulado transcrito. El fichero es `docs/data/texto/<id>.json` y la página, `docs/norma/<id>.html`: ambas rutas se derivan del `id`. Ver D22 en [DECISIONES.md](DECISIONES.md). |
 | `consulta` | booleano | no | `true` si la norma tiene preguntas frecuentes. El fichero es `docs/data/consulta/<id>.json`: la ruta se deriva del `id`, no se escribe. Ver D18 en [DECISIONES.md](DECISIONES.md). |
 | `parteDe` | `id` | no | Solo en documentos que **no son norma independiente**, sino parte del texto que los publica: los anexos de una resolución. La ficha de la madre los lista, y la del hijo declara de quién es parte. Ver D16 en [DECISIONES.md](DECISIONES.md). |
 | `etiquetas` | array de string | no | Kebab-case, transversales a las secciones: `dual`, `grado-basico`, `fct`, `curriculo`, `optatividad`. |
@@ -64,9 +65,10 @@ Deben cumplirse siempre; conviene comprobarlos tras cada tanda de cambios.
 6. `enlaces` con al menos una entrada, y ninguna URL a un dominio distinto de `dogv.gva.es`, `boe.es` o `ceice.gva.es` sin justificarlo.
 7. Dos normas del mismo `tipo` sin `numero` y sin `fecha` distinta se mostrarían con el mismo identificador. Si ocurre, hay que darles `numero`.
 8. Todo `parteDe` apunta a una norma que existe, y ninguna norma es parte de sí misma.
+10. Toda norma con `texto: true` tiene su fichero en `docs/data/texto/`, ninguna pieza sin párrafos, y todo `modificadoPor` apunta a una norma que existe.
 9. Toda norma con `consulta: true` tiene su fichero en `docs/data/consulta/`, sin identificadores repetidos, y ninguna pregunta sin `epigrafe` ni sin `cita`.
 
-Los invariantes 1 a 5, el 8 y el 9 los comprueba sola la página [`diagnostico.html`](docs/diagnostico.html) cada vez que se abre: basta cargarla tras editar el JSON.
+Los invariantes 1 a 5 y del 8 al 10 los comprueba sola la página [`diagnostico.html`](docs/diagnostico.html) cada vez que se abre: basta cargarla tras editar el JSON.
 
 ## Lo que el modelo no captura
 
@@ -132,6 +134,42 @@ Las preguntas frecuentes de una norma. La norma declara `consulta: true` y el fi
 **Invariante 9:** ninguna pregunta sin `epigrafe` y sin `cita`, y ninguna `cita` que no aparezca literalmente en el texto publicado. Una respuesta sin respaldo es exactamente el daño que este sitio existe para evitar.
 
 **Cómo se comprueba la literalidad.** Se extrae el texto del PDF oficial, se le quita la maquetación del diario —que se cuela en mitad de las frases al cruzar página— y se compara cada `cita` ignorando los espacios, porque la extracción los mete dentro de las palabras. Las 50 preguntas de la Resolución de 16 de julio de 2026 se generaron así y las 50 citas quedaron verificadas. La página [`diagnostico.html`](docs/diagnostico.html) comprueba después lo que puede comprobar en el navegador: que el fichero exista, que no haya identificadores repetidos y que ninguna respuesta se quede sin epígrafe ni sin cita.
+
+### `docs/data/texto/<id>.json`
+
+El articulado de una norma, transcrito. La norma declara `texto: true`.
+
+```json
+{
+  "norma": "orden-8-2025",
+  "revisado": "2026-08-31",
+  "consolidacion": {
+    "propia": true,
+    "aplicadas": [{ "norma": "orden-5-2026", "identificador": "Orden 5/2026, de 1 de abril", "desde": "2026-04-08" }],
+    "aviso": "…"
+  },
+  "articulado": [
+    {
+      "tipo": "articulo",
+      "numero": "14",
+      "titulo": "Promoción de curso en régimen presencial",
+      "parrafos": ["1. Se podrá promocionar a segundo curso:", "…"],
+      "modificadoPor": {
+        "norma": "orden-5-2026",
+        "identificador": "Orden 5/2026, de 1 de abril",
+        "desde": "2026-04-08",
+        "detalle": "Nueva redacción del apartado 1.b, sobre promoción a segundo en grado medio y superior."
+      }
+    }
+  ]
+}
+```
+
+`tipo` es `articulo` o `disposicion`; las disposiciones llevan además `grupo` («Disposiciones adicionales», «Disposición derogatoria»…). Cada pieza tiene su ancla derivada del número: `#articulo-14`.
+
+**Invariante 10:** cada párrafo del articulado aparece **literalmente** en el PDF del que procede. Los párrafos no modificados, en el de la propia norma; los que una norma posterior haya cambiado, en el PDF de esa norma posterior. Es la misma comprobación que la de las citas de la consulta y se hace igual: se compara ignorando los espacios, porque la extracción del PDF los mete dentro de las palabras, y quitando antes la maquetación del diario.
+
+**Cuando la consolidación es propia hay que decirlo.** `consolidacion.propia` con su `aviso` sale destacado en la cabecera de la página. Ver D22.
 
 ### `docs/data/recursos.json`
 

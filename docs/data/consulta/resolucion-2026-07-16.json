@@ -19,7 +19,12 @@
       "respuesta": "Con el modelo del anexo I de las instrucciones, ante la dirección del centro. La dirección resuelve en el plazo de un mes desde el día siguiente a la presentación, oídos el equipo docente y el departamento de orientación, y comunica la resolución con el modelo del anexo II. El silencio es estimatorio.",
       "epigrafe": "8.1",
       "epigrafeTitulo": "Anulación de matrícula a instancia de la persona interesada",
-      "cita": "La dirección del centro de estudios resolverá la solicitud en el plazo de un mes, a contar desde el día siguiente al de la presentación, oídos, en su caso, el equipo docente y el departamento de orientación, mediante una resolución que se comunicará a la persona interesada según el modelo del anexo II de estas instrucciones."
+      "cita": "La dirección del centro de estudios resolverá la solicitud en el plazo de un mes, a contar desde el día siguiente al de la presentación, oídos, en su caso, el equipo docente y el departamento de orientación, mediante una resolución que se comunicará a la persona interesada según el modelo del anexo II de estas instrucciones.",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "8",
+        "etiqueta": "Artículo 8 de la Orden 8/2025"
+      }
     },
     {
       "id": "anulacion-computa-matricula",
@@ -28,7 +33,12 @@
       "respuesta": "Por regla general sí, salvo dos supuestos: que se pida antes del mes de enero del año académico en curso, o antes de iniciar el tercer trimestre por alguno de los motivos justificados de renuncia a convocatoria del apartado 12.5.",
       "epigrafe": "8.1",
       "epigrafeTitulo": "Anulación de matrícula a instancia de la persona interesada",
-      "cita": "La anulación de matrícula a instancias de la persona interesada computará en el cálculo de matrículas consumidas, salvo que solicite:"
+      "cita": "La anulación de matrícula a instancias de la persona interesada computará en el cálculo de matrículas consumidas, salvo que solicite:",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "8",
+        "etiqueta": "Artículo 8 de la Orden 8/2025"
+      }
     },
     {
       "id": "anulacion-y-convocatorias",
@@ -37,7 +47,12 @@
       "respuesta": "No. Concedida la anulación del curso en presencial, o de todos los módulos en semipresencial, no se computan las convocatorias a las que esa matrícula habría dado derecho. Lo que sí se pierde es el derecho de reserva de plaza para cursos posteriores.",
       "epigrafe": "8.1",
       "epigrafeTitulo": "Anulación de matrícula a instancia de la persona interesada",
-      "cita": "En el caso de concesión de la anulación de matrícula del curso en régimen presencial o de todos los módulos en régimen semipresencial, no se computarán las convocatorias a las que habría dado derecho la matrícula."
+      "cita": "En el caso de concesión de la anulación de matrícula del curso en régimen presencial o de todos los módulos en régimen semipresencial, no se computarán las convocatorias a las que habría dado derecho la matrícula.",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "8",
+        "etiqueta": "Artículo 8 de la Orden 8/2025"
+      }
     },
     {
       "id": "anulacion-pierde-plaza",
@@ -46,7 +61,12 @@
       "respuesta": "Sí. La anulación y la pérdida de matrícula implican perder la plaza escolar del curso y de todos los módulos matriculados, así que para continuar después hay que concurrir de nuevo al proceso de admisión.",
       "epigrafe": "8",
       "epigrafeTitulo": "Anulación y pérdida de matrícula",
-      "cita": "La anulación y pérdida de matrícula implican la pérdida de plaza escolar del curso y de todos los módulos en que se esté matriculado. Para continuar los estudios posteriormente, hay que concurrir de nuevo al proceso de admisión."
+      "cita": "La anulación y pérdida de matrícula implican la pérdida de plaza escolar del curso y de todos los módulos en que se esté matriculado. Para continuar los estudios posteriormente, hay que concurrir de nuevo al proceso de admisión.",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "8",
+        "etiqueta": "Artículo 8 de la Orden 8/2025"
+      }
     },
     {
       "id": "perdida-matricula-faltas",
@@ -55,7 +75,12 @@
       "respuesta": "Al alcanzar el 15 % de horas de inasistencia por faltas injustificadas del curso matriculado, o al no asistir durante 10 días lectivos consecutivos. Y esa pérdida sí computa como matrícula consumida.",
       "epigrafe": "8.2",
       "epigrafeTitulo": "Pérdida de matrícula por inasistencia",
-      "cita": "Con carácter general, la pérdida de matrícula por inasistencia tendrá lugar siempre que se alcance el 15% de horas de inasistencia por faltas injustificadas en el curso matriculado o por no asistir durante 10 días lectivos consecutivos."
+      "cita": "Con carácter general, la pérdida de matrícula por inasistencia tendrá lugar siempre que se alcance el 15% de horas de inasistencia por faltas injustificadas en el curso matriculado o por no asistir durante 10 días lectivos consecutivos.",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "8",
+        "etiqueta": "Artículo 8 de la Orden 8/2025"
+      }
     },
     {
       "id": "perdida-matricula-base-calculo",
@@ -82,7 +107,12 @@
       "respuesta": "Al menos el 85 %, ajustándose a la Orden 8/2025 de evaluación. Los centros están obligados a registrar las faltas de asistencia a las actividades de formación.",
       "epigrafe": "8.4",
       "epigrafeTitulo": "Régimen presencial",
-      "cita": "La presencialidad será de al menos el 85% y se debe ajustar a lo que regula la Orden 8/2025, de 22 de abril, de evaluación en FP."
+      "cita": "La presencialidad será de al menos el 85% y se debe ajustar a lo que regula la Orden 8/2025, de 22 de abril, de evaluación en FP.",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "8",
+        "etiqueta": "Artículo 8 de la Orden 8/2025"
+      }
     },
     {
       "id": "norma-evaluacion",
@@ -91,7 +121,12 @@
       "respuesta": "En los ciclos LFP, el Real Decreto 659/2023 y la Orden 8/2025 de evaluación, modificada por la Orden 5/2026. En los ciclos LOGSE sigue aplicándose la Orden 79/2010, por las disposiciones transitoria y derogatoria de la propia Orden 8/2025.",
       "epigrafe": "9.1",
       "epigrafeTitulo": "Proceso de evaluación",
-      "cita": "En los ciclos derivados de la LFP, será de aplicación lo dispuesto en el Real Decreto 659/2023, de 18 de julio y en la Orden 8/2025, de 22 de abril, modificada por la Orden 5/2026, de 1 de abril."
+      "cita": "En los ciclos derivados de la LFP, será de aplicación lo dispuesto en el Real Decreto 659/2023, de 18 de julio y en la Orden 8/2025, de 22 de abril, modificada por la Orden 5/2026, de 1 de abril.",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": null,
+        "etiqueta": "Orden 8/2025, de evaluación"
+      }
     },
     {
       "id": "que-queda-de-loe",
@@ -127,7 +162,12 @@
       "respuesta": "Por el procedimiento del título IV del Decreto 107/2022 y de la Orden 32/2011, que regula el derecho a la objetividad en la evaluación y la reclamación de calificaciones y de decisiones de promoción y titulación, con la Ley 39/2015 de fondo. En centros privados se aplica su normativa específica.",
       "epigrafe": "9.4",
       "epigrafeTitulo": "Garantías. Derecho a la evaluación objetiva",
-      "cita": "En el caso de reclamaciones relativas a la evaluación en centros de titularidad privada, se aplicará su normativa específica."
+      "cita": "En el caso de reclamaciones relativas a la evaluación en centros de titularidad privada, se aplicará su normativa específica.",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "13",
+        "etiqueta": "Artículo 13 de la Orden 8/2025"
+      }
     },
     {
       "id": "perdida-evaluacion-continua",
@@ -136,7 +176,12 @@
       "respuesta": "Solo en los módulos profesionales, y en los términos del apartado 3 del artículo 7 de la Orden 8/2025. En los ámbitos no cabe: se rigen por el Decreto 107/2022 de ESO, que no contempla la pérdida de evaluación continua.",
       "epigrafe": "9.5",
       "epigrafeTitulo": "Pérdida del derecho a evaluación continua",
-      "cita": "Respecto a los ámbitos, se regirán por el Decreto 107/2022 de ESO y por tanto no está contemplada la pérdida de evaluación continua."
+      "cita": "Respecto a los ámbitos, se regirán por el Decreto 107/2022 de ESO y por tanto no está contemplada la pérdida de evaluación continua.",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "7",
+        "etiqueta": "Artículo 7 de la Orden 8/2025"
+      }
     },
     {
       "id": "promocion-medio-superior",
@@ -145,7 +190,12 @@
       "respuesta": "Con todos los módulos de primero superados. Como excepción, si el equipo docente lo aconseja, se puede matricular y cursar todo segundo cuando lo pendiente de primero no supere las 240 horas en conjunto.",
       "epigrafe": "10",
       "epigrafeTitulo": "Promoción de curso en régimen presencial",
-      "cita": "No obstante, si el equipo docente así lo aconseja, podrá matricularse y cursar todos los módulos que se imparten en el segundo curso cuando los módulos pendientes de superación del primer curso tengan una carga horaria en su conjunto no superior a 240 horas."
+      "cita": "No obstante, si el equipo docente así lo aconseja, podrá matricularse y cursar todos los módulos que se imparten en el segundo curso cuando los módulos pendientes de superación del primer curso tengan una carga horaria en su conjunto no superior a 240 horas.",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "14",
+        "etiqueta": "Artículo 14 de la Orden 8/2025"
+      }
     },
     {
       "id": "promocion-grado-basico",
@@ -154,7 +204,12 @@
       "respuesta": "Cuando los módulos pendientes asociados a estándares de competencia no superen el 20 % del horario semanal, y además se haya superado al menos uno de los ámbitos distintos del profesional, siempre que el equipo docente vea garantías de continuar con éxito.",
       "epigrafe": "10",
       "epigrafeTitulo": "Promoción de curso en régimen presencial",
-      "cita": "En ciclos de Grado Básico, cuando los módulos profesionales pendientes asociados a estándares de competencia no superen el 20% del horario semanal."
+      "cita": "En ciclos de Grado Básico, cuando los módulos profesionales pendientes asociados a estándares de competencia no superen el 20% del horario semanal.",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "14",
+        "etiqueta": "Artículo 14 de la Orden 8/2025"
+      }
     },
     {
       "id": "programa-recuperacion",
@@ -163,7 +218,12 @@
       "respuesta": "Sí. El responsable de cada módulo organiza un programa con actividades, momento de realización y criterios de evaluación, y debe quedar recogido en la PGA y en las programaciones docentes. Para el alumnado de segundo con módulos de primero, se diseña para poder simultanearlo, advirtiendo de que no se garantiza la asistencia a las clases de los pendientes.",
       "epigrafe": "10",
       "epigrafeTitulo": "Promoción de curso en régimen presencial",
-      "cita": "El miembro del equipo educativo responsable de cada módulo profesional organizará un programa de recuperación que contendrá las actividades, el momento de su realización y criterios de evaluación dirigidas a la superación de los resultados no adquiridos."
+      "cita": "El miembro del equipo educativo responsable de cada módulo profesional organizará un programa de recuperación que contendrá las actividades, el momento de su realización y criterios de evaluación dirigidas a la superación de los resultados no adquiridos.",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "14",
+        "etiqueta": "Artículo 14 de la Orden 8/2025"
+      }
     },
     {
       "id": "calificaciones-numericas",
@@ -172,7 +232,12 @@
       "respuesta": "Los módulos, con números del 1 al 10 sin decimales. Los ámbitos de Comunicación y Ciencias Sociales y de Ciencias Aplicadas de grado básico, con calificación no numérica, y en ese caso no se obtiene nota media del ciclo. En ITACA el ámbito se califica de forma global y sus materias quedan como «no calificables».",
       "epigrafe": "11.1",
       "epigrafeTitulo": "Calificaciones de los módulos profesionales y nota final del ciclo",
-      "cita": "siendo numéricas entre 1 y 10, sin decimales para los módulos profesionales y no numérica para los ámbitos Comunicación y Ciencias Sociales y de Ciencias Aplicadas de los ciclos de Grado Básico, sin que en este último caso se obtenga nota media del ciclo formativo."
+      "cita": "siendo numéricas entre 1 y 10, sin decimales para los módulos profesionales y no numérica para los ámbitos Comunicación y Ciencias Sociales y de Ciencias Aplicadas de los ciclos de Grado Básico, sin que en este último caso se obtenga nota media del ciclo formativo.",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "5",
+        "etiqueta": "Artículo 5 de la Orden 8/2025"
+      }
     },
     {
       "id": "proyecto-intermodular-nota",
@@ -190,7 +255,12 @@
       "respuesta": "En grado D, dos por curso académico, sin pasar del máximo de cuatro que fija el artículo 18.13 del Real Decreto 659/2023. Los grados E tienen dos en total por módulo.",
       "epigrafe": "12.1",
       "epigrafeTitulo": "Número de convocatorias",
-      "cita": "el alumnado dispondrá de dos convocatorias en el curso académico para la evaluación y calificación de los módulos profesionales cursados, sin poder superar el máximo de cuatro convocatorias establecido en el art.18.13 del Real Decreto 659/2023, de 18 de julio. Los grados E contarán con un total de dos convocatorias para cada módulo."
+      "cita": "el alumnado dispondrá de dos convocatorias en el curso académico para la evaluación y calificación de los módulos profesionales cursados, sin poder superar el máximo de cuatro convocatorias establecido en el art.18.13 del Real Decreto 659/2023, de 18 de julio. Los grados E contarán con un total de dos convocatorias para cada módulo.",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "9",
+        "etiqueta": "Artículo 9 de la Orden 8/2025"
+      }
     },
     {
       "id": "permanencia-maxima",
@@ -208,7 +278,12 @@
       "respuesta": "Una convocatoria extraordinaria para quien haya agotado el máximo. Se puede autorizar por enfermedad o discapacidad acreditada documentalmente, o por situaciones sobrevenidas que hayan condicionado o impedido el desarrollo ordinario del curso, motivadas y acreditadas. El procedimiento es el del artículo 10 de la Orden 8/2025.",
       "epigrafe": "12.1",
       "epigrafeTitulo": "Número de convocatorias",
-      "cita": "se podrá autorizar una convocatoria extraordinaria de gracia a quienes hayan agotado el número máximo de convocatorias por uno de estos motivos"
+      "cita": "se podrá autorizar una convocatoria extraordinaria de gracia a quienes hayan agotado el número máximo de convocatorias por uno de estos motivos",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "10",
+        "etiqueta": "Artículo 10 de la Orden 8/2025"
+      }
     },
     {
       "id": "agotar-convocatorias",
@@ -244,7 +319,12 @@
       "respuesta": "Enfermedad acreditada documentalmente, motivos de conciliación laboral, u otras circunstancias individualizadas que valore la dirección del centro, justificadas y recogidas en las normas de organización y funcionamiento. Se pide con el modelo del anexo III y por el procedimiento del artículo 9 de la Orden 8/2025.",
       "epigrafe": "12.5",
       "epigrafeTitulo": "Renuncia a convocatoria",
-      "cita": "se podrá renunciar a la convocatoria ordinaria según el modelo del anexo III de estas instrucciones siempre que se justifique alguno de estos motivos:"
+      "cita": "se podrá renunciar a la convocatoria ordinaria según el modelo del anexo III de estas instrucciones siempre que se justifique alguno de estos motivos:",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "9",
+        "etiqueta": "Artículo 9 de la Orden 8/2025"
+      }
     },
     {
       "id": "requisitos-titulacion",
@@ -253,7 +333,12 @@
       "respuesta": "Calificación positiva en todos los módulos del ciclo, decisión colegiada del equipo educativo y acreditar previamente los requisitos académicos de acceso. Y, expresamente, haber superado todos los módulos de primero y de segundo incluyendo todas las horas de formación en empresa.",
       "epigrafe": "13",
       "epigrafeTitulo": "Titulación",
-      "cita": "para que un alumno o alumna titule, será necesario que haya superado todos los módulos de primer y segundo curso, incluyendo todas las horas de Formación en Empresa."
+      "cita": "para que un alumno o alumna titule, será necesario que haya superado todos los módulos de primer y segundo curso, incluyendo todas las horas de Formación en Empresa.",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "15",
+        "etiqueta": "Artículo 15 de la Orden 8/2025"
+      }
     },
     {
       "id": "convalidacion-plazo",
@@ -442,7 +527,12 @@
       "respuesta": "Hasta seis veces del mismo módulo en los grados D y cuatro en los grados E, según el artículo 9.7 de la Orden 8/2025.",
       "epigrafe": "16.1",
       "epigrafeTitulo": "Alumnado con necesidades específicas de apoyo educativo. Consideraciones generales",
-      "cita": "el alumnado con necesidades educativas especiales se podrá presentar a la evaluación y calificación de un mismo módulo profesional hasta un máximo de 6 veces en los grados D y 4 veces en los grados E."
+      "cita": "el alumnado con necesidades educativas especiales se podrá presentar a la evaluación y calificación de un mismo módulo profesional hasta un máximo de 6 veces en los grados D y 4 veces en los grados E.",
+      "veTambien": {
+        "norma": "orden-8-2025",
+        "articulo": "9",
+        "etiqueta": "Artículo 9 de la Orden 8/2025"
+      }
     },
     {
       "id": "grado-basico-anulacion-eso",

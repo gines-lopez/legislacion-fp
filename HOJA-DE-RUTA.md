@@ -171,3 +171,22 @@ El portal del DOGV tiene una API que hasta ahora no se estaba usando y que ahorr
 El `analisisJuridico` es lo importante: da las relaciones dichas por el propio diario, en vez de deducidas leyendo el preámbulo. Es de donde salen las tres relaciones nuevas y la respuesta sobre la Orden 78/2010.
 
 Aun así se mantiene la comprobación de D9: los tres PDF se descargaron y se confirmó que su cabecera CVE coincide con la signatura. Que la API responda no basta.
+
+### La página de la Orden 8/2025
+
+Primera transcripción de articulado: **20 artículos y 6 disposiciones, 174 párrafos**, en `docs/norma/orden-8-2025.html` desde `docs/data/texto/orden-8-2025.json`. Cada pieza tiene su ancla (`#articulo-14`), el índice es navegable y se pliega en móvil, y la ficha de la norma la enlaza desde «Texto oficial» advirtiendo de que es transcripción, no texto auténtico.
+
+**Lo que se descubrió al hacerla, y que es la razón de que valga la pena.** El DOGV no ha consolidado la Orden 5/2026: su «versión vigente» de la Orden 8/2025 es la inicial de abril de 2025.
+
+| Artículo 14.1.b · promoción a segundo en grado medio y superior | |
+|---|---|
+| Lo que el DOGV da como vigente | «cuando se haya superado al menos el 80 % del total de las horas lectivas del primer curso» |
+| Lo que se aplica desde el 8 de abril de 2026 | «deberá superar todos los módulos de primer curso… salvo que lo pendiente no supere las 240 horas» |
+
+Quien consulte el texto consolidado oficial aplicará hoy un criterio de promoción derogado. Lo mismo, más leve, en el 12.8, al que le falta que las calificaciones parciales son «informativas». La página publica la redacción vigente, la marca con trazo doble —el mismo signo que «modificada» en el listado— y avisa en cabecera de que la consolidación es propia. Ver D22.
+
+**Verificado:** los 174 párrafos aparecen literalmente en su PDF de origen; los dos modificados, en el PDF de la Orden 5/2026. Es el invariante 10 de [MODELO-DATOS.md](MODELO-DATOS.md).
+
+**Circuito cerrado con la FAQ:** 18 de las 50 preguntas se apoyan en la Orden 8/2025 y ahora enlazan a su artículo concreto. La pregunta sobre promoción lleva al artículo 14, que está señalado como modificado.
+
+**La siguiente transcripción cuesta poco:** escribir su JSON, copiar el HTML con otro nombre y poner `texto: true` en la norma. El script deduce de cuál se trata por el nombre del fichero (D23).

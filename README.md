@@ -23,7 +23,7 @@ Este proyecto parte de esa misma información y le añade lo que le falta:
 
 En uso. El sitio contiene las 40 normas de las seis secciones, con su ámbito, su estado de vigencia y sus relaciones, y la portada ya es la herramienta de consulta: buscador instantáneo, filtros con recuento y ficha por norma.
 
-Las **instrucciones de inicio de curso** tienen además 50 preguntas frecuentes dentro de su ficha: cada respuesta indica el epígrafe del que sale y reproduce la frase literal de la norma en que se apoya, y todas se verificaron una a una contra el PDF del DOGV. Ver [HOJA-DE-RUTA.md](HOJA-DE-RUTA.md).
+La **Orden 8/2025 de evaluación** tiene su articulado transcrito y consolidado con la Orden 5/2026, que el DOGV todavía no ha incorporado a su versión vigente. Las **instrucciones de inicio de curso** tienen además 50 preguntas frecuentes dentro de su ficha: cada respuesta indica el epígrafe del que sale y reproduce la frase literal de la norma en que se apoya, y todas se verificaron una a una contra el PDF del DOGV. Ver [HOJA-DE-RUTA.md](HOJA-DE-RUTA.md).
 
 ## Cómo está hecho
 
@@ -33,6 +33,7 @@ HTML, CSS y JavaScript de navegador. Sin backend, sin dependencias, sin paso de 
 docs/                       lo que se publica (GitHub Pages: main + /docs)
 ├── index.html              portada y ficha de norma
 ├── diagnostico.html        comprueba el despliegue y valida los datos
+├── norma/                  articulado transcrito, una página por norma
 ├── assets/
 │   ├── css/base.css
 │   ├── js/app.js           buscador, filtros, enrutado y ficha
@@ -42,7 +43,8 @@ docs/                       lo que se publica (GitHub Pages: main + /docs)
     ├── normas.json         fuente de verdad
     ├── meta.json           fecha de última revisión
     ├── recursos.json       lo que la fuente enlaza y no es norma
-    └── consulta/           preguntas frecuentes, una norma por fichero
+    ├── consulta/           preguntas frecuentes, una norma por fichero
+    └── texto/              articulado transcrito, una norma por fichero
 ```
 
 Toda la vista vive en la dirección, así que cualquier consulta se puede pegar en un correo:
@@ -56,6 +58,7 @@ Toda la vista vive en la dirección, así que cualquier consulta se puede pegar 
 | `?n=decreto-114-2025` | La ficha de esa norma, con sus relaciones |
 | `?n=resolucion-2026-07-16` | Las instrucciones del curso, con sus 50 preguntas |
 | `?n=resolucion-2026-07-16&p=exencion-experiencia` | Directamente esa respuesta, abierta |
+| `norma/orden-8-2025.html#articulo-14` | El artículo 14 de la Orden de evaluación |
 
 En producción el sitio cuelga de `/legislacion-fp/`, así que **todas las rutas internas son relativas**. Una ruta absoluta funciona si sirves `docs/` en la raíz y revienta al publicar, que es la forma más fácil de perder una tarde. Por eso el servidor local imita el subpath en vez de servir `docs/` a pelo. Abrirlo como `file://` tampoco vale: el navegador bloquea la carga del JSON.
 

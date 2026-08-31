@@ -515,7 +515,7 @@ body {
 
 /* La ficha se centra y ocupa más de la mitad de la pantalla, pero nunca menos
    que la medida de lectura: por debajo de eso el texto legal no se lee. */
-#vista-ficha {
+#vista-ficha, .norma__cuerpo, .cabecera--norma, .contenido:has(.norma__cuerpo) > .cargando {
   width: min(100%, max(56vw, var(--medida)));
   margin-inline: auto;
   /* .hoja reserva el canal a su izquierda, así que centrar dentro de ella deja
@@ -615,6 +615,34 @@ body {
   text-transform: uppercase;
   color: var(--tinta-media);
 }
+
+/* El articulado transcrito va antes que los enlaces al diario, pero avisando
+   de lo que es: ayuda a la lectura, no texto auténtico (D7). */
+.ficha__transcripcion {
+  margin: 0 0 calc(var(--paso) * 4);
+  padding-bottom: calc(var(--paso) * 3);
+  border-bottom: 1px solid var(--filete);
+  font-family: var(--fuente-ui);
+  font-size: 0.9375rem;
+}
+
+.ficha__transcripcion-nota {
+  display: block;
+  margin-top: calc(var(--paso) * 1);
+  font-family: var(--fuente-dato);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.pregunta__vertambien {
+  margin: calc(var(--paso) * 3) 0 0;
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+}
+
+.pregunta__vertambien::before { content: "→"; margin-right: 0.6ch; color: var(--tinta-tenue); }
 
 .enlaces { margin: 0; padding: 0; list-style: none; }
 .enlaces li + li { margin-top: calc(var(--paso) * 2); }
@@ -789,6 +817,122 @@ a.materia:hover, a.materia:focus-visible { border-color: var(--tinta); color: va
 .parte__nombre { margin: calc(var(--paso) * 1) 0 0; font-size: 0.9375rem; line-height: 1.45; }
 .parte__resumen { margin: calc(var(--paso) * 2) 0 0; font-size: 0.875rem; line-height: 1.55; color: var(--tinta-media); }
 
+/* --- Articulado de una norma ----------------------------------------------- */
+
+.cabecera--norma { display: block; }
+.cabecera--norma .volver { margin: calc(var(--paso) * 5) 0 calc(var(--paso) * 6); }
+
+.norma__cuerpo { margin-top: calc(var(--paso) * 6); }
+
+/* Cada artículo cuelga del canal, como las normas del listado, pero con filete
+   fino: aquí el trazo no codifica vigencia, solo separa. El artículo que una
+   norma posterior ha modificado sí lleva trazo doble, que es el mismo signo
+   que «modificada» en el listado. */
+.articulo {
+  padding: calc(var(--paso) * 5) 0 calc(var(--paso) * 6) calc(var(--canal) - 1px);
+  border-left: 1px solid var(--filete);
+}
+
+.articulo + .articulo { padding-top: calc(var(--paso) * 6); }
+
+.articulo[data-modificado="si"] {
+  border-left: var(--trazo) double var(--tinta);
+  padding-left: calc(var(--canal) - var(--trazo));
+}
+
+.articulo__rotulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 1ch;
+  margin: 0 0 calc(var(--paso) * 3);
+}
+
+.articulo__numero {
+  font-family: var(--fuente-dato);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.articulo__titulo { font-size: 1.0625rem; font-weight: 400; line-height: 1.35; }
+
+/* Que un artículo esté modificado no se deduce: se dice, con la norma que lo
+   cambió y desde cuándo. */
+.articulo__nota {
+  margin: 0 0 calc(var(--paso) * 4);
+  padding: calc(var(--paso) * 2) 0 calc(var(--paso) * 2) calc(var(--paso) * 3);
+  border-left: 2px solid var(--tinta-tenue);
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--tinta-media);
+}
+
+.articulo__parrafo { margin: 0 0 calc(var(--paso) * 3); font-size: 0.9375rem; line-height: 1.6; }
+.articulo__parrafo--guion { padding-left: calc(var(--paso) * 4); }
+.articulo__parrafo--letra { padding-left: calc(var(--paso) * 4); }
+.articulo__parrafo--apartado { margin-top: calc(var(--paso) * 4); }
+
+.articulo:focus { outline: none; }
+.articulo:focus-visible { outline: 2px solid var(--tinta); outline-offset: 4px; }
+
+/* --- Índice del articulado -------------------------------------------------- */
+
+.indice__caja { margin-bottom: calc(var(--paso) * 8); }
+
+.indice__resumen {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: calc(var(--paso) * 3);
+}
+
+.indice__resumen::-webkit-details-marker { display: none; }
+.indice__resumen:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
+
+.indice { margin: 0; padding: 0; list-style: none; }
+
+.indice a {
+  display: flex;
+  gap: 1ch;
+  padding: calc(var(--paso) * 1.5) 0;
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  text-decoration: none;
+  color: var(--tinta-media);
+}
+
+.indice a:hover, .indice a:focus-visible { color: var(--tinta); text-decoration: underline; text-underline-offset: 0.2em; }
+
+.indice__numero {
+  flex: none;
+  width: 2ch;
+  text-align: right;
+  font-family: var(--fuente-dato);
+  font-size: 0.75rem;
+  color: var(--tinta-tenue);
+}
+
+.indice__grupo {
+  margin: calc(var(--paso) * 5) 0 calc(var(--paso) * 1);
+  font-family: var(--fuente-ui);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.indice--disposiciones .indice__numero { width: auto; }
+
+.aviso__detalle { display: block; margin-top: calc(var(--paso) * 2); color: var(--tinta-tenue); }
+
 /* --- Preguntas frecuentes -------------------------------------------------- */
 
 /* Cincuenta preguntas no caben abiertas: se listan los enunciados y se abre lo
@@ -814,6 +958,7 @@ a.materia:hover, a.materia:focus-visible { border-color: var(--tinta); color: va
 .tema + .tema { margin-top: calc(var(--paso) * 9); }
 /* El índice lleva aquí desde arriba: hay que dejar aire al saltar. */
 .tema { scroll-margin-top: calc(var(--paso) * 6); }
+.articulo { scroll-margin-top: calc(var(--paso) * 6); }
 .pregunta { scroll-margin-top: calc(var(--paso) * 6); }
 
 .tema__rotulo {
@@ -1079,6 +1224,44 @@ mark {
   }
 
   .ficha__lateral .apartado:first-child { margin-top: 0; }
+
+  /* La cabecera del articulado usa las mismas columnas que el cuerpo, para que
+     el aviso de consolidación caiga justo encima del índice. */
+  .cabecera--norma {
+    display: grid;
+    grid-template-columns: minmax(0, 2.1fr) minmax(14rem, 1fr);
+    align-items: start;
+    column-gap: calc(var(--paso) * 14);
+  }
+
+  .cabecera--norma .marca,
+  .cabecera--norma .volver,
+  .cabecera--norma > div { grid-column: 1; }
+  .cabecera--norma .aviso { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; padding-top: 0; border-top: 0; }
+
+  .norma__cuerpo {
+    display: grid;
+    grid-template-columns: minmax(0, 2.1fr) minmax(14rem, 1fr);
+    align-items: start;
+    column-gap: calc(var(--paso) * 14);
+  }
+
+  /* El índice va primero en el documento; aquí se coloca a la derecha. */
+  .norma__texto   { grid-column: 1; grid-row: 1; }
+  .norma__lateral { grid-column: 2; grid-row: 1; }
+
+  .norma__lateral {
+    position: sticky;
+    top: calc(var(--paso) * 6);
+    max-height: calc(100vh - var(--paso) * 12);
+    overflow-y: auto;
+    padding-left: calc(var(--paso) * 5);
+    border-left: 1px solid var(--filete);
+  }
+
+  .norma__lateral .apartado:first-child { margin-top: 0; }
+  /* En el lateral el índice está siempre abierto: el resumen no invita a pulsar. */
+  .norma__lateral .indice__resumen { cursor: default; }
 }
 
 @media (min-width: 90rem) {

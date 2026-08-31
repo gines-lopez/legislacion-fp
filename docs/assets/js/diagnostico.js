@@ -49,13 +49,20 @@ const cargar = async (ruta) => {
   try {
     const respuesta = await fetch('assets/js/app.js', { cache: 'no-store' });
     const servido = (await respuesta.text()).match(/const VERSION = '([^']+)'/)?.[1] ?? null;
+    const otroScript = await fetch('assets/js/norma.js', { cache: 'no-store' })
+      .then((r) => (r.ok ? r.text() : '')).catch(() => '');
+    const servidoNorma = otroScript.match(/const VERSION = '([^']+)'/)?.[1] ?? null;
+    if (servidoNorma && servidoNorma !== servido) {
+      marcar('version', false, `app.js ${servido} y norma.js ${servidoNorma}`);
+      throw new Error('saltar');
+    }
     const cacheado = await versionEnUso();
     if (!servido) marcar('version', false, 'sin marca de versión');
     else if (!cacheado) marcar('version', true, `${servido} servida`);
     else if (cacheado === servido) marcar('version', true, `${servido} en uso`);
     else marcar('version', false, `usando ${cacheado}, publicada ${servido}`);
   } catch (error) {
-    marcar('version', false, error.message);
+    if (error.message !== 'saltar') marcar('version', false, error.message);
   }
 
   // 3. La hoja de estilos ha cargado: leemos una variable que solo ella define.
@@ -157,6 +164,37 @@ const cargar = async (ruta) => {
       }
     }
   }
+
+  /* 9. El articulado transcrito: que exista el fichero de cada norma que dice
+        tenerlo, que ninguna pieza se quede sin párrafos y que toda modificación
+        señalada apunte a una norma que está en el listado. */
+  const conTexto = datos.normas.filter((n) => n.texto);
+  const problemasTexto = [];
+  let totalPiezas = 0;
+
+  for (const norma of conTexto) {
+    let texto;
+    try {
+      texto = await cargar(`data/texto/${norma.id}.json`);
+    } catch (error) {
+      problemasTexto.push(`${norma.id}: no se puede leer su articulado`);
+      continue;
+    }
+    const piezas = texto.articulado ?? [];
+    totalPiezas += piezas.length;
+    for (const pieza of piezas) {
+      if (!pieza.parrafos?.length) problemasTexto.push(`${norma.id}/${pieza.numero}: sin párrafos`);
+      const otra = pieza.modificadoPor?.norma;
+      if (otra && !porId.has(otra)) problemasTexto.push(`${norma.id}/${pieza.numero}: modificadoPor → ${otra} no existe`);
+    }
+  }
+
+  marcar('texto', problemasTexto.length === 0,
+    problemasTexto.length === 0
+      ? `${totalPiezas} ${totalPiezas === 1 ? 'pieza' : 'piezas'}`
+      : `${problemasTexto.length} problemas`);
+
+  fallos.push(...problemasTexto);
 
   marcar('consulta', problemas.length === 0,
     problemas.length === 0
