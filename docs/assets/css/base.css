@@ -1,12 +1,22 @@
 /* ==========================================================================
-   legislacion-fp · hoja de estilos base
-   Escala de grises estricta. El estado de vigencia se codifica con el filete
-   izquierdo (trazo), nunca con color: sobrevive a la impresión en blanco y
-   negro y a la ceguera al color.
+   legislacion-fp · hoja de estilos
+
+   Escala de grises estricta, sin color de acento (D5). El estado de vigencia
+   se codifica con el TRAZO de un filete, nunca con color: sobrevive a la
+   impresión en blanco y negro y a la ceguera al color.
+
+   La página se organiza sobre un canal izquierdo de ancho fijo. El texto
+   empieza a la derecha de ese canal; dentro de él corre una regla vertical
+   continua que atraviesa cada sección del listado y cambia de trazo norma a
+   norma. Al bajar la página se ve el estado del corpus sin leer una palabra,
+   y la regla se interrumpe justo donde cambia la sección.
+
+   El mismo canal reaparece en la ficha: de él cuelgan las normas relacionadas,
+   cada una con su propio trazo.
    ========================================================================== */
 
 :root {
-  /* Señal para que el script confirme que esta hoja ha cargado. */
+  /* Señal para que el diagnóstico confirme que esta hoja ha cargado. */
   --hoja-cargada: 1;
 
   /* Tinta y papel. Neutros con una calidez mínima: el negro puro sobre blanco
@@ -15,7 +25,7 @@
   --realce:      #efeeea;
   --filete:      #d8d6d1;
   --tinta-tenue: #6e6c67;
-  --tinta-media: #5a5854;
+  --tinta-media: #55534f;
   --tinta:       #171614;
 
   /* Tres funciones tipográficas: título y prosa en serif documental,
@@ -28,15 +38,17 @@
 
   --paso: 0.25rem;
   --medida: 34rem;
+  --canal: 1.75rem;
+  --trazo: 3px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --papel:       #131312;
-    --realce:      #1d1c1a;
-    --filete:      #33322f;
-    --tinta-tenue: #8f8d87;
-    --tinta-media: #a3a099;
+    --realce:      #24231f;
+    --filete:      #3a3833;
+    --tinta-tenue: #928f89;
+    --tinta-media: #aeaba3;
     --tinta:       #edebe6;
   }
 }
@@ -45,7 +57,7 @@
 
 body {
   margin: 0;
-  padding: calc(var(--paso) * 12) calc(var(--paso) * 6) calc(var(--paso) * 20);
+  padding: calc(var(--paso) * 10) calc(var(--paso) * 5) calc(var(--paso) * 20);
   background: var(--papel);
   color: var(--tinta);
   font-family: var(--fuente-titulo);
@@ -55,55 +67,627 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.hoja { max-width: var(--medida); margin-inline: auto; }
+/* El canal se reserva aquí y todo el contenido queda a su derecha. Solo las
+   piezas que dibujan la regla (.norma, .relacion) salen de él con margen
+   negativo, de modo que su filete cae exactamente en x = 0.
 
-/* --- Cabecera ------------------------------------------------------------ */
+   El listado ocupa el ancho de la pantalla. La ficha no: es prosa legal, y
+   una línea de 1.400 px no se lee. Ver .ficha más abajo. */
+.hoja { padding-left: var(--canal); }
 
-.eyebrow {
-  margin: 0 0 calc(var(--paso) * 5);
+/* El diagnóstico no es un listado: es una página de texto y se queda centrada
+   en la medida de lectura. */
+.hoja--estrecha {
+  max-width: calc(var(--medida) + var(--canal));
+  margin-inline: auto;
+}
+
+@media (max-width: 30rem) {
+  :root { --canal: 1.25rem; }
+  body { padding-inline: calc(var(--paso) * 4); }
+}
+
+/* --- Servicio ------------------------------------------------------------- */
+
+.oculto {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.saltar {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: calc(var(--paso) * 2) calc(var(--paso) * 4);
+  background: var(--papel);
+  border: 2px solid var(--tinta);
+  font-family: var(--fuente-ui);
+  font-size: 0.875rem;
+}
+
+.saltar:focus { left: calc(var(--paso) * 2); top: calc(var(--paso) * 2); z-index: 2; }
+
+/* --- Cabecera ------------------------------------------------------------- */
+
+.marca {
+  margin: 0 0 calc(var(--paso) * 4);
+  font-family: var(--fuente-dato);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.cabecera__titulo {
+  margin: 0;
+  font-size: clamp(1.625rem, 5vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.cabecera__nota {
+  margin: calc(var(--paso) * 3) 0 0;
+  max-width: var(--medida);
+  color: var(--tinta-media);
+  font-family: var(--fuente-ui);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Que el sitio no sea fuente oficial no es letra pequeña: citar mal una norma
+   perjudica a quien consulta, así que el aviso va arriba y no en el pie. */
+.aviso {
+  margin: calc(var(--paso) * 6) 0 0;
+  padding: calc(var(--paso) * 3) 0;
+  max-width: var(--medida);
+  border-top: 1px solid var(--filete);
+  border-bottom: 1px solid var(--filete);
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--tinta-media);
+}
+
+.aviso strong { color: var(--tinta); font-weight: 600; }
+
+.cargando {
+  margin: calc(var(--paso) * 12) 0 0;
+  font-family: var(--fuente-ui);
+  font-size: 0.875rem;
+  color: var(--tinta-media);
+}
+
+.cargando--fallo { color: var(--tinta); }
+
+/* --- Buscador ------------------------------------------------------------- */
+
+.buscador { display: block; margin-top: calc(var(--paso) * 11); }
+
+/* Un renglón, no una caja: se escribe sobre la página como en el margen de un
+   documento, en la misma serif con la que está compuesto el contenido. */
+.buscador__campo {
+  width: 100%;
+  appearance: none;
+  padding: calc(var(--paso) * 2) 0 calc(var(--paso) * 3);
+  border: 0;
+  border-bottom: 2px solid var(--tinta);
+  border-radius: 0;
+  background: transparent;
+  color: var(--tinta);
+  font-family: var(--fuente-titulo);
+  font-size: 1.1875rem;
+  line-height: 1.4;
+}
+
+.buscador__campo::placeholder { color: var(--tinta-tenue); opacity: 1; }
+.buscador__campo::-webkit-search-cancel-button { filter: grayscale(1); }
+
+.buscador__campo:focus {
+  outline: none;
+  border-bottom-width: 5px;
+  padding-bottom: calc(var(--paso) * 3 - 3px);
+}
+
+.buscador__recuento {
+  margin: calc(var(--paso) * 2) 0 0;
   font-family: var(--fuente-dato);
   font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--tinta-tenue);
+  text-align: right;
+}
+
+/* --- Filtros -------------------------------------------------------------- */
+
+.filtros { margin-top: calc(var(--paso) * 7); }
+
+.filtro + .filtro { margin-top: calc(var(--paso) * 4); }
+
+.filtro__rotulo {
+  margin: 0 0 calc(var(--paso) * 2);
+  font-family: var(--fuente-ui);
+  font-size: 0.625rem;
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--tinta-tenue);
 }
 
-.titulo {
-  margin: 0;
-  font-size: clamp(1.75rem, 5.5vw, 2.5rem);
-  font-weight: 400;
-  line-height: 1.18;
-  letter-spacing: -0.015em;
-  text-wrap: balance;
-}
+.filtro__chips { display: flex; flex-wrap: wrap; gap: calc(var(--paso) * 1.5); }
 
-.entradilla {
-  margin: calc(var(--paso) * 4) 0 0;
+/* Un radio mínimo distingue lo que se pulsa de lo que se lee: en el resto de
+   la página no hay una sola esquina redondeada. */
+.chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6ch;
+  padding: calc(var(--paso) * 1.5) calc(var(--paso) * 2.5);
+  /* Filete a 5:1 contra el papel, no el hairline de los rótulos: un control
+     que se pulsa tiene que verse que es un control. */
+  border: 1px solid var(--tinta-tenue);
+  border-radius: 2px;
+  background: transparent;
   color: var(--tinta-media);
-  font-size: 1rem;
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  cursor: pointer;
 }
 
-.regla {
-  margin: calc(var(--paso) * 10) 0;
-  border: 0;
-  border-top: 1px solid var(--filete);
+.chip:hover:not(:disabled) { border-color: var(--tinta); color: var(--tinta); }
+
+/* Activo en tinta plena con el texto en papel: la inversión completa es la
+   señal más fuerte que hay dentro de una escala de grises, y no depende de
+   distinguir colores ni sobrevive peor a una impresión en blanco y negro. */
+.chip[aria-pressed="true"] {
+  border-color: var(--tinta);
+  background: var(--tinta);
+  color: var(--papel);
+  font-weight: 600;
 }
 
-/* --- Rótulos de sección --------------------------------------------------- */
+.chip:disabled { opacity: 0.45; cursor: default; }
 
-.rotulo {
-  margin: 0 0 calc(var(--paso) * 5);
+.chip__n {
+  font-family: var(--fuente-dato);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: var(--tinta-tenue);
+}
+
+.chip[aria-pressed="true"] .chip__n { color: var(--filete); }
+
+.filtro__materia {
+  margin: calc(var(--paso) * 4) 0 0;
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  color: var(--tinta-media);
+}
+
+.filtro__quitar { margin-left: 0.75ch; }
+
+/* --- El trazo, que es el código de vigencia ------------------------------- */
+
+/* Se usa en dos sitios y tiene que ser idéntico en los dos: en el margen del
+   listado y en la muestra que lleva cada chip de estado. Así el filtro hace de
+   leyenda y no hace falta explicar el código en ninguna parte. */
+.trazo {
+  display: inline-block;
+  width: var(--trazo);
+  height: 1.05em;
+  border-left: var(--trazo) solid var(--tinta);
+  vertical-align: -0.16em;
+}
+
+.trazo[data-estado="modificada"] { border-left-style: double; }
+.trazo[data-estado="derogada"]   { border-left-style: dotted; }
+
+/* --- Bloques de sección --------------------------------------------------- */
+
+#listado { margin-top: calc(var(--paso) * 12); }
+
+.bloque + .bloque { margin-top: calc(var(--paso) * 12); }
+
+.bloque__rotulo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: calc(var(--paso) * 3);
+  margin: 0 0 calc(var(--paso) * 3);
+  padding-bottom: calc(var(--paso) * 2);
+  border-bottom: 1px solid var(--filete);
   font-family: var(--fuente-ui);
   font-size: 0.6875rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--tinta-media);
 }
 
-.seccion + .seccion { margin-top: calc(var(--paso) * 14); }
+.bloque__n {
+  font-family: var(--fuente-dato);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--tinta-tenue);
+}
+
+.bloque__normas { margin: 0; padding: 0; list-style: none; }
+
+/* --- Norma en el listado -------------------------------------------------- */
+
+/* Sin margen vertical entre normas: los filetes se tocan y forman la regla
+   continua. La junta entre dos trazos distintos es visible a propósito. */
+.norma {
+  margin-left: calc(var(--canal) * -1);
+  padding: calc(var(--paso) * 5) 0 calc(var(--paso) * 6) calc(var(--canal) - var(--trazo));
+  border-left: var(--trazo) solid var(--tinta);
+}
+
+.norma[data-estado="modificada"] { border-left-style: double; }
+.norma[data-estado="derogada"]   { border-left-style: dotted; }
+
+/* Una norma derogada no es papel mojado: se sigue citando y los efectos que
+   produjo no desaparecen. Por eso su texto no se atenúa; lo único que cambia
+   es el trazo, y la palabra «Derogada» lo dice sin rodeos. */
+
+.norma:has(a:hover), .norma:has(a:focus-visible) { background: var(--realce); }
+
+.norma__procedencia {
+  margin: 0;
+  font-family: var(--fuente-dato);
+  font-size: 0.6875rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.norma__id {
+  margin: calc(var(--paso) * 1) 0 0;
+  font-family: var(--fuente-dato);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+/* Los anexos y las guías no tienen número: su nombre hace de identificador y
+   se compone tal cual, sin versalitas. */
+.norma__id--nombre { text-transform: none; font-size: 0.875rem; }
+
+.norma__id a { text-decoration: none; }
+.norma__id a:hover, .norma__id a:focus-visible { text-decoration: underline; text-underline-offset: 0.22em; }
+
+.norma__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 1ch;
+  margin: calc(var(--paso) * 1) 0 calc(var(--paso) * 2);
+  font-family: var(--fuente-dato);
+  font-size: 0.75rem;
+  color: var(--tinta-tenue);
+}
+
+.norma__estado {
+  font-family: var(--fuente-ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta-media);
+}
+
+.norma__estado::after { content: "·"; margin-left: 1ch; color: var(--tinta-tenue); }
+
+.norma__titulo {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: var(--tinta-media);
+  /* Algún título oficial pasa de 900 caracteres. En el listado se recorta; en
+     la ficha está entero, que es donde se cita. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  overflow: hidden;
+}
+
+/* El resumen es lo que este sitio aporta y lo que resuelve la consulta, así
+   que se compone con más cuerpo que el título oficial, no con menos. */
+.norma__resumen { margin: calc(var(--paso) * 2) 0 0; font-size: 1rem; line-height: 1.55; }
+
+.norma__coincidencia {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--paso) * 1.5);
+  margin: calc(var(--paso) * 3) 0 0;
+  font-family: var(--fuente-ui);
+  font-size: 0.75rem;
+  color: var(--tinta-tenue);
+}
+
+.norma__relacion {
+  margin: calc(var(--paso) * 3) 0 0;
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  color: var(--tinta-media);
+}
+
+.norma__relacion::before { content: "→"; margin-right: 0.6ch; color: var(--tinta-tenue); }
+.norma__relacion a { font-family: var(--fuente-dato); font-size: 0.75rem; text-transform: uppercase; }
+
+/* --- Vacío ---------------------------------------------------------------- */
+
+.vacio { margin-top: calc(var(--paso) * 12); max-width: var(--medida); }
+.vacio__titulo { margin: 0; font-size: 1.0625rem; }
+
+.vacio__pista {
+  margin: calc(var(--paso) * 3) 0 0;
+  font-family: var(--fuente-ui);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  max-width: var(--medida);
+  color: var(--tinta-media);
+}
+
+.vacio__que { color: var(--tinta-tenue); }
+
+/* --- Recursos: no son normas, así que el canal va vacío ------------------- */
+
+.recursos { margin-top: calc(var(--paso) * 16); max-width: var(--medida); }
+
+.recursos__nota {
+  margin: 0 0 calc(var(--paso) * 4);
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  max-width: var(--medida);
+  color: var(--tinta-media);
+}
+
+.recursos__lista { margin: 0; padding: 0; list-style: none; }
+.recurso + .recurso { margin-top: calc(var(--paso) * 5); }
+
+.recurso__fuente {
+  margin: 0;
+  font-family: var(--fuente-dato);
+  font-size: 0.6875rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.recurso__titulo { margin: calc(var(--paso) * 1) 0 0; font-size: 1rem; }
+.recurso__resumen { margin: calc(var(--paso) * 2) 0 0; font-size: 0.9375rem; color: var(--tinta-media); }
+
+/* --- Ficha ---------------------------------------------------------------- */
+
+#vista-ficha { max-width: var(--medida); }
+
+
+.volver {
+  margin: 0 0 calc(var(--paso) * 8);
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+}
+
+.volver a { text-decoration: none; }
+.volver a::before { content: "←"; margin-right: 0.6ch; }
+.volver a:hover, .volver a:focus-visible { text-decoration: underline; text-underline-offset: 0.22em; }
+
+.ficha__procedencia {
+  margin: 0;
+  font-family: var(--fuente-dato);
+  font-size: 0.6875rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.ficha__id {
+  margin: calc(var(--paso) * 2) 0 0;
+  font-family: var(--fuente-dato);
+  font-size: clamp(1.125rem, 3.6vw, 1.4375rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.ficha__id--nombre { text-transform: none; font-size: clamp(1rem, 3.2vw, 1.1875rem); }
+.ficha__id:focus { outline: none; }
+.ficha__id:focus-visible { outline: 2px solid var(--tinta); outline-offset: 4px; }
+
+.ficha__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 1ch;
+  margin: calc(var(--paso) * 3) 0 0;
+  font-family: var(--fuente-dato);
+  font-size: 0.8125rem;
+  color: var(--tinta-tenue);
+}
+
+.ficha__estado {
+  font-family: var(--fuente-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta);
+}
+
+/* Que una norma esté «modificada» dice que cambió, no hasta dónde. La nota lo
+   advierte y manda al resumen, que es donde vive el alcance. */
+.ficha__nota-estado {
+  margin: calc(var(--paso) * 2) 0 0;
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--tinta-media);
+}
+
+.ficha__titulo {
+  margin: calc(var(--paso) * 8) 0 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--tinta-media);
+}
+
+.ficha__resumen {
+  margin: calc(var(--paso) * 4) 0 0;
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+.apartado { margin-top: calc(var(--paso) * 12); }
+
+.apartado__rotulo {
+  margin: 0 0 calc(var(--paso) * 3);
+  padding-bottom: calc(var(--paso) * 2);
+  border-bottom: 1px solid var(--filete);
+  font-family: var(--fuente-ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--tinta-media);
+}
+
+.enlaces { margin: 0; padding: 0; list-style: none; }
+.enlaces li + li { margin-top: calc(var(--paso) * 2); }
+.enlaces li { font-family: var(--fuente-ui); font-size: 0.9375rem; }
+
+.enlaces__nota {
+  margin-left: 0.75ch;
+  font-family: var(--fuente-dato);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--tinta-tenue);
+}
+
+.enlaces__aviso {
+  margin: calc(var(--paso) * 4) 0 0;
+  font-family: var(--fuente-ui);
+  font-size: 0.75rem;
+  color: var(--tinta-tenue);
+}
+
+/* Cada norma relacionada cuelga del mismo canal y con su propio trazo, y trae
+   su resumen: es ahí donde se dice qué se modificó exactamente. */
+.relaciones { margin: 0; padding: 0; list-style: none; }
+
+.relacion {
+  margin-left: calc(var(--canal) * -1);
+  padding: calc(var(--paso) * 3) 0 calc(var(--paso) * 4) calc(var(--canal) - var(--trazo));
+  border-left: var(--trazo) solid var(--tinta);
+}
+
+.relacion[data-estado="modificada"] { border-left-style: double; }
+.relacion[data-estado="derogada"]   { border-left-style: dotted; }
+
+.relacion__id {
+  margin: 0;
+  font-family: var(--fuente-dato);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.relacion__id a { text-decoration: none; }
+.relacion__id a:hover, .relacion__id a:focus-visible { text-decoration: underline; text-underline-offset: 0.22em; }
+
+.relacion__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 1ch;
+  margin: calc(var(--paso) * 1) 0 calc(var(--paso) * 2);
+  font-family: var(--fuente-dato);
+  font-size: 0.75rem;
+  color: var(--tinta-tenue);
+}
+
+.relacion__estado {
+  font-family: var(--fuente-ui);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta-media);
+}
+
+.relacion__estado::after { content: "·"; margin-left: 1ch; color: var(--tinta-tenue); }
+
+.relacion__titulo { margin: 0; font-size: 0.875rem; line-height: 1.45; color: var(--tinta-media); }
+.relacion__resumen { margin: calc(var(--paso) * 2) 0 0; font-size: 0.9375rem; line-height: 1.55; }
+
+.materias { display: flex; flex-wrap: wrap; gap: calc(var(--paso) * 1.5); margin: 0; }
+
+.materia {
+  display: inline-block;
+  padding: calc(var(--paso) * 1) calc(var(--paso) * 2);
+  border: 1px solid var(--filete);
+  border-radius: 2px;
+  font-family: var(--fuente-dato);
+  font-size: 0.75rem;
+  color: var(--tinta-media);
+  text-decoration: none;
+}
+
+a.materia:hover, a.materia:focus-visible { border-color: var(--tinta); color: var(--tinta); }
+
+.cita {
+  margin: 0;
+  padding: calc(var(--paso) * 3) calc(var(--paso) * 4);
+  background: var(--realce);
+  font-family: var(--fuente-dato);
+  font-size: 0.75rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.cita__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--paso) * 3);
+  margin: calc(var(--paso) * 3) 0 0;
+}
+
+.boton {
+  padding: calc(var(--paso) * 2) calc(var(--paso) * 4);
+  border: 1px solid var(--tinta);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--tinta);
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.boton:hover { background: var(--realce); }
+
+.cita__aviso {
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  color: var(--tinta-media);
+}
+
+.ficha__seccion { margin: 0; font-family: var(--fuente-ui); font-size: 0.9375rem; }
 
 /* --- Diagnóstico ---------------------------------------------------------- */
+
+.contenido { margin-top: calc(var(--paso) * 8); }
 
 .diagnostico { margin: 0; padding: 0; list-style: none; }
 
@@ -134,68 +718,16 @@ body {
 .comprobacion[data-resultado="fallo"]     .comprobacion__resultado::before { content: "✗"; }
 .comprobacion[data-resultado="pendiente"] .comprobacion__resultado::before { content: "·"; }
 
-/* --- Norma: el filete izquierdo codifica la vigencia ---------------------- */
+.fallos { margin-top: calc(var(--paso) * 8); }
+.fallos ul { margin: 0; padding-left: 1.2em; font-family: var(--fuente-dato); font-size: 0.8125rem; }
 
-.norma {
-  padding-left: calc(var(--paso) * 5);
-  border-left: 3px solid var(--tinta);
-}
+.glosario { margin: 0; font-family: var(--fuente-ui); font-size: 0.875rem; }
+.glosario dt { font-weight: 600; }
+.glosario dd { margin: calc(var(--paso) * 1) 0 calc(var(--paso) * 4); color: var(--tinta-media); }
 
-.norma + .norma { margin-top: calc(var(--paso) * 8); }
+code { font-family: var(--fuente-dato); font-size: 0.875em; }
 
-.norma[data-estado="modificada"] { border-left-width: 5px; border-left-style: double; }
-.norma[data-estado="derogada"]   { border-left-style: dotted; color: var(--tinta-tenue); }
-
-/* Procedencia: ámbito y diario donde se publica. Es un dato de cita, así que
-   va en la monoespaciada y en el tono tenue, sin competir con el título. La
-   distinción estatal/autonómico la hace la palabra, no el color ni el peso:
-   ninguno de los dos ámbitos manda sobre el otro en la lectura. */
-.norma__procedencia {
-  margin: 0 0 calc(var(--paso) * 1);
-  font-family: var(--fuente-dato);
-  font-size: 0.6875rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--tinta-tenue);
-}
-
-.norma__id {
-  font-family: var(--fuente-dato);
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.norma__estado {
-  margin-left: 0.75ch;
-  font-family: var(--fuente-ui);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--tinta-media);
-}
-
-.norma__fecha {
-  margin: calc(var(--paso) * 1) 0 calc(var(--paso) * 2);
-  font-family: var(--fuente-dato);
-  font-size: 0.8125rem;
-  color: var(--tinta-tenue);
-}
-
-.norma__titulo { margin: 0; font-size: 1rem; line-height: 1.45; }
-.norma__resumen { margin: calc(var(--paso) * 2) 0 0; color: var(--tinta-media); font-size: 0.9375rem; }
-
-.norma__relacion {
-  margin: calc(var(--paso) * 3) 0 0;
-  font-family: var(--fuente-ui);
-  font-size: 0.8125rem;
-  color: var(--tinta-media);
-}
-
-.norma__relacion::before { content: "→"; margin-right: 0.5ch; }
-
-/* --- Enlaces -------------------------------------------------------------- */
+/* --- Enlaces y marcas ----------------------------------------------------- */
 
 a {
   color: inherit;
@@ -211,10 +743,25 @@ a:focus-visible {
   border-radius: 1px;
 }
 
+.chip:focus-visible, .boton:focus-visible {
+  outline: 2px solid var(--tinta);
+  outline-offset: 2px;
+}
+
+/* Los enlaces al diario oficial se abren en una ventana nueva para no perder
+   la consulta, y el signo lo advierte antes de pulsar. */
+.externo::after { content: "↗"; margin-left: 0.4ch; font-size: 0.85em; color: var(--tinta-tenue); }
+
+mark {
+  background: var(--realce);
+  color: var(--tinta);
+  box-shadow: inset 0 -1px 0 var(--tinta-tenue);
+}
+
 /* --- Pie ------------------------------------------------------------------ */
 
 .pie {
-  margin-top: calc(var(--paso) * 16);
+  margin-top: calc(var(--paso) * 20);
   padding-top: calc(var(--paso) * 5);
   border-top: 1px solid var(--filete);
   font-family: var(--fuente-ui);
@@ -223,17 +770,94 @@ a:focus-visible {
   color: var(--tinta-tenue);
 }
 
-.pie p { margin: 0 0 calc(var(--paso) * 2); }
+.pie p { margin: 0 0 calc(var(--paso) * 2); max-width: var(--medida); }
+.pie__aviso { color: var(--tinta-media); }
 
-/* --- Accesibilidad e impresión -------------------------------------------- */
-
-@media (prefers-reduced-motion: no-preference) {
-  .comprobacion { transition: color 120ms ease-out; }
+.pie__firma {
+  margin-top: calc(var(--paso) * 5);
+  padding-top: calc(var(--paso) * 4);
+  border-top: 1px solid var(--filete);
 }
 
+/* --- Pantallas anchas ----------------------------------------------------- */
+
+/* El listado ocupa la pantalla entera y las normas fluyen en columnas de
+   periódico: cada columna arrastra su propia regla continua, así que el código
+   de vigencia sigue leyéndose de un vistazo por muchas que haya. El orden
+   sigue siendo el de rango, hacia abajo y luego a la derecha, que es como se
+   lee un sumario.
+
+   La ficha se queda estrecha: es prosa jurídica y necesita una medida. */
+@media (min-width: 60rem) {
+  body { padding-inline: calc(var(--paso) * 12); }
+
+  .cabecera {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(17rem, 1fr);
+    align-items: end;
+    column-gap: calc(var(--paso) * 14);
+  }
+
+  .marca         { grid-column: 1; grid-row: 1; }
+  .cabecera__titulo { grid-column: 1; grid-row: 2; }
+  .cabecera__nota   { grid-column: 1; grid-row: 3; }
+  .aviso { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; align-self: end; }
+
+  /* Sección lleva siete opciones y ocupa su propia línea; ámbito y estado son
+     cortos y comparten la siguiente. */
+  .filtros { display: flex; flex-wrap: wrap; gap: calc(var(--paso) * 5) calc(var(--paso) * 14); }
+  .filtro + .filtro { margin-top: 0; }
+  .filtro[data-eje="seccion"] { flex-basis: 100%; }
+
+  /* El contenedor de columnas se sale del canal para que el filete de la
+     primera columna caiga bajo el rótulo de sección; dentro de cada columna
+     el canal lo pone ya el propio relleno de la norma. */
+  .bloque__normas {
+    margin-left: calc(var(--canal) * -1);
+    columns: 23rem;
+    column-gap: calc(var(--paso) * 16);
+  }
+
+  .norma {
+    margin-left: 0;
+    padding-left: calc(var(--canal) - var(--trazo));
+    break-inside: avoid;
+  }
+}
+
+@media (min-width: 90rem) {
+  body { padding-inline: calc(var(--paso) * 20); }
+}
+
+/* --- Movimiento ----------------------------------------------------------- */
+
+/* Al volver de una ficha, la norma de la que se venía se realza un momento
+   para no perder el sitio en un listado largo. Es la única animación. */
+@media (prefers-reduced-motion: no-preference) {
+  .norma--vuelta { animation: vuelta 1400ms ease-out; }
+  @keyframes vuelta {
+    from { background: var(--realce); }
+    to   { background: transparent; }
+  }
+  .chip, .comprobacion { transition: color 120ms ease-out, border-color 120ms ease-out; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .norma--vuelta { background: var(--realce); }
+}
+
+/* --- Impresión ------------------------------------------------------------ */
+
 @media print {
-  body { background: #fff; color: #000; padding: 0; }
-  .diagnostico { display: none; }
-  /* En papel el filete pierde matiz, así que estado y ámbito se leen del texto. */
-  .norma__procedencia, .norma__estado { color: #000; }
+  body { background: #fff; color: #000; padding: 0; font-size: 11pt; }
+  .saltar, .buscador, .filtros, .volver, .cita__acciones, .externo { display: none; }
+  .hoja { max-width: none; }
+  .norma, .relacion { break-inside: avoid; }
+  /* En papel el trazo pierde matiz, así que el estado y el ámbito se leen del
+     texto, que siempre está escrito. */
+  .norma__procedencia, .norma__estado, .relacion__estado,
+  .ficha__procedencia, .ficha__estado { color: #000; }
+  a { text-decoration: none; }
+  .enlaces a::after { content: " (" attr(href) ")"; font-family: monospace; font-size: 9pt; }
+  mark { background: none; box-shadow: none; font-weight: 700; }
 }

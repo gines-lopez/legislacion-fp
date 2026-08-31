@@ -21,19 +21,38 @@ Este proyecto parte de esa misma información y le añade lo que le falta:
 
 ## Estado
 
-En construcción. El sitio está publicado y contiene las 36 normas de las seis secciones, con su ámbito, su estado de vigencia y sus relaciones. La portada sigue siendo provisional: muestra el diagnóstico de despliegue, y el buscador con filtros es lo siguiente. Ver [HOJA-DE-RUTA.md](HOJA-DE-RUTA.md).
+En uso. El sitio contiene las 36 normas de las seis secciones, con su ámbito, su estado de vigencia y sus relaciones, y la portada ya es la herramienta de consulta: buscador instantáneo, filtros con recuento y ficha por norma.
+
+Lo siguiente es transcribir articulado a HTML para no tener que abrir el PDF, empezando por las instrucciones de curso. Ver [HOJA-DE-RUTA.md](HOJA-DE-RUTA.md).
 
 ## Cómo está hecho
 
 HTML, CSS y JavaScript de navegador. Sin backend, sin dependencias, sin paso de compilación: los datos viven en [`docs/data/normas.json`](docs/data/normas.json) y añadir una norma es editar ese fichero.
 
 ```
-docs/                    lo que se publica (GitHub Pages: main + /docs)
-├── index.html
-├── assets/css/base.css
-├── assets/js/app.js
-└── data/normas.json     fuente de verdad
+docs/                       lo que se publica (GitHub Pages: main + /docs)
+├── index.html              portada y ficha de norma
+├── diagnostico.html        comprueba el despliegue y valida los datos
+├── assets/
+│   ├── css/base.css
+│   ├── js/app.js           buscador, filtros, enrutado y ficha
+│   ├── js/diagnostico.js
+│   └── favicon.svg
+└── data/
+    ├── normas.json         fuente de verdad
+    ├── meta.json           fecha de última revisión
+    └── recursos.json       lo que la fuente enlaza y no es norma
 ```
+
+Toda la vista vive en la dirección, así que cualquier consulta se puede pegar en un correo:
+
+| Enlace | Qué muestra |
+|---|---|
+| `?q=dual` | Lo que menciona la formación dual |
+| `?estado=derogada` | Las cinco normas derogadas |
+| `?seccion=curso-actual` | Las instrucciones del curso en vigor |
+| `?etiqueta=fct` | Todo lo que toca la FCT |
+| `?n=decreto-114-2025` | La ficha de esa norma, con sus relaciones |
 
 En producción el sitio cuelga de `/legislacion-fp/`, así que **todas las rutas internas son relativas**. Una ruta absoluta funciona si sirves `docs/` en la raíz y revienta al publicar, que es la forma más fácil de perder una tarde. Por eso el servidor local imita el subpath en vez de servir `docs/` a pelo. Abrirlo como `file://` tampoco vale: el navegador bloquea la carga del JSON.
 
@@ -48,6 +67,8 @@ cd /tmp/fp-local && python3 -m http.server 8000
 ```
 
 Y abrir **http://localhost:8000/legislacion-fp/**. El enlace simbólico apunta a `docs/`, así que no hay copias que se queden viejas: al editar basta con recargar.
+
+Tras editar `docs/data/normas.json`, abre **http://localhost:8000/legislacion-fp/diagnostico.html**: comprueba sola que los tres ficheros de datos cargan y que las relaciones entre normas son coherentes por los dos lados, que es el error más fácil de cometer.
 
 ## Documentación
 

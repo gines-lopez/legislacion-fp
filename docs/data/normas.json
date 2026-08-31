@@ -495,6 +495,7 @@
   {
     "id": "anexo-anulacion-matricula",
     "tipo": "anexo",
+    "numero": "I",
     "fecha": "2026-07-16",
     "titulo": "Anexo I de la Resolución de 16 de julio de 2026: solicitud de anulación de matrícula en ciclo formativo",
     "resumen": "Impreso con el que el alumnado solicita a la dirección del centro la anulación de su matrícula. Se publica dentro de las instrucciones del curso, así que se renueva con ellas cada año.",
@@ -512,6 +513,7 @@
   {
     "id": "anexo-resolucion-anulacion-matricula",
     "tipo": "anexo",
+    "numero": "II",
     "fecha": "2026-07-16",
     "titulo": "Anexo II de la Resolución de 16 de julio de 2026: resolución de anulación de matrícula",
     "resumen": "Impreso con el que la dirección del centro resuelve la solicitud de anulación de matrícula y deja constancia en el expediente.",
@@ -529,6 +531,7 @@
   {
     "id": "anexo-renuncia-convocatorias",
     "tipo": "anexo",
+    "numero": "III",
     "fecha": "2026-07-16",
     "titulo": "Anexo III de la Resolución de 16 de julio de 2026: solicitud de renuncia de convocatorias de ciclos formativos",
     "resumen": "Impreso con el que el alumnado renuncia a convocatorias de módulos profesionales del curso, para no agotarlas.",
@@ -546,6 +549,7 @@
   {
     "id": "anexo-convalidacion-estudios",
     "tipo": "anexo",
+    "numero": "IV",
     "fecha": "2026-07-16",
     "titulo": "Anexo IV de la Resolución de 16 de julio de 2026: reconocimiento de convalidación de estudios",
     "resumen": "Impreso con el que el centro reconoce al alumnado la convalidación de módulos profesionales que son competencia del propio centro.",

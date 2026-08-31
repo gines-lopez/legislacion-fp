@@ -4,54 +4,91 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Legislación FP · Normativa de ciclos formativos</title>
-<meta name="description" content="Consulta de la normativa de ordenación y organización académica de los ciclos formativos de FP de la Comunitat Valenciana.">
+<meta name="description" content="Consulta con buscador y filtros de la normativa de ordenación y organización académica de los ciclos formativos de FP de la Comunitat Valenciana, con el estado de vigencia y las relaciones entre normas.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/base.css">
 </head>
 <body>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
 <div class="hoja">
 
-  <header>
-    <p class="eyebrow">Legislación FP</p>
-    <h1 class="titulo">Normativa de ordenación y organización académica de los ciclos formativos</h1>
-    <p class="entradilla">Comunitat Valenciana. Sitio en construcción: esta página comprueba que el despliegue funciona.</p>
+  <header class="cabecera">
+    <p class="marca">Legislación FP</p>
+    <h1 class="cabecera__titulo">Normativa de ciclos formativos</h1>
+    <p class="cabecera__nota">Ordenación y organización académica en la Comunitat Valenciana<span id="cabecera-datos"></span></p>
+    <p class="aviso">
+      <strong>No es fuente oficial.</strong> El texto auténtico de cada norma es el que publican el
+      <a href="https://dogv.gva.es/" target="_blank" rel="noopener noreferrer">DOGV<span class="externo" aria-hidden="true"></span><span class="oculto"> (se abre en una ventana nueva)</span></a>
+      y el
+      <a href="https://www.boe.es/" target="_blank" rel="noopener noreferrer">BOE<span class="externo" aria-hidden="true"></span><span class="oculto"> (se abre en una ventana nueva)</span></a>.
+      El estado de vigencia y los resúmenes son elaboración propia.
+    </p>
   </header>
 
-  <hr class="regla">
+  <main class="contenido" id="contenido">
 
-  <main>
-    <section class="seccion">
-      <h2 class="rotulo">Comprobación del despliegue</h2>
-      <ul class="diagnostico" id="diagnostico">
-        <li class="comprobacion" data-resultado="pendiente" data-prueba="css">
-          <span>Hoja de estilos</span><span class="comprobacion__resultado">comprobando</span>
-        </li>
-        <li class="comprobacion" data-resultado="pendiente" data-prueba="js">
-          <span>Script</span><span class="comprobacion__resultado">comprobando</span>
-        </li>
-        <li class="comprobacion" data-resultado="pendiente" data-prueba="datos">
-          <span>Datos (normas.json)</span><span class="comprobacion__resultado">comprobando</span>
-        </li>
-        <li class="comprobacion" data-resultado="pendiente" data-prueba="rutas">
-          <span>Rutas relativas</span><span class="comprobacion__resultado">comprobando</span>
-        </li>
-      </ul>
-      <noscript>
-        <p class="entradilla">El diagnóstico necesita JavaScript. Que veas esta página con estilos ya confirma que el HTML y la hoja de estilos se sirven bien.</p>
-      </noscript>
-    </section>
+    <noscript>
+      <section class="apartado">
+        <h2 class="apartado__rotulo">Hace falta JavaScript</h2>
+        <p class="cabecera__nota">El buscador y los filtros se ejecutan en el navegador, así que sin JavaScript esta página no puede mostrar el listado. Los datos están, en cualquier caso, en un solo fichero legible: <a href="data/normas.json">normas.json</a>.</p>
+        <p class="cabecera__nota">Para consultar la normativa directamente en la fuente, la conselleria publica su <a href="https://ceice.gva.es/es/web/formacion-profesional/normativa-sobre-ordenacion-y-organizacion-academica-de-los-ciclos-formativos" target="_blank" rel="noopener noreferrer">página de aspectos normativos</a>.</p>
+      </section>
+    </noscript>
 
-    <section class="seccion">
-      <h2 class="rotulo">Muestra del modelo de datos</h2>
-      <div id="muestra"></div>
-    </section>
+    <!-- Estado de partida. Lo retira el script en cuanto tiene los datos; si
+         sigue aquí es que el script no ha llegado a ejecutarse, así que ofrece
+         a dónde ir mientras tanto. -->
+    <p class="cargando" id="cargando">
+      Cargando el listado de normas. Si no aparece, la conselleria publica su
+      <a href="https://ceice.gva.es/es/web/formacion-profesional/normativa-sobre-ordenacion-y-organizacion-academica-de-los-ciclos-formativos" target="_blank" rel="noopener noreferrer">página de aspectos normativos</a>,
+      y el <a href="diagnostico.html">diagnóstico de despliegue</a> dice qué se ha roto.
+    </p>
+
+    <!-- Vista de listado: buscador, filtros y las normas agrupadas por sección. -->
+    <div id="vista-listado" hidden>
+
+      <search class="buscador">
+        <label class="oculto" for="q">Buscar norma</label>
+        <input class="buscador__campo" id="q" type="search" autocomplete="off"
+               spellcheck="false" enterkeyhint="search"
+               placeholder="Buscar norma, materia o número">
+        <p class="buscador__recuento" id="recuento" role="status"></p>
+      </search>
+
+      <div class="filtros" id="filtros"></div>
+
+      <div id="listado"></div>
+
+      <div class="vacio" id="vacio" hidden></div>
+
+      <section class="apartado recursos" id="recursos" hidden>
+        <h2 class="apartado__rotulo">Recursos, no normativa</h2>
+        <p class="recursos__nota">Documentación que la conselleria publica junto a las normas pero que no es norma: no tiene fecha de disposición, no se cita y no entra en el listado.</p>
+        <ul class="recursos__lista"></ul>
+      </section>
+
+    </div>
+
+    <!-- Vista de ficha: una norma con sus relaciones, cada una con su resumen. -->
+    <article id="vista-ficha" hidden></article>
+
   </main>
 
   <footer class="pie">
-    <p>Este sitio no es fuente oficial. El texto auténtico de cada norma es el publicado en el <a href="https://dogv.gva.es/">DOGV</a> y en el <a href="https://www.boe.es/">BOE</a>.</p>
-    <p>Adapta la <a href="https://ceice.gva.es/es/web/formacion-profesional/normativa-sobre-ordenacion-y-organizacion-academica-de-los-ciclos-formativos">página de aspectos normativos de la Conselleria de Educación</a>.</p>
+    <p class="pie__aviso">Este sitio reorganiza y enlaza la normativa; no la sustituye. Ante cualquier discrepancia manda el texto publicado en el diario oficial.</p>
+    <p id="pie-fuente"></p>
+    <p><a href="https://github.com/gines-lopez/legislacion-fp/issues" target="_blank" rel="noopener noreferrer">Avisar de un error<span class="externo" aria-hidden="true"></span><span class="oculto"> (se abre en una ventana nueva)</span></a> · <a href="diagnostico.html">Diagnóstico de despliegue</a></p>
+    <p class="pie__firma">Lo mantiene Ginés López ·
+      <a href="https://gines.me" target="_blank" rel="noopener noreferrer">gines.me<span class="externo" aria-hidden="true"></span><span class="oculto"> (se abre en una ventana nueva)</span></a> ·
+      <a href="https://www.linkedin.com/in/gineslopez/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="externo" aria-hidden="true"></span><span class="oculto"> (se abre en una ventana nueva)</span></a> ·
+      <a href="https://github.com/gines-lopez" target="_blank" rel="noopener noreferrer">GitHub<span class="externo" aria-hidden="true"></span><span class="oculto"> (se abre en una ventana nueva)</span></a>
+    </p>
   </footer>
 
 </div>
+
 <script src="assets/js/app.js"></script>
 </body>
 </html>
