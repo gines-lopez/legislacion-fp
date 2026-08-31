@@ -13,6 +13,24 @@ const marcar = (prueba, ok, detalle) => {
   fila.querySelector('.comprobacion__resultado').textContent = detalle;
 };
 
+/* La portada vive en otra página, así que su versión no está aquí: se carga el
+   script en un iframe oculto del mismo origen y se le pregunta. Si algo falla,
+   se devuelve null y la comprobación se limita a decir qué versión se sirve. */
+const versionEnUso = () => new Promise((resolver) => {
+  const marco = document.createElement('iframe');
+  marco.hidden = true;
+  marco.src = './';
+  marco.addEventListener('load', () => {
+    let version = null;
+    try { version = marco.contentWindow.legislacionFP?.version ?? null; } catch { /* otro origen */ }
+    marco.remove();
+    resolver(version);
+  });
+  marco.addEventListener('error', () => { marco.remove(); resolver(null); });
+  document.body.appendChild(marco);
+  setTimeout(() => { marco.remove(); resolver(null); }, 4000);
+});
+
 const cargar = async (ruta) => {
   const respuesta = await fetch(ruta);
   if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
@@ -23,7 +41,24 @@ const cargar = async (ruta) => {
   // 1. El script se está ejecutando.
   marcar('js', true, 'en ejecución');
 
-  // 2. La hoja de estilos ha cargado: leemos una variable que solo ella define.
+  /* 2. El navegador puede estar ejecutando un script viejo servido desde su
+        propia caché: GitHub Pages manda cache-control de diez minutos, así que
+        tras publicar hay una ventana en la que el HTML es nuevo y el script no.
+        Se compara la versión que se está ejecutando con la del fichero que el
+        servidor entrega ahora mismo, pedido sin caché. */
+  try {
+    const respuesta = await fetch('assets/js/app.js', { cache: 'no-store' });
+    const servido = (await respuesta.text()).match(/const VERSION = '([^']+)'/)?.[1] ?? null;
+    const cacheado = await versionEnUso();
+    if (!servido) marcar('version', false, 'sin marca de versión');
+    else if (!cacheado) marcar('version', true, `${servido} servida`);
+    else if (cacheado === servido) marcar('version', true, `${servido} en uso`);
+    else marcar('version', false, `usando ${cacheado}, publicada ${servido}`);
+  } catch (error) {
+    marcar('version', false, error.message);
+  }
+
+  // 3. La hoja de estilos ha cargado: leemos una variable que solo ella define.
   const cargada = getComputedStyle(document.documentElement)
     .getPropertyValue('--hoja-cargada').trim() === '1';
   marcar('css', cargada, cargada ? 'cargada' : 'no encontrada');

@@ -71,6 +71,8 @@ cd /tmp/fp-local && python3 -m http.server 8000
 
 Y abrir **http://localhost:8000/legislacion-fp/**. El enlace simbólico apunta a `docs/`, así que no hay copias que se queden viejas: al editar basta con recargar.
 
+**Al publicar, sube `VERSION` en `docs/assets/js/app.js`.** GitHub Pages cachea los assets diez minutos, así que hay una ventana en la que un navegador ejecuta el script anterior contra el HTML nuevo y el sitio parece roto sin estarlo; el diagnóstico compara ambas versiones y lo dice. Ver D19 en [DECISIONES.md](DECISIONES.md).
+
 Tras editar `docs/data/normas.json`, abre **http://localhost:8000/legislacion-fp/diagnostico.html**: comprueba sola que los tres ficheros de datos cargan y que las relaciones entre normas son coherentes por los dos lados, que es el error más fácil de cometer.
 
 ## Documentación

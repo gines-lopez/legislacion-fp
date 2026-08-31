@@ -11,6 +11,14 @@
 
 'use strict';
 
+/* Se sube a mano en cada publicación. No es adorno: GitHub Pages sirve los
+   assets con cache-control de diez minutos, así que un navegador puede estar
+   ejecutando el script anterior contra el HTML nuevo, y eso se parece mucho a
+   un fallo del sitio. El diagnóstico compara esta versión con la del fichero
+   servido y avisa. */
+const VERSION = '0.4';
+window.legislacionFP = { version: VERSION };
+
 /* ----------------------------------------------------------- vocabulario --- */
 
 /* El identificador de una norma es una cita: se escribe como se cita. */
@@ -786,6 +794,28 @@ const ir = (destino, { reemplazar = false } = {}) => {
 
   pintar();
   primerPintado = false;
+
+  /* Saltos dentro de la página —el índice de temas, el enlace de saltar al
+     contenido—. Se resuelven aquí y no por el comportamiento nativo del ancla:
+     así el hash se escribe con replaceState y pulsar seis temas seguidos no
+     deja seis entradas en el historial que al volver atrás repinten la ficha
+     entera. Va antes que el enrutador para que este lo vea ya atendido. */
+  document.addEventListener('click', (evento) => {
+    if (evento.defaultPrevented || evento.button !== 0) return;
+    if (evento.metaKey || evento.ctrlKey || evento.shiftKey || evento.altKey) return;
+    const ancla = evento.target.closest('a[href^="#"]');
+    if (!ancla) return;
+    const destino = document.getElementById(decodeURIComponent(ancla.hash.slice(1)));
+    if (!destino) return;
+
+    evento.preventDefault();
+    /* El foco acompaña al salto: si no, quien navega con teclado o con lector
+       de pantalla se queda donde estaba mientras la página se mueve. */
+    if (!destino.hasAttribute('tabindex')) destino.setAttribute('tabindex', '-1');
+    destino.focus({ preventScroll: true });
+    destino.scrollIntoView();
+    history.replaceState(null, '', ancla.hash);
+  });
 
   /* Navegación interna sin recargar. Solo se intercepta lo que apunta a esta
      misma página: los enlaces al DOGV y al BOE llevan target y se van fuera. */

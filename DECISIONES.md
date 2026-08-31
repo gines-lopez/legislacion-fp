@@ -149,3 +149,21 @@ La consulta de una norma vive en `docs/data/consulta/<id>.json` y la ficha la pi
 **Consecuencia de mantenimiento:** las instrucciones de curso se republican cada año. Cuando llegue la resolución del curso siguiente, la FAQ **no se hereda**: se rehace contra el texto nuevo, porque los epígrafes se renumeran y las cifras cambian. Hasta entonces, `revisado` dice contra qué versión se escribió.
 
 **Se reabre si:** aparece una norma cuya FAQ no quepa en un solo fichero, o si hace falta que las preguntas de varias normas se busquen entre sí, que hoy no hace falta porque solo hay una.
+
+## D19 · El script lleva versión y el diagnóstico detecta si el navegador usa una vieja
+
+`app.js` declara `const VERSION` y la expone en `window.legislacionFP.version`. La página de diagnóstico compara esa versión con la del fichero que el servidor entrega en ese momento, pedido sin caché, y avisa si no coinciden.
+
+**Por qué hace falta.** GitHub Pages sirve los assets con `cache-control: max-age=600`. Tras publicar hay una ventana de diez minutos en la que un navegador puede estar ejecutando el `app.js` anterior contra el HTML nuevo. Eso no se parece a un problema de caché: se parece a que el sitio está roto. Pasó de verdad entre v0.2 y v0.3 —las preguntas frecuentes ya estaban, el arreglo de las anclas no— y el síntoma fue que pulsar un tema repintaba la ficha y te mandaba al principio.
+
+**Consecuencia de mantenimiento:** hay que subir `VERSION` a mano en cada publicación. Es una línea, y es lo que hace que la comprobación sirva de algo.
+
+**Por qué no se versionan las URL de los assets** (`app.js?v=4`), que evitaría el problema en vez de detectarlo: obliga a tocar dos ficheros en cada cambio y a acordarse siempre; olvidarlo da falsa seguridad, mientras que el diagnóstico dice la verdad aunque nadie se acuerde de nada. Se reabre si el sitio pasa a publicarse a menudo.
+
+## D20 · Los saltos dentro de la página los resuelve el script, no el ancla
+
+El índice de temas de las preguntas frecuentes y el enlace de saltar al contenido se atienden con un manejador propio, antes que el enrutador: se desplaza al destino, se le lleva el foco y el fragmento se escribe con `replaceState`.
+
+**Por qué no dejar el comportamiento nativo.** Cada salto nativo deja una entrada en el historial; con ocho temas, volver atrás obliga a pulsar ocho veces, y cada vuelta hace que el enrutador repinte la ficha entera y la devuelva al principio. Con `replaceState` no se añade ninguna entrada: comprobado, ocho saltos y cero entradas nuevas.
+
+**Y el foco viaja con el salto.** El comportamiento nativo mueve la vista pero deja el foco donde estaba, así que quien navega con teclado o con lector de pantalla sigue en el índice mientras la página está en otro sitio. Ahora el destino recibe `tabindex="-1"` y el foco.
