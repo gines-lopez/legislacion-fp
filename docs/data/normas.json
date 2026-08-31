@@ -1,0 +1,39 @@
+[
+  {
+    "id": "decreto-114-2025",
+    "tipo": "decreto",
+    "numero": "114/2025",
+    "fecha": "2025-07-29",
+    "titulo": "Decreto 114/2025, de 29 de julio, del Consell, por el que se establecen los currículos correspondientes a los ciclos formativos de grado medio y de grado superior en la Comunitat Valenciana",
+    "resumen": "Fija el currículo autonómico de los ciclos de grado medio y superior. Es la norma de referencia para programar cualquier módulo de estos niveles.",
+    "ambito": "autonomico",
+    "seccion": "ordenacion-academica",
+    "estado": "modificada",
+    "modificadaPor": ["decreto-95-2026"],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2025/29742", "formato": "html" }
+    ],
+    "etiquetas": ["curriculo", "grado-medio", "grado-superior"]
+  },
+  {
+    "id": "decreto-95-2026",
+    "tipo": "decreto",
+    "numero": "95/2026",
+    "fecha": "2026-06-19",
+    "titulo": "Decreto 95/2026, de 19 de junio, del Consell, por el que se establecen los currículos de los cursos de especialización y se modifican los decretos 114/2025 y 117/2025",
+    "resumen": "Regula los cursos de especialización y, de paso, reforma los dos decretos de currículos de 2025. Tiene corrección de errores publicada.",
+    "ambito": "autonomico",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": ["decreto-114-2025"],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2026/21170", "formato": "html" },
+      { "etiqueta": "Corrección de errores", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2026/22324", "formato": "html" }
+    ],
+    "etiquetas": ["curriculo", "cursos-especializacion"]
+  }
+]

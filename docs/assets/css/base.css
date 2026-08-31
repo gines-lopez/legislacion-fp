@@ -1,0 +1,224 @@
+/* ==========================================================================
+   legislacion-fp · hoja de estilos base
+   Escala de grises estricta. El estado de vigencia se codifica con el filete
+   izquierdo (trazo), nunca con color: sobrevive a la impresión en blanco y
+   negro y a la ceguera al color.
+   ========================================================================== */
+
+:root {
+  /* Señal para que el script confirme que esta hoja ha cargado. */
+  --hoja-cargada: 1;
+
+  /* Tinta y papel. Neutros con una calidez mínima: el negro puro sobre blanco
+     puro cansa en lecturas largas de texto legal. */
+  --papel:       #fbfbfa;
+  --realce:      #efeeea;
+  --filete:      #d8d6d1;
+  --tinta-tenue: #6e6c67;
+  --tinta-media: #5a5854;
+  --tinta:       #171614;
+
+  /* Tres funciones tipográficas: título y prosa en serif documental,
+     interfaz en la sans del sistema, identificadores y fechas en monoespaciada.
+     Ninguna fuente externa: sin peticiones a terceros, sin latencia y sin el
+     problema de RGPD que arrastra incrustar tipografías de Google. */
+  --fuente-titulo: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --fuente-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fuente-dato: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --paso: 0.25rem;
+  --medida: 34rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --papel:       #131312;
+    --realce:      #1d1c1a;
+    --filete:      #33322f;
+    --tinta-tenue: #8f8d87;
+    --tinta-media: #a3a099;
+    --tinta:       #edebe6;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: calc(var(--paso) * 12) calc(var(--paso) * 6) calc(var(--paso) * 20);
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--fuente-titulo);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hoja { max-width: var(--medida); margin-inline: auto; }
+
+/* --- Cabecera ------------------------------------------------------------ */
+
+.eyebrow {
+  margin: 0 0 calc(var(--paso) * 5);
+  font-family: var(--fuente-dato);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.titulo {
+  margin: 0;
+  font-size: clamp(1.75rem, 5.5vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.entradilla {
+  margin: calc(var(--paso) * 4) 0 0;
+  color: var(--tinta-media);
+  font-size: 1rem;
+}
+
+.regla {
+  margin: calc(var(--paso) * 10) 0;
+  border: 0;
+  border-top: 1px solid var(--filete);
+}
+
+/* --- Rótulos de sección --------------------------------------------------- */
+
+.rotulo {
+  margin: 0 0 calc(var(--paso) * 5);
+  font-family: var(--fuente-ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-media);
+}
+
+.seccion + .seccion { margin-top: calc(var(--paso) * 14); }
+
+/* --- Diagnóstico ---------------------------------------------------------- */
+
+.diagnostico { margin: 0; padding: 0; list-style: none; }
+
+.comprobacion {
+  display: flex;
+  gap: calc(var(--paso) * 4);
+  align-items: baseline;
+  justify-content: space-between;
+  padding: calc(var(--paso) * 3) 0;
+  border-bottom: 1px solid var(--filete);
+  font-family: var(--fuente-ui);
+  font-size: 0.9375rem;
+}
+
+.comprobacion__resultado {
+  font-family: var(--fuente-dato);
+  font-size: 0.8125rem;
+  color: var(--tinta-media);
+  text-align: right;
+}
+
+.comprobacion[data-resultado="pendiente"] { color: var(--tinta-tenue); }
+.comprobacion[data-resultado="fallo"] .comprobacion__resultado { color: var(--tinta); font-weight: 700; }
+
+/* El signo va antes del texto y no depende del color para leerse. */
+.comprobacion__resultado::before { margin-right: 0.5ch; }
+.comprobacion[data-resultado="ok"]        .comprobacion__resultado::before { content: "✓"; }
+.comprobacion[data-resultado="fallo"]     .comprobacion__resultado::before { content: "✗"; }
+.comprobacion[data-resultado="pendiente"] .comprobacion__resultado::before { content: "·"; }
+
+/* --- Norma: el filete izquierdo codifica la vigencia ---------------------- */
+
+.norma {
+  padding-left: calc(var(--paso) * 5);
+  border-left: 3px solid var(--tinta);
+}
+
+.norma + .norma { margin-top: calc(var(--paso) * 8); }
+
+.norma[data-estado="modificada"] { border-left-width: 5px; border-left-style: double; }
+.norma[data-estado="derogada"]   { border-left-style: dotted; color: var(--tinta-tenue); }
+
+.norma__id {
+  font-family: var(--fuente-dato);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.norma__estado {
+  margin-left: 0.75ch;
+  font-family: var(--fuente-ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta-media);
+}
+
+.norma__fecha {
+  margin: calc(var(--paso) * 1) 0 calc(var(--paso) * 2);
+  font-family: var(--fuente-dato);
+  font-size: 0.8125rem;
+  color: var(--tinta-tenue);
+}
+
+.norma__titulo { margin: 0; font-size: 1rem; line-height: 1.45; }
+.norma__resumen { margin: calc(var(--paso) * 2) 0 0; color: var(--tinta-media); font-size: 0.9375rem; }
+
+.norma__relacion {
+  margin: calc(var(--paso) * 3) 0 0;
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  color: var(--tinta-media);
+}
+
+.norma__relacion::before { content: "→"; margin-right: 0.5ch; }
+
+/* --- Enlaces -------------------------------------------------------------- */
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover { text-decoration-thickness: 2px; }
+
+a:focus-visible {
+  outline: 2px solid var(--tinta);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* --- Pie ------------------------------------------------------------------ */
+
+.pie {
+  margin-top: calc(var(--paso) * 16);
+  padding-top: calc(var(--paso) * 5);
+  border-top: 1px solid var(--filete);
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--tinta-tenue);
+}
+
+.pie p { margin: 0 0 calc(var(--paso) * 2); }
+
+/* --- Accesibilidad e impresión -------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .comprobacion { transition: color 120ms ease-out; }
+}
+
+@media print {
+  body { background: #fff; color: #000; padding: 0; }
+  .diagnostico { display: none; }
+}
