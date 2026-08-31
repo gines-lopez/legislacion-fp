@@ -35,13 +35,19 @@ docs/                    lo que se publica (GitHub Pages: main + /docs)
 └── data/normas.json     fuente de verdad
 ```
 
-Para verlo en local basta con servir la carpeta; abrirla como `file://` no funciona, porque el navegador bloquea la carga del JSON.
+En producción el sitio cuelga de `/legislacion-fp/`, así que **todas las rutas internas son relativas**. Una ruta absoluta funciona si sirves `docs/` en la raíz y revienta al publicar, que es la forma más fácil de perder una tarde. Por eso el servidor local imita el subpath en vez de servir `docs/` a pelo. Abrirlo como `file://` tampoco vale: el navegador bloquea la carga del JSON.
+
+Desde la raíz del repositorio:
 
 ```bash
-cd docs && python3 -m http.server 8000
+mkdir -p /tmp/fp-local && ln -sfn "$PWD/docs" /tmp/fp-local/legislacion-fp
 ```
 
-En producción el sitio cuelga de `/legislacion-fp/`, así que **todas las rutas internas son relativas**. Una ruta absoluta funciona en local y rompe al publicar, que es la forma más fácil de perder una tarde.
+```bash
+cd /tmp/fp-local && python3 -m http.server 8000
+```
+
+Y abrir **http://localhost:8000/legislacion-fp/**. El enlace simbólico apunta a `docs/`, así que no hay copias que se queden viejas: al editar basta con recargar.
 
 ## Documentación
 
