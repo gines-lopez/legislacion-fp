@@ -39,7 +39,7 @@
 | `seccion` | enum | sí | Ver más abajo. |
 | `estado` | enum | sí | `vigente`, `modificada`, `derogada`. `modificada` significa vigente pero con reformas: sigue siendo aplicable. |
 | `modificadaPor` / `modifica` / `deroga` | array de `id` | sí (pueden ir vacíos) | Relaciones entre normas. |
-| `enlaces` | array | sí, mínimo uno | `etiqueta` (`DOGV`, `BOE`, `CEICE`, `Versión consolidada`), `url` y `formato` (`pdf` o `html`). |
+| `enlaces` | array | sí, mínimo uno | `etiqueta` (`DOGV`, `PDF del DOGV`, `BOE`, `CEICE`, `Corrección de errores`), `url` y `formato` (`pdf` o `html`). Ver D9 en [DECISIONES.md](DECISIONES.md). |
 | `etiquetas` | array de string | no | Kebab-case, transversales a las secciones: `dual`, `grado-basico`, `fct`, `curriculo`, `optatividad`. |
 
 ## Secciones

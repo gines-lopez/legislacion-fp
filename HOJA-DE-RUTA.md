@@ -16,54 +16,48 @@ Verificado en local sirviendo bajo un subpath, que es la única forma de detecta
 
 Pendiente, y es acción manual del mantenedor: Settings → Pages → Source «Deploy from a branch» → `main` / carpeta `/docs`.
 
-## Fase 2 · Datos — pendiente, es lo siguiente
+## Fase 2 · Datos — hecha
 
-Volcar las normas de las seis secciones de la web del CEICE a `docs/data/normas.json`, siguiendo [MODELO-DATOS.md](MODELO-DATOS.md).
+`docs/data/normas.json` contiene **36 normas** volcadas de las seis secciones de la web del CEICE, con los seis invariantes de [MODELO-DATOS.md](MODELO-DATOS.md) comprobados y las 58 URL verificadas una a una (código 200 y tipo de contenido esperado).
 
-**Ojo:** `normas.json` ya contiene dos normas semilla, `decreto-114-2025` y `decreto-95-2026`, revisadas a mano y con enlaces verificados. No duplicarlas.
+| Sección | Normas |
+|---|---|
+| `ordenacion-academica` | 20 |
+| `curso-actual` | 4 |
+| `desdobles` | 3 |
+| `anexos` | 4 |
+| `optatividad` | 1 |
+| `cursos-anteriores` | 4 |
 
-### Cómo extraer
+Cada norma del DOGV lleva dos enlaces: la ficha por signatura (estable, bilingüe) y el PDF directo. Las del BOE, la versión consolidada. **Todas las signaturas se verificaron descargando el PDF correspondiente y comprobando que su cabecera CVE coincide**, porque `resultat-dogv?signatura=…` devuelve 200 incluso con una signatura inexistente: es una aplicación de JavaScript que monta el documento después de cargar. El mismo cuidado hace falta con el BOE, que sirve su página de error 404 con estado HTTP 200 (así se colaron cuatro `…/con` inexistentes que hubo que corregir: los RD 497 a 500/2024 no tienen versión consolidada).
 
-La página está renderizada en servidor: no hace falta navegador, basta descargarla. Sí hace falta enviar un *user agent*, porque sin él la petición no devuelve el contenido.
+### Lo que el volcado corrige respecto de la fuente
 
-```bash
-curl -sL -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)" \
-  "https://ceice.gva.es/es/web/formacion-profesional/normativa-sobre-ordenacion-y-organizacion-academica-de-los-ciclos-formativos" \
-  -o gva.html
-```
+Es la aportación real del sitio, y sale de leer las normas, no de la web original:
 
-Comprobación rápida de que la descarga es buena: unos 130 KB, 225 elementos `<a>` y 129 enlaces a PDF, repartidos entre `ceice.gva.es`, `dogv.gva.es` y `boe.es`.
+- **El RD 1147/2011 está derogado.** El BOE lo marca como disposición derogada; lo deroga el apartado 2 de la disposición derogatoria única del RD 659/2023. La web del CEICE lo sigue presentando como «de aplicación a ciclos LOE».
+- **La cadena de instrucciones de curso es explícita.** Cada resolución anual deja sin efecto la anterior, salvo la de 2024-2025, que solo prorrogó la de 2023-2024 para los segundos cursos; por eso la de 2025-2026 tuvo que dejar sin efectos las dos. Las cuatro de `cursos-anteriores` quedan como `derogada`.
+- **Los desdobles son una modificación, no una derogación.** La resolución de 19 de junio de 2023 deja sin efecto *el anexo* de la de 2 de diciembre de 2022, no su articulado: el mecanismo de actualización sigue siendo el de 2022. De ahí `modificada` y no `derogada`.
+- **El Decreto 95/2026 modifica dos decretos, no uno.** El 114/2025 y el 117/2025. La semilla solo declaraba el primero.
+- **El Decreto 117/2025 no deroga el 135/2014.** Deroga los decretos de currículo de grado básico (185/2014, 23/2022 y 67/2024); la ordenación del 135/2014 sigue en pie mientras queden ciclos LOE en extinción.
 
-El dato clave es que **el texto del enlace contiene el identificador de la norma** («DECRETO 114/2025, de 29 de julio»), así que basta recorrer los pares enlace-texto:
+También se completaron los títulos oficiales de las dos normas semilla, que estaban abreviados.
 
-```python
-import re, html
-raw = open('gva.html', encoding='utf-8', errors='replace').read()
-for m in re.finditer(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', raw, re.S | re.I):
-    href, txt = m.group(1), re.sub(r'<[^>]+>', ' ', m.group(2))
-    txt = html.unescape(re.sub(r'\s+', ' ', txt)).strip()
-```
+### Enlaces rotos en la fuente
 
-Normalizar siempre las URL obtenidas, porque la página original es inconsistente:
+Los cuatro «Anexos más frecuentes» del CEICE (anexos VII, IX, X y XIII) responden **301 hacia `webinterna2.gva.es`**, un servidor interno inaccesible desde fuera de la red de la Generalitat. El fallo es específico de esa carpeta de documentos; el resto de PDF alojados en `ceice.gva.es` funcionan. La sección `anexos` se ha modelado, por decisión del mantenedor, con los anexos I a IV de la Resolución de 16 de julio de 2026, que son los impresos realmente vigentes y sí tienen fecha y enlace válido (ver D8 en [DECISIONES.md](DECISIONES.md)).
 
-- Algunos enlaces al DOGV apuntan a la versión valenciana (`/va/resultat-dogv`). Cambiar a `/es/`; la signatura es la misma.
-- Varios van en `http://`. Forzar `https://`.
-- Conviven dos formas de enlazar el DOGV: PDF directo (`dogv.gva.es/datos/…/pdf/…`) y ficha por signatura (`resultat-dogv?signatura=…`). La ficha es preferible: es estable y ofrece el documento en ambas lenguas.
+### Fuera del volcado
 
-### Qué NO da el scraper
+- **«Secuenciación y horarios».** Es una página web de la conselleria, no una norma: no tiene fecha ni encaja en ningún valor de `tipo`. Si interesa, la fase 3 puede añadir un bloque de recursos aparte del listado de normas.
+- **Formulario de alegaciones de optatividad.** Apunta a `forms.edu.gva.es`, dominio fuera de los admitidos por el invariante 6, y correspondía a un plazo ya cerrado. Los tres listados de propuestas sí están, como enlaces de las instrucciones de optatividad.
+- **El apéndice de familias profesionales** con las equivalencias LOGSE→LOE, como estaba previsto. Tiene estructura de tabla de correspondencias y entra como sección aparte más adelante.
 
-Esto es lo importante, y es trabajo humano:
+### Qué conviene vigilar
 
-- **`estado` y las relaciones.** Las modificaciones están redactadas en prosa dentro del texto del enlace o en la línea siguiente («modificado por el DECRETO 95/2026»). No hay marca estructural que las identifique: hay que leerlas. Es la razón de ser del sitio, así que es donde no se puede correr.
-- **`fecha`.** La de la norma, no la de publicación en el diario, que suele ser posterior y es la que aparece en la URL del PDF.
-- **`resumen`.** Se redacta, no se copia del preámbulo.
-- **Correcciones de errores.** Aparecen como enlaces sueltos junto a la norma que corrigen; van dentro de `enlaces` de esa norma, no como norma aparte. El Decreto 95/2026 tiene una.
-
-Al terminar, repasar los seis invariantes de [MODELO-DATOS.md](MODELO-DATOS.md), en especial la simetría de relaciones.
-
-### Fuera de alcance
-
-El apéndice de 45+ familias profesionales con las equivalencias LOGSE→LOE. Tiene estructura propia, de tabla de correspondencias, y entra como sección aparte más adelante.
+- Las **instrucciones de optatividad** son las del curso 2025-2026 y así lo dice su resumen. La web del CEICE no ha publicado las de 2026-2027; cuando aparezcan, sustituyen a estas.
+- La **Orden 78/2010** figura como `vigente` porque nada consultado la deroga expresamente, pero conviene revisarla cuando se incorpore la Orden 8/2025 de evaluación, que sí tocó la Orden 79/2010.
+- La **Resolución de 26 de abril de 2023** de cursos de especialización queda `vigente`: el Decreto 95/2026 solo lleva cláusula derogatoria genérica, que no basta para marcarla derogada.
 
 ## Fase 3 · Interfaz — pendiente
 

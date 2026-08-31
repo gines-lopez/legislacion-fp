@@ -1,11 +1,155 @@
 [
   {
+    "id": "lo-3-2022",
+    "tipo": "ley-organica",
+    "numero": "3/2022",
+    "fecha": "2022-03-31",
+    "titulo": "Ley Orgánica 3/2022, de 31 de marzo, de ordenación e integración de la Formación Profesional",
+    "resumen": "Norma de cabecera del sistema actual: crea un sistema único de Formación Profesional con cinco grados, de la A a la E, y sustituye a la Ley Orgánica 5/2002. Todo lo demás cuelga de aquí.",
+    "ambito": "estatal",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "BOE", "url": "https://www.boe.es/eli/es/lo/2022/03/31/3/con", "formato": "html" }
+    ],
+    "etiquetas": ["lfp", "ordenacion"]
+  },
+  {
+    "id": "rd-659-2023",
+    "tipo": "real-decreto",
+    "numero": "659/2023",
+    "fecha": "2023-07-18",
+    "titulo": "Real Decreto 659/2023, de 18 de julio, por el que se desarrolla la ordenación del Sistema de Formación Profesional",
+    "resumen": "Desarrolla reglamentariamente la Ley Orgánica 3/2022: grados y ofertas, estructura de los ciclos, formación en empresa y evaluación. Su artículo 130 y su anexo XI regulan el reconocimiento de créditos ECTS entre la Formación Profesional y la universidad.",
+    "ambito": "estatal",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": ["rd-1147-2011"],
+    "enlaces": [
+      { "etiqueta": "BOE", "url": "https://www.boe.es/eli/es/rd/2023/07/18/659/con", "formato": "html" }
+    ],
+    "etiquetas": ["lfp", "ordenacion", "ects"]
+  },
+  {
+    "id": "rd-1147-2011",
+    "tipo": "real-decreto",
+    "numero": "1147/2011",
+    "fecha": "2011-07-29",
+    "titulo": "Real Decreto 1147/2011, de 29 de julio, por el que se establece la ordenación general de la formación profesional del sistema educativo",
+    "resumen": "Fue la ordenación general de los ciclos LOE. El BOE la marca como disposición derogada: la deroga el Real Decreto 659/2023, aunque la web del CEICE la sigue presentando como de aplicación a los ciclos LOE. Los títulos expedidos a su amparo conservan su equivalencia.",
+    "ambito": "estatal",
+    "seccion": "ordenacion-academica",
+    "estado": "derogada",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "BOE", "url": "https://www.boe.es/eli/es/rd/2011/07/29/1147/con", "formato": "html" }
+    ],
+    "etiquetas": ["loe", "ordenacion"]
+  },
+  {
+    "id": "rd-278-2023",
+    "tipo": "real-decreto",
+    "numero": "278/2023",
+    "fecha": "2023-04-11",
+    "titulo": "Real Decreto 278/2023, de 11 de abril, por el que se establece el calendario de implantación del Sistema de Formación Profesional establecido por la Ley Orgánica 3/2022, de 31 de marzo, de ordenación e integración de la Formación Profesional",
+    "resumen": "Fija en qué curso entra en vigor cada pieza del nuevo sistema. Es la norma que se consulta para saber si un ciclo concreto ya se imparte en el modelo de la Ley Orgánica 3/2022 o sigue en LOE.",
+    "ambito": "estatal",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "BOE", "url": "https://www.boe.es/eli/es/rd/2023/04/11/278/con", "formato": "html" }
+    ],
+    "etiquetas": ["calendario-implantacion", "lfp"]
+  },
+  {
+    "id": "rd-498-2024",
+    "tipo": "real-decreto",
+    "numero": "498/2024",
+    "fecha": "2024-05-21",
+    "titulo": "Real Decreto 498/2024, de 21 de mayo, por el que se modifican determinados reales decretos por los que se establecen títulos de Formación Profesional de grado básico y se fijan sus enseñanzas mínimas",
+    "resumen": "Adapta las enseñanzas mínimas de los títulos de grado básico al nuevo sistema. Se consulta al programar un módulo de grado básico, porque los contenidos mínimos de referencia son los de esta norma y no los del real decreto original del título.",
+    "ambito": "estatal",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "BOE", "url": "https://www.boe.es/eli/es/rd/2024/05/21/498", "formato": "html" }
+    ],
+    "etiquetas": ["ensenanzas-minimas", "grado-basico"]
+  },
+  {
+    "id": "rd-499-2024",
+    "tipo": "real-decreto",
+    "numero": "499/2024",
+    "fecha": "2024-05-21",
+    "titulo": "Real Decreto 499/2024, de 21 de mayo, por el que se modifican determinados reales decretos por los que se establecen títulos de Formación Profesional de grado medio y se fijan sus enseñanzas mínimas",
+    "resumen": "Adapta las enseñanzas mínimas de los títulos de grado medio al nuevo sistema. Es la referencia de contenidos mínimos para programar cualquier módulo de grado medio.",
+    "ambito": "estatal",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "BOE", "url": "https://www.boe.es/eli/es/rd/2024/05/21/499", "formato": "html" }
+    ],
+    "etiquetas": ["ensenanzas-minimas", "grado-medio"]
+  },
+  {
+    "id": "rd-500-2024",
+    "tipo": "real-decreto",
+    "numero": "500/2024",
+    "fecha": "2024-05-21",
+    "titulo": "Real Decreto 500/2024, de 21 de mayo, por el que se modifican determinados reales decretos por los que se establecen títulos de Formación Profesional de grado superior y se fijan sus enseñanzas mínimas",
+    "resumen": "Adapta las enseñanzas mínimas de los títulos de grado superior al nuevo sistema. Es la referencia de contenidos mínimos para programar cualquier módulo de grado superior.",
+    "ambito": "estatal",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "BOE", "url": "https://www.boe.es/eli/es/rd/2024/05/21/500", "formato": "html" }
+    ],
+    "etiquetas": ["ensenanzas-minimas", "grado-superior"]
+  },
+  {
+    "id": "rd-497-2024",
+    "tipo": "real-decreto",
+    "numero": "497/2024",
+    "fecha": "2024-05-21",
+    "titulo": "Real Decreto 497/2024, de 21 de mayo, por el que se modifican determinados reales decretos por los que se establecen, en el ámbito de la Formación Profesional, cursos de especialización de grado medio y superior y se fijan sus enseñanzas mínimas",
+    "resumen": "Adapta las enseñanzas mínimas de los cursos de especialización al nuevo sistema. Complementa, en el plano estatal, lo que el Decreto 95/2026 concreta como currículo autonómico.",
+    "ambito": "estatal",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "BOE", "url": "https://www.boe.es/eli/es/rd/2024/05/21/497", "formato": "html" }
+    ],
+    "etiquetas": ["ensenanzas-minimas", "cursos-especializacion"]
+  },
+  {
     "id": "decreto-114-2025",
     "tipo": "decreto",
     "numero": "114/2025",
     "fecha": "2025-07-29",
-    "titulo": "Decreto 114/2025, de 29 de julio, del Consell, por el que se establecen los currículos correspondientes a los ciclos formativos de grado medio y de grado superior en la Comunitat Valenciana",
-    "resumen": "Fija el currículo autonómico de los ciclos de grado medio y superior. Es la norma de referencia para programar cualquier módulo de estos niveles.",
+    "titulo": "Decreto 114/2025, de 29 de julio, del Consell, por el que se establecen los currículos de los ciclos formativos de grado medio y de grado superior de Formación Profesional, en aplicación de la Ley orgánica 3/2022, de 31 de marzo, de ordenación e integración de la Formación Profesional",
+    "resumen": "Fija el currículo autonómico de los ciclos de grado medio y superior. Es la norma de referencia para programar cualquier módulo de estos niveles. El Decreto 95/2026 le añadió ciclos y modificó su artículo 2.",
     "ambito": "autonomico",
     "seccion": "ordenacion-academica",
     "estado": "modificada",
@@ -13,27 +157,501 @@
     "modifica": [],
     "deroga": [],
     "enlaces": [
-      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2025/29742", "formato": "html" }
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2025/29742", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2025/08/04/pdf/2025_29742_es.pdf", "formato": "pdf" }
     ],
     "etiquetas": ["curriculo", "grado-medio", "grado-superior"]
+  },
+  {
+    "id": "decreto-117-2025",
+    "tipo": "decreto",
+    "numero": "117/2025",
+    "fecha": "2025-08-05",
+    "titulo": "Decreto 117/2025, de 5 de agosto, del Consell, por el que establecen los currículos de los ciclos formativos de Grado Básico de Formación Profesional, en aplicación de la Ley Orgánica 3/2022, de 31 de marzo, de ordenación e integración de la Formación Profesional",
+    "resumen": "Fija el currículo autonómico de los ciclos de grado básico y deroga los decretos de currículo anteriores (185/2014, 23/2022 y 67/2024). El Decreto 95/2026 modificó su artículo 7 y los horarios de varios ciclos.",
+    "ambito": "autonomico",
+    "seccion": "ordenacion-academica",
+    "estado": "modificada",
+    "modificadaPor": ["decreto-95-2026"],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2025/32763", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2025/08/13/pdf/2025_32763_es.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["curriculo", "grado-basico"]
   },
   {
     "id": "decreto-95-2026",
     "tipo": "decreto",
     "numero": "95/2026",
     "fecha": "2026-06-19",
-    "titulo": "Decreto 95/2026, de 19 de junio, del Consell, por el que se establecen los currículos de los cursos de especialización y se modifican los decretos 114/2025 y 117/2025",
-    "resumen": "Regula los cursos de especialización y, de paso, reforma los dos decretos de currículos de 2025. Tiene corrección de errores publicada.",
+    "titulo": "Decreto 95/2026, de 19 de junio, del Consell, por el que se establecen los currículos de los cursos de especialización de Formación Profesional para la Comunitat Valenciana, en aplicación de la Ley orgánica 3/2022, de 31 de marzo, de ordenación e integración de la Formación Profesional",
+    "resumen": "Fija el currículo autonómico de los cursos de especialización y, en sus disposiciones finales, reforma los dos decretos de currículo de 2025. Tiene corrección de errores publicada.",
     "ambito": "autonomico",
     "seccion": "ordenacion-academica",
     "estado": "vigente",
     "modificadaPor": [],
-    "modifica": ["decreto-114-2025"],
+    "modifica": ["decreto-114-2025", "decreto-117-2025"],
     "deroga": [],
     "enlaces": [
       { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2026/21170", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2026/06/25/pdf/2026_21170_es.pdf", "formato": "pdf" },
       { "etiqueta": "Corrección de errores", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2026/22324", "formato": "html" }
     ],
     "etiquetas": ["curriculo", "cursos-especializacion"]
+  },
+  {
+    "id": "decreto-135-2014",
+    "tipo": "decreto",
+    "numero": "135/2014",
+    "fecha": "2014-08-08",
+    "titulo": "Decreto 135/2014, de 8 de agosto, del Consell, por el que se regulan los ciclos formativos de Formación Profesional Básica en el ámbito de la Comunitat Valenciana",
+    "resumen": "Ordena el grado básico anterior a la Ley Orgánica 3/2022: acceso, admisión, matrícula y organización. Sigue siendo la referencia mientras queden ciclos LOE en extinción; el Decreto 117/2025 derogó los currículos, no esta norma.",
+    "ambito": "autonomico",
+    "seccion": "ordenacion-academica",
+    "estado": "modificada",
+    "modificadaPor": ["decreto-36-2020"],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2014/7635", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2014/08/11/pdf/2014_7635.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["grado-basico", "loe", "admision"]
+  },
+  {
+    "id": "decreto-36-2020",
+    "tipo": "decreto",
+    "numero": "36/2020",
+    "fecha": "2020-03-13",
+    "titulo": "Decreto 36/2020, de 13 de marzo, del Consell, de modificación del Decreto 135/2014, de 8 de agosto, por el que se regula la admisión en los ciclos formativos de Formación Profesional Básica",
+    "resumen": "Unifica en un solo procedimiento la admisión al grado básico, que el Decreto 135/2014 había dividido en ordinario y extraordinario.",
+    "ambito": "autonomico",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": ["decreto-135-2014"],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2020/2729", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2020/03/30/pdf/2020_2729.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["grado-basico", "admision"]
+  },
+  {
+    "id": "resolucion-2023-04-26",
+    "tipo": "resolucion",
+    "fecha": "2023-04-26",
+    "titulo": "Resolución de 26 de abril de 2023, de la Secretaría Autonómica de Educación y Formación Profesional, por la que se establece y ordena los cursos de especialización en la Comunitat Valenciana",
+    "resumen": "Ordena los cursos de especialización anteriores a la Ley Orgánica 3/2022, que se habían implantado con carácter experimental desde el curso 2020-2021. Para los cursos del sistema actual, el currículo está en el Decreto 95/2026.",
+    "ambito": "autonomico",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2023/4695", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2023/05/11/pdf/2023_4695.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["cursos-especializacion", "loe"]
+  },
+  {
+    "id": "orden-78-2010",
+    "tipo": "orden",
+    "numero": "78/2010",
+    "fecha": "2010-08-27",
+    "titulo": "Orden 78/2010, de 27 de agosto, de la Conselleria de Educación, por la que se regulan determinados aspectos de la ordenación y organización académica de los ciclos formativos de Formación Profesional del sistema educativo en el ámbito territorial de la Comunitat Valenciana",
+    "resumen": "Regula oferta, acceso, admisión, matrícula y organización de los ciclos anteriores a la Ley Orgánica 3/2022. Se sigue consultando para lo que no cubren las instrucciones anuales en los ciclos en extinción.",
+    "ambito": "autonomico",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2010/9539", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2010/09/03/pdf/2010_9539.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["ordenacion", "logse", "loe"]
+  },
+  {
+    "id": "orden-1-2014",
+    "tipo": "orden",
+    "numero": "1/2014",
+    "fecha": "2014-08-08",
+    "titulo": "Orden 1/2014, de 8 de agosto, de la Conselleria de Economía, Industria, Turismo y Empleo y la Conselleria de Educación, Cultura y Deporte, por la que se regula la certificación de la formación en prevención de riesgos laborales y de su nivel básico para el alumnado que curse ciclos de Formación Profesional Básica, ciclos formativos de grado medio o de grado superior de Formación Profesional en el ámbito de la Comunitat Valenciana",
+    "resumen": "Establece cómo se certifica al alumnado la formación en prevención de riesgos laborales y, cuando procede, el nivel básico. Afecta al profesorado que imparte los contenidos de PRL y a quien tramita los certificados.",
+    "ambito": "autonomico",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2014/7666", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2014/08/13/pdf/2014_7666.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["prl", "certificacion"]
+  },
+  {
+    "id": "resolucion-2024-04-26",
+    "tipo": "resolucion",
+    "fecha": "2024-04-26",
+    "titulo": "Resolución de 26 de abril de 2024, del director general de Relaciones con las Corts, de la Presidencia de la Generalitat, por la que se publica el convenio de colaboración entre la Generalitat, a través de la Conselleria de Educación, Universidades y Empleo y del Instituto Superior de Enseñanzas Artísticas de la Comunitat Valenciana, y las cinco universidades públicas de la Comunitat Valenciana (Universitat de València, Universitat Politècnica de València, Universidad de Alicante, Universitat Jaume I de Castelló y Universidad Miguel Hernández de Elche), para determinar las correspondencias entre los títulos de técnico y técnica superiores de Formación Profesional y de Artes Plásticas y Diseño impartidos en la Comunitat Valenciana, los títulos universitarios de grado impartidos por las distintas universidades de la Comunitat Valenciana y los títulos de grado en enseñanzas artísticas superiores, así como el reconocimiento de créditos ECTS entre los títulos mencionados",
+    "resumen": "Publica el convenio que fija qué créditos ECTS reconoce cada universidad pública valenciana a cada título de técnico superior. Es lo que se consulta cuando el alumnado de grado superior pregunta por convalidaciones al pasar a la universidad.",
+    "ambito": "autonomico",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2024/3733", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2024/04/30/pdf/2024_3733.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["ects", "grado-superior", "universidad"]
+  },
+  {
+    "id": "instrucciones-2019-07-16",
+    "tipo": "instrucciones",
+    "fecha": "2019-07-16",
+    "titulo": "Instrucciones de 16 de julio de 2019, por las que se establecen directrices sobre varios aspectos relacionados con el alumnado que se incorpora al sistema educativo español procedente de centros de titularidad extranjera o de sistemas educativos de otros países",
+    "resumen": "Pautas para admitir y ubicar al alumnado que llega de sistemas educativos extranjeros. No se publica en el DOGV: se difunde como documento firmado en la web de la conselleria.",
+    "ambito": "autonomico",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "CEICE", "url": "https://ceice.gva.es/documents/162640733/168227315/Instruccions+del+SAEFP_centres+extrangers_signada.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["alumnado-extranjero", "acceso"]
+  },
+  {
+    "id": "decreto-74-2013",
+    "tipo": "decreto",
+    "numero": "74/2013",
+    "fecha": "2013-06-14",
+    "titulo": "Decreto 74/2013, de 14 de junio, del Consell, por el que se regula la Formación Profesional Dual del sistema educativo en la Comunitat Valenciana",
+    "resumen": "Marco autonómico de la FP Dual anterior a la Ley Orgánica 3/2022. Las instrucciones del curso 2026-2027 confirman que sigue vigente para los ciclos LOGSE.",
+    "ambito": "autonomico",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV · versión consolidada", "url": "https://dogv.gva.es/es/eli/es-vc/d/2013/06/14/74/con/", "formato": "html" }
+    ],
+    "etiquetas": ["dual", "logse"]
+  },
+  {
+    "id": "orden-5-2022",
+    "tipo": "orden",
+    "numero": "5/2022",
+    "fecha": "2022-02-15",
+    "titulo": "Orden 5/2022, de 15 de febrero, de la Conselleria de Educación, Cultura y Deporte, por la cual se regulan determinados aspectos de la ordenación de la Formación Profesional Dual del sistema educativo en la Comunitat Valenciana",
+    "resumen": "Desarrolla el Decreto 74/2013: variedades de dual, convenios y organización. Como aquel, sigue vigente para los ciclos LOGSE; la formación en empresa de los ciclos actuales se rige por el Real Decreto 659/2023.",
+    "ambito": "autonomico",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2022/1272", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2022/02/22/pdf/2022_1272.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["dual", "logse"]
+  },
+  {
+    "id": "resolucion-2026-07-16",
+    "tipo": "resolucion",
+    "fecha": "2026-07-16",
+    "titulo": "Resolución de 16 de julio de 2026, de la Secretaría Autonómica de Educación, por la que se dictan instrucciones sobre ordenación académica y de organización de los centros que impartan los grados D y E de Formación Profesional durante el curso 2026-2027 en la Comunitat Valenciana",
+    "resumen": "Instrucciones de inicio de curso: matrícula, evaluación, convocatorias, titulación, convalidaciones y formación en empresa. Es el documento de trabajo diario del profesorado y deja sin efecto las instrucciones del curso anterior.",
+    "ambito": "autonomico",
+    "seccion": "curso-actual",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": ["resolucion-2025-07-17"],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2026/24495", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2026/07/20/pdf/2026_24495_es.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["instrucciones-curso", "evaluacion", "fct"]
+  },
+  {
+    "id": "resolucion-2026-06-15",
+    "tipo": "resolucion",
+    "fecha": "2026-06-15",
+    "titulo": "Resolución de 15 de junio de 2026, de la Dirección General de Centros Docentes, por la que se fija el calendario escolar del curso académico 2026-2027 en la Comunitat Valenciana",
+    "resumen": "Fija inicio y fin de las actividades lectivas y los periodos de vacaciones del curso 2026-2027. Determina el marco temporal en el que encajan la formación en empresa y las sesiones de evaluación.",
+    "ambito": "autonomico",
+    "seccion": "curso-actual",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2026/20810", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2026/06/18/pdf/2026_20810_es.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["calendario-escolar"]
+  },
+  {
+    "id": "guia-proyecto-intermodular",
+    "tipo": "guia",
+    "fecha": "2025-07-30",
+    "titulo": "Guía para la elaboración del proyecto intermodular",
+    "resumen": "Material de apoyo de la conselleria para diseñar, tutorizar y evaluar el proyecto intermodular. No es una norma y no se publica en el DOGV; la fecha es la de publicación del documento en la web.",
+    "ambito": "autonomico",
+    "seccion": "curso-actual",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "CEICE", "url": "https://ceice.gva.es/documents/388109149/394550702/Gu%C3%ADa+para+elaboraci%C3%B3n+del+proyecto+intermodular+cas.pdf/82fbb47e-9938-a475-b2d2-0060363eb6b6", "formato": "pdf" }
+    ],
+    "etiquetas": ["proyecto-intermodular"]
+  },
+  {
+    "id": "modelo-perdida-evaluacion-continua",
+    "tipo": "anexo",
+    "fecha": "2025-07-30",
+    "titulo": "Modelo de comunicación de pérdida del derecho a la evaluación continua",
+    "resumen": "Impreso para comunicar al alumnado que ha perdido el derecho a la evaluación continua por faltas de asistencia. No es una norma y no se publica en el DOGV; la fecha es la de publicación del documento en la web.",
+    "ambito": "autonomico",
+    "seccion": "curso-actual",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "CEICE", "url": "https://ceice.gva.es/documents/388109149/394550702/Perdida+evaluaci%C3%B3n+continua_cas.pdf/71f07e89-ecf3-0921-551e-d027d491ac09", "formato": "pdf" }
+    ],
+    "etiquetas": ["evaluacion", "asistencia"]
+  },
+  {
+    "id": "resolucion-2023-11-16",
+    "tipo": "resolucion",
+    "fecha": "2023-11-16",
+    "titulo": "Resolución de 16 de noviembre de 2023, de la Dirección General de Formación Profesional, por la que se autorizan nuevos desdobles a centros docentes públicos de la Comunitat Valenciana que imparten ciclos formativos en el curso 2023-2024, en función de la matrícula definitiva",
+    "resumen": "Autoriza desdobles adicionales una vez cerrada la matrícula del curso 2023-2024. Es una resolución de efectos puntuales sobre ese curso, no una regulación general.",
+    "ambito": "autonomico",
+    "seccion": "desdobles",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2023/11612", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2023/11/23/pdf/2023_11612.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["desdobles", "plantillas"]
+  },
+  {
+    "id": "resolucion-2023-06-19",
+    "tipo": "resolucion",
+    "fecha": "2023-06-19",
+    "titulo": "Resolución de 19 de junio de 2023, del secretario autonómico de Educación y Formación Profesional, por la que se actualiza la relación de especialidades de profesorado por ciclos formativos de Formación Profesional cuya dedicación es susceptible de desdoble en centros públicos",
+    "resumen": "Contiene la relación vigente de especialidades y módulos desdoblables. Sustituye el anexo de la resolución de 2022, pero no su articulado: el mecanismo de actualización sigue siendo el de aquella. Tiene corrección de errores publicada.",
+    "ambito": "autonomico",
+    "seccion": "desdobles",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": ["resolucion-2022-12-02"],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2023/7061", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2023/06/22/pdf/2023_7061.pdf", "formato": "pdf" },
+      { "etiqueta": "Corrección de errores", "url": "https://dogv.gva.es/datos/2023/07/05/pdf/2023_7527.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["desdobles", "plantillas"]
+  },
+  {
+    "id": "resolucion-2022-12-02",
+    "tipo": "resolucion",
+    "fecha": "2022-12-02",
+    "titulo": "Resolución de 2 de diciembre de 2022, del secretario autonómico de Educación y Formación Profesional, por la que se publica la relación de especialidades de profesorado por ciclos formativos de Formación Profesional cuya dedicación es susceptible de desdoble en centros públicos",
+    "resumen": "Primera relación de especialidades desdoblables y norma que fija el procedimiento para actualizarla. Su anexo quedó sin efecto por la resolución de 19 de junio de 2023, pero su articulado sigue aplicándose.",
+    "ambito": "autonomico",
+    "seccion": "desdobles",
+    "estado": "modificada",
+    "modificadaPor": ["resolucion-2023-06-19"],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2022/11618", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2022/12/09/pdf/2022_11618.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["desdobles", "plantillas"]
+  },
+  {
+    "id": "anexo-anulacion-matricula",
+    "tipo": "anexo",
+    "fecha": "2026-07-16",
+    "titulo": "Anexo I de la Resolución de 16 de julio de 2026: solicitud de anulación de matrícula en ciclo formativo",
+    "resumen": "Impreso con el que el alumnado solicita a la dirección del centro la anulación de su matrícula. Se publica dentro de las instrucciones del curso, así que se renueva con ellas cada año.",
+    "ambito": "autonomico",
+    "seccion": "anexos",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2026/07/20/pdf/2026_24495_es.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["matricula", "impreso"]
+  },
+  {
+    "id": "anexo-resolucion-anulacion-matricula",
+    "tipo": "anexo",
+    "fecha": "2026-07-16",
+    "titulo": "Anexo II de la Resolución de 16 de julio de 2026: resolución de anulación de matrícula",
+    "resumen": "Impreso con el que la dirección del centro resuelve la solicitud de anulación de matrícula y deja constancia en el expediente.",
+    "ambito": "autonomico",
+    "seccion": "anexos",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2026/07/20/pdf/2026_24495_es.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["matricula", "impreso"]
+  },
+  {
+    "id": "anexo-renuncia-convocatorias",
+    "tipo": "anexo",
+    "fecha": "2026-07-16",
+    "titulo": "Anexo III de la Resolución de 16 de julio de 2026: solicitud de renuncia de convocatorias de ciclos formativos",
+    "resumen": "Impreso con el que el alumnado renuncia a convocatorias de módulos profesionales del curso, para no agotarlas.",
+    "ambito": "autonomico",
+    "seccion": "anexos",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2026/07/20/pdf/2026_24495_es.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["convocatorias", "impreso"]
+  },
+  {
+    "id": "anexo-convalidacion-estudios",
+    "tipo": "anexo",
+    "fecha": "2026-07-16",
+    "titulo": "Anexo IV de la Resolución de 16 de julio de 2026: reconocimiento de convalidación de estudios",
+    "resumen": "Impreso con el que el centro reconoce al alumnado la convalidación de módulos profesionales que son competencia del propio centro.",
+    "ambito": "autonomico",
+    "seccion": "anexos",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2026/07/20/pdf/2026_24495_es.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["convalidaciones", "impreso"]
+  },
+  {
+    "id": "instrucciones-2025-06-18",
+    "tipo": "instrucciones",
+    "fecha": "2025-06-18",
+    "titulo": "Instrucciones de 18 de junio de 2025, de la Dirección General de Formación Profesional, sobre la oferta de módulos optativos para el curso 2025-2026",
+    "resumen": "La Dirección General no puede autorizar módulos optativos nuevos fuera del catálogo oficial, así que cada ciclo oferta tres de los ya existentes, uno de ellos obligatoriamente «Inglés oral para entornos profesionales». Se dictaron para el curso 2025-2026 y no consta que se hayan sustituido para 2026-2027.",
+    "ambito": "autonomico",
+    "seccion": "optatividad",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "CEICE", "url": "https://ceice.gva.es/documents/388109149/392955746/Instrucciones_optativas_FP_definitivas_firmado_.pdf/317a5dfd-f363-f237-30ef-2863c616b747", "formato": "pdf" },
+      { "etiqueta": "Listado de propuestas admitidas a valoración", "url": "https://ceice.gva.es/documents/388109149/392955746/Publicaci%C3%B3_APTES.pdf/8dc892be-089d-e236-a849-389afc1ffe55", "formato": "pdf" },
+      { "etiqueta": "Listado de propuestas incompletas o con errores", "url": "https://ceice.gva.es/documents/388109149/392955746/Publicaci%C3%B3_NO_APTES.pdf/b7771ba4-00a6-3cef-7787-11b2cf10b725", "formato": "pdf" },
+      { "etiqueta": "Listado de módulos ya existentes", "url": "https://ceice.gva.es/documents/388109149/392955746/Publicaci%C3%B3_m%C3%B2duls_ja_existents.pdf/505042fa-741b-ac15-0b3c-77725e5bf6aa", "formato": "pdf" }
+    ],
+    "etiquetas": ["optatividad"]
+  },
+  {
+    "id": "resolucion-2025-07-17",
+    "tipo": "resolucion",
+    "fecha": "2025-07-17",
+    "titulo": "Resolución de 17 de julio de 2025, de la Secretaría Autonómica de Educación, por la que se dictan instrucciones sobre ordenación académica y de organización de los centros que impartan los grados D y E de Formación Profesional durante el curso 2025-2026 en la Comunitat Valenciana",
+    "resumen": "Instrucciones del curso 2025-2026. Dejó sin efectos las de los dos cursos anteriores y, a su vez, quedó sin efecto por las del curso 2026-2027.",
+    "ambito": "autonomico",
+    "seccion": "cursos-anteriores",
+    "estado": "derogada",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": ["resolucion-2024-08-08", "resolucion-2023-07-06"],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2025/28562", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2025/07/21/pdf/2025_28562_es.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["instrucciones-curso"]
+  },
+  {
+    "id": "resolucion-2024-08-08",
+    "tipo": "resolucion",
+    "fecha": "2024-08-08",
+    "titulo": "Resolución de 8 de agosto de 2024, de la Secretaría Autonómica de Educación, por la cual se dictan instrucciones sobre ordenación académica y de organización de los centros que imparten Formación Profesional durante el curso 2024-2025 en la Comunitat Valenciana",
+    "resumen": "Instrucciones del curso 2024-2025, dictadas solo para los primeros cursos: para los segundos prorrogó las del curso anterior. Quedó sin efectos por las instrucciones del curso 2025-2026.",
+    "ambito": "autonomico",
+    "seccion": "cursos-anteriores",
+    "estado": "derogada",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2024/8407", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2024/08/14/pdf/2024_8407_es.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["instrucciones-curso"]
+  },
+  {
+    "id": "resolucion-2023-07-06",
+    "tipo": "resolucion",
+    "fecha": "2023-07-06",
+    "titulo": "Resolución de 6 de julio de 2023, de la Secretaría Autonómica de Educación y Formación Profesional, por la que se dictan instrucciones sobre la ordenación académica y de organización de la actividad docente de los centros de la Comunitat Valenciana que durante el curso 2023-2024 impartan Formación Profesional de grado C, D y E",
+    "resumen": "Instrucciones del curso 2023-2024, prorrogadas para los segundos cursos de 2024-2025. Quedaron sin efectos por las instrucciones del curso 2025-2026.",
+    "ambito": "autonomico",
+    "seccion": "cursos-anteriores",
+    "estado": "derogada",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": ["resolucion-2022-07-15"],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2023/7821", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2023/07/13/pdf/2023_7821.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["instrucciones-curso"]
+  },
+  {
+    "id": "resolucion-2022-07-15",
+    "tipo": "resolucion",
+    "fecha": "2022-07-15",
+    "titulo": "Resolución de 15 de julio de 2022, del secretario autonómico de Educación y Formación Profesional, por la que se dictan instrucciones sobre ordenación académica y de organización de la actividad docente de los centros de la Comunitat Valenciana que durante el curso 2022-2023 impartan ciclos de Formación Profesional de grado básico, de grado medio, de grado superior y cursos de especialización",
+    "resumen": "Instrucciones del curso 2022-2023, con dos correcciones de errores publicadas. Quedaron sin efectos por las instrucciones del curso 2023-2024.",
+    "ambito": "autonomico",
+    "seccion": "cursos-anteriores",
+    "estado": "derogada",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2022/6899", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2022/07/20/pdf/2022_6899.pdf", "formato": "pdf" },
+      { "etiqueta": "Corrección de errores", "url": "https://dogv.gva.es/datos/2022/09/16/pdf/2022_8277.pdf", "formato": "pdf" },
+      { "etiqueta": "Segunda corrección de errores", "url": "https://dogv.gva.es/datos/2022/10/24/pdf/2022_9622.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["instrucciones-curso"]
   }
 ]

@@ -45,3 +45,19 @@ Sin color de acento. Estados diferenciados por tipografía, peso y filetes.
 **Por qué:** el DOGV y el BOE son la fuente auténtica y sus URL son estables. Alojar copias crearía versiones fantasma que quedarían desactualizadas en silencio tras una modificación, que es justo el problema que el sitio pretende resolver.
 
 **Matiz:** la fase 4 transcribirá articulado a HTML para poder consultarlo sin abrir el PDF. Esas páginas son *ayuda a la lectura*, no texto auténtico: cada una debe enlazar de forma visible al PDF oficial y llevar fecha de última revisión.
+
+## D8 · La sección de anexos recoge los impresos vigentes, no los enlaces de la fuente
+
+Los cuatro «Anexos más frecuentes» que enlaza la web del CEICE (VII, IX, X y XIII) responden 301 hacia `webinterna2.gva.es`, un servidor interno: no son accesibles desde fuera de la red de la Generalitat. Además son PDF sueltos sin norma ni fecha identificable, y `fecha` es obligatorio.
+
+La sección `anexos` recoge, en su lugar, los anexos I a IV de la Resolución de instrucciones del curso en vigor: son los impresos que el centro debe usar realmente, tienen fecha y su enlace funciona.
+
+**Consecuencia:** se pierden los modelos de exención de FCT y de aplazamiento de calificación de FCT, que no tienen equivalente en las instrucciones actuales. Y como los anexos se republican con las instrucciones cada curso, sus `id` no llevan año (`anexo-anulacion-matricula`, no `anexo-anulacion-matricula-2026`): al cambiar de curso se actualizan `fecha` y `enlaces`, igual que en `curso-actual`.
+
+**Se reabre si:** la Generalitat arregla los enlaces de la carpeta original, o publica los impresos en una ubicación estable e independiente de las instrucciones anuales.
+
+## D9 · Dos enlaces por norma del DOGV: ficha y PDF
+
+La ficha por signatura (`resultat-dogv?signatura=…`) es estable y ofrece el documento en ambas lenguas; el PDF de `dogv.gva.es/datos/…` abre directamente. Se ponen los dos. Del BOE se enlaza la versión consolidada (`/con`), que es la que refleja las modificaciones.
+
+**Cuidado al verificar:** ninguno de los dos diarios devuelve 404 cuando el documento no existe. La ficha del DOGV es una aplicación de JavaScript que sirve siempre su armazón con estado 200, y el BOE sirve su página de error con estado 200. Comprobar el código de respuesta no vale: hay que descargar el PDF y comprobar que su cabecera CVE coincide con la signatura, o leer el `<title>` de la página del BOE.
