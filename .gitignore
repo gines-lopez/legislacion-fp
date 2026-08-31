@@ -1,0 +1,11 @@
+# Solo se publica el contenido de docs/ (GitHub Pages: main + /docs).
+# Todo lo demás se ignora por defecto.
+*
+
+# Documentación del proyecto: cualquier .md de la raíz se versiona.
+!/*.md
+!/.gitignore
+
+# El sitio publicado.
+!docs/
+!docs/**
