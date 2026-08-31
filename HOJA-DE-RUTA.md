@@ -59,59 +59,65 @@ Los cuatro «Anexos más frecuentes» del CEICE (anexos VII, IX, X y XIII) respo
 - La **Orden 78/2010** figura como `vigente` porque nada consultado la deroga expresamente, pero conviene revisarla cuando se incorpore la Orden 8/2025 de evaluación, que sí tocó la Orden 79/2010.
 - La **Resolución de 26 de abril de 2023** de cursos de especialización queda `vigente`: el Decreto 95/2026 solo lleva cláusula derogatoria genérica, que no basta para marcarla derogada.
 
-## Fase 3 · Interfaz — hecha
+## Fase 3 · Interfaz — cerrada
 
-La portada provisional de diagnóstico se ha sustituido por la herramienta de consulta. `docs/` pasa de tres ficheros a ocho.
-
-| Fichero | Qué es |
-|---|---|
-| `index.html` | Portada y ficha, una sola página |
-| `assets/js/app.js` | Buscador, filtros, enrutado y ficha |
-| `assets/css/base.css` | Hoja de estilos completa |
-| `assets/favicon.svg` | Marca del sitio, blanco y negro, se invierte con el tema |
-| `diagnostico.html` + `assets/js/diagnostico.js` | El diagnóstico de la fase 1, movido y ampliado |
-| `data/normas.json` | Las 36 normas, sin cambios de esquema |
-| `data/meta.json` | Fecha de revisión y referencia de la fuente |
-| `data/recursos.json` | Lo que la fuente enlaza y no es norma |
+La portada de diagnóstico se sustituyó por la herramienta de consulta. Esta sección se reescribió al cerrar la fase, porque había quedado congelada mientras el proyecto seguía y afirmaba seis cosas que ya no eran ciertas: en un sitio cuyo argumento es que la documentación desactualizada hace daño, eso no es un detalle.
 
 ### Qué hace
 
-**Buscador instantáneo.** Sobre identificador, título, resumen y materias, además de sección, ámbito y estado traducidos, de modo que escribir «derogada» encuentra lo mismo que el chip. Insensible a tildes y a mayúsculas, con varios términos en conjunción, y resaltando las coincidencias sobre el texto original: se busca «especializacion» y se marca «especialización».
+**Buscador instantáneo.** Sobre identificador, título, resumen y materias, además de sección, ámbito y estado traducidos, de modo que escribir «derogada» encuentra lo mismo que el chip. Insensible a tildes y a mayúsculas, con varios términos en conjunción, y resaltando las coincidencias sobre el texto original: se busca «especializacion» y se marca «especialización». Alcanza también las preguntas frecuentes: al buscar «exención» no sale ninguna norma pero sí cuatro respuestas, y el aviso de «sin resultados» lo dice en vez de fingir que no hay nada.
 
-**Filtros de sección, ámbito y estado**, en chips con recuento vivo. El recuento de cada opción cuenta ya con lo filtrado en los otros ejes, así que los callejones sin salida se ven antes de entrar: al filtrar por «Modificada», los chips de «Curso actual», «Anexos» y «Estatal» quedan a cero y deshabilitados. Las materias (`etiquetas`) filtran también, desde la ficha.
+**Filtros de sección, ámbito y estado**, en chips con recuento vivo. El recuento de cada opción cuenta ya con lo filtrado en los otros ejes, así que los callejones sin salida se ven antes de entrar. Las materias filtran también, desde la ficha.
 
-**Ficha de norma** en `?n=<id>`, con las relaciones agrupadas por verbo —derogada por, modificada por, deroga, modifica— y **cada norma relacionada acompañada de su propio resumen**, que es donde se dice hasta dónde llega la relación. Lleva los enlaces al diario oficial, las materias, la sección y una cita completa copiable con la fecha de consulta.
+**Ficha de norma** en `?n=<id>`, con las relaciones agrupadas por verbo —derogada por, modificada por, deroga, modifica— y **cada norma relacionada acompañada de su propio resumen**, que es donde se dice hasta dónde llega la relación. Lleva los enlaces al diario, las materias, la sección, la cita copiable y, si la norma tiene anexos, la lista de sus partes.
 
-**Estado en la URL.** `?q=`, `?seccion=`, `?ambito=`, `?estado=`, `?etiqueta=` y `?n=`, de modo que cualquier consulta es un enlace pegable. El botón atrás del navegador funciona y al volver de una ficha se recupera la posición del listado y se realza un momento la norma de la que se venía.
+**Estado en la URL.** `?q=`, `?seccion=`, `?ambito=`, `?estado=`, `?etiqueta=`, `?n=` y `?p=`, de modo que cualquier consulta es un enlace pegable. El botón atrás funciona y al volver de una ficha se recupera la posición del listado y se realza la norma de la que se venía.
 
-**El diagnóstico ahora valida el modelo.** Además de las cuatro comprobaciones de despliegue, carga los tres ficheros de datos y comprueba los invariantes 1 a 5 de [MODELO-DATOS.md](MODELO-DATOS.md): que toda norma citada exista, que las relaciones estén declaradas por los dos lados y que el estado concuerde con ellas. Abrirlo tras editar el JSON sustituye a la revisión a mano.
+**Atajo a las instrucciones del curso** en la cabecera, deducido de los datos —sección «curso actual», etiqueta `instrucciones-curso`, la más reciente— para que al rotar de curso siga solo.
 
 ### El aparato visual
 
-La página se organiza sobre un canal izquierdo de ancho fijo por el que corre **una sola regla vertical continua** que atraviesa cada sección y cambia de trazo norma a norma: sólido vigente, doble modificada, punteado derogada. Se ve el estado del corpus al bajar la página sin leer una palabra, y la regla se interrumpe justo donde cambia la sección. En la ficha, de esa misma regla cuelgan las normas relacionadas, cada una con su trazo.
+La página se organiza sobre un canal izquierdo por el que corre **una regla vertical continua** que atraviesa cada sección y cambia de trazo norma a norma: sólido vigente, doble modificada, punteado derogada. En pantallas anchas el listado ocupa la pantalla y las normas fluyen en columnas de periódico, cada una con su propia regla; la ficha se queda centrada en medida de lectura.
 
-Los chips de estado llevan una muestra del trazo idéntica a la del listado, así que **el filtro hace de leyenda** y el código no se explica en ninguna parte. Sigue sin haber color (D5): el chip activo se distingue por inversión completa, tinta plena con el texto en papel.
+Los chips de estado llevan una muestra del trazo idéntica a la del listado, así que **el filtro hace de leyenda**. Sin color (D5): el chip activo se distingue por inversión completa.
+
+### Estado al cerrar
+
+| | |
+|---|---|
+| Normas | 40 · 23 / 4 / 3 / 5 / 1 / 4 por sección |
+| Estados | 29 vigentes, 5 modificadas, 6 derogadas |
+| Ámbito | 32 autonómicas, 8 estatales |
+| Ficheros en `docs/` | 13 |
+| Comprobaciones del diagnóstico | 10, todas en verde |
+
+El diagnóstico valida además el modelo: los invariantes 1 a 5 y del 8 al 10 de [MODELO-DATOS.md](MODELO-DATOS.md), los ficheros de consulta y de articulado, y si el navegador está ejecutando una versión del script anterior a la publicada.
 
 ### Comprobado
 
-- **Contraste AA en los dos temas**, mínimo 4,52:1 sobre nueve combinaciones de tinta y fondo, incluido el filete de los chips, que se subió de 1,4:1 a 5,07:1 por ser un control que se pulsa.
-- **Sin desbordamiento horizontal** a 375 px, a 900 px y a 1440 px.
-- **Recuentos correctos** contra los datos: 20 / 4 / 3 / 5 / 1 / 4 por sección, 29 autonómicas y 8 estatales, 28 vigentes, 4 modificadas y 5 derogadas.
-- **Navegación:** ficha, vuelta con posición y realce recuperados, botón atrás, filtro por materia y enlaces externos con `target="_blank"` y `rel="noopener noreferrer"`.
-- **Los siete diagnósticos en verde**, incluidos los invariantes.
+- **Contraste AA en los dos temas**, mínimo 4,52:1 sobre nueve combinaciones. El filete de los chips se subió de 1,4:1 a 5,07:1 por ser un control que se pulsa.
+- **Sin desbordamiento horizontal** a 375, 900, 1280 y 1440 px.
+- **Recuentos correctos** contra los datos, y facetas que se deshabilitan al quedar a cero.
+- **Navegación:** ficha, vuelta con posición y realce, botón atrás, filtro por materia, anclas sin ensuciar el historial y enlaces externos con `rel="noopener noreferrer"`.
 
-### Lo que la interfaz destapó en los datos
+### Lo que se arregló al cerrarla
 
-Los cinco `anexo` y la `guia` no tenían `numero`, así que se pintaban con el mismo identificador: «ANEXO», cinco veces. Se ha añadido `numero` (`I` a `IV`) a los cuatro anexos de la Resolución de 16 de julio de 2026, que es como se citan. Es el único cambio en `normas.json`: cuatro líneas.
+Tres cosas que habían quedado sueltas y que salieron de auditar la fase contra lo que realmente había:
 
-### Decisiones nuevas
+1. **Dos `<h1>` en la ficha.** El título del sitio y el identificador de la norma competían, así que quien navega saltando por encabezados encontraba dos títulos de página. Ahora el `h1` es el asunto de la vista: en el listado, el título del sitio; en una ficha, la norma, y el título del sitio baja a párrafo sin cambiar de aspecto.
 
-D11 a D15 en [DECISIONES.md](DECISIONES.md): la ficha en la misma página con la norma en la URL; los enlaces al diario solo en la ficha, para que nadie cite sin ver antes las relaciones; el listado a pantalla completa en columnas y la ficha en medida de lectura; los metadatos y los recursos en ficheros propios; y el texto de las derogadas sin atenuar.
+2. **El bloque de impresión se había quedado en la fase 3** y no conocía nada de lo añadido después. Tenía un fallo silencioso: el chip de filtro activo y el botón de atajo son tinta plena con texto en papel, y como los navegadores no imprimen fondos, salían **en blanco sobre blanco**. Se reescribió entero, comprobándolo: ahora esos controles se ocultan o pasan a filete negro, los plegables se abren —una pregunta cerrada imprime su respuesta y su cita—, el listado va a una columna, los laterales fijos dejan de serlo y nada se parte a mitad. D5 justifica la escala de grises por la impresión en blanco y negro en los centros; hasta ahora la hoja contradecía su propio porqué.
 
-### Lo que sigue fuera
+3. **Esta sección**, que afirmaba tres ficheros, 36 normas, siete diagnósticos e invariantes 1 a 5.
 
-- **El apéndice de familias profesionales** con las equivalencias LOGSE→LOE. Tiene estructura de tabla de correspondencias y entra como sección aparte.
-- **Valenciano** (D6) y **posicionamiento en buscadores**, que la fase 3 no resuelve: sin JavaScript no hay listado, solo la cabecera, el aviso legal y un enlace a la fuente.
+### Decisiones
+
+D11 a D15 durante la fase; D19 a D21 después. Ver [DECISIONES.md](DECISIONES.md).
+
+### Lo que queda fuera a propósito
+
+- **El apéndice de familias profesionales** con las equivalencias LOGSE→LOE, que entra como sección aparte.
+- **Valenciano** (D6) y **posicionamiento en buscadores**: sin JavaScript no hay listado, solo la cabecera, el aviso legal y un enlace a la fuente.
 
 ## Fase 4 · Páginas de consulta — empezada
 

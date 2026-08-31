@@ -16,7 +16,7 @@
    ejecutando el script anterior contra el HTML nuevo, y eso se parece mucho a
    un fallo del sitio. El diagnóstico compara esta versión con la del fichero
    servido y avisa. */
-const VERSION = '0.6';
+const VERSION = '0.7';
 window.legislacionFP = { version: VERSION };
 
 /* ----------------------------------------------------------- vocabulario --- */
@@ -634,6 +634,20 @@ const pintarFicha = (norma, volverA, abierta) => {
     ${datos.consultas.has(norma.id) ? pintarConsulta(datos.consultas.get(norma.id), abierta) : ''}`;
 };
 
+/* El h1 es el asunto de la vista, y la vista cambia sin recargar: en el listado
+   lo es el título del sitio, y en una ficha lo es la norma. Si el título del
+   sitio siguiera siendo h1 en la ficha habría dos, y quien navegue saltando por
+   encabezados encontraría dos títulos de página. Al salir del listado baja a
+   párrafo —sigue siendo la marca, deja de ser el encabezado. */
+const nivelDelTitulo = (etiqueta) => {
+  const actual = $('.cabecera__titulo');
+  if (!actual || actual.tagName.toLowerCase() === etiqueta) return;
+  const nuevo = document.createElement(etiqueta);
+  nuevo.className = actual.className;
+  nuevo.innerHTML = actual.innerHTML;
+  actual.replaceWith(nuevo);
+};
+
 /* ---------------------------------------------------------------- enrutado --- */
 
 let ultimoListado = null;   // a dónde vuelve la ficha
@@ -648,6 +662,7 @@ const pintar = () => {
   const norma = filtros.n ? datos.porId.get(filtros.n) : null;
 
   if (filtros.n && !norma) {
+    nivelDelTitulo('p');
     vistaListado.hidden = true;
     vistaFicha.hidden = false;
     vistaFicha.innerHTML = `
@@ -660,6 +675,7 @@ const pintar = () => {
   }
 
   if (norma) {
+    nivelDelTitulo('p');
     if (!vistaListado.hidden) scrollListado = window.scrollY;
     vistaListado.hidden = true;
     vistaFicha.hidden = false;
@@ -688,6 +704,7 @@ const pintar = () => {
     return;
   }
 
+  nivelDelTitulo('h1');
   const volviendo = !vistaFicha.hidden;
   vistaFicha.hidden = true;
   vistaFicha.innerHTML = '';

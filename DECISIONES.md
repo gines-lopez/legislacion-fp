@@ -201,3 +201,21 @@ La página de la Orden 8/2025 reproduce sus 20 artículos con los apartados 12.8
 **Por qué.** La fase 4 va a repetirse norma a norma durante años. Si cada página llevara su propio script o su contenido en el HTML, la vigésima sería inmantenible y ninguna se parecería a las demás. Así el coste de la siguiente es el de escribir los datos, que es donde está el trabajo de verdad.
 
 **Coherente con D3:** el articulado es contenido y vive en `data/texto/`, no en el HTML.
+
+## D24 · Un solo `h1` por vista, y es el asunto de lo que se está viendo
+
+En el listado el `h1` es el título del sitio; en una ficha lo es la norma, y el título del sitio baja a párrafo sin cambiar de aspecto. La página de articulado ya lo hacía así.
+
+**Por qué.** La ficha y el listado son la misma página y se cambia entre ellas sin recargar, así que el `h1` estático de la cabecera convivía con el de la norma: dos títulos de página. Quien navega saltando por encabezados —que es como se recorre un documento largo con lector de pantalla— se encontraba dos veces con el principio.
+
+**Por qué el título del sitio baja a párrafo y no a `h2`.** Un `h2` ahí lo convertiría en el primer apartado de la ficha, que no es. Como párrafo sigue siendo la marca y deja de estar en el índice de encabezados.
+
+## D25 · La hoja de impresión se compone sin fondos
+
+En papel no se fuerza la impresión de fondos. Todo lo que en pantalla se distingue por relleno se distingue en papel por filete o por peso.
+
+**Por qué.** Forzar los fondos gasta tóner de un centro educativo, que es exactamente el sitio donde se imprime esto. Y no forzarlos tiene una trampa que estuvo activa un tiempo: el chip de filtro activo y el botón de atajo son tinta plena con el texto en papel, así que sin fondo quedaban **en blanco sobre blanco**, invisibles. Ahora esos controles se ocultan o pasan a filete negro.
+
+**Qué más cambia en papel:** los plegables se abren —una pregunta cerrada imprime su respuesta y su cita, que si no la hoja no sirve de nada—, el listado pasa a una columna, los laterales fijos dejan de serlo, los títulos recortados se imprimen enteros y ni una norma, artículo o respuesta se parte entre páginas. El trazo del margen sigue codificando la vigencia, y el estado y el ámbito están escritos además con palabras (D5).
+
+**Se comprueba, no se supone:** las reglas de `@media print` se extraen de la hoja y se aplican como si fueran de pantalla para poder medirlas. Así se detectó el blanco sobre blanco.
