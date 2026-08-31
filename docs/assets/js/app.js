@@ -16,7 +16,7 @@
    ejecutando el script anterior contra el HTML nuevo, y eso se parece mucho a
    un fallo del sitio. El diagnóstico compara esta versión con la del fichero
    servido y avisa. */
-const VERSION = '0.4';
+const VERSION = '0.5';
 window.legislacionFP = { version: VERSION };
 
 /* ----------------------------------------------------------- vocabulario --- */

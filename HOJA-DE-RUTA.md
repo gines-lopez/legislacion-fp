@@ -18,11 +18,11 @@ Publicado en https://gines-lopez.github.io/legislacion-fp y comprobado en produc
 
 ## Fase 2 · Datos — hecha
 
-`docs/data/normas.json` contiene **37 normas** volcadas de las seis secciones de la web del CEICE, con los seis invariantes de [MODELO-DATOS.md](MODELO-DATOS.md) comprobados y las 58 URL verificadas una a una (código 200 y tipo de contenido esperado).
+`docs/data/normas.json` contiene **40 normas** volcadas de las seis secciones de la web del CEICE, con los seis invariantes de [MODELO-DATOS.md](MODELO-DATOS.md) comprobados y las 58 URL verificadas una a una (código 200 y tipo de contenido esperado).
 
 | Sección | Normas |
 |---|---|
-| `ordenacion-academica` | 20 |
+| `ordenacion-academica` | 23 |
 | `curso-actual` | 4 |
 | `desdobles` | 3 |
 | `anexos` | 5 |
@@ -147,3 +147,27 @@ La portada lleva además un **atajo directo** a la ficha de las instrucciones de
 ### Añadido de paso
 
 El **Anexo V** de la Resolución, que estaba en el PDF y no en los datos: la relación centro a centro de ciclos y cursos de especialización de nueva implantación en 2026-2027. Va en `anexos`, junto a los otros cuatro, con `parteDe` apuntando a su resolución. No es un impreso como los anexos I a IV, sino un listado informativo, y su resumen lo dice. El corpus pasa de 36 a 37 normas.
+
+### Las tres normas de evaluación
+
+Añadidas la **Orden 8/2025**, de 22 de abril, de evaluación, y la **Orden 5/2026**, de 1 de abril, que la modifica. Con ellas entra una tercera que no se pidió pero que hacía falta para poder declarar la relación: la **Orden 79/2010**, a la que la Orden 8/2025 deroga. El corpus pasa de 37 a 40 normas.
+
+La Orden 5/2026 toca dos artículos y nada más: el 12.8, sobre el carácter informativo de las calificaciones parciales, y el 14.1.b, que fija en 240 horas el máximo de módulos pendientes de primero con el que se puede cursar segundo. Es, por cierto, la redacción que cita la pregunta sobre promoción de las preguntas frecuentes.
+
+La Orden 79/2010 entra como `derogada`, pero su resumen advierte de lo que el estado no puede decir: las disposiciones transitoria y derogatoria de la Orden 8/2025 la mantienen aplicable a los ciclos LOGSE mientras queden en extinción, y las instrucciones de curso siguen remitiendo a ella. Es el caso de manual de por qué el `resumen` es obligatorio.
+
+**Duda pendiente, resuelta.** La fase 2 dejó anotado que convenía revisar la Orden 78/2010 al incorporar la de evaluación. Ya está comprobado: **nadie la deroga**. Lo que la Orden 8/2025 deroga es la Orden 79/2010, que es otra. La 78/2010 sigue vigente, aunque la modificaron la Orden 33/2011 y el Decreto 193/2021, que no están en este listado; su resumen ahora lo dice y remite a la versión consolidada.
+
+### Cómo se verificaron
+
+El portal del DOGV tiene una API que hasta ahora no se estaba usando y que ahorra trabajo y evita errores:
+
+| Petición | Qué da |
+|---|---|
+| `/dogv-portal/dogv/obtenerIdDogv/<AAAA-NNNNN>` | El identificador interno de la disposición |
+| `/dogv-portal/disposicion/<id>?lang=es_es` | Título oficial, fecha de disposición, fecha y número de DOGV, organismo |
+| `/dogv-portal/disposicion/<id>/analisisJuridico?lang=es_es` | **Qué deroga y qué modifica, y quién la deroga y la modifica a ella** |
+
+El `analisisJuridico` es lo importante: da las relaciones dichas por el propio diario, en vez de deducidas leyendo el preámbulo. Es de donde salen las tres relaciones nuevas y la respuesta sobre la Orden 78/2010.
+
+Aun así se mantiene la comprobación de D9: los tres PDF se descargaron y se confirmó que su cabecera CVE coincide con la signatura. Que la API responda no basta.

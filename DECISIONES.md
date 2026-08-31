@@ -167,3 +167,19 @@ El índice de temas de las preguntas frecuentes y el enlace de saltar al conteni
 **Por qué no dejar el comportamiento nativo.** Cada salto nativo deja una entrada en el historial; con ocho temas, volver atrás obliga a pulsar ocho veces, y cada vuelta hace que el enrutador repinte la ficha entera y la devuelva al principio. Con `replaceState` no se añade ninguna entrada: comprobado, ocho saltos y cero entradas nuevas.
 
 **Y el foco viaja con el salto.** El comportamiento nativo mueve la vista pero deja el foco donde estaba, así que quien navega con teclado o con lector de pantalla sigue en el índice mientras la página está en otro sitio. Ahora el destino recibe `tabindex="-1"` y el foco.
+
+## D21 · Las relaciones entre normas se toman del análisis jurídico del DOGV, no del preámbulo
+
+Antes de declarar que una norma deroga o modifica a otra se consulta la API del portal del DOGV:
+
+```
+/dogv-portal/dogv/obtenerIdDogv/<AAAA-NNNNN>          → identificador interno
+/dogv-portal/disposicion/<id>?lang=es_es              → título, fechas, organismo
+/dogv-portal/disposicion/<id>/analisisJuridico?…      → qué afecta y qué la afecta
+```
+
+**Por qué.** Hasta ahora las relaciones se deducían leyendo el preámbulo y las disposiciones derogatorias, que es lento y falible: así se estuvo a punto de anotar que la Orden 8/2025 tocaba la Orden 78/2010 cuando lo que deroga es la 79/2010, que es otra norma distinta publicada tres días después. El análisis jurídico lo dice el propio diario, en los dos sentidos, y de paso avisa de afectaciones que el preámbulo no menciona.
+
+**No sustituye a D9.** La API confirma que la disposición existe y qué relaciones tiene, pero el documento se descarga igual y se comprueba que su cabecera CVE coincide con la signatura. Son dos cosas distintas: que el dato exista en el portal y que el enlace que se publica aquí lleve al documento correcto.
+
+**Lo que la API no da:** el *alcance*. Dice «Deroga», nunca «deroga salvo para los ciclos LOGSE, que siguen rigiéndose por ella». Ese matiz sigue saliendo de leer la norma y sigue viviendo en el `resumen`. Ver «Lo que el modelo no captura» en [MODELO-DATOS.md](MODELO-DATOS.md).

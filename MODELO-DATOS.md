@@ -76,6 +76,7 @@ Los invariantes 1 a 5, el 8 y el 9 los comprueba sola la página [`diagnostico.h
 - La Resolución de 8 de agosto de 2024 no sustituyó a la del curso anterior: la prorrogó *solo para los segundos cursos*. El modelo no tiene «prorroga».
 - El RD 1147/2011 está derogado, pero los títulos expedidos a su amparo conservan su equivalencia. `derogada` no significa irrelevante.
 - El Decreto 95/2026 modifica el 114/2025 y el 117/2025, pero solo artículos y anexos concretos.
+- La Orden 8/2025 deroga la Orden 79/2010, pero sus disposiciones transitoria y derogatoria la mantienen aplicable a los ciclos LOGSE en extinción. En el dato es `derogada` a secas.
 
 **Dónde vive ese matiz:** en el `resumen`, redactado a propósito para decirlo. Es la razón de que `resumen` sea obligatorio y de que no se copie del preámbulo.
 

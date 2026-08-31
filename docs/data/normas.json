@@ -263,7 +263,7 @@
     "numero": "78/2010",
     "fecha": "2010-08-27",
     "titulo": "Orden 78/2010, de 27 de agosto, de la Conselleria de Educación, por la que se regulan determinados aspectos de la ordenación y organización académica de los ciclos formativos de Formación Profesional del sistema educativo en el ámbito territorial de la Comunitat Valenciana",
-    "resumen": "Regula oferta, acceso, admisión, matrícula y organización de los ciclos anteriores a la Ley Orgánica 3/2022. Se sigue consultando para lo que no cubren las instrucciones anuales en los ciclos en extinción.",
+    "resumen": "Regula oferta, acceso, admisión, matrícula y organización de los ciclos anteriores a la Ley Orgánica 3/2022. Se sigue consultando para lo que no cubren las instrucciones anuales en los ciclos en extinción. Ninguna norma la deroga, pero la modificaron la Orden 33/2011 y el Decreto 193/2021, que no están en este listado: conviene leerla en su versión consolidada del DOGV.",
     "ambito": "autonomico",
     "seccion": "ordenacion-academica",
     "estado": "vigente",
@@ -275,6 +275,63 @@
       { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2010/09/03/pdf/2010_9539.pdf", "formato": "pdf" }
     ],
     "etiquetas": ["ordenacion", "logse", "loe"]
+  },
+  {
+    "id": "orden-79-2010",
+    "tipo": "orden",
+    "numero": "79/2010",
+    "fecha": "2010-08-27",
+    "titulo": "Orden 79/2010, de 27 de agosto, de la Conselleria de Educación, por la que se regula la evaluación del alumnado de los ciclos formativos de Formación Profesional del sistema educativo en el ámbito territorial de la Comunitat Valenciana",
+    "resumen": "Reguló la evaluación antes de la Ley Orgánica 3/2022. La Orden 8/2025 la deroga, pero sus disposiciones transitoria y derogatoria la mantienen aplicable a los ciclos LOGSE mientras queden en extinción: las instrucciones de curso siguen remitiendo a ella para la evaluación, las calificaciones y las convocatorias de esos ciclos. Aquí «derogada» no significa sin efecto.",
+    "ambito": "autonomico",
+    "seccion": "ordenacion-academica",
+    "estado": "derogada",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2010/9553", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2010/09/06/pdf/2010_9553.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["evaluacion", "logse"]
+  },
+  {
+    "id": "orden-8-2025",
+    "tipo": "orden",
+    "numero": "8/2025",
+    "fecha": "2025-04-22",
+    "titulo": "Orden 8/2025, de 22 de abril, de la Conselleria de Educación, Cultura, Universidades y Empleo, por la que se regula la evaluación del proceso de enseñanza-aprendizaje en ciclos formativos y cursos de especialización derivados de la Ley orgánica 3/2022, de 31 de marzo, de ordenación e integración de la Formación Profesional",
+    "resumen": "La norma de evaluación del sistema actual: sesiones y calificaciones, promoción, convocatorias y renuncia, pérdida del derecho a evaluación continua, titulación y documentos oficiales. Las instrucciones de curso remiten a ella casi cada vez que hablan de evaluar, así que es la que hay que tener a mano al programar. En vigor desde el 1 de mayo de 2025.",
+    "ambito": "autonomico",
+    "seccion": "ordenacion-academica",
+    "estado": "modificada",
+    "modificadaPor": ["orden-5-2026"],
+    "modifica": [],
+    "deroga": ["orden-79-2010"],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2025/13083", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2025/04/30/pdf/2025_13083_es.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["evaluacion", "lfp", "convocatorias"]
+  },
+  {
+    "id": "orden-5-2026",
+    "tipo": "orden",
+    "numero": "5/2026",
+    "fecha": "2026-04-01",
+    "titulo": "Orden 5/2026, de 1 de abril, de la Conselleria de Educación, Cultura y Universidades, por la que se modifica la Orden 8/2025, de 22 de abril, de la Conselleria de Educación, Cultura, Universidades y Empleo, por la que se regula la evaluación del proceso de enseñanza-aprendizaje en ciclos formativos y cursos de especialización derivados de la Ley orgánica 3/2022, de 31 de marzo, de ordenación e integración de la Formación Profesional",
+    "resumen": "Toca dos artículos de la Orden 8/2025 y nada más: el 12.8, para dejar claro que las calificaciones parciales son informativas y no constan en el expediente académico, y el 14.1.b, que fija en 240 horas el máximo de módulos pendientes de primero con el que se puede cursar segundo. No sustituye a la Orden 8/2025: hay que leerla con estos dos cambios aplicados. En vigor desde el 8 de abril de 2026.",
+    "ambito": "autonomico",
+    "seccion": "ordenacion-academica",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": ["orden-8-2025"],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "DOGV", "url": "https://dogv.gva.es/es/resultat-dogv?signatura=2026/10102", "formato": "html" },
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2026/04/07/pdf/2026_10102_es.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["evaluacion", "promocion"]
   },
   {
     "id": "orden-1-2014",

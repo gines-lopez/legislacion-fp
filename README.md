@@ -21,7 +21,7 @@ Este proyecto parte de esa misma información y le añade lo que le falta:
 
 ## Estado
 
-En uso. El sitio contiene las 37 normas de las seis secciones, con su ámbito, su estado de vigencia y sus relaciones, y la portada ya es la herramienta de consulta: buscador instantáneo, filtros con recuento y ficha por norma.
+En uso. El sitio contiene las 40 normas de las seis secciones, con su ámbito, su estado de vigencia y sus relaciones, y la portada ya es la herramienta de consulta: buscador instantáneo, filtros con recuento y ficha por norma.
 
 Las **instrucciones de inicio de curso** tienen además 50 preguntas frecuentes dentro de su ficha: cada respuesta indica el epígrafe del que sale y reproduce la frase literal de la norma en que se apoya, y todas se verificaron una a una contra el PDF del DOGV. Ver [HOJA-DE-RUTA.md](HOJA-DE-RUTA.md).
 
@@ -50,7 +50,7 @@ Toda la vista vive en la dirección, así que cualquier consulta se puede pegar 
 | Enlace | Qué muestra |
 |---|---|
 | `?q=dual` | Lo que menciona la formación dual |
-| `?estado=derogada` | Las cinco normas derogadas |
+| `?estado=derogada` | Las seis normas derogadas |
 | `?seccion=curso-actual` | Las instrucciones del curso en vigor |
 | `?etiqueta=fct` | Todo lo que toca la FCT |
 | `?n=decreto-114-2025` | La ficha de esa norma, con sus relaciones |
