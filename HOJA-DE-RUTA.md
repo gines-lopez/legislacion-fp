@@ -18,14 +18,14 @@ Publicado en https://gines-lopez.github.io/legislacion-fp y comprobado en produc
 
 ## Fase 2 · Datos — hecha
 
-`docs/data/normas.json` contiene **36 normas** volcadas de las seis secciones de la web del CEICE, con los seis invariantes de [MODELO-DATOS.md](MODELO-DATOS.md) comprobados y las 58 URL verificadas una a una (código 200 y tipo de contenido esperado).
+`docs/data/normas.json` contiene **37 normas** volcadas de las seis secciones de la web del CEICE, con los seis invariantes de [MODELO-DATOS.md](MODELO-DATOS.md) comprobados y las 58 URL verificadas una a una (código 200 y tipo de contenido esperado).
 
 | Sección | Normas |
 |---|---|
 | `ordenacion-academica` | 20 |
 | `curso-actual` | 4 |
 | `desdobles` | 3 |
-| `anexos` | 4 |
+| `anexos` | 5 |
 | `optatividad` | 1 |
 | `cursos-anteriores` | 4 |
 
@@ -96,7 +96,7 @@ Los chips de estado llevan una muestra del trazo idéntica a la del listado, as�
 
 - **Contraste AA en los dos temas**, mínimo 4,52:1 sobre nueve combinaciones de tinta y fondo, incluido el filete de los chips, que se subió de 1,4:1 a 5,07:1 por ser un control que se pulsa.
 - **Sin desbordamiento horizontal** a 375 px, a 900 px y a 1440 px.
-- **Recuentos correctos** contra los datos: 20 / 4 / 3 / 4 / 1 / 4 por sección, 28 autonómicas y 8 estatales, 27 vigentes, 4 modificadas y 5 derogadas.
+- **Recuentos correctos** contra los datos: 20 / 4 / 3 / 5 / 1 / 4 por sección, 29 autonómicas y 8 estatales, 28 vigentes, 4 modificadas y 5 derogadas.
 - **Navegación:** ficha, vuelta con posición y realce recuperados, botón atrás, filtro por materia y enlaces externos con `target="_blank"` y `rel="noopener noreferrer"`.
 - **Los siete diagnósticos en verde**, incluidos los invariantes.
 
@@ -113,10 +113,37 @@ D11 a D15 en [DECISIONES.md](DECISIONES.md): la ficha en la misma página con la
 - **El apéndice de familias profesionales** con las equivalencias LOGSE→LOE. Tiene estructura de tabla de correspondencias y entra como sección aparte.
 - **Valenciano** (D6) y **posicionamiento en buscadores**, que la fase 3 no resuelve: sin JavaScript no hay listado, solo la cabecera, el aviso legal y un enlace a la fuente.
 
-## Fase 4 · Páginas de consulta — pendiente, es lo siguiente
+## Fase 4 · Páginas de consulta — empezada
 
-Articulado navegable en HTML para no tener que abrir el PDF. Se irán pidiendo norma a norma. Ver el matiz de D7 en [DECISIONES.md](DECISIONES.md): son ayuda a la lectura, no texto auténtico.
+La primera es la **Resolución de 16 de julio de 2026**, las instrucciones de inicio de curso: 41 páginas y 24.346 palabras, el documento de trabajo diario del profesorado y el que más se consulta.
 
-**Cómo encaja con la fase 3.** Cada página de articulado será un HTML propio bajo `docs/norma/<id>.html`, y la ficha de esa norma la enlazará desde su apartado «Texto oficial», junto al enlace al diario. Basta con un campo nuevo y opcional en la norma —por ejemplo `articulado: "norma/decreto-114-2025.html"`— para que la ficha lo pinte sola: no hay que tocar `app.js` por cada norma que se transcriba.
+En vez de transcribir el articulado, se ha resuelto como **50 preguntas frecuentes** dentro de su propia ficha, en `docs/data/consulta/resolucion-2026-07-16.json`. Cada una lleva la pregunta tal y como se formula de verdad, una respuesta en lenguaje llano, el epígrafe del que sale y **la frase literal de la norma en que se apoya**. Ver D18 en [DECISIONES.md](DECISIONES.md).
 
-**Por dónde empezar.** Por la Resolución de instrucciones del curso en vigor, que es el documento de trabajo diario del profesorado y el que más se consulta.
+| Tema | Preguntas |
+|---|---|
+| Matrícula, anulación y faltas | 9 |
+| Evaluación, promoción y calificaciones | 11 |
+| Convocatorias | 7 |
+| Titulación | 1 |
+| Convalidaciones | 5 |
+| Formación en empresa | 12 |
+| Profesorado | 3 |
+| Alumnado | 2 |
+
+Cubren 31 epígrafes distintos de los 99 del documento. El reparto no es proporcional a la extensión, sino a lo que se consulta: el apartado 17, «Profesorado», es de los más largos y se lleva tres preguntas, mientras que la formación en empresa se lleva doce.
+
+**Verificado:** las 50 citas se comprobaron una a una contra el texto extraído del PDF del DOGV antes de guardar el fichero, quitando antes la maquetación del diario, que se cuela en mitad de las frases al cruzar página. Ninguna respuesta se apoya en una frase que no esté publicada.
+
+**En la interfaz:** las preguntas se despliegan con `<details>`, agrupadas por tema y con un índice para saltar; cada una tiene su propia URL (`?n=resolucion-2026-07-16&p=exencion-experiencia`), que se puede pegar en un correo y abre esa respuesta. El buscador de la portada las alcanza: al buscar «exención» no sale ninguna norma, pero sí cuatro respuestas, y el mensaje lo dice.
+
+La portada lleva además un **atajo directo** a la ficha de las instrucciones del curso en vigor, deducido de los datos —sección «curso actual», etiqueta `instrucciones-curso`, la más reciente— para que al rotar de curso siga solo.
+
+### Qué toca después
+
+- **Rehacer la FAQ cuando salga la resolución del curso 2027-2028.** No se hereda: los epígrafes se renumeran y las cifras cambian. Ver D18.
+- **Más normas con consulta,** a demanda. El mecanismo ya está: basta `consulta: true` en la norma y su fichero en `docs/data/consulta/`.
+- **El apéndice de familias profesionales** con las equivalencias LOGSE→LOE, como sección aparte.
+
+### Añadido de paso
+
+El **Anexo V** de la Resolución, que estaba en el PDF y no en los datos: la relación centro a centro de ciclos y cursos de especialización de nueva implantación en 2026-2027. Va en `anexos`, junto a los otros cuatro, con `parteDe` apuntando a su resolución. No es un impreso como los anexos I a IV, sino un listado informativo, y su resumen lo dice. El corpus pasa de 36 a 37 normas.

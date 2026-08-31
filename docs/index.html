@@ -18,6 +18,9 @@
     <p class="marca">Legislación FP</p>
     <h1 class="cabecera__titulo">Normativa de ciclos formativos</h1>
     <p class="cabecera__nota">Ordenación y organización académica en la Comunitat Valenciana<span id="cabecera-datos"></span></p>
+    <!-- Atajo a las instrucciones del curso en vigor: es lo que más se
+         consulta, y se deriva de los datos, no se escribe aquí. -->
+    <p class="atajo" id="atajo" hidden></p>
     <p class="aviso">
       <strong>No es fuente oficial.</strong> El texto auténtico de cada norma es el que publican el
       <a href="https://dogv.gva.es/" target="_blank" rel="noopener noreferrer">DOGV<span class="externo" aria-hidden="true"></span><span class="oculto"> (se abre en una ventana nueva)</span></a>
@@ -58,6 +61,9 @@
       </search>
 
       <div class="filtros" id="filtros"></div>
+
+      <!-- El buscador alcanza también las preguntas frecuentes de una norma. -->
+      <section class="apartado respuestas" id="respuestas" hidden></section>
 
       <div id="listado"></div>
 

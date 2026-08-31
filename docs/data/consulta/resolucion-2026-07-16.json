@@ -1,0 +1,457 @@
+{
+  "norma": "resolucion-2026-07-16",
+  "revisado": "2026-08-31",
+  "aviso": "Preguntas y respuestas de elaboración propia sobre el texto de la Resolución. Cada respuesta indica el epígrafe del que sale y reproduce la frase en que se apoya. No sustituyen a la lectura del texto publicado en el DOGV.",
+  "preguntas": [
+    {
+      "id": "matricula-dos-ciclos",
+      "tema": "matricula",
+      "pregunta": "¿Se puede estar matriculado en dos ciclos a la vez?",
+      "respuesta": "Sí, siempre que los horarios sean compatibles: la matrícula presencial es compatible con otra matrícula en cualquier régimen o modalidad. Lo que no se puede es cursar el mismo módulo dos veces a la vez ni estar en el mismo ciclo en dos centros o dos regímenes.",
+      "epigrafe": "2",
+      "epigrafeTitulo": "Acceso, admisión y matrícula",
+      "cita": "La matrícula en un ciclo formativo o curso de especialización en régimen presencial, sea cual sea su modalidad, será compatible con la matrícula en cualquier otro ciclo formativo o curso de especialización, sea cual sea el régimen o la modalidad, u otras enseñanzas, siempre que haya compatibilidad de horarios."
+    },
+    {
+      "id": "anulacion-como-se-pide",
+      "tema": "matricula",
+      "pregunta": "¿Cómo se solicita la anulación de matrícula y quién la resuelve?",
+      "respuesta": "Con el modelo del anexo I de las instrucciones, ante la dirección del centro. La dirección resuelve en el plazo de un mes desde el día siguiente a la presentación, oídos el equipo docente y el departamento de orientación, y comunica la resolución con el modelo del anexo II. El silencio es estimatorio.",
+      "epigrafe": "8.1",
+      "epigrafeTitulo": "Anulación de matrícula a instancia de la persona interesada",
+      "cita": "La dirección del centro de estudios resolverá la solicitud en el plazo de un mes, a contar desde el día siguiente al de la presentación, oídos, en su caso, el equipo docente y el departamento de orientación, mediante una resolución que se comunicará a la persona interesada según el modelo del anexo II de estas instrucciones."
+    },
+    {
+      "id": "anulacion-computa-matricula",
+      "tema": "matricula",
+      "pregunta": "¿La anulación de matrícula a petición del alumnado consume matrícula?",
+      "respuesta": "Por regla general sí, salvo dos supuestos: que se pida antes del mes de enero del año académico en curso, o antes de iniciar el tercer trimestre por alguno de los motivos justificados de renuncia a convocatoria del apartado 12.5.",
+      "epigrafe": "8.1",
+      "epigrafeTitulo": "Anulación de matrícula a instancia de la persona interesada",
+      "cita": "La anulación de matrícula a instancias de la persona interesada computará en el cálculo de matrículas consumidas, salvo que solicite:"
+    },
+    {
+      "id": "anulacion-y-convocatorias",
+      "tema": "matricula",
+      "pregunta": "Si se concede la anulación, ¿se pierden también las convocatorias del curso?",
+      "respuesta": "No. Concedida la anulación del curso en presencial, o de todos los módulos en semipresencial, no se computan las convocatorias a las que esa matrícula habría dado derecho. Lo que sí se pierde es el derecho de reserva de plaza para cursos posteriores.",
+      "epigrafe": "8.1",
+      "epigrafeTitulo": "Anulación de matrícula a instancia de la persona interesada",
+      "cita": "En el caso de concesión de la anulación de matrícula del curso en régimen presencial o de todos los módulos en régimen semipresencial, no se computarán las convocatorias a las que habría dado derecho la matrícula."
+    },
+    {
+      "id": "anulacion-pierde-plaza",
+      "tema": "matricula",
+      "pregunta": "Tras anular la matrícula, ¿hay que volver a pasar por admisión?",
+      "respuesta": "Sí. La anulación y la pérdida de matrícula implican perder la plaza escolar del curso y de todos los módulos matriculados, así que para continuar después hay que concurrir de nuevo al proceso de admisión.",
+      "epigrafe": "8",
+      "epigrafeTitulo": "Anulación y pérdida de matrícula",
+      "cita": "La anulación y pérdida de matrícula implican la pérdida de plaza escolar del curso y de todos los módulos en que se esté matriculado. Para continuar los estudios posteriormente, hay que concurrir de nuevo al proceso de admisión."
+    },
+    {
+      "id": "perdida-matricula-faltas",
+      "tema": "matricula",
+      "pregunta": "¿Con cuántas faltas se pierde la matrícula?",
+      "respuesta": "Al alcanzar el 15 % de horas de inasistencia por faltas injustificadas del curso matriculado, o al no asistir durante 10 días lectivos consecutivos. Y esa pérdida sí computa como matrícula consumida.",
+      "epigrafe": "8.2",
+      "epigrafeTitulo": "Pérdida de matrícula por inasistencia",
+      "cita": "Con carácter general, la pérdida de matrícula por inasistencia tendrá lugar siempre que se alcance el 15% de horas de inasistencia por faltas injustificadas en el curso matriculado o por no asistir durante 10 días lectivos consecutivos."
+    },
+    {
+      "id": "perdida-matricula-base-calculo",
+      "tema": "matricula",
+      "pregunta": "¿Sobre qué horas se calcula ese 15 %?",
+      "respuesta": "Sobre la totalidad de horas del curso matriculado en presencial, o sobre las del módulo en oferta modular y en régimen no presencial. Se excluyen del cómputo los módulos pendientes de cursos anteriores y los que hayan sido convalidados o con renuncia a convocatoria.",
+      "epigrafe": "8.2",
+      "epigrafeTitulo": "Pérdida de matrícula por inasistencia",
+      "cita": "Como base para calcular el número total de horas de formación, se excluyen los módulos profesionales pendientes de cursos anteriores y los módulos que hayan sido objeto de convalidación o renuncia a convocatoria."
+    },
+    {
+      "id": "faltas-justificadas",
+      "tema": "matricula",
+      "pregunta": "¿Qué faltas se consideran justificadas?",
+      "respuesta": "Enfermedad o accidente del alumnado, atención a familiares de primer grado de consanguinidad, situaciones de violencia de género, violencia contra menores o acoso escolar, y otras circunstancias individualizadas de fuerza mayor que valore la dirección, justificadas y recogidas en las normas de organización y funcionamiento del centro.",
+      "epigrafe": "8.2",
+      "epigrafeTitulo": "Pérdida de matrícula por inasistencia",
+      "cita": "Son faltas justificadas:"
+    },
+    {
+      "id": "presencialidad-exigible",
+      "tema": "matricula",
+      "pregunta": "¿Qué presencialidad exige el régimen presencial?",
+      "respuesta": "Al menos el 85 %, ajustándose a la Orden 8/2025 de evaluación. Los centros están obligados a registrar las faltas de asistencia a las actividades de formación.",
+      "epigrafe": "8.4",
+      "epigrafeTitulo": "Régimen presencial",
+      "cita": "La presencialidad será de al menos el 85% y se debe ajustar a lo que regula la Orden 8/2025, de 22 de abril, de evaluación en FP."
+    },
+    {
+      "id": "norma-evaluacion",
+      "tema": "evaluacion",
+      "pregunta": "¿Qué norma rige la evaluación este curso?",
+      "respuesta": "En los ciclos LFP, el Real Decreto 659/2023 y la Orden 8/2025 de evaluación, modificada por la Orden 5/2026. En los ciclos LOGSE sigue aplicándose la Orden 79/2010, por las disposiciones transitoria y derogatoria de la propia Orden 8/2025.",
+      "epigrafe": "9.1",
+      "epigrafeTitulo": "Proceso de evaluación",
+      "cita": "En los ciclos derivados de la LFP, será de aplicación lo dispuesto en el Real Decreto 659/2023, de 18 de julio y en la Orden 8/2025, de 22 de abril, modificada por la Orden 5/2026, de 1 de abril."
+    },
+    {
+      "id": "que-queda-de-loe",
+      "tema": "evaluacion",
+      "pregunta": "En 2026-2027, ¿qué alumnado sigue con el plan anterior?",
+      "respuesta": "Toda la oferta pasa a LFP salvo dos excepciones: los ciclos LOGSE, y el alumnado que en 2025-26 cursó tercero LOE (nocturnos y ciclos de tres cursos) o segundo de doble titulación LOE y arrastra módulos pendientes de ese curso, incluida la FCT.",
+      "epigrafe": "9.2",
+      "epigrafeTitulo": "Implantación de la Ley Orgánica 3/2022, de 31 de marzo",
+      "cita": "Por ello, en el curso 2026-2027 toda la oferta formativa de Formación Profesional se cursará según el nuevo plan dado por la LFP, excepto:"
+    },
+    {
+      "id": "fct-y-proyecto-pendientes",
+      "tema": "evaluacion",
+      "pregunta": "Tengo alumnado con FCT y Proyecto pendientes de segundo de 2025-2026. ¿Qué hace?",
+      "respuesta": "Si no entra en las excepciones anteriores, debe matricularse de LFP para poder terminar: las pruebas libres no incluyen un procedimiento específico para su caso.",
+      "epigrafe": "9.2",
+      "epigrafeTitulo": "Implantación de la Ley Orgánica 3/2022, de 31 de marzo",
+      "cita": "Aquel alumnado con FCT y Proyecto pendiente de los segundos del curso 2025-2026 no incluidos en el apartado primero deberán pasar a matricularse de LFP si desea finalizar sus estudios al no incluirse un procedimiento específico en las pruebas libres."
+    },
+    {
+      "id": "evaluacion-pau",
+      "tema": "evaluacion",
+      "pregunta": "¿Hay que adelantar la evaluación del alumnado que se presenta a la PAU?",
+      "respuesta": "Sí. El equipo docente adelanta la sesión de evaluación final ajustándose a las fechas en que las universidades publican la nota de acceso, y los equipos directivos deben garantizar que las calificaciones y la nota media estén volcadas y validadas en ITACA en plazo. Hay que tenerlo en cuenta también al calendarizar la formación en empresa.",
+      "epigrafe": "9.3",
+      "epigrafeTitulo": "Evaluación del alumnado de Grado Superior que se presente a las pruebas de acceso a la universidad",
+      "cita": "Para aquellos casos en que el alumnado vaya a realizar las pruebas de acceso a la universidad, el equipo docente adelantará la sesión de evaluación final teniendo en cuenta las fechas en las que las universidades deban publicar la nota de acceso."
+    },
+    {
+      "id": "reclamar-calificacion",
+      "tema": "evaluacion",
+      "pregunta": "¿Cómo se reclama una calificación?",
+      "respuesta": "Por el procedimiento del título IV del Decreto 107/2022 y de la Orden 32/2011, que regula el derecho a la objetividad en la evaluación y la reclamación de calificaciones y de decisiones de promoción y titulación, con la Ley 39/2015 de fondo. En centros privados se aplica su normativa específica.",
+      "epigrafe": "9.4",
+      "epigrafeTitulo": "Garantías. Derecho a la evaluación objetiva",
+      "cita": "En el caso de reclamaciones relativas a la evaluación en centros de titularidad privada, se aplicará su normativa específica."
+    },
+    {
+      "id": "perdida-evaluacion-continua",
+      "tema": "evaluacion",
+      "pregunta": "¿Se puede perder la evaluación continua en grado básico?",
+      "respuesta": "Solo en los módulos profesionales, y en los términos del apartado 3 del artículo 7 de la Orden 8/2025. En los ámbitos no cabe: se rigen por el Decreto 107/2022 de ESO, que no contempla la pérdida de evaluación continua.",
+      "epigrafe": "9.5",
+      "epigrafeTitulo": "Pérdida del derecho a evaluación continua",
+      "cita": "Respecto a los ámbitos, se regirán por el Decreto 107/2022 de ESO y por tanto no está contemplada la pérdida de evaluación continua."
+    },
+    {
+      "id": "promocion-medio-superior",
+      "tema": "evaluacion",
+      "pregunta": "¿Cuándo se promociona a segundo en grado medio y superior?",
+      "respuesta": "Con todos los módulos de primero superados. Como excepción, si el equipo docente lo aconseja, se puede matricular y cursar todo segundo cuando lo pendiente de primero no supere las 240 horas en conjunto.",
+      "epigrafe": "10",
+      "epigrafeTitulo": "Promoción de curso en régimen presencial",
+      "cita": "No obstante, si el equipo docente así lo aconseja, podrá matricularse y cursar todos los módulos que se imparten en el segundo curso cuando los módulos pendientes de superación del primer curso tengan una carga horaria en su conjunto no superior a 240 horas."
+    },
+    {
+      "id": "promocion-grado-basico",
+      "tema": "evaluacion",
+      "pregunta": "¿Y en grado básico?",
+      "respuesta": "Cuando los módulos pendientes asociados a estándares de competencia no superen el 20 % del horario semanal, y además se haya superado al menos uno de los ámbitos distintos del profesional, siempre que el equipo docente vea garantías de continuar con éxito.",
+      "epigrafe": "10",
+      "epigrafeTitulo": "Promoción de curso en régimen presencial",
+      "cita": "En ciclos de Grado Básico, cuando los módulos profesionales pendientes asociados a estándares de competencia no superen el 20% del horario semanal."
+    },
+    {
+      "id": "programa-recuperacion",
+      "tema": "evaluacion",
+      "pregunta": "¿Hay que hacer programa de recuperación para los módulos no superados?",
+      "respuesta": "Sí. El responsable de cada módulo organiza un programa con actividades, momento de realización y criterios de evaluación, y debe quedar recogido en la PGA y en las programaciones docentes. Para el alumnado de segundo con módulos de primero, se diseña para poder simultanearlo, advirtiendo de que no se garantiza la asistencia a las clases de los pendientes.",
+      "epigrafe": "10",
+      "epigrafeTitulo": "Promoción de curso en régimen presencial",
+      "cita": "El miembro del equipo educativo responsable de cada módulo profesional organizará un programa de recuperación que contendrá las actividades, el momento de su realización y criterios de evaluación dirigidas a la superación de los resultados no adquiridos."
+    },
+    {
+      "id": "calificaciones-numericas",
+      "tema": "evaluacion",
+      "pregunta": "¿Cómo se califican los módulos y los ámbitos de grado básico?",
+      "respuesta": "Los módulos, con números del 1 al 10 sin decimales. Los ámbitos de Comunicación y Ciencias Sociales y de Ciencias Aplicadas de grado básico, con calificación no numérica, y en ese caso no se obtiene nota media del ciclo. En ITACA el ámbito se califica de forma global y sus materias quedan como «no calificables».",
+      "epigrafe": "11.1",
+      "epigrafeTitulo": "Calificaciones de los módulos profesionales y nota final del ciclo",
+      "cita": "siendo numéricas entre 1 y 10, sin decimales para los módulos profesionales y no numérica para los ámbitos Comunicación y Ciencias Sociales y de Ciencias Aplicadas de los ciclos de Grado Básico, sin que en este último caso se obtenga nota media del ciclo formativo."
+    },
+    {
+      "id": "proyecto-intermodular-nota",
+      "tema": "evaluacion",
+      "pregunta": "¿Cómo se califica el proyecto intermodular entre primero y segundo?",
+      "respuesta": "La nota final del proyecto, en segundo, tiene en cuenta el trabajo de primero y de segundo. En la evaluación de primero de grado superior se refleja en acta una calificación orientativa del aprovechamiento, que formará parte de la calificación final de segundo, donde la nota se pondera entre ambos cursos.",
+      "epigrafe": "5",
+      "epigrafeTitulo": "Proyecto intermodular",
+      "cita": "Dado el carácter integrador del proyecto intermodular, la nota final del proyecto (segundo curso) tendrá en cuenta la valoración del trabajo realizado por el alumno o alumna en el primer y segundo curso."
+    },
+    {
+      "id": "numero-convocatorias",
+      "tema": "convocatorias",
+      "pregunta": "¿Cuántas convocatorias hay por módulo?",
+      "respuesta": "En grado D, dos por curso académico, sin pasar del máximo de cuatro que fija el artículo 18.13 del Real Decreto 659/2023. Los grados E tienen dos en total por módulo.",
+      "epigrafe": "12.1",
+      "epigrafeTitulo": "Número de convocatorias",
+      "cita": "el alumnado dispondrá de dos convocatorias en el curso académico para la evaluación y calificación de los módulos profesionales cursados, sin poder superar el máximo de cuatro convocatorias establecido en el art.18.13 del Real Decreto 659/2023, de 18 de julio. Los grados E contarán con un total de dos convocatorias para cada módulo."
+    },
+    {
+      "id": "permanencia-maxima",
+      "tema": "convocatorias",
+      "pregunta": "¿Cuánto tiempo se puede permanecer cursando un ciclo?",
+      "respuesta": "Con carácter general, un máximo que no supere el doble de los cursos asignados al ciclo, en matrícula completa y modalidad presencial. En modalidad virtual, un máximo de seis cursos consecutivos.",
+      "epigrafe": "12.1",
+      "epigrafeTitulo": "Número de convocatorias",
+      "cita": "podrán permanecer cursando un ciclo formativo en matrícula completa y modalidad presencial, con carácter general, durante un tiempo máximo que no supere el doble de los cursos asignados al ciclo; en modalidad virtual, podrán permanecer un máximo de seis cursos consecutivos."
+    },
+    {
+      "id": "convocatoria-gracia",
+      "tema": "convocatorias",
+      "pregunta": "¿Qué es la convocatoria de gracia y quién puede pedirla?",
+      "respuesta": "Una convocatoria extraordinaria para quien haya agotado el máximo. Se puede autorizar por enfermedad o discapacidad acreditada documentalmente, o por situaciones sobrevenidas que hayan condicionado o impedido el desarrollo ordinario del curso, motivadas y acreditadas. El procedimiento es el del artículo 10 de la Orden 8/2025.",
+      "epigrafe": "12.1",
+      "epigrafeTitulo": "Número de convocatorias",
+      "cita": "se podrá autorizar una convocatoria extraordinaria de gracia a quienes hayan agotado el número máximo de convocatorias por uno de estos motivos"
+    },
+    {
+      "id": "agotar-convocatorias",
+      "tema": "convocatorias",
+      "pregunta": "¿Qué opciones quedan al agotar las convocatorias?",
+      "respuesta": "Tres: presentarse a las pruebas libres para la obtención del título que se convocan cada año, pedir la convocatoria extraordinaria o de gracia, o cursar los módulos no superados en oferta modular.",
+      "epigrafe": "12.2",
+      "epigrafeTitulo": "Opciones al agotar convocatorias",
+      "cita": "El alumnado que haya agotado el número de convocatorias establecidas podrá optar a las alternativas siguientes para superar los diferentes módulos pendientes:"
+    },
+    {
+      "id": "cuando-son-convocatorias",
+      "tema": "convocatorias",
+      "pregunta": "¿Cuándo se celebran la convocatoria ordinaria y la segunda?",
+      "respuesta": "La ordinaria, al finalizar el tercer trimestre del curso, sea primero o segundo. La segunda, después de la primera para los módulos pendientes de primero —tanto para alumnado de primero como de segundo—, y al finalizar el tercer trimestre para los módulos pendientes de segundo.",
+      "epigrafe": "12.3",
+      "epigrafeTitulo": "Distribución temporal",
+      "cita": "Convocatoria ordinaria: al finalizar el tercer trimestre del curso académico del primer o segundo curso."
+    },
+    {
+      "id": "programa-formativo-especifico",
+      "tema": "convocatorias",
+      "pregunta": "Entre la ordinaria y la extraordinaria, ¿el alumnado asiste a clase?",
+      "respuesta": "No. El programa formativo específico posterior a la primera convocatoria se diseña para realizarlo sin asistir a clases ni a tutorías, pero con la orientación previa del profesorado.",
+      "epigrafe": "12.4",
+      "epigrafeTitulo": "Acceso a la convocatoria extraordinaria",
+      "cita": "Se diseñará para que el alumno o la alumna lo realice entre la convocatoria ordinaria y la extraordinaria, sin asistir a clases ni a tutorías, pero contando con la orientación previa del profesorado."
+    },
+    {
+      "id": "renuncia-convocatoria",
+      "tema": "convocatorias",
+      "pregunta": "¿Por qué motivos se puede renunciar a una convocatoria?",
+      "respuesta": "Enfermedad acreditada documentalmente, motivos de conciliación laboral, u otras circunstancias individualizadas que valore la dirección del centro, justificadas y recogidas en las normas de organización y funcionamiento. Se pide con el modelo del anexo III y por el procedimiento del artículo 9 de la Orden 8/2025.",
+      "epigrafe": "12.5",
+      "epigrafeTitulo": "Renuncia a convocatoria",
+      "cita": "se podrá renunciar a la convocatoria ordinaria según el modelo del anexo III de estas instrucciones siempre que se justifique alguno de estos motivos:"
+    },
+    {
+      "id": "requisitos-titulacion",
+      "tema": "titulacion",
+      "pregunta": "¿Qué hace falta para titular?",
+      "respuesta": "Calificación positiva en todos los módulos del ciclo, decisión colegiada del equipo educativo y acreditar previamente los requisitos académicos de acceso. Y, expresamente, haber superado todos los módulos de primero y de segundo incluyendo todas las horas de formación en empresa.",
+      "epigrafe": "13",
+      "epigrafeTitulo": "Titulación",
+      "cita": "para que un alumno o alumna titule, será necesario que haya superado todos los módulos de primer y segundo curso, incluyendo todas las horas de Formación en Empresa."
+    },
+    {
+      "id": "convalidacion-plazo",
+      "tema": "convalidaciones",
+      "pregunta": "¿Cuándo se piden las convalidaciones que resuelve el centro?",
+      "respuesta": "Durante el mes de septiembre para quien se matriculó en julio; quien se matricule después tiene un mes desde la fecha de matrícula. Quien acredite estándares de competencia durante el curso puede presentarlos en cualquier momento.",
+      "epigrafe": "14.3",
+      "epigrafeTitulo": "Convalidaciones competencia del centro docente",
+      "cita": "El plazo para la presentación de las solicitudes será durante el mes de septiembre para los matriculados en julio; los matriculados con posterioridad dispondrán de un mes a contar de la fecha de matrícula."
+    },
+    {
+      "id": "convalidacion-quien-resuelve",
+      "tema": "convalidaciones",
+      "pregunta": "¿Quién resuelve la convalidación y en qué plazo?",
+      "respuesta": "La dirección del centro público donde conste el expediente, con el modelo del anexo IV de las instrucciones, antes de un mes desde la presentación de la solicitud.",
+      "epigrafe": "14.3",
+      "epigrafeTitulo": "Convalidaciones competencia del centro docente",
+      "cita": "La persona que ostente la dirección del centro público donde conste su expediente resolverá la petición de acuerdo con el modelo establecido en el anexo IV de estas instrucciones, antes de un mes desde la presentación de la solicitud."
+    },
+    {
+      "id": "convalidacion-asistir-clase",
+      "tema": "convalidaciones",
+      "pregunta": "Mientras se resuelve la convalidación, ¿hay que asistir a clase?",
+      "respuesta": "Sí. Hasta que no se resuelva la petición, el alumnado asiste a las actividades de formación de los módulos cuya convalidación ha solicitado. Además, la solicitud exige haberse matriculado antes.",
+      "epigrafe": "14.2",
+      "epigrafeTitulo": "Generalidades de convalidación",
+      "cita": "Mientras no se resuelvan las peticiones, el alumnado asistirá a las actividades de formación de los módulos profesionales cuya convalidación ha solicitado."
+    },
+    {
+      "id": "convalidacion-nota-media",
+      "tema": "convalidaciones",
+      "pregunta": "¿Los módulos convalidados puntúan en la nota media?",
+      "respuesta": "Por regla general no: constan como «convalidado» y no computan. La excepción es la convalidación por certificado de competencia (grado B) o certificado profesional (grado C), que se registra igual como «convalidado» pero computa como 5 a efectos de nota media.",
+      "epigrafe": "14.2",
+      "epigrafeTitulo": "Generalidades de convalidación",
+      "cita": "Esta convalidación quedará registrada en todos los documentos de evaluación como «convalidado» y computará como «5» a efectos de nota media de la nueva formación."
+    },
+    {
+      "id": "convalidacion-ministerio",
+      "tema": "convalidaciones",
+      "pregunta": "¿Cómo se tramitan las convalidaciones que resuelve el Ministerio?",
+      "respuesta": "El alumnado cumplimenta la solicitud en todofp.es; la dirección añade un certificado de matrícula y la remite al Ministerio en el plazo de un mes. El plazo de presentación va del primer al último día del curso escolar y solo cabe una solicitud por curso académico.",
+      "epigrafe": "14.4",
+      "epigrafeTitulo": "Convalidaciones competencia del Ministerio de Educación y Formación Profesional",
+      "cita": "Solo se podrá presentar una solicitud de convalidación por curso académico."
+    },
+    {
+      "id": "fe-horas-primero",
+      "tema": "formacion-empresa",
+      "pregunta": "¿Cuántas horas de formación en empresa hace el alumnado de primero?",
+      "respuesta": "Un mínimo de 100 horas en las enseñanzas de grado D.",
+      "epigrafe": "15.1.1",
+      "epigrafeTitulo": "Formación en empresa. Generalidades",
+      "cita": "El alumnado de primer curso de enseñanzas de Grado D realizará un mínimo de 100 horas de FE."
+    },
+    {
+      "id": "fe-porcentajes",
+      "tema": "formacion-empresa",
+      "pregunta": "¿Qué porcentaje del ciclo ocupa la estancia en empresa?",
+      "respuesta": "En régimen general, entre el 25 y el 35 % de la duración total de la oferta, repartido entre todos los cursos, con entre el 10 y el 20 % de los resultados de aprendizaje. En régimen intensivo, más del 35 % y hasta el 50 %, con más del 30 % de los RA. En grado básico, el 20 % de las horas curriculares del ciclo repartido entre los dos cursos.",
+      "epigrafe": "15.1.1",
+      "epigrafeTitulo": "Formación en empresa. Generalidades",
+      "cita": "la estancia en la empresa u organismo equiparado en régimen general tendrá una duración de entre el 25 y 35% de la duración total de la formación ofertada y se distribuirá en todos los cursos de la oferta formativa."
+    },
+    {
+      "id": "dualizar-modulo-entero",
+      "tema": "formacion-empresa",
+      "pregunta": "¿Se puede dualizar un módulo entero?",
+      "respuesta": "No. Se pueden dualizar todos los módulos salvo el Proyecto intermodular, pero ninguno en su totalidad: al menos el 35 % de la duración del módulo debe impartirse en el centro educativo.",
+      "epigrafe": "15.1.1",
+      "epigrafeTitulo": "Formación en empresa. Generalidades",
+      "cita": "No se podrá dualizar un módulo en su totalidad y se deberá impartir al menos el 35% de la duración del módulo en el centro educativo."
+    },
+    {
+      "id": "fe-cuando-empieza",
+      "tema": "formacion-empresa",
+      "pregunta": "¿Cuándo puede empezar la formación en empresa?",
+      "respuesta": "En grado D, a partir del inicio del segundo trimestre de primero, y puede realizarse a lo largo del segundo y el tercero. En segundo curso, a lo largo de los tres trimestres. El plan de formación se elabora durante el primer trimestre y, en cualquier caso, antes de la sesión de la primera evaluación.",
+      "epigrafe": "15.1.1",
+      "epigrafeTitulo": "Formación en empresa. Generalidades",
+      "cita": "En los grados D, la FE podrá comenzar a partir del inicio del segundo trimestre del primer curso y se podrá realizar a lo largo del segundo y tercer trimestre. En el segundo curso, la FE podrá realizarse a lo largo de los tres trimestres del curso académico."
+    },
+    {
+      "id": "fe-requisitos-alumnado",
+      "tema": "formacion-empresa",
+      "pregunta": "¿Qué requisitos debe cumplir el alumnado para iniciar la formación en empresa?",
+      "respuesta": "Tener cumplidos los 16 años, haber adquirido antes las competencias en riesgos específicos y prevención de riesgos laborales del perfil, y tener registrado en ITACA el NUSS del que conste como titular —no como beneficiario— junto al documento identificativo con el que se solicitó.",
+      "epigrafe": "15.1.2",
+      "epigrafeTitulo": "Formación en empresa. Requisitos",
+      "cita": "Para iniciar la FE, el alumnado debe tener cumplidos los 16 años."
+    },
+    {
+      "id": "exencion-plazo",
+      "tema": "formacion-empresa",
+      "pregunta": "¿Cuándo se solicita la exención de la formación en empresa?",
+      "respuesta": "En la secretaría del centro, durante todo el curso académico y con un mínimo de 30 días antes de la previsión de inicio de la FE. Quien esté esperando a cumplir el tiempo de experiencia laboral puede pedirla hasta antes de la evaluación final.",
+      "epigrafe": "15.1.3",
+      "epigrafeTitulo": "Exención de la fase de formación en empresa u organismo equiparado",
+      "cita": "La solicitud de exención de la FE, junto con la documentación aportada, se presentará en la secretaría del centro público o privado, durante todo el curso académico y con un mínimo de 30 días antes de la previsión de inicio de la FE"
+    },
+    {
+      "id": "exencion-experiencia",
+      "tema": "formacion-empresa",
+      "pregunta": "¿Cuánta experiencia laboral hace falta para la exención?",
+      "respuesta": "Seis meses para los grados C y E, y un año a tiempo completo o su equivalente para los grados D, correspondiente con la formación cursada. Se puede aportar la experiencia de los cinco años anteriores.",
+      "epigrafe": "15.1.3",
+      "epigrafeTitulo": "Exención de la fase de formación en empresa u organismo equiparado",
+      "cita": "el alumnado deberá acreditar una experiencia laboral correspondiente a seis meses, para los grados C y E; y un año a tiempo completo, o su equivalente para los grados D que se corresponda con la formación cursada. A estos efectos se podrá aportar la experiencia laboral de los cinco años anteriores."
+    },
+    {
+      "id": "exencion-total-o-parcial",
+      "tema": "formacion-empresa",
+      "pregunta": "¿Cuándo la exención es total y cuándo parcial?",
+      "respuesta": "Es total, y afecta a primero y a segundo, si se estima que al menos el 10 % de los RA de los módulos asociados a estándar de competencia se desarrollaron en la empresa. Si no, es parcial y el equipo docente estima qué RA quedan por adquirir. Si se pide en segundo tras haber hecho parte de la FE en primero, solo puede ser parcial.",
+      "epigrafe": "15.1.3",
+      "epigrafeTitulo": "Exención de la fase de formación en empresa u organismo equiparado",
+      "cita": "Si se estima que, al menos, un 10 % de los RA de los módulos asociados a estándar de competencia del plan de estudios, han formado parte de las actividades desarrolladas en la empresa u organismo equiparado, se deberá conceder la exención total y afectará tanto al periodo de primer curso como al de segundo curso."
+    },
+    {
+      "id": "exencion-como-se-evalua",
+      "tema": "formacion-empresa",
+      "pregunta": "Con la exención concedida, ¿cómo se evalúa el módulo?",
+      "respuesta": "Los RA que se desarrollaban en la empresa se tienen por superados a efectos de evaluación, y cada docente evalúa el resto del módulo con los RA y criterios que se desarrollen en el centro, usando los instrumentos previstos en su programación.",
+      "epigrafe": "15.1.3",
+      "epigrafeTitulo": "Exención de la fase de formación en empresa u organismo equiparado",
+      "cita": "Para el alumnado con exención de FE total o parcial, los RA desarrollados en la empresa u organismo equiparado de cada módulo profesional se tendrán por “superados” a efectos de evaluación, con lo que cada docente evaluará el resto del módulo en función de los RA y criterios de evaluación cuyo desarrollo se realice en el centro educativo."
+    },
+    {
+      "id": "quien-califica-dualizados",
+      "tema": "formacion-empresa",
+      "pregunta": "¿Quién califica los módulos dualizados?",
+      "respuesta": "El profesorado de cada módulo, teniendo en cuenta la valoración del tutor o tutora de empresa. Esa persona valora los RA del plan de formación como «superado» o «no superado» y hace una valoración cualitativa en ITACA SAO-Gestión.",
+      "epigrafe": "15.1.4",
+      "epigrafeTitulo": "Seguimiento y evaluación de la formación en empresa",
+      "cita": "será el profesorado de cada uno de los módulos dualizados el encargado de calificarlos, teniendo en cuenta la valoración del tutor o tutora de empresa."
+    },
+    {
+      "id": "fe-no-superada",
+      "tema": "formacion-empresa",
+      "pregunta": "Si la formación en empresa no acaba con éxito, ¿se suspende todo?",
+      "respuesta": "No: el equipo docente decide módulo a módulo según el grado de consecución de cada RA. Si es de primero y las horas no hechas no han impedido superar los RA, se pueden calificar positivamente y las horas pendientes se hacen al curso siguiente. En segundo se aplica el mismo criterio, salvo que los módulos dualizados con RA no superados no pueden calificarse positivamente.",
+      "epigrafe": "15.1.6",
+      "epigrafeTitulo": "Circunstancias que pueden motivar el cese del alumnado en la FE",
+      "cita": "Si la FE no ha sido finalizada con éxito el equipo docente decidirá módulo a módulo cuál debe ser aprobado y cuál suspendido, en función del grado de consecución de cada RA"
+    },
+    {
+      "id": "motivos-cese-fe",
+      "tema": "formacion-empresa",
+      "pregunta": "¿Por qué motivos puede cesar el alumnado en la formación en empresa?",
+      "respuesta": "Por incumplir el calendario y el horario, las normas de la empresa o las tareas del plan de formación; por no cuidar los medios materiales, no comunicar ausencias o romper la confidencialidad; y por lo acordado con la empresa en el convenio. También por accidente, enfermedad o causa sobrevenida justificada. Quien cesa se reincorpora al centro y continúa su formación.",
+      "epigrafe": "15.1.6",
+      "epigrafeTitulo": "Circunstancias que pueden motivar el cese del alumnado en la FE",
+      "cita": "El alumnado que cese por concurrir alguno de los motivos contemplados anteriormente se reincorporará al centro educativo según el calendario lectivo y continuará su formación."
+    },
+    {
+      "id": "horas-tutoria-fe",
+      "tema": "profesorado",
+      "pregunta": "¿Cuántas horas tiene la tutoría de FE y FCT?",
+      "respuesta": "Tres horas complementarias por cada curso del ciclo o del curso de especialización, y se incluyen en el horario docente con carácter preferente respecto del resto de horas complementarias.",
+      "epigrafe": "4.2.1",
+      "epigrafeTitulo": "El tutor o tutora de FE y FCT de cada grupo",
+      "cita": "se dispondrá de tres horas complementarias. Dichas horas se incluirán en el horario docente con carácter preferente respecto de las restantes horas complementarias."
+    },
+    {
+      "id": "profesorado-durante-fe",
+      "tema": "profesorado",
+      "pregunta": "¿Qué hace el profesorado cuando su grupo está en la empresa?",
+      "respuesta": "Las actividades que el equipo docente haya propuesto en el proyecto curricular, elegidas entre las del apartado 17.8.3 y aprobadas dentro de la PGA. La jefatura de estudios de FP propone quién las hace, dónde y en qué horario, antes de que empiece el periodo de FE o FCT. Se respetan las 25 horas de permanencia y el máximo de 18 lectivas semanales.",
+      "epigrafe": "17.8.1",
+      "epigrafeTitulo": "Actividades del profesorado cuando el alumnado está en la FE o la FCT. Aspectos comunes",
+      "cita": "La Inspección de Educación supervisará el desarrollo de las mencionadas actividades y horarios, que respetarán las 25 horas de permanencia en el centro y el máximo de 18 horas lectivas semanales."
+    },
+    {
+      "id": "incompatibilidad-matricula",
+      "tema": "profesorado",
+      "pregunta": "¿Puede el profesorado matricularse en el centro donde da clase?",
+      "respuesta": "No en enseñanzas impartidas en ese mismo centro. El profesorado interino tampoco, si su periodo de docencia abarca más de dos trimestres o la evaluación final de la enseñanza.",
+      "epigrafe": "17.10",
+      "epigrafeTitulo": "Incompatibilidades",
+      "cita": "El profesorado no podrá matricularse como estudiante en enseñanzas impartidas en el mismo centro donde imparte docencia."
+    },
+    {
+      "id": "nee-convocatorias",
+      "tema": "alumnado",
+      "pregunta": "¿Cuántas veces puede evaluarse el alumnado con necesidades educativas especiales?",
+      "respuesta": "Hasta seis veces del mismo módulo en los grados D y cuatro en los grados E, según el artículo 9.7 de la Orden 8/2025.",
+      "epigrafe": "16.1",
+      "epigrafeTitulo": "Alumnado con necesidades específicas de apoyo educativo. Consideraciones generales",
+      "cita": "el alumnado con necesidades educativas especiales se podrá presentar a la evaluación y calificación de un mismo módulo profesional hasta un máximo de 6 veces en los grados D y 4 veces en los grados E."
+    },
+    {
+      "id": "grado-basico-anulacion-eso",
+      "tema": "alumnado",
+      "pregunta": "Si a un alumno de grado básico se le anula la matrícula por inasistencia, ¿se queda sin escolarizar?",
+      "respuesta": "No, si está en edad de escolarización obligatoria: de oficio se le proporciona plaza en un centro con vacantes en ESO, según el Decreto 135/2014.",
+      "epigrafe": "8.4",
+      "epigrafeTitulo": "Régimen presencial",
+      "cita": "únicamente en el supuesto de encontrarse en edad de escolarización obligatoria, de oficio se le proporcionará una plaza en un centro educativo en el que existan vacantes en Educación Secundaria Obligatoria, según lo dispuesto en el Decreto 135/2014, de 8 de agosto."
+    }
+  ]
+}

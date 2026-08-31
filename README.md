@@ -17,13 +17,13 @@ Este proyecto parte de esa misma información y le añade lo que le falta:
 - **Ámbito visible**: si la norma es estatal o autonómica, y en qué diario se publica.
 - **Relaciones entre normas**: qué modifica a qué, y qué quedó derogado por qué.
 - **Búsqueda y filtros** por sección, ámbito estatal o autonómico y estado.
-- Más adelante, **páginas de consulta** con el articulado en HTML, para no tener que abrir el PDF.
+- **Preguntas frecuentes** de las instrucciones de curso, con el epígrafe y la cita literal de cada respuesta.
 
 ## Estado
 
-En uso. El sitio contiene las 36 normas de las seis secciones, con su ámbito, su estado de vigencia y sus relaciones, y la portada ya es la herramienta de consulta: buscador instantáneo, filtros con recuento y ficha por norma.
+En uso. El sitio contiene las 37 normas de las seis secciones, con su ámbito, su estado de vigencia y sus relaciones, y la portada ya es la herramienta de consulta: buscador instantáneo, filtros con recuento y ficha por norma.
 
-Lo siguiente es transcribir articulado a HTML para no tener que abrir el PDF, empezando por las instrucciones de curso. Ver [HOJA-DE-RUTA.md](HOJA-DE-RUTA.md).
+Las **instrucciones de inicio de curso** tienen además 50 preguntas frecuentes dentro de su ficha: cada respuesta indica el epígrafe del que sale y reproduce la frase literal de la norma en que se apoya, y todas se verificaron una a una contra el PDF del DOGV. Ver [HOJA-DE-RUTA.md](HOJA-DE-RUTA.md).
 
 ## Cómo está hecho
 
@@ -41,7 +41,8 @@ docs/                       lo que se publica (GitHub Pages: main + /docs)
 └── data/
     ├── normas.json         fuente de verdad
     ├── meta.json           fecha de última revisión
-    └── recursos.json       lo que la fuente enlaza y no es norma
+    ├── recursos.json       lo que la fuente enlaza y no es norma
+    └── consulta/           preguntas frecuentes, una norma por fichero
 ```
 
 Toda la vista vive en la dirección, así que cualquier consulta se puede pegar en un correo:
@@ -53,6 +54,8 @@ Toda la vista vive en la dirección, así que cualquier consulta se puede pegar 
 | `?seccion=curso-actual` | Las instrucciones del curso en vigor |
 | `?etiqueta=fct` | Todo lo que toca la FCT |
 | `?n=decreto-114-2025` | La ficha de esa norma, con sus relaciones |
+| `?n=resolucion-2026-07-16` | Las instrucciones del curso, con sus 50 preguntas |
+| `?n=resolucion-2026-07-16&p=exencion-experiencia` | Directamente esa respuesta, abierta |
 
 En producción el sitio cuelga de `/legislacion-fp/`, así que **todas las rutas internas son relativas**. Una ruta absoluta funciona si sirves `docs/` en la raíz y revienta al publicar, que es la forma más fácil de perder una tarde. Por eso el servidor local imita el subpath en vez de servir `docs/` a pelo. Abrirlo como `file://` tampoco vale: el navegador bloquea la carga del JSON.
 

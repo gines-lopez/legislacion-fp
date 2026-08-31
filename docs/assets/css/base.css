@@ -11,8 +11,9 @@
    norma. Al bajar la página se ve el estado del corpus sin leer una palabra,
    y la regla se interrumpe justo donde cambia la sección.
 
-   El mismo canal reaparece en la ficha: de él cuelgan las normas relacionadas,
-   cada una con su propio trazo.
+   En la ficha el canal se repite, pero hacia dentro: las normas relacionadas y
+   los anexos cuelgan del borde de la propia ficha, sangrados bajo su rótulo,
+   cada uno con su trazo. Nada sobresale del bloque, que va centrado.
    ========================================================================== */
 
 :root {
@@ -36,6 +37,12 @@
   --fuente-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --fuente-dato: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
+  /* Los dos únicos colores del proyecto, y solo en la página de diagnóstico:
+     es una herramienta de mantenimiento, no la consulta de normativa. El signo
+     ✓ o ✗ va delante y sigue leyéndose sin distinguir colores (D5). */
+  --ok:    #17663a;
+  --fallo: #9d2118;
+
   --paso: 0.25rem;
   --medida: 34rem;
   --canal: 1.75rem;
@@ -50,6 +57,8 @@
     --tinta-tenue: #928f89;
     --tinta-media: #aeaba3;
     --tinta:       #edebe6;
+    --ok:          #6cc48d;
+    --fallo:       #f0968c;
   }
 }
 
@@ -75,10 +84,14 @@ body {
    una línea de 1.400 px no se lee. Ver .ficha más abajo. */
 .hoja { padding-left: var(--canal); }
 
-/* El diagnóstico no es un listado: es una página de texto y se queda centrada
-   en la medida de lectura. */
+/* El diagnóstico no es un listado: es una página de texto. Se centra y no baja
+   nunca de la medida de lectura, pero tampoco se queda en una cinta estrecha
+   dentro de una ventana ancha. */
 .hoja--estrecha {
-  max-width: calc(var(--medida) + var(--canal));
+  /* Aquí no hay regla de vigencia que dibujar, así que el canal no hace falta
+     y quitarlo deja la página centrada de verdad. */
+  padding-left: 0;
+  width: min(100%, max(52vw, var(--medida)));
   margin-inline: auto;
 }
 
@@ -138,6 +151,7 @@ body {
   font-family: var(--fuente-ui);
   font-size: 0.875rem;
   line-height: 1.5;
+  text-wrap: pretty;
 }
 
 /* Que el sitio no sea fuente oficial no es letra pequeña: citar mal una norma
@@ -155,6 +169,35 @@ body {
 }
 
 .aviso strong { color: var(--tinta); font-weight: 600; }
+
+/* Atajo a las instrucciones del curso: es la consulta de septiembre y no debe
+   costar una búsqueda. Va en tinta plena, la señal más fuerte de la escala. */
+.atajo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--paso) * 3);
+  margin: calc(var(--paso) * 5) 0 0;
+}
+
+.boton--atajo {
+  background: var(--tinta);
+  color: var(--papel);
+  border-color: var(--tinta);
+  font-weight: 600;
+  text-decoration: none;
+  padding: calc(var(--paso) * 2.5) calc(var(--paso) * 5);
+}
+
+.boton--atajo:hover, .boton--atajo:focus-visible { background: var(--tinta-media); border-color: var(--tinta-media); }
+
+.atajo__nota {
+  font-family: var(--fuente-dato);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
 
 .cargando {
   margin: calc(var(--paso) * 12) 0 0;
@@ -470,7 +513,17 @@ body {
 
 /* --- Ficha ---------------------------------------------------------------- */
 
-#vista-ficha { max-width: var(--medida); }
+/* La ficha se centra y ocupa más de la mitad de la pantalla, pero nunca menos
+   que la medida de lectura: por debajo de eso el texto legal no se lee. */
+#vista-ficha {
+  width: min(100%, max(56vw, var(--medida)));
+  margin-inline: auto;
+  /* .hoja reserva el canal a su izquierda, así que centrar dentro de ella deja
+     la ficha medio canal a la derecha del centro real de la página. Se devuelve
+     aquí, sin tocar el flujo. */
+  position: relative;
+  inset-inline-start: calc(var(--canal) / -2);
+}
 
 
 .volver {
@@ -587,7 +640,6 @@ body {
 .relaciones { margin: 0; padding: 0; list-style: none; }
 
 .relacion {
-  margin-left: calc(var(--canal) * -1);
   padding: calc(var(--paso) * 3) 0 calc(var(--paso) * 4) calc(var(--canal) - var(--trazo));
   border-left: var(--trazo) solid var(--tinta);
 }
@@ -685,6 +737,188 @@ a.materia:hover, a.materia:focus-visible { border-color: var(--tinta); color: va
 
 .ficha__seccion { margin: 0; font-family: var(--fuente-ui); font-size: 0.9375rem; }
 
+/* Pertenencia: un anexo no se sostiene solo, y decirlo antes del título evita
+   citarlo como si fuera una norma independiente. */
+.ficha__madre {
+  margin: calc(var(--paso) * 6) 0 0;
+  padding: calc(var(--paso) * 3) 0;
+  border-top: 1px solid var(--filete);
+  border-bottom: 1px solid var(--filete);
+  font-family: var(--fuente-ui);
+  font-size: 0.8125rem;
+  color: var(--tinta-media);
+}
+
+.ficha__madre a { font-family: var(--fuente-dato); font-size: 0.75rem; text-transform: uppercase; }
+
+.apartado__n {
+  float: right;
+  font-family: var(--fuente-dato);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--tinta-tenue);
+}
+
+.partes__nota {
+  margin: 0 0 calc(var(--paso) * 4);
+  font-family: var(--fuente-ui);
+  font-size: 0.75rem;
+  color: var(--tinta-tenue);
+}
+
+/* Los anexos cuelgan del canal igual que las relaciones, pero con filete fino:
+   no son normas con vigencia propia, son partes del documento que los publica. */
+.partes { margin: 0; padding: 0; list-style: none; counter-reset: parte; }
+
+.parte {
+  padding: calc(var(--paso) * 3) 0 calc(var(--paso) * 4) calc(var(--canal) - 1px);
+  border-left: 1px solid var(--filete);
+}
+
+.parte__id {
+  margin: 0;
+  font-family: var(--fuente-dato);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.parte__id a { text-decoration: none; }
+.parte__id a:hover, .parte__id a:focus-visible { text-decoration: underline; text-underline-offset: 0.22em; }
+
+.parte__nombre { margin: calc(var(--paso) * 1) 0 0; font-size: 0.9375rem; line-height: 1.45; }
+.parte__resumen { margin: calc(var(--paso) * 2) 0 0; font-size: 0.875rem; line-height: 1.55; color: var(--tinta-media); }
+
+/* --- Preguntas frecuentes -------------------------------------------------- */
+
+/* Cincuenta preguntas no caben abiertas: se listan los enunciados y se abre lo
+   que se necesita. <details> es nativo, se maneja con teclado y funciona
+   aunque el script falle. */
+.consulta__aviso {
+  margin: 0 0 calc(var(--paso) * 5);
+  font-family: var(--fuente-ui);
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: var(--tinta-tenue);
+}
+
+.consulta__indice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--paso) * 1.5);
+  margin-bottom: calc(var(--paso) * 8);
+}
+
+.consulta__indice .chip { text-decoration: none; }
+
+.tema + .tema { margin-top: calc(var(--paso) * 9); }
+/* El índice lleva aquí desde arriba: hay que dejar aire al saltar. */
+.tema { scroll-margin-top: calc(var(--paso) * 4); }
+.pregunta { scroll-margin-top: calc(var(--paso) * 4); }
+
+.tema__rotulo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: calc(var(--paso) * 3);
+  margin: 0 0 calc(var(--paso) * 2);
+  font-family: var(--fuente-ui);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.pregunta { border-bottom: 1px solid var(--filete); }
+
+.pregunta__enunciado {
+  padding: calc(var(--paso) * 3) 0 calc(var(--paso) * 3) calc(var(--paso) * 6);
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.pregunta__enunciado::-webkit-details-marker { display: none; }
+
+/* El signo dice si está abierta sin depender del color ni de un icono. */
+.pregunta__enunciado::before {
+  content: "+";
+  position: absolute;
+  left: 0;
+  font-family: var(--fuente-dato);
+  color: var(--tinta-tenue);
+}
+
+.pregunta[open] > .pregunta__enunciado::before { content: "–"; }
+.pregunta[open] > .pregunta__enunciado { font-weight: 600; }
+.pregunta__enunciado:hover { background: var(--realce); }
+
+.pregunta__enunciado:focus-visible {
+  outline: 2px solid var(--tinta);
+  outline-offset: 2px;
+}
+
+.pregunta__cuerpo {
+  padding: 0 0 calc(var(--paso) * 5) calc(var(--paso) * 6);
+}
+
+.pregunta__respuesta { margin: 0; font-size: 0.9375rem; line-height: 1.6; }
+
+.pregunta__epigrafe {
+  margin: calc(var(--paso) * 3) 0 0;
+  font-family: var(--fuente-dato);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+/* La frase literal de la norma en que se apoya la respuesta. Va en la
+   monoespaciada y colgada de un filete: se distingue de la redacción propia
+   sin que haya que advertirlo cada vez. */
+.pregunta__cita {
+  margin: calc(var(--paso) * 2) 0 0;
+  padding-left: calc(var(--paso) * 4);
+  border-left: 2px solid var(--filete);
+  font-family: var(--fuente-dato);
+  font-size: 0.75rem;
+  line-height: 1.65;
+  color: var(--tinta-media);
+}
+
+.pregunta__cita::before { content: "«"; }
+.pregunta__cita::after { content: "»"; }
+
+/* --- Respuestas encontradas por el buscador -------------------------------- */
+
+.respuestas { margin-top: calc(var(--paso) * 10); max-width: var(--medida); }
+
+.respuestas__nota {
+  margin: 0 0 calc(var(--paso) * 4);
+  font-family: var(--fuente-ui);
+  font-size: 0.75rem;
+  color: var(--tinta-tenue);
+}
+
+.respuestas__lista { margin: 0; padding: 0; list-style: none; }
+.respuesta + .respuesta { margin-top: calc(var(--paso) * 5); }
+.respuesta__pregunta { margin: 0; font-size: 0.9375rem; font-weight: 600; line-height: 1.45; }
+.respuesta__texto { margin: calc(var(--paso) * 2) 0 0; font-size: 0.9375rem; line-height: 1.55; color: var(--tinta-media); }
+
+.respuesta__epigrafe {
+  margin: calc(var(--paso) * 2) 0 0;
+  font-family: var(--fuente-dato);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.respuestas__resto { margin: calc(var(--paso) * 5) 0 0; font-family: var(--fuente-ui); font-size: 0.8125rem; }
+
 /* --- Diagnóstico ---------------------------------------------------------- */
 
 .contenido { margin-top: calc(var(--paso) * 8); }
@@ -710,7 +944,8 @@ a.materia:hover, a.materia:focus-visible { border-color: var(--tinta); color: va
 }
 
 .comprobacion[data-resultado="pendiente"] { color: var(--tinta-tenue); }
-.comprobacion[data-resultado="fallo"] .comprobacion__resultado { color: var(--tinta); font-weight: 700; }
+.comprobacion[data-resultado="ok"]    .comprobacion__resultado { color: var(--ok); }
+.comprobacion[data-resultado="fallo"] .comprobacion__resultado { color: var(--fallo); font-weight: 700; }
 
 /* El signo va antes del texto y no depende del color para leerse. */
 .comprobacion__resultado::before { margin-right: 0.5ch; }
@@ -798,10 +1033,11 @@ mark {
     column-gap: calc(var(--paso) * 14);
   }
 
-  .marca         { grid-column: 1; grid-row: 1; }
+  .marca            { grid-column: 1; grid-row: 1; }
   .cabecera__titulo { grid-column: 1; grid-row: 2; }
   .cabecera__nota   { grid-column: 1; grid-row: 3; }
-  .aviso { grid-column: 2; grid-row: 1 / span 3; margin-top: 0; align-self: end; }
+  .atajo            { grid-column: 1; grid-row: 4; }
+  .aviso { grid-column: 2; grid-row: 1 / span 4; margin-top: 0; align-self: end; }
 
   /* Sección lleva siete opciones y ocupa su propia línea; ámbito y estado son
      cortos y comparten la siguiente. */
@@ -823,6 +1059,26 @@ mark {
     padding-left: calc(var(--canal) - var(--trazo));
     break-inside: avoid;
   }
+
+  /* La ficha se parte en dos: a la izquierda lo que se lee —identidad, título,
+     resumen, anexos, relaciones, cita—, y a la derecha lo que se usa: los
+     enlaces al diario, las materias y la sección. Así el texto oficial está a
+     la vista sin bajar hasta el final. */
+  .ficha__cuerpo {
+    display: grid;
+    grid-template-columns: minmax(0, 1.9fr) minmax(14rem, 1fr);
+    align-items: start;
+    column-gap: calc(var(--paso) * 14);
+  }
+
+  .ficha__lateral {
+    position: sticky;
+    top: calc(var(--paso) * 6);
+    padding-left: calc(var(--paso) * 5);
+    border-left: 1px solid var(--filete);
+  }
+
+  .ficha__lateral .apartado:first-child { margin-top: 0; }
 }
 
 @media (min-width: 90rem) {
@@ -860,4 +1116,6 @@ mark {
   a { text-decoration: none; }
   .enlaces a::after { content: " (" attr(href) ")"; font-family: monospace; font-size: 9pt; }
   mark { background: none; box-shadow: none; font-weight: 700; }
+  .pregunta__cuerpo { display: block !important; }
+  .pregunta__enunciado::before { content: ""; }
 }

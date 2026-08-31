@@ -15,7 +15,7 @@
   <header class="cabecera">
     <p class="marca"><a href="./">Legislación FP</a></p>
     <h1 class="cabecera__titulo">Diagnóstico de despliegue</h1>
-    <p class="cabecera__nota">Comprueba, desde este mismo navegador, que el sitio publicado se sirve entero. Abre esta página después de cada publicación: el fallo que no se ve en local es la ruta absoluta, que funciona sirviendo <code>docs/</code> en la raíz y se rompe bajo <code>/legislacion-fp/</code>.</p>
+    <p class="cabecera__nota">Comprueba desde el navegador que el sitio se sirve entero y que los datos son coherentes. Ábrela después de cada publicación y cada vez que edites <code>normas.json</code>.</p>
   </header>
 
   <main class="contenido">
@@ -43,6 +43,9 @@
         <li class="comprobacion" data-resultado="pendiente" data-prueba="invariantes">
           <span>Relaciones entre normas</span><span class="comprobacion__resultado">comprobando</span>
         </li>
+        <li class="comprobacion" data-resultado="pendiente" data-prueba="consulta">
+          <span>Preguntas frecuentes</span><span class="comprobacion__resultado">comprobando</span>
+        </li>
       </ul>
 
       <div id="fallos" class="fallos" hidden>
@@ -59,9 +62,11 @@
       <h2 class="apartado__rotulo">Qué comprueba cada línea</h2>
       <dl class="glosario">
         <dt>Rutas relativas</dt>
-        <dd>Que <code>data/normas.json</code> resuelve por debajo de la carpeta del sitio y no de la raíz del dominio. Es el único fallo que no se ve sirviendo <code>docs/</code> en la raíz.</dd>
+        <dd>Que <code>data/normas.json</code> resuelve por debajo de la carpeta del sitio y no de la raíz del dominio. Es el fallo que no se ve en local: una ruta absoluta funciona sirviendo <code>docs/</code> en la raíz y se rompe bajo <code>/legislacion-fp/</code>.</dd>
         <dt>Relaciones entre normas</dt>
-        <dd>Los invariantes 2, 3 y 4 de <a href="https://github.com/gines-lopez/legislacion-fp/blob/main/MODELO-DATOS.md">MODELO-DATOS.md</a>: que toda norma citada exista, que las relaciones estén declaradas por los dos lados y que el estado concuerde con ellas.</dd>
+        <dd>Los invariantes 2, 3 y 4 de <a href="https://github.com/gines-lopez/legislacion-fp/blob/main/MODELO-DATOS.md">MODELO-DATOS.md</a>: que toda norma citada exista, que las relaciones estén declaradas por los dos lados, que el estado concuerde con ellas y que todo <code>parteDe</code> apunte a una norma que existe.</dd>
+        <dt>Preguntas frecuentes</dt>
+        <dd>Que cada norma que declara <code>consulta</code> tenga su fichero en <code>data/consulta/</code>, sin preguntas repetidas y sin ninguna respuesta que se quede sin epígrafe o sin la cita de la norma en que se apoya.</dd>
       </dl>
     </section>
   </main>

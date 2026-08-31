@@ -117,3 +117,35 @@ La versión provisional de la fase 1 pintaba las derogadas en tono tenue. Ya no:
 **Por qué.** Atenuar es decir «esto importa menos», y no es verdad. El RD 1147/2011 está derogado y los títulos expedidos a su amparo conservan su equivalencia; sus normas se siguen citando. La ficha de una derogada lo advierte explícitamente y remite al resumen, que es donde está el alcance.
 
 **Coherente con D5:** dentro de la escala de grises, la señal más fuerte disponible es la inversión completa —tinta plena con texto en papel—, y ahí es donde se gasta: en el chip de filtro activo. No en degradar contenido.
+
+## D16 · Los anexos son parte de la norma que los publica, no normas sueltas
+
+Los cuatro anexos de la Resolución de instrucciones de curso llevan `parteDe: "resolucion-2026-07-16"`. La ficha de la resolución los lista con su nombre y su resumen; la ficha de cada anexo declara de quién es parte y advierte de que no se cita por separado.
+
+**Por qué.** Los cuatro apuntan literalmente al mismo PDF que su resolución: no son documentos distintos, son apartados de uno solo. Presentarlos como normas independientes invita a citar «el Anexo III» sin decir de qué norma, que es una cita inútil, y a no enterarse de que se renuevan enteros cada curso con las instrucciones (ver D8).
+
+**Siguen apareciendo en el listado**, en la sección `anexos`, porque el profesorado los busca por lo que hacen —«el impreso de renuncia de convocatorias»— y no por la norma que los contiene. Lo que cambia es que ahí se lee «Parte de RESOLUCIÓN DE 16 DE JULIO DE 2026», y en la madre, «Incluye 4 anexos».
+
+**Se reabre si:** aparece un anexo con vida propia, publicado y modificado por separado de la norma que lo aprobó. Entonces deja de ser parte y pasa a ser norma con relaciones.
+
+## D17 · Verde y rojo, solo en la página de diagnóstico
+
+`--ok` y `--fallo` son los dos únicos colores del proyecto y solo se usan en `diagnostico.html`.
+
+**Por qué no contradice D5.** D5 protege la consulta de normativa: el estado de vigencia de una norma no puede depender del color, porque se imprime en blanco y negro y porque hay quien no lo distingue. El diagnóstico no es normativa: es una herramienta de mantenimiento que se mira en pantalla, donde verde y rojo son el vocabulario que todo el mundo lee sin pensar.
+
+**Y aun ahí no depende del color:** cada línea lleva delante su ✓ o su ✗, y el fallo va además en negrita. Los cuatro tonos superan 6,7:1 sobre su fondo en los dos temas.
+
+## D18 · Las preguntas frecuentes son datos, y ninguna respuesta va sin la cita que la sostiene
+
+La consulta de una norma vive en `docs/data/consulta/<id>.json` y la ficha la pinta. Cada pregunta lleva cuatro cosas: el enunciado tal y como lo formularía quien consulta, una respuesta en lenguaje llano, el epígrafe del que sale y **la frase literal de la norma** en que se apoya.
+
+**Por qué la cita es obligatoria y no opcional.** El resto del sitio enlaza y no interpreta; una FAQ sí interpreta, y esa es exactamente la parte que puede hacer daño. Poner la frase original debajo convierte cada respuesta en algo comprobable en un vistazo: quien tenga que defenderla ante la inspección, ante la dirección o ante una familia tiene el texto delante, y quien crea que la respuesta está mal puede demostrarlo sin abrir el PDF.
+
+**Por qué en JSON y no en HTML.** Es contenido, y D3 dice que el contenido no se escribe en el HTML. Además así el buscador de la portada las alcanza: se busca «renuncia de convocatoria» y sale la respuesta, no solo la norma que la contiene.
+
+**La literalidad se verifica, no se supone.** Las 50 preguntas de la Resolución de 16 de julio de 2026 se redactaron contra el texto extraído del PDF oficial y las 50 citas se comprobaron una a una contra él antes de guardar el fichero. El procedimiento está en [MODELO-DATOS.md](MODELO-DATOS.md).
+
+**Consecuencia de mantenimiento:** las instrucciones de curso se republican cada año. Cuando llegue la resolución del curso siguiente, la FAQ **no se hereda**: se rehace contra el texto nuevo, porque los epígrafes se renumeran y las cifras cambian. Hasta entonces, `revisado` dice contra qué versión se escribió.
+
+**Se reabre si:** aparece una norma cuya FAQ no quepa en un solo fichero, o si hace falta que las preguntas de varias normas se busquen entre sí, que hoy no hace falta porque solo hay una.

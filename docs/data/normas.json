@@ -370,6 +370,7 @@
   {
     "id": "resolucion-2026-07-16",
     "tipo": "resolucion",
+    "consulta": true,
     "fecha": "2026-07-16",
     "titulo": "Resolución de 16 de julio de 2026, de la Secretaría Autonómica de Educación, por la que se dictan instrucciones sobre ordenación académica y de organización de los centros que impartan los grados D y E de Formación Profesional durante el curso 2026-2027 en la Comunitat Valenciana",
     "resumen": "Instrucciones de inicio de curso: matrícula, evaluación, convocatorias, titulación, convalidaciones y formación en empresa. Es el documento de trabajo diario del profesorado y deja sin efecto las instrucciones del curso anterior.",
@@ -496,6 +497,7 @@
     "id": "anexo-anulacion-matricula",
     "tipo": "anexo",
     "numero": "I",
+    "parteDe": "resolucion-2026-07-16",
     "fecha": "2026-07-16",
     "titulo": "Anexo I de la Resolución de 16 de julio de 2026: solicitud de anulación de matrícula en ciclo formativo",
     "resumen": "Impreso con el que el alumnado solicita a la dirección del centro la anulación de su matrícula. Se publica dentro de las instrucciones del curso, así que se renueva con ellas cada año.",
@@ -514,6 +516,7 @@
     "id": "anexo-resolucion-anulacion-matricula",
     "tipo": "anexo",
     "numero": "II",
+    "parteDe": "resolucion-2026-07-16",
     "fecha": "2026-07-16",
     "titulo": "Anexo II de la Resolución de 16 de julio de 2026: resolución de anulación de matrícula",
     "resumen": "Impreso con el que la dirección del centro resuelve la solicitud de anulación de matrícula y deja constancia en el expediente.",
@@ -532,6 +535,7 @@
     "id": "anexo-renuncia-convocatorias",
     "tipo": "anexo",
     "numero": "III",
+    "parteDe": "resolucion-2026-07-16",
     "fecha": "2026-07-16",
     "titulo": "Anexo III de la Resolución de 16 de julio de 2026: solicitud de renuncia de convocatorias de ciclos formativos",
     "resumen": "Impreso con el que el alumnado renuncia a convocatorias de módulos profesionales del curso, para no agotarlas.",
@@ -550,6 +554,7 @@
     "id": "anexo-convalidacion-estudios",
     "tipo": "anexo",
     "numero": "IV",
+    "parteDe": "resolucion-2026-07-16",
     "fecha": "2026-07-16",
     "titulo": "Anexo IV de la Resolución de 16 de julio de 2026: reconocimiento de convalidación de estudios",
     "resumen": "Impreso con el que el centro reconoce al alumnado la convalidación de módulos profesionales que son competencia del propio centro.",
@@ -563,6 +568,25 @@
       { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2026/07/20/pdf/2026_24495_es.pdf", "formato": "pdf" }
     ],
     "etiquetas": ["convalidaciones", "impreso"]
+  },
+  {
+    "id": "anexo-nueva-implantacion",
+    "tipo": "anexo",
+    "numero": "V",
+    "parteDe": "resolucion-2026-07-16",
+    "fecha": "2026-07-16",
+    "titulo": "Anexo V de la Resolución de 16 de julio de 2026: ciclos formativos y cursos de especialización de nueva implantación en el curso 2026-2027",
+    "resumen": "Relación bilingüe de lo que se implanta nuevo este curso, centro a centro: municipio, código y nombre del centro, grado, familia profesional, ciclo y turno. No es un impreso, sino un listado informativo; se renueva entero con las instrucciones de cada curso.",
+    "ambito": "autonomico",
+    "seccion": "anexos",
+    "estado": "vigente",
+    "modificadaPor": [],
+    "modifica": [],
+    "deroga": [],
+    "enlaces": [
+      { "etiqueta": "PDF del DOGV", "url": "https://dogv.gva.es/datos/2026/07/20/pdf/2026_24495_es.pdf", "formato": "pdf" }
+    ],
+    "etiquetas": ["oferta", "nueva-implantacion"]
   },
   {
     "id": "instrucciones-2025-06-18",

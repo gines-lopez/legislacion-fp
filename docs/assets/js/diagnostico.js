@@ -84,10 +84,51 @@ const cargar = async (ruta) => {
         && !datos.normas.some((otra) => otra.deroga.includes(norma.id))) {
       fallos.push(`${norma.id}: derogada y nadie la deroga`);
     }
+
+    /* Un anexo cuelga de la norma que lo publica; si esa norma no existe, la
+       ficha de la madre no lo mostrará y el anexo quedará suelto. */
+    if (norma.parteDe && !porId.has(norma.parteDe)) {
+      fallos.push(`${norma.id}: parteDe → ${norma.parteDe} no existe`);
+    }
   }
 
   marcar('invariantes', fallos.length === 0,
     fallos.length === 0 ? 'sin incoherencias' : `${fallos.length} incoherencias`);
+
+  /* 8. Las preguntas frecuentes: que el fichero de cada norma que dice tenerlas
+        exista, y que ninguna respuesta se quede sin epígrafe ni sin la cita en
+        que se apoya. Una respuesta sin respaldo es justo lo que este sitio no
+        puede permitirse. */
+  const conConsulta = datos.normas.filter((n) => n.consulta);
+  const problemas = [];
+  let totalPreguntas = 0;
+
+  for (const norma of conConsulta) {
+    let consulta;
+    try {
+      consulta = await cargar(`data/consulta/${norma.id}.json`);
+    } catch (error) {
+      problemas.push(`${norma.id}: no se puede leer su fichero de consulta`);
+      continue;
+    }
+    const preguntas = consulta.preguntas ?? [];
+    totalPreguntas += preguntas.length;
+    const identificadores = new Set();
+    for (const pregunta of preguntas) {
+      if (identificadores.has(pregunta.id)) problemas.push(`${norma.id}: pregunta repetida ${pregunta.id}`);
+      identificadores.add(pregunta.id);
+      for (const campo of ['pregunta', 'respuesta', 'epigrafe', 'cita']) {
+        if (!pregunta[campo]) problemas.push(`${norma.id}/${pregunta.id ?? '?'}: falta ${campo}`);
+      }
+    }
+  }
+
+  marcar('consulta', problemas.length === 0,
+    problemas.length === 0
+      ? `${totalPreguntas} ${totalPreguntas === 1 ? 'pregunta' : 'preguntas'}`
+      : `${problemas.length} problemas`);
+
+  fallos.push(...problemas);
 
   if (fallos.length) {
     const detalle = document.getElementById('fallos');
